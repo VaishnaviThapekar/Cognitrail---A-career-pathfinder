@@ -7,6 +7,8 @@ const CollegeFinder = ({ onClose, darkMode }) => {
     const [selectedState, setSelectedState] = useState('');
     const [selectedCity, setSelectedCity] = useState('');
     const [selectedType, setSelectedType] = useState('');
+    const [selectedTier, setSelectedTier] = useState('');
+    const [selectedOwnership, setSelectedOwnership] = useState('');
     const [selectedCollege, setSelectedCollege] = useState(null);
 
     // Get filtered colleges
@@ -37,6 +39,16 @@ const CollegeFinder = ({ onClose, darkMode }) => {
             colleges = colleges.filter(college => college.type === selectedType);
         }
 
+        // Filter by tier
+        if (selectedTier) {
+            colleges = colleges.filter(college => (college.tier || '').toLowerCase() === selectedTier.toLowerCase());
+        }
+
+        // Filter by ownership
+        if (selectedOwnership) {
+            colleges = colleges.filter(college => (college.ownership || '').toLowerCase() === selectedOwnership.toLowerCase());
+        }
+
         return colleges;
     };
 
@@ -44,6 +56,8 @@ const CollegeFinder = ({ onClose, darkMode }) => {
     const availableStates = getAllStates();
     const availableCities = selectedState ? getCitiesByState(selectedState) : [];
     const collegeTypes = ['Engineering', 'Management', 'Multi-Disciplinary', 'Arts & Science', 'Medical', 'Law'];
+    const tiers = ['Tier 1', 'Tier 2', 'Tier 3'];
+    const ownerships = ['Government', 'Private'];
 
     return (
         <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#0f1419]' : 'bg-gradient-to-br from-slate-50 to-indigo-50'
@@ -161,6 +175,46 @@ const CollegeFinder = ({ onClose, darkMode }) => {
                             </select>
                         </div>
 
+                        {/* Tier Filter */}
+                        <div>
+                            <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                Tier
+                            </label>
+                            <select
+                                value={selectedTier}
+                                onChange={(e) => setSelectedTier(e.target.value)}
+                                className={`w-full px-4 py-3 rounded-xl border-2 transition-colors outline-none ${darkMode
+                                    ? 'bg-[#272757] border-[#505081] text-white focus:border-[#8686AC]'
+                                    : 'bg-white border-indigo-200 text-gray-900 focus:border-indigo-500'
+                                    }`}
+                            >
+                                <option value="">All Tiers</option>
+                                {tiers.map((t, idx) => (
+                                    <option key={idx} value={t}>{t}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {/* Ownership Filter */}
+                        <div>
+                            <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                Ownership
+                            </label>
+                            <select
+                                value={selectedOwnership}
+                                onChange={(e) => setSelectedOwnership(e.target.value)}
+                                className={`w-full px-4 py-3 rounded-xl border-2 transition-colors outline-none ${darkMode
+                                    ? 'bg-[#272757] border-[#505081] text-white focus:border-[#8686AC]'
+                                    : 'bg-white border-indigo-200 text-gray-900 focus:border-indigo-500'
+                                    }`}
+                            >
+                                <option value="">All Ownership</option>
+                                {ownerships.map((o, idx) => (
+                                    <option key={idx} value={o}>{o}</option>
+                                ))}
+                            </select>
+                        </div>
+
                         {/* Clear Filters */}
                         <div className="flex items-end">
                             <button
@@ -169,6 +223,8 @@ const CollegeFinder = ({ onClose, darkMode }) => {
                                     setSelectedState('');
                                     setSelectedCity('');
                                     setSelectedType('');
+                                    setSelectedTier('');
+                                    setSelectedOwnership('');
                                 }}
                                 className={`w-full px-4 py-3 rounded-xl font-semibold transition-all hover:scale-105 ${darkMode
                                     ? 'bg-[#505081] hover:bg-[#8686AC] text-white'
@@ -178,6 +234,7 @@ const CollegeFinder = ({ onClose, darkMode }) => {
                                 Clear All
                             </button>
                         </div>
+                        {/* Removed JSON import control per user request */}
                     </div>
 
                     {/* Results Count */}
@@ -223,6 +280,7 @@ const CollegeFinder = ({ onClose, darkMode }) => {
                                     </span>
                                 </div>
                             </div>
+
 
                             {/* Quick Info */}
                             <div className="space-y-2 mb-4">
