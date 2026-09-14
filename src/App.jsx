@@ -37,7 +37,14 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
-  const [savedCareers, setSavedCareers] = useState([]);
+  const [savedCareers, setSavedCareers] = useState(() => {
+    try {
+      const stored = localStorage.getItem('cognitrail_saved_careers');
+      return stored ? JSON.parse(stored) : [];
+    } catch (e) {
+      return [];
+    }
+  });
   const [showQuiz, setShowQuiz] = useState(false);
   const [showNews, setShowNews] = useState(false);
   const [showChatbot, setShowChatbot] = useState(false);
@@ -51,6 +58,7 @@ function App() {
   const [showStudentProfile, setShowStudentProfile] = useState(false);
   const [showInterviewSimulator, setShowInterviewSimulator] = useState(false);
   const [infoModalContent, setInfoModalContent] = useState(null);
+  const [activeDomainFilter, setActiveDomainFilter] = useState('all');
 
   useEffect(() => {
     const timer = setTimeout(() => setShowWelcome(false), 2000);
@@ -63,6 +71,14 @@ function App() {
       setDarkMode(true);
     }
   }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('cognitrail_saved_careers', JSON.stringify(savedCareers));
+    } catch (e) {
+      console.warn('Could not save careers', e);
+    }
+  }, [savedCareers]);
 
   useEffect(() => {
     window.openSkillGap = (c) => {
@@ -113,27 +129,59 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const filteredDomains = Object.entries(CAREER_DATABASE).filter(([key, domain]) => {
-    if (!searchQuery) return true;
-    const query = searchQuery.toLowerCase();
-    return (
-      domain.name.toLowerCase().includes(query) ||
-      domain.subFields.some(sf =>
-        sf.name.toLowerCase().includes(query) ||
-        sf.description.toLowerCase().includes(query) ||
-        sf.careers.some(c => c.name.toLowerCase().includes(query))
-      )
-    );
-  });
-
   const getAllCareers = () => {
-    const careers = [];
-    Object.values(CAREER_DATABASE).forEach(domain => {
-      domain.subFields.forEach(subField => {
-        careers.push(...subField.careers);
-      });
+    const careersMap = new Map();
+    if (!CAREER_DATABASE) return [];
+
+    Object.entries(CAREER_DATABASE).forEach(([domainKey, domain]) => {
+      if (domain.subFields && Array.isArray(domain.subFields)) {
+        domain.subFields.forEach(subField => {
+          if (subField.careers && Array.isArray(subField.careers)) {
+            subField.careers.forEach(career => {
+              if (career && career.name && !careersMap.has(career.name)) {
+                careersMap.set(career.name, {
+                  ...career,
+                  domainKey,
+                  domainName: domain.name,
+                  subFieldName: subField.name
+                });
+              }
+            });
+          }
+        });
+      }
     });
-    return careers;
+
+    return Array.from(careersMap.values());
+  };
+
+  const getFilteredCareers = () => {
+    const all = getAllCareers();
+    return all.filter(c => {
+      // Domain filter check
+      if (activeDomainFilter !== 'all' && c.domainKey !== activeDomainFilter) {
+        return false;
+      }
+      // Search query check
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        const matchesName = (c.name || '').toLowerCase().includes(q);
+        const matchesDesc = (c.description || '').toLowerCase().includes(q);
+        const matchesDomain = (c.domainName || '').toLowerCase().includes(q);
+        const matchesSub = (c.subFieldName || '').toLowerCase().includes(q);
+        const matchesSkills = (c.skills || []).some(s => s.toLowerCase().includes(q));
+        const matchesEducation = (c.education || '').toLowerCase().includes(q);
+        return matchesName || matchesDesc || matchesDomain || matchesSub || matchesSkills || matchesEducation;
+      }
+      return true;
+    });
+  };
+
+  const handleResetFilters = () => {
+    setSearchQuery('');
+    setActiveDomainFilter('all');
+    setSelectedDomain(null);
+    setSelectedSubField(null);
   };
 
   // Welcome Screen in sleek Black & White
@@ -415,51 +463,228 @@ function App() {
 
                 <WhyChooseSection darkMode={darkMode} />
 
-                {/* Domain Selection Section */}
+                {/* Domain & Career Discovery Section */}
                 <div id="domains" className="pt-4 animate-fade-in">
-                  <div className="text-center mb-12">
+                  <div className="text-center mb-8">
                     <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-3`}>
-                      Explore Career Domains
+                      Explore Career Pathways & Domains
                     </h2>
-                    <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                      Select an area of interest to discover specialized paths and salary data
+                    <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'} max-w-2xl mx-auto`}>
+                      Filter by domain, search by specific job title or skill, and inspect 150+ comprehensive roadmaps.
                     </p>
                   </div>
 
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredDomains.map(([key, domain]) => (
-                      <button
-                        key={key}
-                        onClick={() => setSelectedDomain(key)}
-                        className={`group relative rounded-3xl p-8 border text-left overflow-hidden hover-lift btn-interactive ${darkMode
-                          ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
-                          : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
+                  {/* Search and Domain Filter Controls */}
+                  <div className={`p-4 sm:p-6 rounded-3xl border mb-8 ${
+                    darkMode ? 'bg-[#121215] border-zinc-800 shadow-xl' : 'bg-white border-zinc-200 shadow-md'
+                  }`}>
+                    {/* Search Input Bar */}
+                    <div className="flex flex-col sm:flex-row items-center gap-3 mb-5">
+                      <div className={`flex-1 flex items-center gap-2 px-4 py-3 rounded-2xl border w-full ${
+                        darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-zinc-50 border-zinc-300 text-black'
+                      }`}>
+                        <span className="text-zinc-400 text-sm">🔍</span>
+                        <input
+                          id="career-search"
+                          type="text"
+                          placeholder="Search careers by name, skills, or degree (e.g. AI, Doctor, UI/UX, Finance)..."
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          className="w-full bg-transparent border-none text-sm focus:outline-none placeholder-zinc-500"
+                        />
+                        {searchQuery && (
+                          <button
+                            onClick={() => setSearchQuery('')}
+                            className="p-1 rounded-lg text-zinc-400 hover:text-white"
+                            title="Clear search"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        )}
+                      </div>
+
+                      {(searchQuery || activeDomainFilter !== 'all') && (
+                        <button
+                          onClick={handleResetFilters}
+                          className={`px-5 py-3 rounded-2xl font-bold text-xs btn-interactive border whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
+                            darkMode 
+                              ? 'bg-zinc-900 border-zinc-700 text-zinc-200 hover:bg-zinc-800' 
+                              : 'bg-zinc-100 border-zinc-300 text-black hover:bg-zinc-200'
                           }`}
-                      >
-                        <div className="relative z-10">
-                          <div className={`mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl border shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ${darkMode
-                            ? 'bg-zinc-900 border-zinc-700 text-white'
-                            : 'bg-zinc-100 border-zinc-300 text-black'
-                            }`}>
-                            <span className="text-4xl">{domain.icon}</span>
+                        >
+                          <X className="w-3.5 h-3.5" />
+                          <span>Reset All Filters</span>
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Domain Filter Chips */}
+                    <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+                      {[
+                        { id: 'all', label: 'All Domains (150+)', icon: '🌐' },
+                        { id: 'science', label: 'Science & Medical', icon: '🔬' },
+                        { id: 'engineering', label: 'Engineering & AI', icon: '💻' },
+                        { id: 'commerce', label: 'Commerce & Finance', icon: '💼' },
+                        { id: 'arts', label: 'Arts & Design', icon: '🎨' },
+                        { id: 'law', label: 'Law & Governance', icon: '⚖️' },
+                        { id: 'government', label: 'Civil & Govt', icon: '🏛️' },
+                        { id: 'education', label: 'Education', icon: '📚' },
+                        { id: 'sports', label: 'Sports & Fitness', icon: '⚽' }
+                      ].map((chip) => (
+                        <button
+                          key={chip.id}
+                          onClick={() => setActiveDomainFilter(chip.id)}
+                          className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 btn-interactive cursor-pointer ${
+                            activeDomainFilter === chip.id
+                              ? darkMode
+                                ? 'bg-white text-black shadow-md scale-105'
+                                : 'bg-black text-white shadow-md scale-105'
+                              : darkMode
+                                ? 'bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700'
+                                : 'bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-black hover:border-zinc-300'
+                          }`}
+                        >
+                          <span>{chip.icon}</span>
+                          <span>{chip.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Active Filters Result Count */}
+                  {(searchQuery || activeDomainFilter !== 'all') ? (
+                    <div>
+                      <div className="flex items-center justify-between mb-6">
+                        <div className="flex items-center gap-2">
+                          <span className={`text-sm font-bold ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>
+                            Search & Filter Results
+                          </span>
+                          <span className={`text-xs px-2.5 py-0.5 rounded-full font-mono font-bold border ${
+                            darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-300 text-black'
+                          }`}>
+                            {getFilteredCareers().length} Matching
+                          </span>
+                        </div>
+
+                        <button
+                          onClick={handleResetFilters}
+                          className="text-xs font-semibold text-zinc-400 hover:underline cursor-pointer"
+                        >
+                          Clear Filters
+                        </button>
+                      </div>
+
+                      {/* Filtered Careers Grid or No Results */}
+                      {getFilteredCareers().length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                          {getFilteredCareers().map((career, idx) => (
+                            <CareerCard
+                              key={career.name || idx}
+                              career={career}
+                              onSelect={(c) => {
+                                setSelectedCareer(c);
+                                trackCareerExplored();
+                              }}
+                              darkMode={darkMode}
+                              savedCareers={savedCareers}
+                              setSavedCareers={(careers) => {
+                                const isAdding = careers.length > savedCareers.length;
+                                if (isAdding) trackCareerSaved();
+                                setSavedCareers(careers);
+                              }}
+                            />
+                          ))}
+                        </div>
+                      ) : (
+                        /* Useful No Results State */
+                        <div className={`p-10 rounded-3xl border text-center my-8 animate-fade-in ${
+                          darkMode ? 'bg-[#121215] border-zinc-800' : 'bg-white border-zinc-200 shadow-sm'
+                        }`}>
+                          <div className={`w-16 h-16 mx-auto rounded-2xl flex items-center justify-center text-3xl mb-4 border ${
+                            darkMode ? 'bg-zinc-900 border-zinc-700' : 'bg-zinc-100 border-zinc-300'
+                          }`}>
+                            🔍
                           </div>
-
-                          <h3 className={`text-2xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
-                            {domain.name}
+                          <h3 className={`text-xl font-black mb-2 ${darkMode ? 'text-white' : 'text-black'}`}>
+                            No Careers Found Matching "{searchQuery}"
                           </h3>
-
-                          <p className={`text-xs font-semibold mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>
-                            {domain.subFields.length} specialized fields • 25+ career tracks
+                          <p className={`text-sm mb-6 max-w-md mx-auto ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                            We couldn't find any direct matches in the selected filter. Try searching for broader terms or explore trending fields below.
                           </p>
 
-                          <div className={`flex items-center gap-1.5 font-bold text-sm ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
-                            <span>Explore Fields</span>
-                            <ChevronRight className="w-4 h-4" />
+                          {/* Quick Keyword Suggestions */}
+                          <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
+                            <span className={`text-xs font-semibold ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`}>Try searching:</span>
+                            {['Software Engineer', 'MBBS Doctor', 'Data Scientist', 'Investment Banker', 'Product Designer', 'Lawyer'].map((sug) => (
+                              <button
+                                key={sug}
+                                onClick={() => {
+                                  setSearchQuery(sug);
+                                  setActiveDomainFilter('all');
+                                }}
+                                className={`text-xs px-3 py-1 rounded-xl border font-bold transition-all hover:scale-105 cursor-pointer ${
+                                  darkMode 
+                                    ? 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-600' 
+                                    : 'bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-black hover:border-zinc-400'
+                                }`}
+                              >
+                                {sug}
+                              </button>
+                            ))}
                           </div>
+
+                          <button
+                            onClick={handleResetFilters}
+                            className={`px-6 py-3 rounded-2xl font-bold text-sm btn-interactive cursor-pointer ${
+                              darkMode ? 'bg-white text-black hover:bg-zinc-200' : 'bg-black text-white hover:bg-zinc-800'
+                            }`}
+                          >
+                            Reset All Filters & View 150+ Careers
+                          </button>
                         </div>
-                      </button>
-                    ))}
-                  </div>
+                      )}
+                    </div>
+                  ) : (
+                    /* Default Domain Browser Cards */
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {Object.entries(CAREER_DATABASE).map(([key, domain]) => (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedDomain(key)}
+                          className={`group relative rounded-3xl p-8 border text-left overflow-hidden hover-lift btn-interactive cursor-pointer ${
+                            darkMode
+                              ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600 shadow-xl'
+                              : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
+                          }`}
+                        >
+                          <div className="relative z-10">
+                            <div className={`mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl border shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ${
+                              darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-zinc-100 border-zinc-300 text-black'
+                            }`}>
+                              <span className="text-4xl">{domain.icon}</span>
+                            </div>
+
+                            <h3 className={`text-2xl font-black mb-2 transition-colors ${
+                              darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'
+                            }`}>
+                              {domain.name}
+                            </h3>
+
+                            <p className={`text-xs font-semibold mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>
+                              {domain.subFields.length} specialized fields • 25+ career tracks
+                            </p>
+
+                            <div className={`flex items-center gap-1.5 font-bold text-sm ${
+                              darkMode ? 'text-zinc-300' : 'text-black'
+                            } group-hover:gap-2.5 transition-all`}>
+                              <span>Explore Fields</span>
+                              <ChevronRight className="w-4 h-4" />
+                            </div>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ) : !selectedSubField ? (
@@ -468,7 +693,9 @@ function App() {
                 <div className="mb-6">
                   <button
                     onClick={() => setSelectedDomain(null)}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white hover:opacity-80 transition-all"
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold border btn-interactive cursor-pointer ${
+                      darkMode ? 'bg-zinc-900 border-zinc-700 text-white hover:bg-zinc-800' : 'bg-zinc-100 border-zinc-300 text-black hover:bg-zinc-200'
+                    }`}
                   >
                     ← Back to All Domains
                   </button>
@@ -476,7 +703,7 @@ function App() {
 
                 <div className="text-center mb-12">
                   <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-3`}>
-                    {CAREER_DATABASE[selectedDomain].name}
+                    {CAREER_DATABASE[selectedDomain]?.name || 'Domain Details'}
                   </h2>
                   <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                     Select a specialization field to view career pathways
@@ -484,14 +711,15 @@ function App() {
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
-                  {CAREER_DATABASE[selectedDomain].subFields.map((subField) => (
+                  {CAREER_DATABASE[selectedDomain]?.subFields?.map((subField) => (
                     <button
                       key={subField.id}
                       onClick={() => setSelectedSubField(subField)}
-                      className={`group rounded-3xl p-8 border transition-all duration-300 text-left hover:shadow-2xl hover:-translate-y-1 ${darkMode
-                        ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
-                        : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
-                        }`}
+                      className={`group rounded-3xl p-8 border transition-all duration-300 text-left hover-lift btn-interactive cursor-pointer ${
+                        darkMode
+                          ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600 shadow-xl'
+                          : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
+                      }`}
                     >
                       <h3 className={`text-2xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-black'} transition-colors`}>
                         {subField.name}
@@ -518,7 +746,9 @@ function App() {
                 <div className="mb-6 flex items-center gap-4">
                   <button
                     onClick={() => setSelectedSubField(null)}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white hover:opacity-80 transition-all"
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold border btn-interactive cursor-pointer ${
+                      darkMode ? 'bg-zinc-900 border-zinc-700 text-white hover:bg-zinc-800' : 'bg-zinc-100 border-zinc-300 text-black hover:bg-zinc-200'
+                    }`}
                   >
                     ← Back to Specializations
                   </button>
@@ -533,10 +763,10 @@ function App() {
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                   {selectedSubField.careers.map((career, idx) => (
                     <CareerCard
-                      key={idx}
+                      key={career.name || idx}
                       career={career}
                       onSelect={(c) => {
                         setSelectedCareer(c);
@@ -562,6 +792,16 @@ function App() {
               career={selectedCareer}
               onClose={() => setSelectedCareer(null)}
               darkMode={darkMode}
+              onSelectCareer={(c) => {
+                setSelectedCareer(c);
+                trackCareerExplored();
+              }}
+              savedCareers={savedCareers}
+              setSavedCareers={(careers) => {
+                const isAdding = careers.length > savedCareers.length;
+                if (isAdding) trackCareerSaved();
+                setSavedCareers(careers);
+              }}
             />
           )}
 
