@@ -1,0 +1,416 @@
+# 🎓 COGNITRIAL - Your Career Pathfinder
+
+<div align="center">
+
+![COGNITRIAL Logo](https://img.shields.io/badge/COGNITRIAL-Career_Pathfinder-6366f1?style=for-the-badge)
+
+**Transform your career aspirations into achievements with our comprehensive pathfinder**
+
+[![React](https://img.shields.io/badge/React-18.0+-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0+-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![Lucide Icons](https://img.shields.io/badge/Lucide-Icons-F56565?style=flat-square)](https://lucide.dev/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
+
+[Live Demo](#) | [Features](#-features) | [Installation](#-installation) | [Usage](#-usage)
+
+</div>
+
+---
+
+## 📖 Table of Contents
+
+- [About](#-about)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Project Structure](#-project-structure)
+- [Components](#-components)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
+
+## 🌟 About
+
+**COGNITRIAL** is a comprehensive career guidance platform designed to help students and professionals explore, plan, and achieve their career goals. With 150+ careers, 192+ colleges, AI-powered tools, and gamification features, COGNITRIAL makes career planning interactive and engaging.
+
+### Why COGNITRIAL?
+
+- 🎯 **Personalized**: AI-powered career matching based on your interests
+- 📊 **Comprehensive**: 150+ careers across 8 domains
+- 🎓 **Educational**: 192+ colleges with detailed information
+- 🎮 **Engaging**: Gamification with levels, points, and achievements
+- 🗺️ **Interactive**: Visual roadmap builders and comparison tools
+- 🌓 **Beautiful**: Modern dark/light theme with smooth animations
+
+---
+
+## ✨ Features
+
+### 🎯 Core Features
+
+#### 1. **AI Career Quiz**
+- 10 personalized questions
+- Analyzes interests, strengths, and values
+- Provides top 3 career recommendations
+- Detailed career insights
+
+#### 2. **Career Explorer**
+- 150+ careers across 8 domains
+- Detailed career information
+- Salary ranges and job outlook
+- Required skills and education
+
+#### 3. **Skills Gap Analyzer**
+- Analyze skill gaps for any career
+- Personalized learning roadmap
+- Skill categorization and prioritization
+- Time estimates for skill acquisition
+- Export roadmap feature
+
+#### 4. **Career Comparison Tool**
+- Compare up to 3 careers side-by-side
+- Salary comparison
+- Education requirements
+- Job outlook and demand
+- Skills comparison
+
+#### 5. **College Finder**
+- 192+ colleges database
+- Filter by state, city, rating
+- Detailed college information
+- Official website links
+- Rating system (1-5 stars)
+
+#### 6. **Career Roadmap Builder**
+- 6 pre-built career templates
+- Custom roadmap creation
+- Progress tracking
+- Milestone management
+- Export roadmap
+
+#### 7. **Career News Feed**
+- Latest career-related news
+- Industry updates
+- Educational opportunities
+- Scholarship information
+
+#### 8. **Career Chatbot**
+- Interactive AI assistant
+- Career guidance
+- Answer questions
+- Provide recommendations
+
+### 🎮 Gamification System
+
+- **Level System**: 10 levels (Beginner to Legend)
+- **Points**: Earn points for activities
+- **Achievements**: Unlock badges and milestones
+- **Progress Tracking**: Visual progress indicators
+- **Leaderboard Ready**: Competitive elements
+
+### 🎨 UI/UX Features
+
+- **Dark/Light Theme**: Seamless theme switching
+- **Responsive Design**: Works on all devices
+- **Smooth Animations**: Polished interactions
+- **Custom Scrollbar**: Beautiful auto-hide scrollbar
+- **Modern Design**: Clean and professional interface
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **React 18** - UI Library
+- **Tailwind CSS** - Styling
+- **Lucide React** - Icon Library
+- **React Context API** - State Management
+
+### Development
+- **Vite** - Build Tool
+- **ESLint** - Code Linting
+- **Prettier** - Code Formatting
+
+---
+
+## 📦 Installation
+
+### Prerequisites
+
+- Node.js 16+ 
+- npm or yarn
+
+### Steps
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/YOUR_USERNAME/cognitrial.git
+cd cognitrial
+```
+
+2. **Install dependencies**
+```bash
+npm install
+# or
+yarn install
+```
+
+3. **Start development server**
+```bash
+npm run dev
+# or
+yarn dev
+```
+
+4. **Build for production**
+```bash
+npm run build
+# or
+yarn build
+```
+
+5. **Preview production build**
+```bash
+npm run preview
+# or
+yarn preview
+```
+
+---
+
+## 🚀 Usage
+
+### Running Locally
+
+1. Start the development server:
+```bash
+npm run dev
+```
+
+2. Open your browser and navigate to:
+```
+http://localhost:5173
+```
+
+### Environment Variables
+
+Create a `.env` file in the root directory (optional):
+
+```env
+# Add any API keys or environment variables here
+VITE_API_URL=your_api_url
+```
+
+---
+
+## 📁 Project Structure
+
+```
+cognitrial/
+├── src/
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── ProfilePage.jsx
+│   │   ├── CareerQuiz.jsx
+│   │   ├── CareerCard.jsx
+│   │   ├── CareerDetailModal.jsx
+│   │   ├── CareerChatbot.jsx
+│   │   ├── CareerNewsFeed.jsx
+│   │   ├── CareerComparison.jsx
+│   │   ├── CollegeFinder.jsx
+│   │   ├── SkillsGapAnalyzer.jsx
+│   │   ├── CareerRoadmapBuilder.jsx
+│   │   ├── CareerRoadmap.jsx
+│   │   ├── GamificationComponents.jsx
+│   │   ├── CustomScrollbar.jsx
+│   │   └── WhyChooseSection.jsx
+│   ├── contexts/
+│   │   └── GamificationContext.jsx
+│   ├── data/
+│   │   ├── careerDatabase.js
+│   │   └── collegeDatabase.js
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── public/
+├── .gitignore
+├── package.json
+├── vite.config.js
+├── tailwind.config.js
+├── postcss.config.js
+└── README.md
+```
+
+---
+
+## 🧩 Components
+
+### Core Components
+
+| Component | Description |
+|-----------|-------------|
+| `App.jsx` | Main application component |
+| `Header.jsx` | Navigation header with search |
+| `ProfilePage.jsx` | User profile and achievements |
+| `CareerQuiz.jsx` | AI-powered career assessment |
+| `CareerCard.jsx` | Career display card |
+| `CareerDetailModal.jsx` | Detailed career information |
+
+### Feature Components
+
+| Component | Description |
+|-----------|-------------|
+| `CareerChatbot.jsx` | Interactive AI assistant |
+| `CareerNewsFeed.jsx` | Latest career news |
+| `CareerComparison.jsx` | Compare multiple careers |
+| `CollegeFinder.jsx` | College search and filter |
+| `SkillsGapAnalyzer.jsx` | Skill gap analysis tool |
+| `CareerRoadmapBuilder.jsx` | Interactive roadmap creator |
+| `CareerRoadmap.jsx` | Timeline visualization |
+
+### Utility Components
+
+| Component | Description |
+|-----------|-------------|
+| `GamificationComponents.jsx` | Gamification elements |
+| `CustomScrollbar.jsx` | Custom scrollbar styling |
+| `WhyChooseSection.jsx` | Marketing section |
+
+---
+
+## 🎯 Key Features Breakdown
+
+### 1. Career Database
+- **150+ Careers** organized into:
+  - 💻 Technology
+  - 🔬 Science & Research
+  - ⚙️ Engineering
+  - 💼 Business & Management
+  - 🎨 Arts & Design
+  - ⚖️ Law & Governance
+  - 🌾 Agriculture
+  - 🛡️ Defense & Security
+
+### 2. College Database
+- **192+ Colleges** including:
+  - IITs, NITs, IIMs
+  - AIIMS, Government Medical Colleges
+  - Top Private Universities
+  - State Universities
+  - Specialized Institutions
+
+### 3. Gamification System
+- **10 Levels**: Beginner → Legend
+- **Points System**: 
+  - Take Quiz: 50 points
+  - Explore Career: 10 points
+  - Save Career: 20 points
+  - Complete Roadmap: 100 points
+- **Achievements**: 15+ unlockable badges
+
+---
+
+## 🎨 Theme System
+
+### Dark Theme
+- Deep blue-black backgrounds
+- Purple accent colors
+- Smooth gradient overlays
+- High contrast for readability
+
+### Light Theme
+- Clean white backgrounds
+- Indigo/purple accents
+- Soft gradients
+- Professional appearance
+
+---
+
+## 📱 Responsive Design
+
+- **Desktop**: Full-featured experience
+- **Tablet**: Optimized layout
+- **Mobile**: Touch-friendly interface
+- **All Devices**: Smooth scrolling and animations
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
+1. **Fork the repository**
+2. **Create a feature branch**
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. **Commit your changes**
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```
+4. **Push to the branch**
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. **Open a Pull Request**
+
+### Contribution Guidelines
+
+- Follow existing code style
+- Write meaningful commit messages
+- Test your changes thoroughly
+- Update documentation as needed
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👥 Authors
+
+- **Your Name** - *Initial work* - [YourGitHub](https://github.com/YOUR_USERNAME)
+
+---
+
+## 🙏 Acknowledgments
+
+- Icons by [Lucide](https://lucide.dev/)
+- UI Framework by [Tailwind CSS](https://tailwindcss.com/)
+- Built with [React](https://reactjs.org/)
+
+---
+
+## 📧 Contact
+
+For questions or feedback:
+- Email: your.email@example.com
+- GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
+- LinkedIn: [Your Name](https://linkedin.com/in/yourprofile)
+
+---
+
+## 🚀 Future Roadmap
+
+- [ ] Mobile app version
+- [ ] Advanced AI career matching
+- [ ] Integration with job portals
+- [ ] Virtual career counseling
+- [ ] Community features
+- [ ] Career salary calculator
+- [ ] Resume builder
+- [ ] Interview preparation tools
+
+---
+
+<div align="center">
+
+**Made with ❤️ by COGNITRIAL Team**
+
+⭐ Star this repo if you find it helpful!
+
+</div>
