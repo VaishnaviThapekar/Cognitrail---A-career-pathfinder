@@ -279,126 +279,150 @@ function App() {
                   {/* Career Quiz Card */}
                   <button
                     onClick={() => setShowQuiz(true)}
-                    className={`group rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left relative overflow-hidden border ${darkMode
-                      ? 'bg-gradient-to-br from-[#161b26] to-[#1c2333] border-indigo-500/30'
-                      : 'bg-gradient-to-br from-indigo-600 to-blue-700 border-indigo-400 text-white shadow-xl'
+                    className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
+                      ? 'bg-[#161b26] border-slate-800 hover:border-indigo-500/50'
+                      : 'bg-white border-slate-200 hover:border-indigo-400 shadow-sm'
                       }`}
                   >
-                    <div className="text-5xl mb-4">🎯</div>
-                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-white'}`}>
-                      AI Career Quiz
-                    </h3>
-                    <p className={`text-sm mb-4 ${darkMode ? 'text-slate-300' : 'text-indigo-100'}`}>
-                      5-minute intelligent assessment matching your skills, interests & work style
-                    </p>
-                    <div className="flex items-center gap-2 font-bold text-sm text-indigo-400 group-hover:gap-3 transition-all">
-                      <span className={darkMode ? 'text-indigo-300' : 'text-white'}>Start Assessment</span>
-                      <ChevronRight className={`w-4 h-4 ${darkMode ? 'text-indigo-300' : 'text-white'}`} />
+                    <div>
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-3xl shadow-lg shadow-indigo-500/20 mb-5 group-hover:scale-110 transition-transform">
+                        🎯
+                      </div>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-indigo-400' : 'text-slate-900 group-hover:text-indigo-600'}`}>
+                        AI Career Quiz
+                      </h3>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        5-minute intelligent assessment matching your skills, interests & work style
+                      </p>
+                    </div>
+                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-indigo-400' : 'text-indigo-600'} group-hover:gap-2.5 transition-all`}>
+                      <span>Start Assessment</span>
+                      <ChevronRight className="w-4 h-4" />
                     </div>
                   </button>
 
                   {/* AI Career Advisor Pro Card */}
                   <button
                     onClick={() => setShowAdvancedChatbot(true)}
-                    className={`group rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left relative overflow-hidden border ${darkMode
-                      ? 'bg-gradient-to-br from-[#1c1626] to-[#261c33] border-purple-500/30'
-                      : 'bg-gradient-to-br from-purple-600 to-pink-600 border-purple-400 text-white shadow-xl'
+                    className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
+                      ? 'bg-[#161b26] border-slate-800 hover:border-purple-500/50'
+                      : 'bg-white border-slate-200 hover:border-purple-400 shadow-sm'
                       }`}
                   >
-                    <div className="text-5xl mb-4">✨</div>
-                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-white'}`}>
-                      AI Career Advisor Pro
-                    </h3>
-                    <p className={`text-sm mb-4 ${darkMode ? 'text-slate-300' : 'text-purple-100'}`}>
-                      Interactive chat for salary negotiation, interview prep, and career transitions
-                    </p>
-                    <div className="flex items-center gap-2 font-bold text-sm text-purple-400 group-hover:gap-3 transition-all">
-                      <span className={darkMode ? 'text-purple-300' : 'text-white'}>Launch Chat</span>
-                      <ChevronRight className={`w-4 h-4 ${darkMode ? 'text-purple-300' : 'text-white'}`} />
+                    <div>
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-3xl shadow-lg shadow-purple-500/20 mb-5 group-hover:scale-110 transition-transform">
+                        ✨
+                      </div>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-purple-400' : 'text-slate-900 group-hover:text-purple-600'}`}>
+                        AI Career Advisor Pro
+                      </h3>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        Interactive chat for salary negotiation, interview prep, and career transitions
+                      </p>
+                    </div>
+                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-purple-400' : 'text-purple-600'} group-hover:gap-2.5 transition-all`}>
+                      <span>Launch Chat</span>
+                      <ChevronRight className="w-4 h-4" />
                     </div>
                   </button>
 
                   {/* Skills Gap Analyzer Card */}
                   <button
                     onClick={() => setShowSkillsAnalyzer(true)}
-                    className={`group rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left relative overflow-hidden border ${darkMode
-                      ? 'bg-gradient-to-br from-[#162226] to-[#1c2e33] border-cyan-500/30'
-                      : 'bg-gradient-to-br from-cyan-600 to-teal-700 border-cyan-400 text-white shadow-xl'
+                    className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
+                      ? 'bg-[#161b26] border-slate-800 hover:border-cyan-500/50'
+                      : 'bg-white border-slate-200 hover:border-cyan-400 shadow-sm'
                       }`}
                   >
-                    <div className="text-5xl mb-4">🎯</div>
-                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-white'}`}>
-                      Skills Gap Analyzer
-                    </h3>
-                    <p className={`text-sm mb-4 ${darkMode ? 'text-slate-300' : 'text-cyan-100'}`}>
-                      AI-powered skill analysis & tailored learning roadmap for your target job
-                    </p>
-                    <div className="flex items-center gap-2 font-bold text-sm text-cyan-400 group-hover:gap-3 transition-all">
-                      <span className={darkMode ? 'text-cyan-300' : 'text-white'}>Analyze Skills</span>
-                      <ChevronRight className={`w-4 h-4 ${darkMode ? 'text-cyan-300' : 'text-white'}`} />
+                    <div>
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-teal-600 flex items-center justify-center text-3xl shadow-lg shadow-cyan-500/20 mb-5 group-hover:scale-110 transition-transform">
+                        🎯
+                      </div>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-cyan-400' : 'text-slate-900 group-hover:text-cyan-600'}`}>
+                        Skills Gap Analyzer
+                      </h3>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        AI-powered skill analysis & tailored learning roadmap for your target job
+                      </p>
+                    </div>
+                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-cyan-400' : 'text-cyan-600'} group-hover:gap-2.5 transition-all`}>
+                      <span>Analyze Skills</span>
+                      <ChevronRight className="w-4 h-4" />
                     </div>
                   </button>
 
                   {/* Career Roadmap Builder Card */}
                   <button
                     onClick={() => setShowRoadmapBuilder(true)}
-                    className={`group rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left relative overflow-hidden border ${darkMode
-                      ? 'bg-gradient-to-br from-[#261e16] to-[#33281c] border-amber-500/30'
-                      : 'bg-gradient-to-br from-amber-600 to-orange-600 border-amber-400 text-white shadow-xl'
+                    className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
+                      ? 'bg-[#161b26] border-slate-800 hover:border-amber-500/50'
+                      : 'bg-white border-slate-200 hover:border-amber-400 shadow-sm'
                       }`}
                   >
-                    <div className="text-5xl mb-4">🗺️</div>
-                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-white'}`}>
-                      Roadmap Builder
-                    </h3>
-                    <p className={`text-sm mb-4 ${darkMode ? 'text-slate-300' : 'text-amber-100'}`}>
-                      Build customized stage-by-stage milestones from student to senior lead
-                    </p>
-                    <div className="flex items-center gap-2 font-bold text-sm text-amber-400 group-hover:gap-3 transition-all">
-                      <span className={darkMode ? 'text-amber-300' : 'text-white'}>Build Roadmap</span>
-                      <ChevronRight className={`w-4 h-4 ${darkMode ? 'text-amber-300' : 'text-white'}`} />
+                    <div>
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-3xl shadow-lg shadow-amber-500/20 mb-5 group-hover:scale-110 transition-transform">
+                        🗺️
+                      </div>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-amber-400' : 'text-slate-900 group-hover:text-amber-600'}`}>
+                        Roadmap Builder
+                      </h3>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        Build customized stage-by-stage milestones from student to senior lead
+                      </p>
+                    </div>
+                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-amber-400' : 'text-amber-600'} group-hover:gap-2.5 transition-all`}>
+                      <span>Build Roadmap</span>
+                      <ChevronRight className="w-4 h-4" />
                     </div>
                   </button>
 
                   {/* College Finder Card */}
                   <button
                     onClick={() => setShowCollegeFinder(true)}
-                    className={`group rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left relative overflow-hidden border ${darkMode
-                      ? 'bg-gradient-to-br from-[#16261f] to-[#1c3328] border-emerald-500/30'
-                      : 'bg-gradient-to-br from-emerald-600 to-teal-700 border-emerald-400 text-white shadow-xl'
+                    className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
+                      ? 'bg-[#161b26] border-slate-800 hover:border-emerald-500/50'
+                      : 'bg-white border-slate-200 hover:border-emerald-400 shadow-sm'
                       }`}
                   >
-                    <div className="text-5xl mb-4">🏫</div>
-                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-white'}`}>
-                      College Finder
-                    </h3>
-                    <p className={`text-sm mb-4 ${darkMode ? 'text-slate-300' : 'text-emerald-100'}`}>
-                      Explore 500+ colleges with ratings, entrance exams, and direct links
-                    </p>
-                    <div className="flex items-center gap-2 font-bold text-sm text-emerald-400 group-hover:gap-3 transition-all">
-                      <span className={darkMode ? 'text-emerald-300' : 'text-white'}>Find Colleges</span>
-                      <ChevronRight className={`w-4 h-4 ${darkMode ? 'text-emerald-300' : 'text-white'}`} />
+                    <div>
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-3xl shadow-lg shadow-emerald-500/20 mb-5 group-hover:scale-110 transition-transform">
+                        🏫
+                      </div>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-emerald-400' : 'text-slate-900 group-hover:text-emerald-600'}`}>
+                        College Finder
+                      </h3>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        Explore 500+ colleges with ratings, entrance exams, and direct links
+                      </p>
+                    </div>
+                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-emerald-400' : 'text-emerald-600'} group-hover:gap-2.5 transition-all`}>
+                      <span>Find Colleges</span>
+                      <ChevronRight className="w-4 h-4" />
                     </div>
                   </button>
 
                   {/* Career Comparison Card */}
                   <button
                     onClick={() => setShowComparison(true)}
-                    className={`group rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left relative overflow-hidden border ${darkMode
-                      ? 'bg-gradient-to-br from-[#181626] to-[#201c33] border-blue-500/30'
-                      : 'bg-gradient-to-br from-blue-600 to-indigo-700 border-blue-400 text-white shadow-xl'
+                    className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
+                      ? 'bg-[#161b26] border-slate-800 hover:border-blue-500/50'
+                      : 'bg-white border-slate-200 hover:border-blue-400 shadow-sm'
                       }`}
                   >
-                    <div className="text-5xl mb-4">⚖️</div>
-                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-white'}`}>
-                      Compare Careers
-                    </h3>
-                    <p className={`text-sm mb-4 ${darkMode ? 'text-slate-300' : 'text-blue-100'}`}>
-                      Side-by-side comparison of salaries, required skills, and career outlooks
-                    </p>
-                    <div className="flex items-center gap-2 font-bold text-sm text-blue-400 group-hover:gap-3 transition-all">
-                      <span className={darkMode ? 'text-blue-300' : 'text-white'}>Compare Now</span>
-                      <ChevronRight className={`w-4 h-4 ${darkMode ? 'text-blue-300' : 'text-white'}`} />
+                    <div>
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-3xl shadow-lg shadow-blue-500/20 mb-5 group-hover:scale-110 transition-transform">
+                        ⚖️
+                      </div>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-blue-400' : 'text-slate-900 group-hover:text-blue-600'}`}>
+                        Compare Careers
+                      </h3>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        Side-by-side comparison of salaries, required skills, and career outlooks
+                      </p>
+                    </div>
+                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-blue-400' : 'text-blue-600'} group-hover:gap-2.5 transition-all`}>
+                      <span>Compare Now</span>
+                      <ChevronRight className="w-4 h-4" />
                     </div>
                   </button>
                 </div>
