@@ -209,13 +209,38 @@
   }
 }
 
-@keyframes rotateSlow {
-  from {
+@keyframes radarSweep {
+  0% {
     transform: rotate(0deg);
   }
-  to {
+  100% {
     transform: rotate(360deg);
   }
+}
+
+@keyframes beamScan {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+  }
+  85% {
+    opacity: 0.8;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.animate-radar-sweep {
+  animation: radarSweep 6s linear infinite;
+}
+
+.animate-beam-scan {
+  animation: beamScan 3.5s ease-in-out infinite;
 }
 
 /* Interactive Card & Button Transitions */
