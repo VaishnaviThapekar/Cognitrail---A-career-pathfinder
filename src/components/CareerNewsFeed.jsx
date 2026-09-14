@@ -19,34 +19,75 @@ const CareerNewsFeed = ({ darkMode }) => {
     const [usingMockData, setUsingMockData] = useState(false);
 
     const categories = [
-        { id: 'All', icon: Newspaper, color: 'indigo' },
-        { id: 'Exams', icon: GraduationCap, color: 'blue' },
-        { id: 'Scholarships', icon: Award, color: 'yellow' },
-        { id: 'Jobs', icon: Briefcase, color: 'green' },
-        { id: 'Trends', icon: TrendingUp, color: 'purple' }
+        { id: 'All', icon: Newspaper },
+        { id: 'Exams', icon: GraduationCap },
+        { id: 'Scholarships', icon: Award },
+        { id: 'Jobs', icon: Briefcase },
+        { id: 'Trends', icon: TrendingUp }
     ];
 
-    // Fetch real-time news on component mount
+    // Simulated news data fallback
+    const mockNewsData = [
+        {
+            id: 1,
+            category: 'Exams',
+            title: 'JEE Main 2026 Registration Opens - Apply Now',
+            summary: 'NTA has announced JEE Main 2026 session registration. Official notifications and eligibility criteria published.',
+            date: '2026-01-16',
+            source: 'NTA Official',
+            url: '#',
+            image: '📝',
+            trending: true
+        },
+        {
+            id: 2,
+            category: 'Scholarships',
+            title: 'PM National Scholarship Scheme 2026 for Students',
+            summary: 'Eligible undergraduate students in science, engineering, and commerce can apply for academic financial grants.',
+            date: '2026-01-15',
+            source: 'Ministry of Education',
+            url: '#',
+            image: '🎓',
+            featured: true
+        },
+        {
+            id: 3,
+            category: 'Trends',
+            title: 'Top 10 Emerging AI and Robotics Careers in 2026',
+            summary: 'Industry survey reveals 42% growth in demand for generative AI engineers, robotics specialists, and prompt architects.',
+            date: '2026-01-14',
+            source: 'Tech India Insights',
+            url: '#',
+            image: '🤖',
+            trending: true
+        },
+        {
+            id: 4,
+            category: 'Jobs',
+            title: 'Global Tech Hiring Accelerates for Cloud & Security Roles',
+            summary: 'Major software firms announce expansion in engineering hubs across Bangalore, Hyderabad, and Pune.',
+            date: '2026-01-13',
+            source: 'NASSCOM Report',
+            url: '#',
+            image: '💼'
+        }
+    ];
+
     useEffect(() => {
         const loadNews = async () => {
             setLoading(true);
             try {
                 const realNews = await fetchCareerNewsWithCache();
-
                 if (realNews && realNews.length > 0) {
                     setNews(realNews);
                     setFilteredNews(realNews);
                     setUsingMockData(false);
-                    console.log('✅ Loaded real-time career news:', realNews.length, 'articles');
                 } else {
-                    // Fallback to mock data if API fails
                     setNews(mockNewsData);
                     setFilteredNews(mockNewsData);
                     setUsingMockData(true);
-                    console.log('⚠️ Using mock data (API unavailable)');
                 }
             } catch (error) {
-                console.error('Error loading news:', error);
                 setNews(mockNewsData);
                 setFilteredNews(mockNewsData);
                 setUsingMockData(true);
@@ -58,14 +99,11 @@ const CareerNewsFeed = ({ darkMode }) => {
         loadNews();
     }, []);
 
-    // Refresh news manually
     const refreshNews = async () => {
         setIsRefreshing(true);
-        clearNewsCache(); // Clear cache to force fresh fetch
-
+        clearNewsCache();
         try {
             const freshNews = await fetchCareerNewsWithCache();
-
             if (freshNews && freshNews.length > 0) {
                 setNews(freshNews);
                 setUsingMockData(false);
@@ -74,307 +112,116 @@ const CareerNewsFeed = ({ darkMode }) => {
                 alert('⚠️ Unable to fetch fresh news. Using cached data.');
             }
         } catch (error) {
-            console.error('Error refreshing news:', error);
-            alert('❌ Failed to refresh news. Please try again later.');
+            alert('❌ Failed to refresh news.');
         } finally {
             setIsRefreshing(false);
         }
     };
 
-    // Simulated news data - In production, this would come from an API
-    const mockNewsData = [
-        {
-            id: 1,
-            category: 'Exams',
-            title: 'JEE Main 2026 Registration Opens - Apply Now',
-            summary: 'NTA has announced JEE Main 2026 session 1 registration. Last date to apply is March 15, 2026.',
-            date: '2026-01-16',
-            source: 'NTA Official',
-            url: '#',
-            image: '📝',
-            trending: true
-        },
-        {
-            id: 2,
-            category: 'Scholarships',
-            title: 'PM Scholarship Scheme: ₹3000/month for Meritorious Students',
-            summary: 'Government announces new scholarship for students scoring above 85% in 12th. Applications open until February 28.',
-            date: '2026-01-15',
-            source: 'Education Ministry',
-            url: '#',
-            image: '🎓',
-            featured: true
-        },
-        {
-            id: 3,
-            category: 'Trends',
-            title: 'AI & Machine Learning Jobs Surge by 47% in 2026',
-            summary: 'Latest report shows exponential growth in AI career opportunities. Average salary: ₹12-25 LPA for freshers.',
-            date: '2026-01-14',
-            source: 'NASSCOM Report',
-            url: '#',
-            image: '🤖',
-            trending: true
-        },
-        {
-            id: 4,
-            category: 'Jobs',
-            title: 'ISRO Announces 200+ Scientist Positions',
-            summary: 'Indian Space Research Organization opens applications for engineers and scientists. Apply before January 31.',
-            date: '2026-01-13',
-            source: 'ISRO Careers',
-            url: '#',
-            image: '🚀',
-            featured: true
-        },
-        {
-            id: 5,
-            category: 'Exams',
-            title: 'NEET UG 2026: Important Dates Announced',
-            summary: 'NTA releases NEET UG schedule. Exam date: May 4, 2026. Registration starts February 1.',
-            date: '2026-01-12',
-            source: 'NTA',
-            url: '#',
-            image: '⚕️'
-        },
-        {
-            id: 6,
-            category: 'Trends',
-            title: 'Top 10 Emerging Careers for 2026-2030',
-            summary: 'Data Scientists, Cybersecurity Experts, and Renewable Energy Engineers top the list.',
-            date: '2026-01-11',
-            source: 'LinkedIn Jobs Report',
-            url: '#',
-            image: '📊',
-            trending: true
-        },
-        {
-            id: 7,
-            category: 'Scholarships',
-            title: 'Google Scholarship for Women in Tech: $10,000',
-            summary: 'Google announces scholarship for female students pursuing CS/IT. Deadline: March 1, 2026.',
-            date: '2026-01-10',
-            source: 'Google.org',
-            url: '#',
-            image: '💻'
-        },
-        {
-            id: 8,
-            category: 'Jobs',
-            title: 'TCS, Infosys, Wipro to Hire 100K+ Freshers',
-            summary: 'IT giants announce massive campus hiring drive. Package: ₹3.5-7 LPA. Registration open.',
-            date: '2026-01-09',
-            source: 'Industry News',
-            url: '#',
-            image: '💼'
-        },
-        {
-            id: 9,
-            category: 'Exams',
-            title: 'CAT 2026: Exam Pattern Changes Announced',
-            summary: 'IIMs introduce new question types in quantitative section. Check updated syllabus.',
-            date: '2026-01-08',
-            source: 'IIM Bangalore',
-            url: '#',
-            image: '📚'
-        },
-        {
-            id: 10,
-            category: 'Trends',
-            title: 'Remote Work Revolution: 60% Jobs Now Offer WFH',
-            summary: 'Post-pandemic shift continues. Companies embrace hybrid models permanently.',
-            date: '2026-01-07',
-            source: 'Work Trends 2026',
-            url: '#',
-            image: '🏠'
-        }
-    ];
-
     useEffect(() => {
         let filtered = news;
-
-        // Filter by category
         if (selectedCategory !== 'All') {
             filtered = filtered.filter(item => item.category === selectedCategory);
         }
-
-        // Filter by search query
         if (searchQuery) {
             filtered = filtered.filter(item =>
                 item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 item.summary.toLowerCase().includes(searchQuery.toLowerCase())
             );
         }
-
         setFilteredNews(filtered);
     }, [selectedCategory, searchQuery, news]);
 
     const getTimeAgo = (dateString) => {
         const date = new Date(dateString);
         const now = new Date();
-        const diffTime = Math.abs(now - date);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
+        const diffDays = Math.ceil(Math.abs(now - date) / (1000 * 60 * 60 * 24));
         if (diffDays === 0) return 'Today';
         if (diffDays === 1) return 'Yesterday';
         if (diffDays < 7) return `${diffDays} days ago`;
         return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
     };
 
-    const getCategoryColor = (category) => {
-        const cat = categories.find(c => c.id === category);
-        return cat?.color || 'gray';
-    };
-
     const handleBookmark = (newsId) => {
-        setBookmarkedItems(prev => {
-            if (prev.includes(newsId)) {
-                // Remove bookmark
-                return prev.filter(id => id !== newsId);
-            } else {
-                // Add bookmark
-                return [...prev, newsId];
-            }
-        });
+        setBookmarkedItems(prev => prev.includes(newsId) ? prev.filter(id => id !== newsId) : [...prev, newsId]);
     };
 
     const handleShare = (newsItem) => {
         const shareText = `${newsItem.title}\n\n${newsItem.summary}\n\nSource: ${newsItem.source}`;
-
-        if (navigator.share) {
-            // Use native share if available (mobile)
-            navigator.share({
-                title: newsItem.title,
-                text: shareText,
-                url: window.location.href
-            }).catch(() => {
-                // Fallback to clipboard
-                copyToClipboard(shareText, newsItem.title);
-            });
-        } else {
-            // Fallback to clipboard
-            copyToClipboard(shareText, newsItem.title);
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareText);
+            alert(`"${newsItem.title}" copied to clipboard!`);
         }
-    };
-
-    const copyToClipboard = (text, title) => {
-        navigator.clipboard.writeText(text).then(() => {
-            alert(`"${title}" copied to clipboard! Share it anywhere you like.`);
-        }).catch(() => {
-            alert('Unable to copy. Please try again.');
-        });
     };
 
     const handleRead = (newsItem) => {
-        // In production, this would open the full article
-        // For now, show an alert with the summary
-        alert(`📰 ${newsItem.title}\n\n${newsItem.summary}\n\nSource: ${newsItem.source}\nDate: ${getTimeAgo(newsItem.date)}\n\nIn the full version, this would open the complete article.`);
-    };
-
-    const loadMoreNews = () => {
-        setDisplayCount(prev => prev + 6);
-    };
-
-    const toggleNotifications = () => {
-        setNotificationsEnabled(!notificationsEnabled);
-        if (!notificationsEnabled) {
-            alert('🔔 Notifications enabled! You\'ll receive updates about new career opportunities, exams, and scholarships.');
-        } else {
-            alert('🔕 Notifications disabled.');
-        }
+        alert(`📰 ${newsItem.title}\n\n${newsItem.summary}\n\nSource: ${newsItem.source}\nDate: ${getTimeAgo(newsItem.date)}`);
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-6 animate-fade-in">
             {/* Header */}
             <div className="flex items-center justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-3">
-                    <div className={`p-3 rounded-2xl ${darkMode ? 'bg-[#272757]' : 'bg-indigo-50'
-                        }`}>
-                        <Newspaper className={`w-6 h-6 ${darkMode ? 'text-[#8686AC]' : 'text-indigo-600'
-                            }`} />
+                    <div className={`p-3 rounded-2xl border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                        <Newspaper className="w-6 h-6" />
                     </div>
                     <div>
                         <div className="flex items-center gap-2">
-                            <h2 className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-gray-900'
-                                }`}>
-                                Career News & Updates
+                            <h2 className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
+                                Career News & Exam Alerts
                             </h2>
                             {!usingMockData && (
-                                <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-green-500 text-white text-xs font-bold animate-pulse">
-                                    <span className="w-2 h-2 rounded-full bg-white"></span>
+                                <span className={`px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider border ${darkMode ? 'bg-white text-black border-white' : 'bg-black text-white border-black'}`}>
                                     LIVE
                                 </span>
                             )}
                         </div>
-                        <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'
-                            }`}>
-                            {usingMockData ? 'Sample news (enable API for real-time updates)' : 'Latest opportunities, exams, and trends'}
-                            {bookmarkedItems.length > 0 && (
-                                <span className={`ml-2 px-2 py-0.5 rounded-full text-xs font-semibold ${darkMode ? 'bg-[#505081] text-white' : 'bg-indigo-600 text-white'
-                                    }`}>
-                                    {bookmarkedItems.length} bookmarked
-                                </span>
-                            )}
+                        <p className={`text-xs ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                            Latest entrance exams, college announcements, and industry hiring trends
                         </p>
                     </div>
                 </div>
 
                 <div className="flex items-center gap-2">
-                    {/* Refresh Button */}
                     <button
                         onClick={refreshNews}
                         disabled={isRefreshing}
-                        className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all ${darkMode
-                            ? 'bg-[#272757] hover:bg-[#505081] text-[#8686AC]'
-                            : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700'
-                            } ${isRefreshing ? 'opacity-50 cursor-not-allowed' : ''}`}
-                        title="Refresh news"
+                        className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-xs font-bold btn-interactive ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:bg-zinc-800' : 'bg-white border-zinc-300 text-black hover:bg-zinc-100'}`}
                     >
-                        <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`} />
-                        <span className="font-semibold text-sm hidden md:inline">
-                            {isRefreshing ? 'Refreshing...' : 'Refresh'}
-                        </span>
+                        <RefreshCw className={`w-3.5 h-3.5 ${isRefreshing ? 'animate-spin' : ''}`} />
+                        <span>Refresh</span>
                     </button>
-
-                    {/* Notifications Button */}
                     <button
-                        onClick={toggleNotifications}
-                        className={`flex items-center gap-2 px-4 py-2 rounded-xl transition-all ${notificationsEnabled
-                            ? darkMode
-                                ? 'bg-[#505081] text-white'
-                                : 'bg-indigo-600 text-white'
-                            : darkMode
-                                ? 'bg-[#272757] hover:bg-[#505081] text-[#8686AC]'
-                                : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700'
+                        onClick={() => setNotificationsEnabled(!notificationsEnabled)}
+                        className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl border text-xs font-bold btn-interactive ${notificationsEnabled
+                            ? (darkMode ? 'bg-white text-black border-white' : 'bg-black text-white border-black')
+                            : (darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-white border-zinc-300 text-black')
                             }`}
                     >
-                        <Bell className={`w-4 h-4 ${notificationsEnabled ? 'animate-pulse' : ''}`} />
-                        <span className="font-semibold text-sm hidden md:inline">
-                            {notificationsEnabled ? 'On' : 'Notify'}
-                        </span>
+                        <Bell className="w-3.5 h-3.5" />
+                        <span>{notificationsEnabled ? 'Alerts ON' : 'Notify Me'}</span>
                     </button>
                 </div>
             </div>
 
             {/* Search Bar */}
             <div className="relative">
-                <Search className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 ${darkMode ? 'text-gray-500' : 'text-gray-400'
-                    }`} />
+                <Search className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`} />
                 <input
                     type="text"
-                    placeholder="Search news..."
+                    placeholder="Search career news, exams, scholarships..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className={`w-full pl-12 pr-4 py-3 rounded-xl transition-all ${darkMode
-                        ? 'bg-[#1a1f2e] border-[#272757] text-white placeholder-gray-500'
-                        : 'bg-white border-indigo-100 text-gray-900 placeholder-gray-400'
-                        } border focus:outline-none focus:ring-2 focus:ring-[#505081]`}
+                    className={`w-full pl-10 pr-4 py-2.5 rounded-xl border text-xs outline-none ${darkMode
+                        ? 'bg-[#18181b] border-zinc-700 text-white placeholder-zinc-500 focus:border-zinc-400'
+                        : 'bg-white border-zinc-300 text-black placeholder-zinc-400 focus:border-black'
+                        }`}
                 />
             </div>
 
             {/* Category Filters */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2">
                 {categories.map(category => {
                     const Icon = category.icon;
                     const isSelected = selectedCategory === category.id;
@@ -383,192 +230,96 @@ const CareerNewsFeed = ({ darkMode }) => {
                         <button
                             key={category.id}
                             onClick={() => setSelectedCategory(category.id)}
-                            className={`flex items-center gap-2 px-4 py-2 rounded-xl font-semibold text-sm transition-all ${isSelected
-                                ? darkMode
-                                    ? 'bg-[#272757] text-[#8686AC] border-2 border-[#505081]'
-                                    : 'bg-indigo-600 text-white shadow-lg'
-                                : darkMode
-                                    ? 'bg-[#1a1f2e] border border-[#272757] text-gray-400 hover:bg-[#272757]'
-                                    : 'bg-white border border-indigo-100 text-gray-600 hover:bg-indigo-50'
+                            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold border btn-interactive ${isSelected
+                                ? (darkMode ? 'bg-white text-black border-white' : 'bg-black text-white border-black')
+                                : (darkMode ? 'bg-[#121215] border-zinc-800 text-zinc-400 hover:text-white' : 'bg-white border-zinc-200 text-zinc-600 hover:text-black')
                                 }`}
                         >
-                            <Icon className="w-4 h-4" />
-                            {category.id}
+                            <Icon className="w-3.5 h-3.5" />
+                            <span>{category.id}</span>
                         </button>
                     );
                 })}
             </div>
 
-            {/* News Grid */}
-            {loading ? (
-                <div className="grid md:grid-cols-2 gap-6">
-                    {[1, 2, 3, 4, 5, 6].map(i => (
+            {/* News Cards Grid */}
+            <div className="grid md:grid-cols-2 gap-6">
+                {filteredNews.slice(0, displayCount).map(item => {
+                    const isBookmarked = bookmarkedItems.includes(item.id);
+
+                    return (
                         <div
-                            key={i}
-                            className={`rounded-2xl p-6 animate-pulse ${darkMode ? 'bg-[#1a1f2e]' : 'bg-gray-100'
+                            key={item.id}
+                            className={`rounded-3xl p-6 border transition-all hover-lift flex flex-col justify-between ${darkMode
+                                ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
+                                : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-sm'
                                 }`}
                         >
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className={`w-12 h-12 rounded-lg ${darkMode ? 'bg-[#272757]' : 'bg-gray-200'
-                                    }`}></div>
-                                <div className={`h-6 w-20 rounded-full ${darkMode ? 'bg-[#272757]' : 'bg-gray-200'
-                                    }`}></div>
-                            </div>
-                            <div className={`h-5 rounded mb-3 ${darkMode ? 'bg-[#272757]' : 'bg-gray-200'
-                                }`}></div>
-                            <div className={`h-4 rounded mb-2 ${darkMode ? 'bg-[#272757]' : 'bg-gray-200'
-                                }`}></div>
-                            <div className={`h-4 rounded w-3/4 ${darkMode ? 'bg-[#272757]' : 'bg-gray-200'
-                                }`}></div>
-                        </div>
-                    ))}
-                </div>
-            ) : filteredNews.length === 0 ? (
-                <div className="text-center py-12">
-                    <Newspaper className={`w-16 h-16 mx-auto mb-4 ${darkMode ? 'text-gray-700' : 'text-gray-300'
-                        }`} />
-                    <p className={`${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>
-                        No news found matching your criteria
-                    </p>
-                </div>
-            ) : (
-                <div className="grid md:grid-cols-2 gap-6">
-                    {filteredNews.slice(0, displayCount).map(item => {
-                        const isBookmarked = bookmarkedItems.includes(item.id);
-
-                        return (
-                            <div
-                                key={item.id}
-                                className={`group rounded-2xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 cursor-pointer ${darkMode
-                                    ? 'bg-[#1a1f2e] border border-[#272757] hover:border-[#505081]'
-                                    : 'bg-white border border-indigo-100 hover:border-indigo-300 shadow-lg'
-                                    }`}
-                            >
-                                {/* Header */}
-                                <div className="flex items-start justify-between mb-4">
-                                    <div className="flex items-center gap-3">
-                                        <span className="text-4xl">{item.image}</span>
-                                        <div>
-                                            <span className={`inline-block px-2 py-1 rounded-full text-xs font-bold ${darkMode
-                                                ? 'bg-[#272757] text-[#8686AC]'
-                                                : 'bg-indigo-50 text-indigo-700'
-                                                }`}>
-                                                {item.category}
-                                            </span>
-                                        </div>
+                            <div>
+                                <div className="flex items-start justify-between mb-3">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-2xl">{item.image}</span>
+                                        <span className={`text-[10px] uppercase font-bold px-2.5 py-1 rounded-full border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-300 text-zinc-800'}`}>
+                                            {item.category}
+                                        </span>
                                     </div>
-
-                                    {(item.trending || item.featured) && (
-                                        <div className="flex gap-1">
-                                            {item.trending && (
-                                                <TrendingUp className="w-5 h-5 text-orange-500" />
-                                            )}
-                                            {item.featured && (
-                                                <Sparkles className="w-5 h-5 text-yellow-500" />
-                                            )}
-                                        </div>
-                                    )}
+                                    <button
+                                        type="button"
+                                        onClick={() => handleBookmark(item.id)}
+                                        className={`p-1.5 rounded-lg border btn-interactive ${isBookmarked
+                                            ? (darkMode ? 'bg-white text-black' : 'bg-black text-white')
+                                            : (darkMode ? 'bg-zinc-900 border-zinc-800 text-zinc-500' : 'bg-zinc-100 border-zinc-200 text-zinc-500')
+                                            }`}
+                                    >
+                                        <Bookmark className={`w-3.5 h-3.5 ${isBookmarked ? 'fill-current' : ''}`} />
+                                    </button>
                                 </div>
 
-                                {/* Title */}
-                                <h3 className={`text-lg font-bold mb-2 line-clamp-2 group-hover:text-[#8686AC] transition-colors ${darkMode ? 'text-white' : 'text-gray-900'
-                                    }`}>
+                                <h3 className={`text-base font-black mb-2 transition-colors ${darkMode ? 'text-white' : 'text-black'}`}>
                                     {item.title}
                                 </h3>
 
-                                {/* Summary */}
-                                <p className={`text-sm mb-4 line-clamp-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'
-                                    }`}>
+                                <p className={`text-xs leading-relaxed mb-4 line-clamp-2 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                                     {item.summary}
                                 </p>
+                            </div>
 
-                                {/* Footer */}
-                                <div className="flex items-center justify-between pt-4 border-t border-opacity-10 border-gray-500">
-                                    <div className="flex items-center gap-4 text-xs">
-                                        <div className={`flex items-center gap-1 ${darkMode ? 'text-gray-500' : 'text-gray-500'
-                                            }`}>
-                                            <Clock className="w-3 h-3" />
-                                            {getTimeAgo(item.date)}
-                                        </div>
-                                        <div className={`${darkMode ? 'text-gray-500' : 'text-gray-500'
-                                            }`}>
-                                            {item.source}
-                                        </div>
-                                    </div>
-
-                                    <div className="flex items-center gap-2">
-                                        <button
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                handleBookmark(item.id);
-                                            }}
-                                            className={`p-1.5 rounded-lg transition-all ${isBookmarked
-                                                ? darkMode
-                                                    ? 'bg-[#505081] text-[#8686AC]'
-                                                    : 'bg-indigo-600 text-white'
-                                                : darkMode
-                                                    ? 'hover:bg-[#272757] text-gray-500'
-                                                    : 'hover:bg-indigo-50 text-gray-400'
-                                                }`}
-                                            title={isBookmarked ? 'Remove bookmark' : 'Bookmark this'}
-                                        >
-                                            <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current' : ''}`} />
-                                        </button>
-                                        <button
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                handleShare(item);
-                                            }}
-                                            className={`p-1.5 rounded-lg transition-colors ${darkMode ? 'hover:bg-[#272757]' : 'hover:bg-indigo-50'
-                                                }`}
-                                            title="Share this news"
-                                        >
-                                            <Share2 className={`w-4 h-4 ${darkMode ? 'text-gray-500' : 'text-gray-400'
-                                                }`} />
-                                        </button>
-                                        <button
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                handleRead(item);
-                                            }}
-                                            className={`flex items-center gap-1 px-2 py-1 rounded-lg transition-colors ${darkMode
-                                                ? 'bg-[#272757] hover:bg-[#505081] text-[#8686AC]'
-                                                : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700'
-                                                }`}
-                                            title="Read full article"
-                                        >
-                                            <span className="text-xs font-semibold">Read</span>
-                                            <ChevronRight className="w-3 h-3" />
-                                        </button>
-                                    </div>
+                            <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-xs">
+                                <div className="flex items-center gap-3 text-zinc-500 text-[11px]">
+                                    <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{getTimeAgo(item.date)}</span>
+                                    <span>•</span>
+                                    <span>{item.source}</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        type="button"
+                                        onClick={() => handleShare(item)}
+                                        className={`p-1.5 rounded-lg border btn-interactive ${darkMode ? 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white' : 'bg-zinc-100 border-zinc-200 text-zinc-600 hover:text-black'}`}
+                                    >
+                                        <Share2 className="w-3 h-3" />
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => handleRead(item)}
+                                        className={`px-3 py-1 rounded-lg font-bold border btn-interactive text-xs ${darkMode ? 'bg-zinc-900 border-zinc-700 text-white hover:bg-white hover:text-black' : 'bg-black text-white hover:bg-zinc-800'}`}
+                                    >
+                                        Read
+                                    </button>
                                 </div>
                             </div>
-                        );
-                    })}
-                </div>
-            )}
+                        </div>
+                    );
+                })}
+            </div>
 
-            {/* Load More */}
             {filteredNews.length > displayCount && (
                 <div className="text-center pt-4">
                     <button
-                        onClick={loadMoreNews}
-                        className={`px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105 ${darkMode
-                            ? 'bg-[#1a1f2e] border border-[#272757] text-white hover:bg-[#272757]'
-                            : 'bg-white border border-indigo-200 text-gray-900 hover:bg-indigo-50 shadow-lg'
-                            }`}
+                        onClick={() => setDisplayCount(prev => prev + 6)}
+                        className={`px-6 py-3 rounded-2xl text-xs font-bold border btn-interactive hover-lift ${darkMode ? 'bg-zinc-900 border-zinc-700 text-white hover:bg-zinc-800' : 'bg-white border-zinc-300 text-black hover:bg-zinc-100 shadow-sm'}`}
                     >
-                        Load More News ({filteredNews.length - displayCount} remaining)
+                        Load More Articles ({filteredNews.length - displayCount} remaining)
                     </button>
-                </div>
-            )}
-
-            {/* Show message when all loaded */}
-            {filteredNews.length > 0 && displayCount >= filteredNews.length && filteredNews.length > 6 && (
-                <div className="text-center pt-4">
-                    <p className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>
-                        ✨ You've reached the end! Check back later for more updates.
-                    </p>
                 </div>
             )}
         </div>

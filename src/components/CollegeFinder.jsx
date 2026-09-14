@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Search, MapPin, Star, TrendingUp, Award, Phone, Globe, DollarSign, GraduationCap, Filter, ChevronDown } from 'lucide-react';
+import { X, Search, MapPin, Star, TrendingUp, Award, Phone, Globe, DollarSign, GraduationCap, Filter, ChevronDown, BookOpen } from 'lucide-react';
 import { COLLEGES_DATABASE, getAllColleges, getCollegesByState, getCollegesByCity, getAllStates, getCitiesByState } from '../data/collegesDatabase';
 
 const CollegeFinder = ({ onClose, darkMode }) => {
@@ -113,37 +113,32 @@ const CollegeFinder = ({ onClose, darkMode }) => {
     const activeOverview = selectedType ? FIELD_STUDY_OVERVIEWS[selectedType] : null;
 
     return (
-        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#0f1419]' : 'bg-gradient-to-br from-slate-50 to-indigo-50'
-            }`}>
-            <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b]' : 'bg-zinc-50'}`}>
+            <div className="max-w-7xl mx-auto px-4 py-8 animate-fade-in">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h2 className={`text-3xl font-black ${darkMode ? 'text-white' : 'text-gray-900'} mb-2`}>
+                        <h2 className={`text-3xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-2`}>
                             🎓 Find Your College & Study Guide
                         </h2>
-                        <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            Comprehensive views of 50+ premier institutions & field study roadmaps across India
+                        <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                            Comprehensive views of 500+ premier institutions & field study roadmaps across India
                         </p>
                     </div>
                     <button
                         onClick={onClose}
-                        className={`p-2 rounded-xl transition-colors ${darkMode ? 'bg-[#1a1f2e] hover:bg-[#272757]' : 'bg-white hover:bg-gray-100'
-                            }`}
+                        className={`p-2.5 rounded-xl border btn-interactive hover-lift ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:text-white' : 'bg-white border-zinc-200 text-zinc-700 hover:text-black'}`}
                     >
-                        <X className="w-6 h-6 text-gray-500" />
+                        <X className="w-6 h-6" />
                     </button>
                 </div>
 
-                {/* Field Briefing Banner when Type selected */}
-
                 {/* Filters */}
-                <div className={`rounded-2xl p-6 mb-6 ${darkMode ? 'bg-[#1a1f2e] border border-[#272757]' : 'bg-white border border-indigo-100 shadow-lg'
-                    }`}>
-                    <div className="flex items-center gap-3 mb-4">
-                        <Filter className={`w-5 h-5 ${darkMode ? 'text-[#8686AC]' : 'text-indigo-600'}`} />
-                        <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                            Filters
+                <div className={`rounded-3xl p-6 md:p-8 mb-8 border ${darkMode ? 'bg-[#121215] border-zinc-800' : 'bg-white border-zinc-200 shadow-md'}`}>
+                    <div className="flex items-center gap-3 mb-6">
+                        <Filter className={`w-5 h-5 ${darkMode ? 'text-zinc-400' : 'text-zinc-700'}`} />
+                        <h3 className={`text-lg font-black ${darkMode ? 'text-white' : 'text-black'}`}>
+                            Filter & Search Colleges
                         </h3>
                     </div>
 
@@ -151,16 +146,15 @@ const CollegeFinder = ({ onClose, darkMode }) => {
                         {/* Search */}
                         <div className="md:col-span-4">
                             <div className="relative">
-                                <Search className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 ${darkMode ? 'text-gray-500' : 'text-gray-400'
-                                    }`} />
+                                <Search className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`} />
                                 <input
                                     type="text"
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
                                     placeholder="Search colleges, courses, or specializations..."
-                                    className={`w-full pl-12 pr-4 py-3 rounded-xl border-2 transition-colors outline-none ${darkMode
-                                        ? 'bg-[#272757] border-[#505081] text-white placeholder-gray-500 focus:border-[#8686AC]'
-                                        : 'bg-white border-indigo-200 text-gray-900 placeholder-gray-400 focus:border-indigo-500'
+                                    className={`w-full pl-12 pr-4 py-3 rounded-xl border transition-colors outline-none text-sm ${darkMode
+                                        ? 'bg-[#18181b] border-zinc-700 text-white placeholder-zinc-500 focus:border-zinc-400'
+                                        : 'bg-zinc-50 border-zinc-200 text-black placeholder-zinc-400 focus:border-black focus:bg-white'
                                         }`}
                                 />
                             </div>
@@ -168,18 +162,18 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
                         {/* State Filter */}
                         <div>
-                            <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                                 State
                             </label>
                             <select
                                 value={selectedState}
                                 onChange={(e) => {
                                     setSelectedState(e.target.value);
-                                    setSelectedCity(''); // Reset city when state changes
+                                    setSelectedCity('');
                                 }}
-                                className={`w-full px-4 py-3 rounded-xl border-2 transition-colors outline-none ${darkMode
-                                    ? 'bg-[#272757] border-[#505081] text-white focus:border-[#8686AC]'
-                                    : 'bg-white border-indigo-200 text-gray-900 focus:border-indigo-500'
+                                className={`w-full px-4 py-3 rounded-xl border transition-colors outline-none text-sm ${darkMode
+                                    ? 'bg-[#18181b] border-zinc-700 text-white focus:border-zinc-400'
+                                    : 'bg-zinc-50 border-zinc-200 text-black focus:border-black'
                                     }`}
                             >
                                 <option value="">All States</option>
@@ -191,16 +185,16 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
                         {/* City Filter */}
                         <div>
-                            <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                                 City
                             </label>
                             <select
                                 value={selectedCity}
                                 onChange={(e) => setSelectedCity(e.target.value)}
                                 disabled={!selectedState}
-                                className={`w-full px-4 py-3 rounded-xl border-2 transition-colors outline-none ${darkMode
-                                    ? 'bg-[#272757] border-[#505081] text-white focus:border-[#8686AC] disabled:opacity-50'
-                                    : 'bg-white border-indigo-200 text-gray-900 focus:border-indigo-500 disabled:opacity-50'
+                                className={`w-full px-4 py-3 rounded-xl border transition-colors outline-none text-sm ${darkMode
+                                    ? 'bg-[#18181b] border-zinc-700 text-white focus:border-zinc-400 disabled:opacity-40'
+                                    : 'bg-zinc-50 border-zinc-200 text-black focus:border-black disabled:opacity-40'
                                     }`}
                             >
                                 <option value="">All Cities</option>
@@ -212,15 +206,15 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
                         {/* Type Filter */}
                         <div>
-                            <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                Type
+                            <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                Discipline / Type
                             </label>
                             <select
                                 value={selectedType}
                                 onChange={(e) => setSelectedType(e.target.value)}
-                                className={`w-full px-4 py-3 rounded-xl border-2 transition-colors outline-none ${darkMode
-                                    ? 'bg-[#272757] border-[#505081] text-white focus:border-[#8686AC]'
-                                    : 'bg-white border-indigo-200 text-gray-900 focus:border-indigo-500'
+                                className={`w-full px-4 py-3 rounded-xl border transition-colors outline-none text-sm ${darkMode
+                                    ? 'bg-[#18181b] border-zinc-700 text-white focus:border-zinc-400'
+                                    : 'bg-zinc-50 border-zinc-200 text-black focus:border-black'
                                     }`}
                             >
                                 <option value="">All Types</option>
@@ -232,15 +226,15 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
                         {/* Tier Filter */}
                         <div>
-                            <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                                 Tier
                             </label>
                             <select
                                 value={selectedTier}
                                 onChange={(e) => setSelectedTier(e.target.value)}
-                                className={`w-full px-4 py-3 rounded-xl border-2 transition-colors outline-none ${darkMode
-                                    ? 'bg-[#272757] border-[#505081] text-white focus:border-[#8686AC]'
-                                    : 'bg-white border-indigo-200 text-gray-900 focus:border-indigo-500'
+                                className={`w-full px-4 py-3 rounded-xl border transition-colors outline-none text-sm ${darkMode
+                                    ? 'bg-[#18181b] border-zinc-700 text-white focus:border-zinc-400'
+                                    : 'bg-zinc-50 border-zinc-200 text-black focus:border-black'
                                     }`}
                             >
                                 <option value="">All Tiers</option>
@@ -252,15 +246,15 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
                         {/* Ownership Filter */}
                         <div>
-                            <label className={`block text-sm font-semibold mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                                 Ownership
                             </label>
                             <select
                                 value={selectedOwnership}
                                 onChange={(e) => setSelectedOwnership(e.target.value)}
-                                className={`w-full px-4 py-3 rounded-xl border-2 transition-colors outline-none ${darkMode
-                                    ? 'bg-[#272757] border-[#505081] text-white focus:border-[#8686AC]'
-                                    : 'bg-white border-indigo-200 text-gray-900 focus:border-indigo-500'
+                                className={`w-full px-4 py-3 rounded-xl border transition-colors outline-none text-sm ${darkMode
+                                    ? 'bg-[#18181b] border-zinc-700 text-white focus:border-zinc-400'
+                                    : 'bg-zinc-50 border-zinc-200 text-black focus:border-black'
                                     }`}
                             >
                                 <option value="">All Ownership</option>
@@ -281,51 +275,50 @@ const CollegeFinder = ({ onClose, darkMode }) => {
                                     setSelectedTier('');
                                     setSelectedOwnership('');
                                 }}
-                                className={`w-full px-4 py-3 rounded-xl font-semibold transition-all hover:scale-105 ${darkMode
-                                    ? 'bg-[#505081] hover:bg-[#8686AC] text-white'
-                                    : 'bg-indigo-100 hover:bg-indigo-200 text-indigo-700'
+                                className={`w-full py-3 rounded-xl font-bold text-xs btn-interactive border ${darkMode
+                                    ? 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:bg-white hover:text-black'
+                                    : 'bg-zinc-100 border-zinc-300 text-zinc-800 hover:bg-black hover:text-white'
                                     }`}
                             >
-                                Clear All
+                                Clear All Filters
                             </button>
                         </div>
-                        {/* Removed JSON import control per user request */}
                     </div>
 
                     {/* Results Count */}
-                    <div className={`mt-4 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    <div className={`mt-4 text-xs font-bold ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                         Found {filteredColleges.length} colleges
                     </div>
                 </div>
 
                 {/* Field Briefing Banner when Type selected */}
                 {activeOverview && (
-                    <div className="mb-8 p-6 rounded-3xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-xl animate-fadeIn">
+                    <div className={`mb-8 p-6 sm:p-8 rounded-3xl border animate-fade-in ${darkMode ? 'bg-[#121215] border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         <div className="flex items-start justify-between">
                             <div>
-                                <span className="px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-wider mb-2 inline-block">
+                                <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3 inline-block border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-800 border-zinc-700 text-zinc-200'}`}>
                                     Field Study Overview & Career Guide
                                 </span>
-                                <h3 className="text-2xl font-extrabold mb-2">{activeOverview.title}</h3>
-                                <p className="text-indigo-100 text-sm max-w-4xl leading-relaxed mb-4">{activeOverview.summary}</p>
+                                <h3 className="text-2xl font-black mb-2">{activeOverview.title}</h3>
+                                <p className="text-zinc-300 text-sm max-w-4xl leading-relaxed mb-4">{activeOverview.summary}</p>
                             </div>
                         </div>
-                        <div className="grid md:grid-cols-4 gap-4 text-xs pt-4 border-t border-white/20">
+                        <div className="grid md:grid-cols-4 gap-4 text-xs pt-4 border-t border-zinc-800">
                             <div>
-                                <span className="font-bold text-indigo-200 block mb-0.5">Key Entrance Exams</span>
-                                <span className="font-medium text-white">{activeOverview.exams}</span>
+                                <span className="font-bold text-zinc-400 block mb-0.5">Key Entrance Exams</span>
+                                <span className="font-semibold text-white">{activeOverview.exams}</span>
                             </div>
                             <div>
-                                <span className="font-bold text-indigo-200 block mb-0.5">Degree Duration</span>
-                                <span className="font-medium text-white">{activeOverview.duration}</span>
+                                <span className="font-bold text-zinc-400 block mb-0.5">Degree Duration</span>
+                                <span className="font-semibold text-white">{activeOverview.duration}</span>
                             </div>
                             <div>
-                                <span className="font-bold text-indigo-200 block mb-0.5">Placement Range</span>
-                                <span className="font-medium text-white">{activeOverview.avgPackage}</span>
+                                <span className="font-bold text-zinc-400 block mb-0.5">Placement Range</span>
+                                <span className="font-semibold text-white">{activeOverview.avgPackage}</span>
                             </div>
                             <div>
-                                <span className="font-bold text-indigo-200 block mb-0.5">Popular Target Roles</span>
-                                <span className="font-medium text-white">{activeOverview.topCareers}</span>
+                                <span className="font-bold text-zinc-400 block mb-0.5">Popular Target Roles</span>
+                                <span className="font-semibold text-white">{activeOverview.topCareers}</span>
                             </div>
                         </div>
                     </div>
@@ -337,59 +330,55 @@ const CollegeFinder = ({ onClose, darkMode }) => {
                         <div
                             key={college.id}
                             onClick={() => setSelectedCollege(college)}
-                            className={`group relative rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl cursor-pointer ${darkMode
-                                ? 'bg-[#1a1f2e] border border-[#272757] hover:border-[#505081]'
-                                : 'bg-white border border-indigo-100 hover:border-indigo-300'
+                            className={`group relative rounded-3xl p-6 transition-all duration-300 hover-lift cursor-pointer border ${darkMode
+                                ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
+                                : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-sm'
                                 }`}
                         >
                             {/* NIRF Badge */}
                             {college.nirf && (
-                                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold ${darkMode ? 'bg-yellow-900/30 text-yellow-400' : 'bg-yellow-100 text-yellow-700'
-                                    }`}>
+                                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-bold border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-200' : 'bg-zinc-100 border-zinc-300 text-black'}`}>
                                     NIRF #{college.nirf}
                                 </div>
                             )}
 
                             {/* College Name */}
-                            <h3 className={`text-xl font-bold mb-2 pr-20 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                            <h3 className={`text-xl font-black mb-2 pr-20 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
                                 {college.name}
                             </h3>
 
                             {/* Type & Rating */}
                             <div className="flex items-center gap-3 mb-4">
-                                <span className={`px-3 py-1 rounded-lg text-sm font-semibold ${darkMode ? 'bg-[#272757] text-[#8686AC]' : 'bg-indigo-50 text-indigo-700'
-                                    }`}>
+                                <span className={`px-3 py-1 rounded-xl text-xs font-bold border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-200 text-zinc-800'}`}>
                                     {college.type}
                                 </span>
                                 <div className="flex items-center gap-1">
-                                    <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-                                    <span className={`text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                    <Star className="w-4 h-4 text-zinc-400 fill-zinc-400" />
+                                    <span className={`text-xs font-bold ${darkMode ? 'text-zinc-300' : 'text-zinc-700'}`}>
                                         {college.rating}
                                     </span>
                                 </div>
                             </div>
 
-
                             {/* Quick Info */}
-                            <div className="space-y-2 mb-4">
+                            <div className="space-y-2 mb-4 text-xs font-semibold">
                                 <div className="flex items-center gap-2">
-                                    <DollarSign className={`w-4 h-4 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`} />
-                                    <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                        {college.fees}
+                                    <DollarSign className="w-4 h-4 text-zinc-400" />
+                                    <span className={darkMode ? 'text-zinc-400' : 'text-zinc-600'}>
+                                        Fees: <span className={darkMode ? 'text-zinc-200 font-bold' : 'text-black font-bold'}>{college.fees}</span>
                                     </span>
                                 </div>
                                 <div className="flex items-center gap-2">
-                                    <TrendingUp className={`w-4 h-4 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`} />
-                                    <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                        {college.placements}
+                                    <TrendingUp className="w-4 h-4 text-zinc-400" />
+                                    <span className={darkMode ? 'text-zinc-400' : 'text-zinc-600'}>
+                                        Placements: <span className={darkMode ? 'text-zinc-200 font-bold' : 'text-black font-bold'}>{college.placements}</span>
                                     </span>
                                 </div>
                             </div>
 
                             {/* View Details Button */}
-                            <div className={`text-sm font-semibold ${darkMode ? 'text-[#8686AC]' : 'text-indigo-600'
-                                } group-hover:gap-2 transition-all flex items-center gap-1`}>
-                                View Details
+                            <div className={`text-xs font-bold ${darkMode ? 'text-zinc-300' : 'text-black'} flex items-center gap-1 group-hover:gap-2 transition-all`}>
+                                <span>View Details & Admission Info</span>
                                 <ChevronDown className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
                             </div>
                         </div>
@@ -398,13 +387,12 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
                 {/* No Results */}
                 {filteredColleges.length === 0 && (
-                    <div className={`text-center py-16 rounded-2xl ${darkMode ? 'bg-[#1a1f2e] border border-[#272757]' : 'bg-white border border-indigo-100'
-                        }`}>
-                        <Search className={`w-16 h-16 mx-auto mb-4 ${darkMode ? 'text-gray-600' : 'text-gray-300'}`} />
-                        <h3 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                    <div className={`text-center py-16 rounded-3xl border ${darkMode ? 'bg-[#121215] border-zinc-800' : 'bg-white border-zinc-200'}`}>
+                        <Search className="w-16 h-16 mx-auto mb-4 text-zinc-500" />
+                        <h3 className={`text-xl font-black mb-2 ${darkMode ? 'text-white' : 'text-black'}`}>
                             No colleges found
                         </h3>
-                        <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                        <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                             Try adjusting your filters or search query
                         </p>
                     </div>
@@ -413,60 +401,53 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
             {/* College Detail Modal */}
             {selectedCollege && (
-                <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-60">
-                    <div className={`max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-3xl ${darkMode ? 'bg-[#1a1f2e]' : 'bg-white'
-                        }`}>
+                <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50">
+                    <div className={`max-w-3xl w-full max-h-[90vh] overflow-y-auto rounded-3xl border shadow-2xl animate-fade-in-scale ${darkMode ? 'bg-[#121215] border-zinc-800 text-white' : 'bg-white border-zinc-300 text-black'}`}>
                         {/* Header */}
-                        <div className={`sticky top-0 p-6 border-b ${darkMode
-                            ? 'bg-gradient-to-r from-[#505081] to-[#8686AC] border-[#272757]'
-                            : 'bg-gradient-to-r from-indigo-600 to-purple-600 border-indigo-200'
-                            }`}>
-                            <div className="flex justify-between items-start">
-                                <div className="flex-1">
-                                    <h2 className="text-2xl font-black text-white mb-2">{selectedCollege.name}</h2>
-                                    <div className="flex items-center gap-3">
-                                        <span className="px-3 py-1 rounded-lg text-sm font-semibold bg-white/20 text-white">
-                                            {selectedCollege.type}
-                                        </span>
-                                        <div className="flex items-center gap-1">
-                                            <Star className="w-4 h-4 text-yellow-300 fill-yellow-300" />
-                                            <span className="text-sm font-semibold text-white">{selectedCollege.rating}</span>
-                                        </div>
+                        <div className={`sticky top-0 p-6 border-b z-10 flex justify-between items-start backdrop-blur-md ${darkMode ? 'bg-[#121215]/90 border-zinc-800' : 'bg-white/90 border-zinc-200'}`}>
+                            <div className="flex-1 pr-4">
+                                <h2 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-black'}`}>{selectedCollege.name}</h2>
+                                <div className="flex items-center gap-3">
+                                    <span className={`px-3 py-1 rounded-xl text-xs font-bold border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-300 text-zinc-800'}`}>
+                                        {selectedCollege.type}
+                                    </span>
+                                    <div className="flex items-center gap-1">
+                                        <Star className="w-4 h-4 text-zinc-400 fill-zinc-400" />
+                                        <span className="text-xs font-bold">{selectedCollege.rating} Rating</span>
                                     </div>
                                 </div>
-                                <button
-                                    onClick={() => setSelectedCollege(null)}
-                                    className="p-2 rounded-xl bg-white/20 hover:bg-white/30 transition-colors"
-                                >
-                                    <X className="w-6 h-6 text-white" />
-                                </button>
                             </div>
+                            <button
+                                onClick={() => setSelectedCollege(null)}
+                                className={`p-2 rounded-xl border btn-interactive ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:text-white' : 'bg-zinc-100 border-zinc-300 text-zinc-700 hover:text-black'}`}
+                            >
+                                <X className="w-5 h-5" />
+                            </button>
                         </div>
 
                         {/* Content */}
-                        <div className="p-6 space-y-6">
+                        <div className="p-6 sm:p-8 space-y-6">
                             {/* Key Stats */}
                             <div className="grid grid-cols-2 gap-4">
-                                <div className={`p-4 rounded-xl ${darkMode ? 'bg-[#272757]' : 'bg-indigo-50'}`}>
-                                    <div className={`text-sm mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>NIRF Rank</div>
-                                    <div className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-gray-900'}`}>#{selectedCollege.nirf}</div>
+                                <div className={`p-4 rounded-2xl border ${darkMode ? 'bg-zinc-900/80 border-zinc-800' : 'bg-zinc-50 border-zinc-200'}`}>
+                                    <div className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">NIRF Rank</div>
+                                    <div className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>#{selectedCollege.nirf}</div>
                                 </div>
-                                <div className={`p-4 rounded-xl ${darkMode ? 'bg-[#272757]' : 'bg-indigo-50'}`}>
-                                    <div className={`text-sm mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Established</div>
-                                    <div className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-gray-900'}`}>{selectedCollege.established}</div>
+                                <div className={`p-4 rounded-2xl border ${darkMode ? 'bg-zinc-900/80 border-zinc-800' : 'bg-zinc-50 border-zinc-200'}`}>
+                                    <div className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-1">Established</div>
+                                    <div className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>{selectedCollege.established}</div>
                                 </div>
                             </div>
 
                             {/* Courses */}
                             <div>
-                                <h3 className={`text-lg font-bold mb-3 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                    <GraduationCap className="w-5 h-5" />
+                                <h3 className={`text-sm font-bold uppercase tracking-wider mb-3 flex items-center gap-2 ${darkMode ? 'text-zinc-300' : 'text-zinc-700'}`}>
+                                    <GraduationCap className="w-4 h-4" />
                                     Courses Offered
                                 </h3>
                                 <div className="flex flex-wrap gap-2">
                                     {selectedCollege.courses.map((course, idx) => (
-                                        <span key={idx} className={`px-3 py-1.5 rounded-lg text-sm font-semibold ${darkMode ? 'bg-[#272757] text-[#8686AC]' : 'bg-indigo-100 text-indigo-700'
-                                            }`}>
+                                        <span key={idx} className={`px-3 py-1.5 rounded-xl text-xs font-bold border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-200 text-zinc-800'}`}>
                                             {course}
                                         </span>
                                     ))}
@@ -475,14 +456,13 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
                             {/* Specializations */}
                             <div>
-                                <h3 className={`text-lg font-bold mb-3 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                    <Award className="w-5 h-5" />
+                                <h3 className={`text-sm font-bold uppercase tracking-wider mb-3 flex items-center gap-2 ${darkMode ? 'text-zinc-300' : 'text-zinc-700'}`}>
+                                    <Award className="w-4 h-4" />
                                     Specializations
                                 </h3>
                                 <div className="flex flex-wrap gap-2">
                                     {selectedCollege.specializations.map((spec, idx) => (
-                                        <span key={idx} className={`px-3 py-1.5 rounded-lg text-sm font-semibold ${darkMode ? 'bg-purple-900/30 text-purple-400' : 'bg-purple-100 text-purple-700'
-                                            }`}>
+                                        <span key={idx} className={`px-3 py-1.5 rounded-xl text-xs font-bold border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-200 text-zinc-800'}`}>
                                             {spec}
                                         </span>
                                     ))}
@@ -491,23 +471,21 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
                             {/* Fees & Placements */}
                             <div className="grid md:grid-cols-2 gap-4">
-                                <div className={`p-4 rounded-xl border-2 ${darkMode ? 'bg-green-900/10 border-green-500/30' : 'bg-green-50 border-green-200'
-                                    }`}>
+                                <div className={`p-4 rounded-2xl border ${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'}`}>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <DollarSign className={`w-5 h-5 ${darkMode ? 'text-green-400' : 'text-green-600'}`} />
-                                        <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Annual Fees</h4>
+                                        <DollarSign className="w-4 h-4 text-zinc-400" />
+                                        <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500">Annual Tuition Fees</h4>
                                     </div>
-                                    <p className={`text-lg font-semibold ${darkMode ? 'text-green-400' : 'text-green-700'}`}>
+                                    <p className={`text-lg font-black ${darkMode ? 'text-white' : 'text-black'}`}>
                                         {selectedCollege.fees}
                                     </p>
                                 </div>
-                                <div className={`p-4 rounded-xl border-2 ${darkMode ? 'bg-blue-900/10 border-blue-500/30' : 'bg-blue-50 border-blue-200'
-                                    }`}>
+                                <div className={`p-4 rounded-2xl border ${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'}`}>
                                     <div className="flex items-center gap-2 mb-2">
-                                        <TrendingUp className={`w-5 h-5 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
-                                        <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Placements</h4>
+                                        <TrendingUp className="w-4 h-4 text-zinc-400" />
+                                        <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-500">Average Placement Package</h4>
                                     </div>
-                                    <p className={`text-sm font-semibold ${darkMode ? 'text-blue-400' : 'text-blue-700'}`}>
+                                    <p className={`text-lg font-black ${darkMode ? 'text-white' : 'text-black'}`}>
                                         {selectedCollege.placements}
                                     </p>
                                 </div>
@@ -515,21 +493,21 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
                             {/* Contact */}
                             <div>
-                                <h3 className={`text-lg font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                    Contact Information
+                                <h3 className={`text-sm font-bold uppercase tracking-wider mb-3 ${darkMode ? 'text-zinc-300' : 'text-zinc-700'}`}>
+                                    Contact & Official Portal
                                 </h3>
                                 <div className="space-y-3">
-                                    <div className="flex items-center gap-3">
-                                        <Phone className={`w-5 h-5 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`} />
-                                        <span className={darkMode ? 'text-gray-300' : 'text-gray-700'}>{selectedCollege.contact}</span>
+                                    <div className="flex items-center gap-3 text-xs">
+                                        <Phone className="w-4 h-4 text-zinc-500" />
+                                        <span className={darkMode ? 'text-zinc-300' : 'text-zinc-700'}>{selectedCollege.contact}</span>
                                     </div>
-                                    <div className="flex items-center gap-3">
-                                        <Globe className={`w-5 h-5 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`} />
+                                    <div className="flex items-center gap-3 text-xs">
+                                        <Globe className="w-4 h-4 text-zinc-500" />
                                         <a
                                             href={`https://${selectedCollege.website}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className={`hover:underline ${darkMode ? 'text-[#8686AC]' : 'text-indigo-600'}`}
+                                            className={`font-bold hover:underline ${darkMode ? 'text-white' : 'text-black'}`}
                                         >
                                             {selectedCollege.website}
                                         </a>

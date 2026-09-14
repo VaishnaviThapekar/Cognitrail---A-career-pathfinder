@@ -335,7 +335,7 @@ const CareerChatbot = ({ darkMode, onClose }) => {
         {
             id: 1,
             type: 'bot',
-            text: "Hi! 👋 I'm your Career Assistant. I'm here to help you with:",
+            text: "Hi! 👋 I'm your Career Assistant. I'm here to help you with:\n\n• Career recommendations & paths\n• Exam preparation guidance\n• College & course selection\n• Market salary benchmarks\n• Strategic study tips",
             suggestions: [
                 "Career recommendations",
                 "Exam information",
@@ -368,7 +368,7 @@ const CareerChatbot = ({ darkMode, onClose }) => {
         setIsTyping(true);
 
         // Simulate thinking delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 800));
 
         const lowerMessage = userMessage.toLowerCase();
         let response = '';
@@ -445,17 +445,15 @@ const CareerChatbot = ({ darkMode, onClose }) => {
     const handleSend = async () => {
         if (!input.trim()) return;
 
-        // Add user message
         const userMessage = {
             id: messages.length + 1,
             type: 'user',
             text: input
         };
 
-        setMessages([...messages, userMessage]);
+        setMessages(prev => [...prev, userMessage]);
         setInput('');
 
-        // Generate and add bot response
         const botResponse = await generateResponse(input);
         setMessages(prev => [...prev, { ...botResponse, id: prev.length + 1 }]);
     };
@@ -467,7 +465,7 @@ const CareerChatbot = ({ darkMode, onClose }) => {
             text: suggestion
         };
 
-        setMessages([...messages, userMessage]);
+        setMessages(prev => [...prev, userMessage]);
 
         const botResponse = await generateResponse(suggestion);
         setMessages(prev => [...prev, { ...botResponse, id: prev.length + 1 }]);
@@ -481,46 +479,53 @@ const CareerChatbot = ({ darkMode, onClose }) => {
     };
 
     return (
-        <div className={`fixed inset-0 z-50 ${darkMode ? 'bg-[#0f1419]' : 'bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50'
+        <div className={`fixed inset-0 z-50 animate-fade-in ${
+            darkMode ? 'bg-black/80 backdrop-blur-md' : 'bg-black/40 backdrop-blur-md'
+        } flex items-center justify-center p-4`}>
+            <div className={`w-full max-w-4xl h-[90vh] max-h-[850px] flex flex-col rounded-2xl shadow-2xl border overflow-hidden ${
+                darkMode ? 'bg-[#121215] border-zinc-800 text-white' : 'bg-white border-zinc-200 text-black'
             }`}>
-            <div className="h-full flex flex-col max-w-5xl mx-auto">
 
                 {/* Header */}
-                <div className={`flex items-center justify-between p-6 border-b ${darkMode ? 'border-[#272757] bg-[#1a1f2e]' : 'border-indigo-100 bg-white shadow-sm'
-                    }`}>
+                <div className={`flex items-center justify-between px-6 py-4 border-b ${
+                    darkMode ? 'border-zinc-800 bg-[#18181b]' : 'border-zinc-200 bg-zinc-50'
+                }`}>
                     <div className="flex items-center gap-4">
                         <div className="relative">
-                            <div className={`w-14 h-14 rounded-full flex items-center justify-center ${darkMode
-                                ? 'bg-gradient-to-r from-[#272757] to-[#505081]'
-                                : 'bg-gradient-to-r from-indigo-600 to-blue-600'
-                                }`}>
-                                <Bot className="w-7 h-7 text-white" />
+                            <div className={`w-12 h-12 rounded-xl flex items-center justify-center border ${
+                                darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-black text-white border-zinc-800'
+                            }`}>
+                                <Bot className="w-6 h-6" />
                             </div>
-                            <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-white"></div>
+                            <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-zinc-400 rounded-full border-2 border-current"></div>
                         </div>
                         <div>
-                            <h1 className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                Career Assistant
+                            <h1 className="text-xl font-bold tracking-tight">
+                                Career Assistant AI
                             </h1>
-                            <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                Ask me anything about careers, exams, or colleges
+                            <p className={`text-xs ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                Instant guidance on careers, exams, and university roadmaps
                             </p>
                         </div>
                     </div>
                     <button
                         onClick={onClose}
-                        className={`p-3 rounded-xl transition-colors ${darkMode ? 'bg-[#272757] hover:bg-[#505081]' : 'bg-gray-100 hover:bg-gray-200'
-                            }`}
+                        className={`p-2.5 rounded-xl border transition-all btn-interactive ${
+                            darkMode 
+                                ? 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800' 
+                                : 'bg-zinc-100 border-zinc-200 text-zinc-600 hover:text-black hover:bg-zinc-200'
+                        }`}
                     >
-                        <X className={`w-6 h-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`} />
+                        <X className="w-5 h-5" />
                     </button>
                 </div>
 
                 {/* Quick Questions Bar */}
-                <div className={`p-4 border-b ${darkMode ? 'border-[#272757] bg-[#1a1f2e]' : 'border-indigo-100 bg-white'
-                    }`}>
-                    <p className={`text-xs font-semibold mb-3 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                        Popular Questions:
+                <div className={`px-6 py-3 border-b ${
+                    darkMode ? 'border-zinc-800/80 bg-zinc-900/50' : 'border-zinc-200 bg-zinc-50/70'
+                }`}>
+                    <p className={`text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>
+                        Popular Inquiries:
                     </p>
                     <div className="flex flex-wrap gap-2">
                         {quickQuestions.map((q, idx) => {
@@ -529,12 +534,13 @@ const CareerChatbot = ({ darkMode, onClose }) => {
                                 <button
                                     key={idx}
                                     onClick={() => handleSuggestionClick(q.text)}
-                                    className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all hover:scale-105 ${darkMode
-                                        ? 'bg-[#272757] hover:bg-[#505081] text-[#8686AC]'
-                                        : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200'
-                                        }`}
+                                    className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-medium transition-all btn-interactive border ${
+                                        darkMode
+                                            ? 'bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border-zinc-800'
+                                            : 'bg-white hover:bg-zinc-100 text-zinc-800 border-zinc-200 shadow-sm'
+                                    }`}
                                 >
-                                    <Icon className="w-4 h-4" />
+                                    <Icon className="w-3.5 h-3.5 opacity-70" />
                                     {q.text}
                                 </button>
                             );
@@ -543,47 +549,48 @@ const CareerChatbot = ({ darkMode, onClose }) => {
                 </div>
 
                 {/* Messages Area */}
-                <div className="flex-1 overflow-y-auto p-6">
-                    <div className="max-w-4xl mx-auto space-y-6">
+                <div className={`flex-1 overflow-y-auto p-6 space-y-5 ${
+                    darkMode ? 'bg-[#09090b]' : 'bg-[#fafafa]'
+                }`}>
+                    <div className="max-w-3xl mx-auto space-y-5">
                         {messages.map((message) => (
-                            <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                <div className={`flex gap-3 max-w-[80%] ${message.type === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
+                            <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}>
+                                <div className={`flex gap-3 max-w-[85%] ${message.type === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
                                     {/* Avatar */}
-                                    <div className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center ${message.type === 'user'
-                                        ? darkMode ? 'bg-gradient-to-r from-[#505081] to-[#8686AC]' : 'bg-gradient-to-r from-indigo-600 to-blue-600'
-                                        : darkMode ? 'bg-[#272757]' : 'bg-indigo-100'
-                                        }`}>
-                                        {message.type === 'user' ? (
-                                            <User className="w-5 h-5 text-white" />
-                                        ) : (
-                                            <Bot className={`w-5 h-5 ${darkMode ? 'text-[#8686AC]' : 'text-indigo-600'}`} />
-                                        )}
+                                    <div className={`flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center border text-xs font-bold ${
+                                        message.type === 'user'
+                                            ? darkMode ? 'bg-white text-black border-white' : 'bg-black text-white border-black'
+                                            : darkMode ? 'bg-zinc-900 text-zinc-300 border-zinc-800' : 'bg-zinc-100 text-zinc-800 border-zinc-300'
+                                    }`}>
+                                        {message.type === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
                                     </div>
 
                                     {/* Message Content */}
                                     <div className="flex-1">
-                                        <div className={`rounded-2xl px-5 py-4 ${message.type === 'user'
-                                            ? darkMode
-                                                ? 'bg-gradient-to-r from-[#505081] to-[#8686AC] text-white'
-                                                : 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white'
-                                            : darkMode
-                                                ? 'bg-[#1a1f2e] text-gray-200 border border-[#272757]'
-                                                : 'bg-white text-gray-800 border border-indigo-100 shadow-sm'
-                                            }`}>
-                                            <p className="text-sm md:text-base whitespace-pre-line leading-relaxed">{message.text}</p>
+                                        <div className={`rounded-2xl px-5 py-3.5 border transition-all ${
+                                            message.type === 'user'
+                                                ? darkMode
+                                                    ? 'bg-white text-black border-white'
+                                                    : 'bg-black text-white border-black'
+                                                : darkMode
+                                                    ? 'bg-[#18181b] text-zinc-100 border-zinc-800'
+                                                    : 'bg-white text-zinc-900 border-zinc-200 shadow-sm'
+                                        }`}>
+                                            <p className="text-sm whitespace-pre-line leading-relaxed">{message.text}</p>
                                         </div>
 
                                         {/* Suggestions */}
                                         {message.suggestions && (
-                                            <div className="mt-3 flex flex-wrap gap-2">
+                                            <div className="mt-2.5 flex flex-wrap gap-2">
                                                 {message.suggestions.map((suggestion, idx) => (
                                                     <button
                                                         key={idx}
                                                         onClick={() => handleSuggestionClick(suggestion)}
-                                                        className={`text-sm px-4 py-2 rounded-xl transition-all hover:scale-105 ${darkMode
-                                                            ? 'bg-[#272757] hover:bg-[#505081] text-[#8686AC] border border-[#505081]'
-                                                            : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200'
-                                                            }`}
+                                                        className={`text-xs px-3 py-1.5 rounded-lg border font-medium transition-all btn-interactive ${
+                                                            darkMode
+                                                                ? 'bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border-zinc-800'
+                                                                : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-800 border-zinc-300'
+                                                        }`}
                                                     >
                                                         {suggestion}
                                                     </button>
@@ -597,20 +604,19 @@ const CareerChatbot = ({ darkMode, onClose }) => {
 
                         {/* Typing indicator */}
                         {isTyping && (
-                            <div className="flex gap-3">
-                                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${darkMode ? 'bg-[#272757]' : 'bg-indigo-100'
-                                    }`}>
-                                    <Bot className={`w-5 h-5 ${darkMode ? 'text-[#8686AC]' : 'text-indigo-600'}`} />
+                            <div className="flex gap-3 animate-fade-in">
+                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center border ${
+                                    darkMode ? 'bg-zinc-900 text-zinc-300 border-zinc-800' : 'bg-zinc-100 text-zinc-800 border-zinc-300'
+                                }`}>
+                                    <Bot className="w-4 h-4" />
                                 </div>
-                                <div className={`rounded-2xl px-5 py-4 ${darkMode ? 'bg-[#1a1f2e] border border-[#272757]' : 'bg-white border border-indigo-100 shadow-sm'
-                                    }`}>
-                                    <div className="flex gap-1">
-                                        <div className={`w-2 h-2 rounded-full animate-bounce ${darkMode ? 'bg-[#8686AC]' : 'bg-indigo-600'
-                                            }`} style={{ animationDelay: '0ms' }}></div>
-                                        <div className={`w-2 h-2 rounded-full animate-bounce ${darkMode ? 'bg-[#8686AC]' : 'bg-indigo-600'
-                                            }`} style={{ animationDelay: '150ms' }}></div>
-                                        <div className={`w-2 h-2 rounded-full animate-bounce ${darkMode ? 'bg-[#8686AC]' : 'bg-indigo-600'
-                                            }`} style={{ animationDelay: '300ms' }}></div>
+                                <div className={`rounded-2xl px-4 py-3 border ${
+                                    darkMode ? 'bg-[#18181b] border-zinc-800' : 'bg-white border-zinc-200 shadow-sm'
+                                }`}>
+                                    <div className="flex gap-1.5 items-center">
+                                        <div className="w-2 h-2 rounded-full bg-zinc-400 animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-zinc-400 animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-zinc-400 animate-bounce" style={{ animationDelay: '300ms' }}></div>
                                     </div>
                                 </div>
                             </div>
@@ -621,33 +627,34 @@ const CareerChatbot = ({ darkMode, onClose }) => {
                 </div>
 
                 {/* Input Area */}
-                <div className={`p-6 border-t ${darkMode ? 'border-[#272757] bg-[#1a1f2e]' : 'border-indigo-100 bg-white shadow-lg'
-                    }`}>
-                    <div className="max-w-4xl mx-auto flex gap-3">
+                <div className={`p-4 border-t ${
+                    darkMode ? 'border-zinc-800 bg-[#121215]' : 'border-zinc-200 bg-white'
+                }`}>
+                    <div className="max-w-3xl mx-auto flex gap-2">
                         <input
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyPress={handleKeyPress}
-                            placeholder="Ask me anything about careers..."
-                            className={`flex-1 px-5 py-4 rounded-xl text-base transition-all ${darkMode
-                                ? 'bg-[#0f1419] border-[#272757] text-white placeholder-gray-500'
-                                : 'bg-gray-50 border-indigo-100 text-gray-900 placeholder-gray-400'
-                                } border-2 focus:outline-none focus:ring-2 focus:ring-[#505081]`}
+                            placeholder="Ask any question about careers, degrees, or salaries..."
+                            className={`flex-1 px-4 py-3 rounded-xl text-sm transition-all border outline-none ${
+                                darkMode
+                                    ? 'bg-zinc-900 border-zinc-800 text-white placeholder-zinc-500 focus:border-zinc-400'
+                                    : 'bg-zinc-50 border-zinc-200 text-black placeholder-zinc-400 focus:border-black'
+                            }`}
                         />
                         <button
                             onClick={handleSend}
                             disabled={!input.trim()}
-                            className={`px-6 py-4 rounded-xl transition-all ${input.trim()
-                                ? darkMode
-                                    ? 'bg-gradient-to-r from-[#505081] to-[#8686AC] hover:from-[#8686AC] hover:to-[#505081] hover:scale-105'
-                                    : 'bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 hover:scale-105'
-                                : darkMode
-                                    ? 'bg-[#272757] cursor-not-allowed'
-                                    : 'bg-gray-200 cursor-not-allowed'
-                                } text-white font-semibold shadow-lg`}
+                            className={`px-5 py-3 rounded-xl transition-all btn-interactive text-sm font-semibold flex items-center justify-center ${
+                                input.trim()
+                                    ? darkMode
+                                        ? 'bg-white text-black hover:bg-zinc-200 shadow-sm'
+                                        : 'bg-black text-white hover:bg-zinc-800 shadow-sm'
+                                    : 'bg-zinc-300 dark:bg-zinc-800 text-zinc-500 cursor-not-allowed'
+                            }`}
                         >
-                            <Send className="w-5 h-5" />
+                            <Send className="w-4 h-4" />
                         </button>
                     </div>
 

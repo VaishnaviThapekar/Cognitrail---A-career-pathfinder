@@ -39,20 +39,20 @@ export default function ResumeUploader({ onClose, darkMode }) {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
-            <div className={`w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl p-6 ${darkMode ? 'bg-gray-800 text-white' : 'bg-white text-gray-900'}`}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
+            <div className={`w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border shadow-2xl p-6 sm:p-8 animate-fade-in-scale ${darkMode ? 'bg-[#121215] border-zinc-800 text-white' : 'bg-white border-zinc-200 text-black'}`}>
                 {/* Header */}
-                <div className="flex justify-between items-center pb-4 border-b border-gray-200 dark:border-gray-700 mb-6">
+                <div className="flex justify-between items-center pb-4 border-b border-zinc-200 dark:border-zinc-800 mb-6">
                     <div className="flex items-center gap-3">
-                        <div className="bg-indigo-600 p-2.5 rounded-xl text-white">
+                        <div className={`p-2.5 rounded-xl border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-black text-white'}`}>
                             <FileText className="w-6 h-6" />
                         </div>
                         <div>
-                            <h3 className="text-2xl font-bold">Resume Analyzer & Skill Matcher</h3>
-                            <p className="text-sm text-gray-500 dark:text-gray-400">Extract skills, calculate ATS score & match top careers</p>
+                            <h3 className="text-2xl font-black">Resume ATS Analyzer & Skill Matcher</h3>
+                            <p className={`text-xs ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>Extract skills, calculate ATS score & match top careers</p>
                         </div>
                     </div>
-                    <button onClick={onClose} className="p-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <button onClick={onClose} className={`p-2 rounded-xl border btn-interactive ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-300 text-black'}`}>
                         <X className="w-6 h-6" />
                     </button>
                 </div>
@@ -60,24 +60,24 @@ export default function ResumeUploader({ onClose, darkMode }) {
                 {/* Upload & Role Selection */}
                 <div className="grid md:grid-cols-3 gap-6 mb-6">
                     <div className="md:col-span-2 space-y-4">
-                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300">Target Career Role</label>
+                        <label className={`block text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>Target Career Role</label>
                         <input
                             type="text"
                             value={targetRole}
                             onChange={(e) => setTargetRole(e.target.value)}
                             placeholder="e.g. Software Engineer, Data Scientist, UX Designer"
-                            className={`w-full p-3 rounded-xl border ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-gray-50 border-gray-200'}`}
+                            className={`w-full p-3 rounded-xl border text-sm outline-none ${darkMode ? 'bg-[#18181b] border-zinc-700 text-white placeholder-zinc-500 focus:border-zinc-400' : 'bg-zinc-50 border-zinc-200 text-black placeholder-zinc-400 focus:border-black'}`}
                         />
 
                         {/* File Dropzone */}
-                        <div className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all ${fileName ? 'border-emerald-500 bg-emerald-50/20' : 'border-indigo-300 hover:border-indigo-500 bg-indigo-50/20'}`}>
+                        <div className={`border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all ${fileName ? (darkMode ? 'border-white bg-zinc-900' : 'border-black bg-zinc-100') : (darkMode ? 'border-zinc-700 hover:border-zinc-500 bg-zinc-900/40' : 'border-zinc-300 hover:border-black bg-zinc-50')}`}>
                             <input type="file" onChange={handleFileChange} accept=".txt,.md,.json,.csv" className="hidden" id="resumeFileInput" />
                             <label htmlFor="resumeFileInput" className="cursor-pointer block">
-                                <Upload className="w-10 h-10 mx-auto text-indigo-500 mb-2" />
-                                <p className="font-semibold text-indigo-600 dark:text-indigo-400">
+                                <Upload className="w-8 h-8 mx-auto text-zinc-400 mb-2" />
+                                <p className={`font-bold text-sm ${darkMode ? 'text-white' : 'text-black'}`}>
                                     {fileName ? `Uploaded: ${fileName}` : 'Click or Drag & Drop Resume File (.txt / .md)'}
                                 </p>
-                                <p className="text-xs text-gray-400 mt-1">Supports text files & direct paste below</p>
+                                <p className="text-xs text-zinc-500 mt-1">Supports text files & direct paste below</p>
                             </label>
                         </div>
 
@@ -86,7 +86,7 @@ export default function ResumeUploader({ onClose, darkMode }) {
                             value={fileText}
                             onChange={(e) => setFileText(e.target.value)}
                             rows={6}
-                            className={`w-full p-4 rounded-xl border text-sm ${darkMode ? 'bg-gray-700 border-gray-600 text-white' : 'bg-gray-50 border-gray-200'}`}
+                            className={`w-full p-4 rounded-xl border text-xs outline-none ${darkMode ? 'bg-[#18181b] border-zinc-700 text-white placeholder-zinc-500' : 'bg-zinc-50 border-zinc-200 text-black placeholder-zinc-400'}`}
                             placeholder="Or paste resume content directly here..."
                         />
 
@@ -94,14 +94,14 @@ export default function ResumeUploader({ onClose, darkMode }) {
                             <button
                                 onClick={handleAnalyze}
                                 disabled={loading}
-                                className="flex-1 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+                                className={`flex-1 py-3 font-black text-xs rounded-xl shadow-md btn-interactive transition-all flex items-center justify-center gap-2 ${darkMode ? 'bg-white text-black hover:bg-zinc-200' : 'bg-black text-white hover:bg-zinc-800'}`}
                             >
-                                <Sparkles className="w-5 h-5" />
+                                <Sparkles className="w-4 h-4" />
                                 <span>{loading ? 'Analyzing Resume...' : 'Analyze Resume'}</span>
                             </button>
                             <button
                                 onClick={() => { setFileText(''); setFileName(''); setAnalysis(null); }}
-                                className="px-5 py-3 border border-gray-300 dark:border-gray-600 rounded-xl font-semibold hover:bg-gray-100 dark:hover:bg-gray-700"
+                                className={`px-5 py-3 border rounded-xl font-bold text-xs btn-interactive ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:bg-zinc-800' : 'bg-zinc-100 border-zinc-300 text-zinc-700 hover:bg-zinc-200'}`}
                             >
                                 Reset
                             </button>
@@ -109,22 +109,22 @@ export default function ResumeUploader({ onClose, darkMode }) {
                     </div>
 
                     {/* Quick Stats Panel */}
-                    <div className={`p-6 rounded-2xl border ${darkMode ? 'bg-gray-700/50 border-gray-600' : 'bg-indigo-50/50 border-indigo-100'}`}>
-                        <h4 className="font-bold text-lg mb-3 flex items-center gap-2">
-                            <Award className="w-5 h-5 text-indigo-600" />
+                    <div className={`p-6 rounded-2xl border ${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'}`}>
+                        <h4 className="font-black text-base mb-3 flex items-center gap-2">
+                            <Award className="w-5 h-5 text-zinc-400" />
                             <span>Analysis Summary</span>
                         </h4>
                         {analysis ? (
                             <div className="space-y-4">
-                                <div className="text-center p-4 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-indigo-100 dark:border-gray-700">
-                                    <p className="text-xs font-semibold text-gray-500 uppercase">ATS Compatibility Score</p>
-                                    <p className="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400 mt-1">{analysis.score}/100</p>
+                                <div className={`text-center p-4 rounded-xl border ${darkMode ? 'bg-[#121215] border-zinc-800' : 'bg-white border-zinc-200'}`}>
+                                    <p className="text-xs font-bold text-zinc-500 uppercase tracking-wider">ATS Compatibility</p>
+                                    <p className={`text-4xl font-black mt-1 ${darkMode ? 'text-white' : 'text-black'}`}>{analysis.score}/100</p>
                                 </div>
                                 <div>
-                                    <p className="text-xs font-semibold text-gray-500 mb-2">Detected Skills ({analysis.detectedSkills.length})</p>
+                                    <p className="text-xs font-bold text-zinc-500 mb-2">Detected Skills ({analysis.detectedSkills.length})</p>
                                     <div className="flex flex-wrap gap-1.5 max-h-40 overflow-y-auto">
                                         {analysis.detectedSkills.map((skill, idx) => (
-                                            <span key={idx} className="bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 text-xs px-2.5 py-1 rounded-full font-medium">
+                                            <span key={idx} className={`text-xs px-2.5 py-1 rounded-full font-bold border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-300 text-zinc-800'}`}>
                                                 {skill}
                                             </span>
                                         ))}
@@ -132,7 +132,7 @@ export default function ResumeUploader({ onClose, darkMode }) {
                                 </div>
                             </div>
                         ) : (
-                            <div className="text-center text-gray-400 text-sm py-10">
+                            <div className="text-center text-zinc-500 text-xs py-10">
                                 Upload or paste your resume and click Analyze to view ATS scores and skill breakdowns.
                             </div>
                         )}
@@ -141,12 +141,12 @@ export default function ResumeUploader({ onClose, darkMode }) {
 
                 {/* Analysis Results View */}
                 {analysis && (
-                    <div className="space-y-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-                        <h4 className="text-xl font-bold flex items-center gap-2">
-                            <Briefcase className="w-5 h-5 text-purple-600" />
+                    <div className="space-y-4 pt-4 border-t border-zinc-200 dark:border-zinc-800 animate-fade-in">
+                        <h4 className="text-lg font-black flex items-center gap-2">
+                            <Briefcase className="w-5 h-5 text-zinc-400" />
                             <span>Detailed Resume Feedback & Optimization Tips</span>
                         </h4>
-                        <div className={`p-5 rounded-2xl border text-sm leading-relaxed whitespace-pre-wrap ${darkMode ? 'bg-gray-900/80 border-gray-700 text-gray-200' : 'bg-gray-50 border-gray-200 text-gray-800'}`}>
+                        <div className={`p-5 rounded-2xl border text-xs leading-relaxed whitespace-pre-wrap ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-300' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}>
                             {analysis.aiFeedback}
                         </div>
                     </div>
@@ -155,4 +155,3 @@ export default function ResumeUploader({ onClose, darkMode }) {
         </div>
     );
 }
-

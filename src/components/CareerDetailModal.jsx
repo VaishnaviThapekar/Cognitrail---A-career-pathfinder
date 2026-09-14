@@ -10,63 +10,66 @@ const CareerDetailModal = ({ career, onClose, darkMode }) => {
 
   return (
     <>
-      <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 animate-fadeIn">
-        <div className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-slideUp`}>
-          <div className="sticky top-0 bg-gradient-to-r from-orange-600 to-amber-600 text-white p-6 rounded-t-3xl z-10">
+      <div className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center p-4 z-50 animate-fade-in">
+        <div className={`${darkMode ? 'bg-[#121215] border-zinc-800 text-white' : 'bg-white border-zinc-200 text-black'} border rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in-scale`}>
+          {/* Header */}
+          <div className={`sticky top-0 ${darkMode ? 'bg-[#121215]/95 border-zinc-800' : 'bg-white/95 border-zinc-200'} border-b p-6 rounded-t-3xl z-10 backdrop-blur-md`}>
             <div className="flex justify-between items-start">
               <div>
-                <h2 className="text-3xl font-bold mb-2">{career.name}</h2>
-                <p className="text-orange-100">{career.description}</p>
+                <h2 className={`text-3xl font-black mb-2 ${darkMode ? 'text-white' : 'text-black'}`}>{career.name}</h2>
+                <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>{career.description}</p>
               </div>
               <button
                 onClick={onClose}
-                className="bg-white/20 hover:bg-white/30 rounded-full p-2 transition-colors"
+                className={`p-2 rounded-xl border btn-interactive ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:text-white' : 'bg-zinc-100 border-zinc-300 text-zinc-700 hover:text-black'}`}
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
           </div>
 
-          <div className="p-6 space-y-6">
+          <div className="p-6 sm:p-8 space-y-6">
+            {/* Top Stats Grid */}
             <div className="grid md:grid-cols-2 gap-6">
-              <div className={`${darkMode ? 'bg-gradient-to-br from-green-900/30 to-emerald-900/30 border-green-700' : 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-200'} p-5 rounded-2xl border`}>
+              <div className={`${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'} p-5 rounded-2xl border`}>
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-green-600 rounded-full p-2">
-                    <DollarSign className="w-5 h-5 text-white" />
+                  <div className={`p-2 rounded-xl border ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                    <DollarSign className="w-5 h-5" />
                   </div>
-                  <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Salary Range</h3>
+                  <h3 className={`text-base font-black ${darkMode ? 'text-white' : 'text-black'}`}>Salary Range</h3>
                 </div>
-                <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} leading-relaxed`}>{career.salaryRange}</p>
+                <p className={`text-sm font-bold ${darkMode ? 'text-zinc-300' : 'text-zinc-800'} leading-relaxed`}>{career.salaryRange}</p>
               </div>
 
-              <div className={`${darkMode ? 'bg-gradient-to-br from-purple-900/30 to-pink-900/30 border-purple-700' : 'bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200'} p-5 rounded-2xl border`}>
+              <div className={`${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'} p-5 rounded-2xl border`}>
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-purple-600 rounded-full p-2">
-                    <Calendar className="w-5 h-5 text-white" />
+                  <div className={`p-2 rounded-xl border ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                    <Calendar className="w-5 h-5" />
                   </div>
-                  <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>When to Start</h3>
+                  <h3 className={`text-base font-black ${darkMode ? 'text-white' : 'text-black'}`}>When to Start</h3>
                 </div>
-                <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>{career.ageToStart}</p>
+                <p className={`text-sm font-bold ${darkMode ? 'text-zinc-300' : 'text-zinc-800'}`}>{career.ageToStart}</p>
               </div>
             </div>
 
-            <div className={`${darkMode ? 'bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border-blue-700' : 'bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200'} p-5 rounded-2xl border`}>
+            {/* Education Required */}
+            <div className={`${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'} p-5 rounded-2xl border`}>
               <div className="flex items-center gap-3 mb-3">
-                <div className="bg-blue-600 rounded-full p-2">
-                  <GraduationCap className="w-5 h-5 text-white" />
+                <div className={`p-2 rounded-xl border ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                  <GraduationCap className="w-5 h-5" />
                 </div>
-                <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Education Required</h3>
+                <h3 className={`text-base font-black ${darkMode ? 'text-white' : 'text-black'}`}>Education Required</h3>
               </div>
-              <p className={`${darkMode ? 'text-gray-300' : 'text-gray-700'} mb-3`}>{career.education}</p>
+              <p className={`text-sm ${darkMode ? 'text-zinc-300' : 'text-zinc-700'} mb-3`}>{career.education}</p>
               {career.entranceExams && (
                 <>
-                  <h4 className={`font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-800'} mb-2 flex items-center gap-2`}>
-                    <Award className="w-4 h-4 text-blue-600" />
+                  <h4 className={`text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-zinc-400' : 'text-zinc-600'} mb-2 flex items-center gap-2`}>
+                    <Award className="w-4 h-4" />
                     Entrance Exams
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {career.entranceExams.map((exam, idx) => (
-                      <span key={idx} className={`${darkMode ? 'bg-orange-900/50 text-orange-300' : 'bg-orange-100 text-orange-700'} px-3 py-1 rounded-full text-sm font-medium`}>
+                      <span key={idx} className={`px-3 py-1 rounded-xl text-xs font-bold border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-300 text-zinc-800'}`}>
                         {exam}
                       </span>
                     ))}
@@ -75,13 +78,14 @@ const CareerDetailModal = ({ career, onClose, darkMode }) => {
               )}
             </div>
 
+            {/* Top Colleges */}
             {career.topColleges && (
-              <div className={`${darkMode ? 'bg-gradient-to-br from-amber-900/30 to-orange-900/30 border-amber-700' : 'bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200'} p-5 rounded-2xl border`}>
+              <div className={`${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'} p-5 rounded-2xl border`}>
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-amber-600 rounded-full p-2">
-                    <MapPin className="w-5 h-5 text-white" />
+                  <div className={`p-2 rounded-xl border ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                    <MapPin className="w-5 h-5" />
                   </div>
-                  <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Top Colleges/Institutions</h3>
+                  <h3 className={`text-base font-black ${darkMode ? 'text-white' : 'text-black'}`}>Top Colleges & Institutions</h3>
                 </div>
                 <ul className="space-y-3">
                   {career.topColleges.map((college, idx) => {
@@ -90,28 +94,15 @@ const CareerDetailModal = ({ career, onClose, darkMode }) => {
                     const collegeRating = typeof college === 'object' && college.rating ? college.rating : null;
 
                     return (
-                      <li key={idx} className={`flex items-center justify-between gap-3 p-3 ${darkMode ? 'bg-gray-700/50' : 'bg-white'} rounded-xl hover:shadow-md transition-shadow`}>
-                        <div className="flex items-center gap-2 flex-1">
-                          <Star className="w-4 h-4 text-amber-500 flex-shrink-0" />
+                      <li key={idx} className={`flex items-center justify-between gap-3 p-3.5 border ${darkMode ? 'bg-zinc-900/80 border-zinc-800' : 'bg-white border-zinc-200'} rounded-xl hover-lift`}>
+                        <div className="flex items-center gap-2.5 flex-1">
+                          <Star className="w-4 h-4 text-zinc-400 fill-zinc-400 flex-shrink-0" />
                           <div className="flex-1">
-                            <span className={`font-medium ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>{collegeName}</span>
+                            <span className={`text-sm font-bold ${darkMode ? 'text-white' : 'text-black'}`}>{collegeName}</span>
                             {collegeRating && (
-                              <div className="flex items-center gap-1 mt-1">
-                                <div className="flex">
-                                  {[1, 2, 3, 4, 5].map((star) => (
-                                    <Star
-                                      key={star}
-                                      className={`w-3 h-3 ${star <= Math.floor(collegeRating)
-                                        ? 'text-yellow-400 fill-yellow-400'
-                                        : star - 0.5 <= collegeRating
-                                          ? 'text-yellow-400 fill-yellow-400'
-                                          : 'text-gray-300'
-                                        }`}
-                                    />
-                                  ))}
-                                </div>
-                                <span className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                  {collegeRating.toFixed(1)}/5.0
+                              <div className="flex items-center gap-1 mt-0.5">
+                                <span className={`text-xs font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                  ⭐ {collegeRating.toFixed(1)}/5.0
                                 </span>
                               </div>
                             )}
@@ -122,11 +113,11 @@ const CareerDetailModal = ({ career, onClose, darkMode }) => {
                             href={collegeWebsite}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center gap-1.5 text-sm bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-sm hover:shadow-md"
+                            className={`flex items-center gap-1.5 text-xs font-bold px-3.5 py-2 rounded-xl border btn-interactive ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-200 hover:bg-white hover:text-black' : 'bg-zinc-100 border-zinc-300 text-zinc-800 hover:bg-black hover:text-white'}`}
                             onClick={(e) => e.stopPropagation()}
                           >
-                            Visit Website
-                            <ExternalLink className="w-3.5 h-3.5" />
+                            Portal
+                            <ExternalLink className="w-3 h-3" />
                           </a>
                         )}
                       </li>
@@ -136,45 +127,46 @@ const CareerDetailModal = ({ career, onClose, darkMode }) => {
               </div>
             )}
 
-            <div className={`${darkMode ? 'bg-gradient-to-br from-rose-900/30 to-red-900/30 border-rose-700' : 'bg-gradient-to-br from-rose-50 to-red-50 border-rose-200'} p-5 rounded-2xl border`}>
+            {/* Required Skills */}
+            <div className={`${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'} p-5 rounded-2xl border`}>
               <div className="flex items-center gap-3 mb-3">
-                <div className="bg-rose-600 rounded-full p-2">
-                  <Brain className="w-5 h-5 text-white" />
+                <div className={`p-2 rounded-xl border ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                  <Brain className="w-5 h-5" />
                 </div>
-                <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>Required Skills</h3>
+                <h3 className={`text-base font-black ${darkMode ? 'text-white' : 'text-black'}`}>Required Skills</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {career.skills.map((skill, idx) => (
-                  <span key={idx} className={`${darkMode ? 'bg-rose-900/50 text-rose-300' : 'bg-rose-100 text-rose-700'} px-3 py-1.5 rounded-full text-sm font-medium`}>
+                  <span key={idx} className={`px-3 py-1.5 rounded-xl text-xs font-bold border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-300 text-zinc-800'}`}>
                     {skill}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* View Roadmap & Skill Gap Buttons */}
+            {/* Action Buttons */}
             <div className="grid md:grid-cols-2 gap-4">
               <button
                 onClick={() => setShowRoadmap(true)}
-                className={`w-full py-4 px-6 rounded-2xl font-bold text-lg transition-all hover:scale-105 shadow-lg ${darkMode
-                  ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700'
-                  : 'bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:from-indigo-600 hover:to-purple-600'
+                className={`w-full py-4 px-6 rounded-2xl font-black text-sm btn-interactive hover-lift shadow-xl ${darkMode
+                  ? 'bg-white text-black hover:bg-zinc-200'
+                  : 'bg-black text-white hover:bg-zinc-800'
                   }`}
               >
-                <div className="flex items-center justify-center gap-3">
-                  <Map className="w-6 h-6" />
+                <div className="flex items-center justify-center gap-2.5">
+                  <Map className="w-5 h-5" />
                   <span>View Career Roadmap</span>
                 </div>
               </button>
               <button
                 onClick={() => { onClose(); if (window.openSkillGap) window.openSkillGap(career); }}
-                className={`w-full py-4 px-6 rounded-2xl font-bold text-lg transition-all hover:scale-105 shadow-lg ${darkMode
-                  ? 'bg-gradient-to-r from-emerald-600 to-teal-600 text-white hover:from-emerald-700 hover:to-teal-700'
-                  : 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:from-emerald-600 hover:to-teal-600'
+                className={`w-full py-4 px-6 rounded-2xl font-bold text-sm btn-interactive hover-lift border ${darkMode
+                  ? 'bg-zinc-900 border-zinc-700 text-white hover:bg-zinc-800'
+                  : 'bg-zinc-100 border-zinc-300 text-black hover:bg-zinc-200'
                   }`}
               >
-                <div className="flex items-center justify-center gap-3">
-                  <Brain className="w-6 h-6" />
+                <div className="flex items-center justify-center gap-2.5">
+                  <Brain className="w-5 h-5" />
                   <span>Analyze Skill Gap</span>
                 </div>
               </button>

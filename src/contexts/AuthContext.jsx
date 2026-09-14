@@ -160,11 +160,11 @@ export function AuthProvider({ children }) {
     // Generate avatar from name
     const generateAvatar = (name) => {
         const colors = [
-            'bg-gradient-to-br from-purple-500 to-pink-500',
-            'bg-gradient-to-br from-blue-500 to-cyan-500',
-            'bg-gradient-to-br from-green-500 to-teal-500',
-            'bg-gradient-to-br from-orange-500 to-red-500',
-            'bg-gradient-to-br from-indigo-500 to-purple-500',
+            'bg-zinc-800 text-white border border-zinc-700',
+            'bg-zinc-900 text-white border border-zinc-700',
+            'bg-black text-white border border-zinc-800',
+            'bg-zinc-700 text-white border border-zinc-600',
+            'bg-zinc-950 text-white border border-zinc-800',
         ];
         const initials = name
             .split(' ')

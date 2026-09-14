@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Plus, Target, Calendar, Award, CheckCircle, Circle, Trash2, Edit2, Save, TrendingUp, BookOpen, Briefcase, GraduationCap, Trophy, Sparkles, Download, Share2 } from 'lucide-react';
+import { X, Plus, Target, Calendar, Award, CheckCircle, Trash2, Edit2, Save, TrendingUp, BookOpen, Briefcase, GraduationCap, Trophy, Sparkles, Download, CheckCircle2 } from 'lucide-react';
 
 const CareerRoadmapBuilder = ({ onClose, darkMode }) => {
     const [selectedCareer, setSelectedCareer] = useState(null);
@@ -18,277 +18,201 @@ const CareerRoadmapBuilder = ({ onClose, darkMode }) => {
     const careerTemplates = [
         {
             id: 1,
-            name: "Software Engineer",
+            name: "Software Engineer & AI",
             icon: "💻",
-            color: "from-blue-500 to-indigo-600",
             totalDuration: "4-6 years",
             steps: [
                 { title: "Complete 12th (PCM)", description: "Focus on Mathematics & Computer Science", duration: "2 years", category: "education", priority: "high" },
                 { title: "Learn Programming Basics", description: "Start with Python/Java, practice DSA", duration: "6 months", category: "skill", priority: "high" },
-                { title: "B.Tech in Computer Science", description: "Get admission in good college via JEE", duration: "4 years", category: "education", priority: "high" },
+                { title: "B.Tech in Computer Science", description: "Get admission in top college via JEE", duration: "4 years", category: "education", priority: "high" },
                 { title: "Build Projects & Portfolio", description: "Create 5-10 real projects on GitHub", duration: "Ongoing", category: "project", priority: "medium" },
                 { title: "Internships", description: "Complete 2-3 internships during college", duration: "6-12 months", category: "experience", priority: "high" },
                 { title: "Master Advanced Technologies", description: "Learn React, Node.js, Cloud, DevOps", duration: "1 year", category: "skill", priority: "medium" },
-                { title: "Get First Job", description: "Apply to companies, clear interviews", duration: "3-6 months", category: "career", priority: "high" },
-                { title: "Gain Experience", description: "Work 2-3 years, switch for growth", duration: "2-3 years", category: "career", priority: "medium" }
+                { title: "Get First Job", description: "Apply to companies, clear technical interviews", duration: "3-6 months", category: "career", priority: "high" },
+                { title: "Gain Experience", description: "Work 2-3 years, step up to Senior Engineer", duration: "2-3 years", category: "career", priority: "medium" }
             ]
         },
         {
             id: 2,
-            name: "Doctor (MBBS)",
+            name: "Doctor (MBBS & Specialization)",
             icon: "⚕️",
-            color: "from-green-500 to-teal-600",
             totalDuration: "10-12 years",
             steps: [
                 { title: "Complete 12th (PCB)", description: "Score 85%+ in Physics, Chemistry, Biology", duration: "2 years", category: "education", priority: "high" },
-                { title: "Prepare for NEET", description: "Join coaching, study NCERT thoroughly", duration: "1-2 years", category: "education", priority: "high" },
-                { title: "Clear NEET Exam", description: "Score 600+ for good medical college", duration: "1 attempt", category: "milestone", priority: "high" },
-                { title: "MBBS Degree", description: "5.5 years including 1 year internship", duration: "5.5 years", category: "education", priority: "high" },
-                { title: "NEET-PG Preparation", description: "Prepare for post-graduation", duration: "1 year", category: "education", priority: "medium" },
-                { title: "MD/MS Specialization", description: "Choose specialty like Cardiology, Surgery", duration: "3 years", category: "education", priority: "medium" },
-                { title: "Practice & Build Reputation", description: "Work in hospital or start practice", duration: "3-5 years", category: "career", priority: "high" }
+                { title: "Prepare for NEET-UG", description: "Join coaching, study NCERT thoroughly", duration: "1-2 years", category: "education", priority: "high" },
+                { title: "Clear NEET Exam", description: "Score 620+ for government medical college", duration: "1 attempt", category: "milestone", priority: "high" },
+                { title: "MBBS Degree", description: "5.5 years including 1 year rotatory internship", duration: "5.5 years", category: "education", priority: "high" },
+                { title: "NEET-PG Preparation", description: "Prepare for post-graduation specialization", duration: "1 year", category: "education", priority: "medium" },
+                { title: "MD/MS Specialization", description: "Specialty in Surgery, Medicine, or Cardiology", duration: "3 years", category: "education", priority: "medium" },
+                { title: "Senior Resident & Practice", description: "Work in premier hospital or start clinic", duration: "3-5 years", category: "career", priority: "high" }
             ]
         },
         {
             id: 3,
-            name: "Data Scientist",
+            name: "Data Scientist & ML Engineer",
             icon: "📊",
-            color: "from-purple-500 to-pink-600",
             totalDuration: "4-5 years",
             steps: [
-                { title: "Complete 12th (PCM)", description: "Strong foundation in Mathematics", duration: "2 years", category: "education", priority: "high" },
-                { title: "Learn Python & Statistics", description: "Master Python, NumPy, Pandas", duration: "6 months", category: "skill", priority: "high" },
-                { title: "B.Tech/B.Sc in relevant field", description: "Computer Science, Statistics, or Mathematics", duration: "4 years", category: "education", priority: "high" },
-                { title: "Master Data Science Skills", description: "ML, Deep Learning, Data Visualization", duration: "1 year", category: "skill", priority: "high" },
-                { title: "Work on Real Projects", description: "Kaggle competitions, real datasets", duration: "Ongoing", category: "project", priority: "medium" },
-                { title: "Internships in Analytics", description: "Gain practical experience", duration: "6 months", category: "experience", priority: "high" },
-                { title: "Build Portfolio", description: "Showcase projects on GitHub/Portfolio site", duration: "3 months", category: "project", priority: "medium" },
-                { title: "Land First Job", description: "Junior Data Scientist role", duration: "3-6 months", category: "career", priority: "high" }
+                { title: "Complete 12th (PCM)", description: "Strong foundation in Mathematics & Statistics", duration: "2 years", category: "education", priority: "high" },
+                { title: "Learn Python & Statistics", description: "Master Python, NumPy, Pandas, SQL", duration: "6 months", category: "skill", priority: "high" },
+                { title: "B.Tech/B.Sc in CS or Stats", description: "Degree in Computer Science or Mathematics", duration: "4 years", category: "education", priority: "high" },
+                { title: "Master Machine Learning", description: "Scikit-Learn, PyTorch, Deep Learning, MLOps", duration: "1 year", category: "skill", priority: "high" },
+                { title: "Work on Real Projects", description: "Kaggle competitions, published datasets", duration: "Ongoing", category: "project", priority: "medium" },
+                { title: "Analytics Internships", description: "Gain industry problem-solving experience", duration: "6 months", category: "experience", priority: "high" },
+                { title: "Land Data Scientist Role", description: "Join analytics team as ML Engineer", duration: "3-6 months", category: "career", priority: "high" }
             ]
         },
         {
             id: 4,
             name: "CA (Chartered Accountant)",
             icon: "💼",
-            color: "from-orange-500 to-red-600",
             totalDuration: "5-6 years",
             steps: [
-                { title: "Complete 12th (Commerce)", description: "Focus on Accounts, Economics", duration: "2 years", category: "education", priority: "high" },
+                { title: "Complete 12th (Commerce)", description: "Focus on Accountancy, Economics, Business", duration: "2 years", category: "education", priority: "high" },
                 { title: "Register for CA Foundation", description: "Register with ICAI after 12th", duration: "1 month", category: "milestone", priority: "high" },
-                { title: "Clear CA Foundation", description: "Study 4-6 months, clear exam", duration: "6 months", category: "education", priority: "high" },
-                { title: "CA Intermediate", description: "Both groups of Intermediate level", duration: "1-1.5 years", category: "education", priority: "high" },
-                { title: "Articleship Training", description: "3 years practical training required", duration: "3 years", category: "experience", priority: "high" },
-                { title: "CA Final Preparation", description: "Study for final exams", duration: "1 year", category: "education", priority: "high" },
-                { title: "Clear CA Final", description: "Become Chartered Accountant", duration: "1 attempt", category: "milestone", priority: "high" },
-                { title: "Start Career", description: "Join firm or start practice", duration: "Ongoing", category: "career", priority: "medium" }
+                { title: "Clear CA Foundation", description: "Study 4-6 months, clear all 4 papers", duration: "6 months", category: "education", priority: "high" },
+                { title: "CA Intermediate", description: "Clear both groups of Intermediate level", duration: "1-1.5 years", category: "education", priority: "high" },
+                { title: "Articleship Training", description: "3 years mandatory practical audit training", duration: "3 years", category: "experience", priority: "high" },
+                { title: "CA Final Exam", description: "Clear final exams and qualify as CA", duration: "1 year", category: "milestone", priority: "high" },
+                { title: "Start Practice or Corporate Role", description: "Join Big 4 firm or start own audit practice", duration: "Ongoing", category: "career", priority: "medium" }
             ]
         },
         {
             id: 5,
-            name: "Civil Engineer",
-            icon: "🏗️",
-            color: "from-yellow-500 to-orange-600",
-            totalDuration: "4-5 years",
+            name: "UI/UX & Product Designer",
+            icon: "🎨",
+            totalDuration: "3-4 years",
             steps: [
-                { title: "Complete 12th (PCM)", description: "Focus on Physics & Mathematics", duration: "2 years", category: "education", priority: "high" },
-                { title: "Prepare for JEE", description: "Engineering entrance exam", duration: "1-2 years", category: "education", priority: "high" },
-                { title: "B.Tech in Civil Engineering", description: "4-year engineering degree", duration: "4 years", category: "education", priority: "high" },
-                { title: "Learn AutoCAD & Software", description: "Master design tools", duration: "6 months", category: "skill", priority: "medium" },
-                { title: "Summer Internships", description: "Construction sites, consultancy firms", duration: "6 months", category: "experience", priority: "high" },
-                { title: "Final Year Project", description: "Real-world civil engineering project", duration: "6 months", category: "project", priority: "medium" },
-                { title: "Campus Placement / GATE", description: "Get job or pursue M.Tech", duration: "6 months", category: "career", priority: "high" }
+                { title: "Complete 12th Any Stream", description: "Build visual aesthetics and sketching skills", duration: "2 years", category: "education", priority: "high" },
+                { title: "Learn Design Foundations", description: "Master Figma, Typography, Color Theory", duration: "6 months", category: "skill", priority: "high" },
+                { title: "Design Degree or Bootcamp", description: "B.Des from NID/IIT or recognized bootcamp", duration: "3-4 years", category: "education", priority: "high" },
+                { title: "Build 3 Case Studies", description: "End-to-end user research & mobile app UX", duration: "6 months", category: "project", priority: "high" },
+                { title: "Design Internships", description: "Work with product startups", duration: "6 months", category: "experience", priority: "high" },
+                { title: "Join as Product Designer", description: "Design web and mobile consumer products", duration: "Ongoing", category: "career", priority: "high" }
             ]
         },
         {
             id: 6,
-            name: "Digital Marketer",
-            icon: "📱",
-            color: "from-pink-500 to-rose-600",
-            totalDuration: "3-4 years",
+            name: "Corporate Lawyer & Legal Advisor",
+            icon: "⚖️",
+            totalDuration: "5-6 years",
             steps: [
-                { title: "Complete 12th (Any Stream)", description: "Basic education foundation", duration: "2 years", category: "education", priority: "medium" },
-                { title: "Learn Digital Marketing Basics", description: "SEO, Social Media, Content", duration: "3 months", category: "skill", priority: "high" },
-                { title: "Degree/Diploma (Optional)", description: "BBA, Marketing, or online courses", duration: "3 years", category: "education", priority: "medium" },
-                { title: "Master Core Skills", description: "Google Ads, Facebook Ads, Analytics", duration: "6 months", category: "skill", priority: "high" },
-                { title: "Get Certifications", description: "Google, HubSpot, Meta certifications", duration: "3 months", category: "milestone", priority: "medium" },
-                { title: "Freelance / Internship", description: "Gain practical experience", duration: "6 months", category: "experience", priority: "high" },
-                { title: "Build Portfolio", description: "Showcase campaigns & results", duration: "Ongoing", category: "project", priority: "medium" },
-                { title: "Get Full-time Job", description: "Digital Marketing Executive", duration: "3 months", category: "career", priority: "high" }
+                { title: "Complete 12th Any Stream", description: "Develop strong reading & reasoning skills", duration: "2 years", category: "education", priority: "high" },
+                { title: "Prepare for CLAT / AILET", description: "National entrance exams for top NLUs", duration: "1 year", category: "education", priority: "high" },
+                { title: "5-Year Integrated BA LLB", description: "Complete law degree with moots and internships", duration: "5 years", category: "education", priority: "high" },
+                { title: "Corporate Law Internships", description: "Intern with top law firms and corporate houses", duration: "1 year", category: "experience", priority: "high" },
+                { title: "Bar Council Enrollment", description: "Clear AIBE and start practicing as Advocate", duration: "6 months", category: "milestone", priority: "high" },
+                { title: "Join Legal Firm", description: "Corporate M&A, IP, or compliance associate", duration: "Ongoing", category: "career", priority: "medium" }
             ]
         }
     ];
 
-    // Load template
     const loadTemplate = (template) => {
         setSelectedCareer(template);
-        setRoadmapSteps(template.steps.map((step, index) => ({
-            ...step,
-            id: index + 1,
-            completed: false
-        })));
+        setRoadmapSteps(template.steps.map((s, idx) => ({ ...s, id: idx + 1, completed: false })));
     };
 
-    // Add custom step
     const handleAddStep = () => {
-        if (!newStep.title.trim()) return;
-
-        setRoadmapSteps([...roadmapSteps, {
+        if (!newStep.title) return;
+        const stepToAdd = {
             ...newStep,
             id: roadmapSteps.length + 1,
             completed: false
-        }]);
-
-        setNewStep({
-            title: '',
-            description: '',
-            duration: '',
-            category: 'education',
-            priority: 'medium'
-        });
+        };
+        setRoadmapSteps([...roadmapSteps, stepToAdd]);
+        setNewStep({ title: '', description: '', duration: '', category: 'education', priority: 'medium' });
         setIsAddingStep(false);
     };
 
-    // Toggle step completion
-    const toggleStepCompletion = (stepId) => {
-        setRoadmapSteps(roadmapSteps.map(step =>
-            step.id === stepId ? { ...step, completed: !step.completed } : step
-        ));
+    const handleToggleStep = (stepId) => {
+        setRoadmapSteps(roadmapSteps.map(s => s.id === stepId ? { ...s, completed: !s.completed } : s));
     };
 
-    // Delete step
-    const deleteStep = (stepId) => {
-        setRoadmapSteps(roadmapSteps.filter(step => step.id !== stepId));
+    const handleDeleteStep = (stepId) => {
+        setRoadmapSteps(roadmapSteps.filter(s => s.id !== stepId));
     };
 
-    // Edit step
-    const startEditingStep = (step) => {
-        setEditingStep(step);
-    };
-
-    const saveEditedStep = () => {
-        setRoadmapSteps(roadmapSteps.map(step =>
-            step.id === editingStep.id ? editingStep : step
-        ));
-        setEditingStep(null);
-    };
-
-    // Get category icon and color
-    const getCategoryStyle = (category) => {
-        const styles = {
-            education: { icon: BookOpen, color: 'text-blue-500', bg: 'bg-blue-100' },
-            skill: { icon: Target, color: 'text-purple-500', bg: 'bg-purple-100' },
-            project: { icon: Briefcase, color: 'text-green-500', bg: 'bg-green-100' },
-            experience: { icon: TrendingUp, color: 'text-orange-500', bg: 'bg-orange-100' },
-            milestone: { icon: Trophy, color: 'text-yellow-500', bg: 'bg-yellow-100' },
-            career: { icon: Award, color: 'text-red-500', bg: 'bg-red-100' }
-        };
-        return styles[category] || styles.education;
-    };
-
-    // Calculate progress
     const calculateProgress = () => {
         if (roadmapSteps.length === 0) return 0;
-        const completed = roadmapSteps.filter(step => step.completed).length;
+        const completed = roadmapSteps.filter(s => s.completed).length;
         return Math.round((completed / roadmapSteps.length) * 100);
     };
 
-    // Export roadmap
     const handleExport = () => {
-        const content = `
-MY CAREER ROADMAP: ${selectedCareer?.name || 'Custom Career'}
-${'='.repeat(50)}
-
-Total Steps: ${roadmapSteps.length}
-Completed: ${roadmapSteps.filter(s => s.completed).length}
+        const text = `
+CAREER ROADMAP: ${selectedCareer?.name || 'Custom Career'}
 Progress: ${calculateProgress()}%
 
-ROADMAP STEPS:
-${roadmapSteps.map((step, index) => `
-${index + 1}. ${step.completed ? '✅' : '⭕'} ${step.title}
-   Duration: ${step.duration}
-   Category: ${step.category}
-   Priority: ${step.priority}
-   ${step.description}
-`).join('\n')}
+MILESTONES:
+${roadmapSteps.map((s, i) => `${i + 1}. [${s.completed ? 'COMPLETED' : 'PENDING'}] ${s.title} (${s.duration})\n   ${s.description}`).join('\n\n')}
 
-Generated by COGNITRIAL Career Roadmap Builder
-    `.trim();
+Generated by COGNITRAIL Career Roadmap Builder
+        `.trim();
 
-        const blob = new Blob([content], { type: 'text/plain' });
+        const blob = new Blob([text], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `Career_Roadmap_${selectedCareer?.name || 'Custom'}.txt`;
+        a.download = `${(selectedCareer?.name || 'Career').replace(/\s+/g, '_')}_Roadmap.txt`;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
-
-        alert('✅ Roadmap exported successfully!');
     };
 
     return (
-        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#0f1419]' : 'bg-gradient-to-br from-slate-50 to-indigo-50'
-            }`}>
-            <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b]' : 'bg-zinc-50'}`}>
+            <div className="max-w-7xl mx-auto px-4 py-8 animate-fade-in">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h2 className={`text-4xl font-black ${darkMode ? 'text-white' : 'text-gray-900'} mb-2`}>
-                            🗺️ Career Roadmap Builder
+                        <h2 className={`text-3xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-2`}>
+                            🗺️ Step-by-Step Career Roadmap Builder
                         </h2>
-                        <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            Build your personalized step-by-step career journey
+                        <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                            Build, customize, and track your milestone roadmap from high school to senior leadership
                         </p>
                     </div>
                     <button
                         onClick={onClose}
-                        className={`p-2 rounded-xl transition-colors ${darkMode ? 'bg-[#1a1f2e] hover:bg-[#272757]' : 'bg-white hover:bg-gray-100'
-                            }`}
+                        className={`p-2.5 rounded-xl border btn-interactive hover-lift ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:text-white' : 'bg-white border-zinc-200 text-zinc-700 hover:text-black'}`}
                     >
-                        <X className={`w-6 h-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`} />
+                        <X className="w-6 h-6" />
                     </button>
                 </div>
 
                 {!selectedCareer ? (
-                    /* Template Selection */
+                    /* Template Selection Grid */
                     <div>
                         <div className="text-center mb-8">
-                            <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-2`}>
-                                Choose a Career Template or Start from Scratch
+                            <h3 className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-2`}>
+                                Choose a Verified Career Template or Build Custom
                             </h3>
-                            <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                Select a pre-built roadmap or create your own custom path
+                            <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                Select a curated timeline or start a fresh personalized track
                             </p>
                         </div>
 
-                        {/* Templates Grid */}
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                             {careerTemplates.map((template) => (
                                 <button
                                     key={template.id}
                                     onClick={() => loadTemplate(template)}
-                                    className={`group relative rounded-2xl p-6 text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden ${darkMode ? 'bg-[#1a1f2e] border border-[#272757]' : 'bg-white border border-indigo-100'
+                                    className={`group relative rounded-3xl p-7 text-left border transition-all duration-300 hover-lift btn-interactive ${darkMode
+                                        ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
+                                        : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-sm'
                                         }`}
                                 >
-                                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity bg-gradient-to-br ${template.color}`}></div>
-
-                                    <div className="relative z-10">
-                                        <div className="text-5xl mb-4">{template.icon}</div>
-                                        <h3 className={`text-xl font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                            {template.name}
-                                        </h3>
-                                        <div className="space-y-2">
-                                            <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                                ⏱️ {template.totalDuration}
-                                            </div>
-                                            <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                                📋 {template.steps.length} steps
-                                            </div>
-                                            <div className={`text-sm font-semibold ${darkMode ? 'text-[#8686AC]' : 'text-indigo-600'}`}>
-                                                Load Template →
-                                            </div>
-                                        </div>
+                                    <div className="text-4xl mb-4">{template.icon}</div>
+                                    <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
+                                        {template.name}
+                                    </h3>
+                                    <div className="space-y-1.5 text-xs font-semibold mb-4 text-zinc-500 dark:text-zinc-400">
+                                        <div>⏱️ Est. Timeline: <span className="font-bold text-black dark:text-white">{template.totalDuration}</span></div>
+                                        <div>📋 Milestones: <span className="font-bold text-black dark:text-white">{template.steps.length} steps</span></div>
+                                    </div>
+                                    <div className={`text-xs font-bold ${darkMode ? 'text-white' : 'text-black'} flex items-center gap-1 group-hover:gap-2 transition-all`}>
+                                        Load Roadmap Template →
                                     </div>
                                 </button>
                             ))}
@@ -296,63 +220,55 @@ Generated by COGNITRIAL Career Roadmap Builder
                             {/* Custom Roadmap Button */}
                             <button
                                 onClick={() => setSelectedCareer({ name: 'Custom Career', icon: '🎯' })}
-                                className={`group relative rounded-2xl p-6 text-left transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden border-2 border-dashed ${darkMode ? 'bg-[#1a1f2e] border-[#505081]' : 'bg-white border-indigo-300'
+                                className={`group relative rounded-3xl p-7 text-center border-2 border-dashed flex flex-col items-center justify-center transition-all hover-lift btn-interactive ${darkMode
+                                    ? 'bg-[#121215] border-zinc-700 hover:border-zinc-500 text-white'
+                                    : 'bg-white border-zinc-300 hover:border-zinc-500 text-black shadow-sm'
                                     }`}
                             >
-                                <div className="relative z-10 flex flex-col items-center justify-center h-full">
-                                    <Plus className={`w-12 h-12 mb-4 ${darkMode ? 'text-[#8686AC]' : 'text-indigo-600'}`} />
-                                    <h3 className={`text-xl font-bold text-center ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                        Create Custom Roadmap
-                                    </h3>
-                                    <p className={`text-sm mt-2 text-center ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                        Build your own path from scratch
-                                    </p>
-                                </div>
+                                <Plus className="w-10 h-10 mb-3 text-zinc-400" />
+                                <h3 className="text-lg font-black mb-1">Create Custom Roadmap</h3>
+                                <p className="text-xs text-zinc-500">Build your own milestones from scratch</p>
                             </button>
                         </div>
                     </div>
                 ) : (
-                    /* Roadmap Builder */
-                    <div>
-                        {/* Roadmap Header */}
-                        <div className={`rounded-2xl p-6 mb-6 ${darkMode ? 'bg-[#1a1f2e] border border-[#272757]' : 'bg-white border border-indigo-100'
-                            }`}>
-                            <div className="flex items-center justify-between mb-4">
+                    /* Roadmap Builder View */
+                    <div className="animate-fade-in">
+                        {/* Roadmap Header Card */}
+                        <div className={`rounded-3xl p-6 sm:p-8 mb-8 border ${darkMode ? 'bg-[#121215] border-zinc-800' : 'bg-white border-zinc-200 shadow-md'}`}>
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
                                 <div className="flex items-center gap-4">
-                                    <div className="text-5xl">{selectedCareer.icon}</div>
+                                    <span className="text-4xl">{selectedCareer.icon}</span>
                                     <div>
-                                        <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                                        <h3 className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
                                             {selectedCareer.name}
                                         </h3>
-                                        <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                            {roadmapSteps.length} steps • {calculateProgress()}% complete
+                                        <p className={`text-xs font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                            {roadmapSteps.length} milestones • {calculateProgress()}% completed
                                         </p>
                                     </div>
                                 </div>
                                 <div className="flex gap-2">
                                     <button
                                         onClick={handleExport}
-                                        className={`px-4 py-2 rounded-xl font-semibold flex items-center gap-2 ${darkMode ? 'bg-[#272757] hover:bg-[#505081] text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-                                            }`}
+                                        className={`px-4 py-2 rounded-xl text-xs font-bold border btn-interactive flex items-center gap-1.5 ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:bg-white hover:text-black' : 'bg-zinc-100 border-zinc-300 text-black hover:bg-black hover:text-white'}`}
                                     >
-                                        <Download className="w-4 h-4" />
-                                        Export
+                                        <Download className="w-3.5 h-3.5" />
+                                        Export Roadmap
                                     </button>
                                     <button
                                         onClick={() => setSelectedCareer(null)}
-                                        className={`px-4 py-2 rounded-xl font-semibold ${darkMode ? 'bg-[#272757] text-white' : 'bg-gray-100 text-gray-700'
-                                            }`}
+                                        className={`px-4 py-2 rounded-xl text-xs font-bold border btn-interactive ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-300 text-black'}`}
                                     >
-                                        ← Back
+                                        ← Templates
                                     </button>
                                 </div>
                             </div>
 
                             {/* Progress Bar */}
-                            <div className={`w-full h-3 rounded-full overflow-hidden ${darkMode ? 'bg-[#272757]' : 'bg-gray-200'
-                                }`}>
+                            <div className={`w-full h-3 rounded-full overflow-hidden ${darkMode ? 'bg-zinc-800' : 'bg-zinc-200'}`}>
                                 <div
-                                    className="h-full bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-500"
+                                    className={`h-full transition-all duration-500 ${darkMode ? 'bg-white' : 'bg-black'}`}
                                     style={{ width: `${calculateProgress()}%` }}
                                 ></div>
                             </div>
@@ -362,201 +278,106 @@ Generated by COGNITRIAL Career Roadmap Builder
                         {!isAddingStep && (
                             <button
                                 onClick={() => setIsAddingStep(true)}
-                                className={`w-full mb-6 p-4 rounded-xl border-2 border-dashed transition-colors flex items-center justify-center gap-2 ${darkMode
-                                    ? 'border-[#505081] hover:border-[#8686AC] hover:bg-[#1a1f2e] text-gray-400 hover:text-white'
-                                    : 'border-indigo-300 hover:border-indigo-500 hover:bg-indigo-50 text-gray-600 hover:text-indigo-700'
+                                className={`w-full mb-6 p-4 rounded-2xl border-2 border-dashed flex items-center justify-center gap-2 text-xs font-bold btn-interactive ${darkMode
+                                    ? 'bg-[#121215] border-zinc-700 text-zinc-300 hover:border-zinc-500'
+                                    : 'bg-white border-zinc-300 text-zinc-700 hover:border-black shadow-sm'
                                     }`}
                             >
-                                <Plus className="w-5 h-5" />
-                                <span className="font-semibold">Add Custom Step</span>
+                                <Plus className="w-4 h-4" />
+                                <span>Add Custom Milestone Step</span>
                             </button>
                         )}
 
                         {/* Add Step Form */}
                         {isAddingStep && (
-                            <div className={`rounded-2xl p-6 mb-6 ${darkMode ? 'bg-[#1a1f2e] border border-[#272757]' : 'bg-white border border-indigo-100'
-                                }`}>
-                                <h4 className={`text-lg font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                    Add New Step
+                            <div className={`rounded-3xl p-6 mb-6 border animate-fade-in ${darkMode ? 'bg-[#121215] border-zinc-800' : 'bg-white border-zinc-200 shadow-md'}`}>
+                                <h4 className={`text-base font-black mb-4 ${darkMode ? 'text-white' : 'text-black'}`}>
+                                    Add New Milestone
                                 </h4>
                                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                                     <input
                                         type="text"
-                                        placeholder="Step title *"
+                                        placeholder="Milestone Title *"
                                         value={newStep.title}
                                         onChange={(e) => setNewStep({ ...newStep, title: e.target.value })}
-                                        className={`px-4 py-2 rounded-xl border-2 ${darkMode
-                                            ? 'bg-[#272757] border-[#505081] text-white placeholder-gray-500'
-                                            : 'bg-white border-gray-200 text-gray-900 placeholder-gray-400'
-                                            } focus:outline-none focus:border-indigo-500`}
+                                        className={`px-4 py-2.5 rounded-xl border text-xs outline-none ${darkMode ? 'bg-[#18181b] border-zinc-700 text-white' : 'bg-zinc-50 border-zinc-300 text-black'}`}
                                     />
                                     <input
                                         type="text"
-                                        placeholder="Duration (e.g., 6 months)"
+                                        placeholder="Duration (e.g., 6 months, 4 years)"
                                         value={newStep.duration}
                                         onChange={(e) => setNewStep({ ...newStep, duration: e.target.value })}
-                                        className={`px-4 py-2 rounded-xl border-2 ${darkMode
-                                            ? 'bg-[#272757] border-[#505081] text-white placeholder-gray-500'
-                                            : 'bg-white border-gray-200 text-gray-900 placeholder-gray-400'
-                                            } focus:outline-none focus:border-indigo-500`}
+                                        className={`px-4 py-2.5 rounded-xl border text-xs outline-none ${darkMode ? 'bg-[#18181b] border-zinc-700 text-white' : 'bg-zinc-50 border-zinc-300 text-black'}`}
                                     />
                                 </div>
                                 <textarea
-                                    placeholder="Description"
+                                    placeholder="Details & action items..."
                                     value={newStep.description}
                                     onChange={(e) => setNewStep({ ...newStep, description: e.target.value })}
                                     rows={2}
-                                    className={`w-full px-4 py-2 rounded-xl border-2 mb-4 ${darkMode
-                                        ? 'bg-[#272757] border-[#505081] text-white placeholder-gray-500'
-                                        : 'bg-white border-gray-200 text-gray-900 placeholder-gray-400'
-                                        } focus:outline-none focus:border-indigo-500`}
+                                    className={`w-full px-4 py-2.5 rounded-xl border text-xs outline-none mb-4 ${darkMode ? 'bg-[#18181b] border-zinc-700 text-white' : 'bg-zinc-50 border-zinc-300 text-black'}`}
                                 />
-                                <div className="grid md:grid-cols-2 gap-4 mb-4">
-                                    <select
-                                        value={newStep.category}
-                                        onChange={(e) => setNewStep({ ...newStep, category: e.target.value })}
-                                        className={`px-4 py-2 rounded-xl border-2 ${darkMode
-                                            ? 'bg-[#272757] border-[#505081] text-white'
-                                            : 'bg-white border-gray-200 text-gray-900'
-                                            } focus:outline-none focus:border-indigo-500`}
-                                    >
-                                        <option value="education">📚 Education</option>
-                                        <option value="skill">🎯 Skill</option>
-                                        <option value="project">💼 Project</option>
-                                        <option value="experience">📈 Experience</option>
-                                        <option value="milestone">🏆 Milestone</option>
-                                        <option value="career">🎖️ Career</option>
-                                    </select>
-                                    <select
-                                        value={newStep.priority}
-                                        onChange={(e) => setNewStep({ ...newStep, priority: e.target.value })}
-                                        className={`px-4 py-2 rounded-xl border-2 ${darkMode
-                                            ? 'bg-[#272757] border-[#505081] text-white'
-                                            : 'bg-white border-gray-200 text-gray-900'
-                                            } focus:outline-none focus:border-indigo-500`}
-                                    >
-                                        <option value="high">🔴 High Priority</option>
-                                        <option value="medium">🟡 Medium Priority</option>
-                                        <option value="low">🟢 Low Priority</option>
-                                    </select>
-                                </div>
-                                <div className="flex gap-2">
-                                    <button
-                                        onClick={handleAddStep}
-                                        className="flex-1 px-4 py-2 rounded-xl font-semibold bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white"
-                                    >
-                                        Add Step
-                                    </button>
+                                <div className="flex gap-2 justify-end">
                                     <button
                                         onClick={() => setIsAddingStep(false)}
-                                        className={`px-4 py-2 rounded-xl font-semibold ${darkMode ? 'bg-[#272757] text-white' : 'bg-gray-200 text-gray-700'
-                                            }`}
+                                        className={`px-4 py-2 rounded-xl text-xs font-bold border btn-interactive ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-300 text-black'}`}
                                     >
                                         Cancel
                                     </button>
+                                    <button
+                                        onClick={handleAddStep}
+                                        className={`px-6 py-2 rounded-xl text-xs font-bold btn-interactive ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}
+                                    >
+                                        Save Milestone
+                                    </button>
                                 </div>
                             </div>
                         )}
 
-                        {/* Roadmap Steps */}
+                        {/* Roadmap Steps List */}
                         <div className="space-y-4">
-                            {roadmapSteps.map((step, index) => {
-                                const categoryStyle = getCategoryStyle(step.category);
-                                const IconComponent = categoryStyle.icon;
-
-                                return (
-                                    <div
-                                        key={step.id}
-                                        className={`relative rounded-2xl p-6 transition-all ${step.completed
-                                            ? darkMode ? 'bg-[#1a2e1a] border border-green-900/50' : 'bg-green-50 border border-green-200'
-                                            : darkMode ? 'bg-[#1a1f2e] border border-[#272757]' : 'bg-white border border-gray-200'
-                                            }`}
-                                    >
-                                        {/* Vertical Line */}
-                                        {index < roadmapSteps.length - 1 && (
-                                            <div className={`absolute left-9 top-20 w-0.5 h-10 ${darkMode ? 'bg-[#272757]' : 'bg-gray-200'
-                                                }`}></div>
-                                        )}
-
-                                        <div className="flex items-start gap-4">
-                                            {/* Checkbox */}
-                                            <button
-                                                onClick={() => toggleStepCompletion(step.id)}
-                                                className={`flex-shrink-0 w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all ${step.completed
-                                                    ? 'bg-green-500 border-green-500'
-                                                    : darkMode ? 'border-[#505081] hover:border-[#8686AC]' : 'border-gray-300 hover:border-indigo-500'
-                                                    }`}
-                                            >
-                                                {step.completed ? (
-                                                    <CheckCircle className="w-6 h-6 text-white" />
-                                                ) : (
-                                                    <Circle className={`w-6 h-6 ${darkMode ? 'text-gray-600' : 'text-gray-400'}`} />
-                                                )}
-                                            </button>
-
-                                            {/* Content */}
-                                            <div className="flex-1">
-                                                <div className="flex items-start justify-between mb-2">
-                                                    <div className="flex-1">
-                                                        <div className="flex items-center gap-2 mb-1">
-                                                            <h4 className={`text-lg font-bold ${step.completed
-                                                                ? 'line-through opacity-60'
-                                                                : darkMode ? 'text-white' : 'text-gray-900'
-                                                                }`}>
-                                                                {step.title}
-                                                            </h4>
-                                                            <span className={`px-2 py-0.5 rounded text-xs font-semibold ${step.priority === 'high' ? 'bg-red-100 text-red-700' :
-                                                                step.priority === 'medium' ? 'bg-yellow-100 text-yellow-700' :
-                                                                    'bg-green-100 text-green-700'
-                                                                }`}>
-                                                                {step.priority}
-                                                            </span>
-                                                        </div>
-                                                        <p className={`text-sm mb-2 ${step.completed
-                                                            ? 'opacity-50'
-                                                            : darkMode ? 'text-gray-400' : 'text-gray-600'
-                                                            }`}>
-                                                            {step.description}
-                                                        </p>
-                                                        <div className="flex items-center gap-4">
-                                                            <div className={`flex items-center gap-1 text-xs px-2 py-1 rounded ${categoryStyle.bg}`}>
-                                                                <IconComponent className={`w-3 h-3 ${categoryStyle.color}`} />
-                                                                <span className={categoryStyle.color}>{step.category}</span>
-                                                            </div>
-                                                            <div className={`flex items-center gap-1 text-xs ${darkMode ? 'text-gray-500' : 'text-gray-500'
-                                                                }`}>
-                                                                <Calendar className="w-3 h-3" />
-                                                                {step.duration}
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    {/* Actions */}
-                                                    <div className="flex gap-2">
-                                                        <button
-                                                            onClick={() => deleteStep(step.id)}
-                                                            className={`p-2 rounded-lg transition-colors ${darkMode ? 'hover:bg-[#272757]' : 'hover:bg-gray-100'
-                                                                }`}
-                                                        >
-                                                            <Trash2 className={`w-4 h-4 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`} />
-                                                        </button>
-                                                    </div>
-                                                </div>
+                            {roadmapSteps.map((step, idx) => (
+                                <div
+                                    key={step.id}
+                                    className={`p-5 rounded-3xl border transition-all hover-lift flex items-start justify-between gap-4 ${step.completed
+                                        ? darkMode ? 'bg-zinc-900/40 border-zinc-700 opacity-75' : 'bg-zinc-100/70 border-zinc-300 opacity-75'
+                                        : darkMode ? 'bg-[#121215] border-zinc-800' : 'bg-white border-zinc-200 shadow-sm'
+                                        }`}
+                                >
+                                    <div className="flex items-start gap-3.5">
+                                        <button
+                                            type="button"
+                                            onClick={() => handleToggleStep(step.id)}
+                                            className={`mt-0.5 w-6 h-6 rounded-lg border-2 flex items-center justify-center transition-all ${step.completed
+                                                ? darkMode ? 'bg-white border-white text-black' : 'bg-black border-black text-white'
+                                                : 'border-zinc-400 opacity-60'
+                                                }`}
+                                        >
+                                            {step.completed && <CheckCircle2 className="w-4 h-4" />}
+                                        </button>
+                                        <div>
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <h4 className={`text-base font-black ${step.completed ? 'line-through text-zinc-500' : darkMode ? 'text-white' : 'text-black'}`}>
+                                                    {step.title}
+                                                </h4>
+                                                <span className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-full border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-400' : 'bg-zinc-100 border-zinc-300 text-zinc-700'}`}>
+                                                    {step.duration}
+                                                </span>
                                             </div>
+                                            <p className={`text-xs ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                                {step.description}
+                                            </p>
                                         </div>
                                     </div>
-                                );
-                            })}
+                                    <button
+                                        onClick={() => handleDeleteStep(step.id)}
+                                        className={`p-2 rounded-xl border btn-interactive ${darkMode ? 'bg-zinc-900 border-zinc-800 text-zinc-500 hover:text-white' : 'bg-zinc-100 border-zinc-200 text-zinc-500 hover:text-black'}`}
+                                    >
+                                        <Trash2 className="w-4 h-4" />
+                                    </button>
+                                </div>
+                            ))}
                         </div>
-
-                        {/* Empty State */}
-                        {roadmapSteps.length === 0 && (
-                            <div className={`text-center py-12 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>
-                                <Target className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                                <p className="text-lg mb-2">No steps yet!</p>
-                                <p className="text-sm">Add your first step to start building your roadmap</p>
-                            </div>
-                        )}
                     </div>
                 )}
             </div>

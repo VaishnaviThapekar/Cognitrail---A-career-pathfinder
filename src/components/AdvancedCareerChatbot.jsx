@@ -11,7 +11,7 @@ const AdvancedCareerChatbot = ({ darkMode, onClose }) => {
         {
             id: 1,
             type: 'bot',
-            text: "🎯 Welcome to AI Career Advisor Pro!\n\nI'm your advanced career counselor powered by GPT-4. I can help you with:\n\n✨ Career path recommendations\n📄 Resume analysis & optimization\n🎤 Interview preparation\n💰 Salary negotiation strategies\n📊 Job market trends & analysis\n🚀 Career transitions & growth\n\nWhat would you like help with today?",
+            text: "🎯 Welcome to AI Career Advisor Pro!\n\nI'm your advanced career counselor powered by GPT-4. I can help you with:\n\n✨ Career path recommendations\n📄 Resume analysis & ATS optimization\n🎤 Interview preparation & STAR framework\n💰 Salary negotiation strategies\n📊 Job market trends & analysis\n🚀 Career transitions & growth\n\nWhat would you like help with today?",
             suggestions: [
                 "Analyze my resume",
                 "Prepare for interview",
@@ -38,12 +38,12 @@ const AdvancedCareerChatbot = ({ darkMode, onClose }) => {
     }, [messages]);
 
     const features = [
-        { id: 'general', icon: Bot, label: 'Career Advisor', color: 'from-indigo-600 to-blue-600' },
-        { id: 'resume', icon: FileText, label: 'Resume Analysis', color: 'from-purple-600 to-pink-600' },
-        { id: 'interview', icon: Zap, label: 'Interview Prep', color: 'from-orange-600 to-red-600' },
-        { id: 'salary', icon: TrendingUp, label: 'Salary & Negotiation', color: 'from-green-600 to-emerald-600' },
-        { id: 'transition', icon: TrendingDown, label: 'Career Transition', color: 'from-blue-600 to-cyan-600' },
-        { id: 'market', icon: Briefcase, label: 'Market Analysis', color: 'from-yellow-600 to-orange-600' }
+        { id: 'general', icon: Bot, label: 'Career Advisor' },
+        { id: 'resume', icon: FileText, label: 'Resume Analysis' },
+        { id: 'interview', icon: Zap, label: 'Interview Prep' },
+        { id: 'salary', icon: TrendingUp, label: 'Salary & Offer' },
+        { id: 'transition', icon: TrendingDown, label: 'Career Transition' },
+        { id: 'market', icon: Briefcase, label: 'Market Trends' }
     ];
 
     const handleSend = async () => {
@@ -97,8 +97,8 @@ const AdvancedCareerChatbot = ({ darkMode, onClose }) => {
             const errorMessage = {
                 id: messages.length + 2,
                 type: 'bot',
-                text: '⚠️ I encountered an issue. Please check your API configuration and try again.\n\nMake sure your OpenAI/Gemini API key is properly set in the environment variables.',
-                suggestions: ['Retry', 'Go back', 'Contact support']
+                text: '⚠️ I encountered an issue while generating the response. Please try asking again or switch to a different query topic.',
+                suggestions: ['Retry query', 'Career Quiz', 'Explore Roadmaps']
             };
             setMessages(prev => [...prev, errorMessage]);
         } finally {
@@ -163,39 +163,39 @@ const AdvancedCareerChatbot = ({ darkMode, onClose }) => {
         const suggestions = {
             general: [
                 'Career quiz recommendations',
-                'Salary information',
+                'Salary benchmarks',
                 'College guidance',
                 'Study tips'
             ],
             resume: [
                 'Optimize for ATS',
-                'Impact statements',
-                'Skills section',
-                'Format tips'
+                'Action verbs list',
+                'Skills section structure',
+                'Format checklist'
             ],
             interview: [
-                'STAR method examples',
-                'Technical interview prep',
+                'STAR method breakdown',
+                'Technical questions',
                 'Company research tips',
-                'Follow-up templates'
+                'Follow-up emails'
             ],
             salary: [
-                'Negotiate benefits',
-                'Equity compensation',
-                'Counter-offer strategy',
-                'Market comparison'
+                'Negotiate bonuses & equity',
+                'Counter-offer templates',
+                'Market rate analysis',
+                'Appraisal discussions'
             ],
             transition: [
-                'Skill development plan',
-                'Portfolio building',
-                'Networking strategy',
-                'Timeline planning'
+                'Skill gap roadmap',
+                'Portfolio builder',
+                'LinkedIn networking strategy',
+                'Timeline milestones'
             ],
             market: [
-                'Emerging roles',
+                'Top emerging domains',
                 'Skill demand forecast',
-                'Geographic analysis',
-                'Recession impact'
+                'Remote work trends',
+                'AI impact report'
             ]
         };
 
@@ -215,54 +215,63 @@ const AdvancedCareerChatbot = ({ darkMode, onClose }) => {
     };
 
     return (
-        <div className={`fixed bottom-4 right-4 z-50 flex flex-col ${darkMode ? 'bg-[#1a1f2e]' : 'bg-white'
-            } rounded-2xl shadow-2xl border-2 ${darkMode ? 'border-[#272757]' : 'border-indigo-100'
-            }`} style={{ width: '450px', maxHeight: '750px' }}>
+        <div className={`fixed bottom-4 right-4 z-50 flex flex-col rounded-2xl shadow-2xl border transition-all animate-fade-in ${
+            darkMode ? 'bg-[#121215] border-zinc-800 text-white' : 'bg-white border-zinc-200 text-black'
+        }`} style={{ width: '450px', maxHeight: '760px' }}>
 
             {/* Header */}
-            <div className={`flex items-center justify-between p-4 border-b ${darkMode ? 'border-[#272757] bg-gradient-to-r from-[#272757] to-[#505081]' : 'border-indigo-100 bg-gradient-to-r from-indigo-600 to-blue-600'
-                } rounded-t-2xl`}>
+            <div className={`flex items-center justify-between p-4 border-b ${
+                darkMode ? 'border-zinc-800 bg-[#18181b]' : 'border-zinc-200 bg-zinc-50'
+            } rounded-t-2xl`}>
                 <div className="flex items-center gap-3">
                     <div className="relative">
-                        <div className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                            <Sparkles className="w-6 h-6 text-white" />
+                        <div className={`w-10 h-10 rounded-xl flex items-center justify-center border ${
+                            darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-black text-white border-zinc-800'
+                        }`}>
+                            <Sparkles className="w-5 h-5" />
                         </div>
-                        <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
+                        <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-zinc-400 rounded-full border-2 border-current"></div>
                     </div>
                     <div>
-                        <h3 className="text-white font-bold">AI Career Advisor Pro</h3>
-                        <p className="text-white/80 text-xs">Powered by GPT-4</p>
+                        <h3 className="font-bold text-sm">AI Career Advisor Pro</h3>
+                        <p className={`text-[11px] ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>monochrome AI agent</p>
                     </div>
                 </div>
                 <button
                     onClick={onClose}
-                    className="p-2 rounded-lg hover:bg-white/10 transition-colors"
+                    className={`p-2 rounded-lg border transition-all btn-interactive ${
+                        darkMode ? 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white' : 'bg-zinc-100 border-zinc-200 text-zinc-600 hover:text-black'
+                    }`}
                 >
-                    <X className="w-5 h-5 text-white" />
+                    <X className="w-4 h-4" />
                 </button>
             </div>
 
             {/* Feature Menu Toggle */}
-            <div className={`p-3 border-b ${darkMode ? 'border-[#272757] bg-[#0f1419]' : 'border-indigo-50 bg-indigo-50/50'}`}>
+            <div className={`p-3 border-b ${
+                darkMode ? 'border-zinc-800 bg-[#09090b]' : 'border-zinc-200 bg-zinc-50/60'
+            }`}>
                 <div className="flex items-center justify-between mb-2">
-                    <p className={`text-xs font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                        Feature Mode:
+                    <p className={`text-xs font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                        Active Specialist:
                     </p>
                     <button
                         onClick={() => setShowFeatureMenu(!showFeatureMenu)}
-                        className={`text-xs px-3 py-1 rounded-full transition-all ${darkMode
-                            ? 'bg-[#272757] hover:bg-[#505081] text-[#8686AC]'
-                            : 'bg-white hover:bg-indigo-100 text-indigo-700 border border-indigo-200'
-                            }`}
+                        className={`text-xs px-3 py-1 rounded-full border font-medium transition-all btn-interactive ${
+                            darkMode
+                                ? 'bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border-zinc-700'
+                                : 'bg-white hover:bg-zinc-100 text-black border-zinc-300 shadow-sm'
+                        }`}
                     >
                         {features.find(f => f.id === activeFeature)?.label || 'Select'} ▼
                     </button>
                 </div>
 
                 {showFeatureMenu && (
-                    <div className="grid grid-cols-2 gap-2">
+                    <div className="grid grid-cols-2 gap-2 mt-2 animate-fade-in">
                         {features.map(feature => {
                             const Icon = feature.icon;
+                            const isSelected = activeFeature === feature.id;
                             return (
                                 <button
                                     key={feature.id}
@@ -270,14 +279,15 @@ const AdvancedCareerChatbot = ({ darkMode, onClose }) => {
                                         setActiveFeature(feature.id);
                                         setShowFeatureMenu(false);
                                     }}
-                                    className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-all ${activeFeature === feature.id
+                                    className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold border transition-all btn-interactive ${
+                                        isSelected
                                             ? darkMode
-                                                ? `bg-gradient-to-r ${feature.color} text-white`
-                                                : `bg-gradient-to-r ${feature.color} text-white`
+                                                ? 'bg-white text-black border-white'
+                                                : 'bg-black text-white border-black'
                                             : darkMode
-                                                ? 'bg-[#272757] hover:bg-[#505081] text-[#8686AC]'
-                                                : 'bg-white hover:bg-indigo-100 text-indigo-700 border border-indigo-200'
-                                        }`}
+                                                ? 'bg-zinc-900 hover:bg-zinc-800 text-zinc-400 border-zinc-800'
+                                                : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-700 border-zinc-200'
+                                    }`}
                                 >
                                     <Icon className="w-3.5 h-3.5" />
                                     <span>{feature.label}</span>
@@ -289,47 +299,51 @@ const AdvancedCareerChatbot = ({ darkMode, onClose }) => {
             </div>
 
             {/* Messages */}
-            <div className={`flex-1 overflow-y-auto p-4 space-y-4 ${darkMode ? 'bg-[#0f1419]' : 'bg-gray-50'
-                }`} style={{ maxHeight: 'calc(750px - 280px)' }}>
+            <div className={`flex-1 overflow-y-auto p-4 space-y-4 ${
+                darkMode ? 'bg-[#09090b]' : 'bg-[#fafafa]'
+            }`} style={{ maxHeight: 'calc(760px - 280px)' }}>
                 {messages.map((message) => (
-                    <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
+                    <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`}>
                         <div className={`flex gap-2 max-w-[85%] ${message.type === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
                             {/* Avatar */}
-                            <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${message.type === 'user'
-                                ? darkMode ? 'bg-[#505081]' : 'bg-indigo-600'
-                                : darkMode ? 'bg-[#272757]' : 'bg-indigo-100'
-                                }`}>
+                            <div className={`flex-shrink-0 w-7 h-7 rounded-lg flex items-center justify-center border text-xs ${
+                                message.type === 'user'
+                                    ? darkMode ? 'bg-white text-black border-white' : 'bg-black text-white border-black'
+                                    : darkMode ? 'bg-zinc-900 text-zinc-300 border-zinc-800' : 'bg-zinc-100 text-zinc-800 border-zinc-300'
+                            }`}>
                                 {message.type === 'user' ? (
-                                    <User className="w-4 h-4 text-white" />
+                                    <User className="w-3.5 h-3.5" />
                                 ) : (
-                                    <Sparkles className="w-4 h-4" style={{ color: darkMode ? '#8686AC' : '#4f46e5' }} />
+                                    <Sparkles className="w-3.5 h-3.5" />
                                 )}
                             </div>
 
                             {/* Message */}
                             <div>
-                                <div className={`rounded-2xl px-4 py-3 ${message.type === 'user'
-                                    ? darkMode
-                                        ? 'bg-gradient-to-r from-[#505081] to-[#8686AC] text-white'
-                                        : 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white'
-                                    : darkMode
-                                        ? 'bg-[#1a1f2e] text-gray-200 border border-[#272757]'
-                                        : 'bg-white text-gray-800 border border-indigo-100'
-                                    }`}>
-                                    <p className="text-sm whitespace-pre-line leading-relaxed">{message.text}</p>
+                                <div className={`rounded-2xl px-4 py-3 border text-sm leading-relaxed ${
+                                    message.type === 'user'
+                                        ? darkMode
+                                            ? 'bg-white text-black border-white'
+                                            : 'bg-black text-white border-black'
+                                        : darkMode
+                                            ? 'bg-[#18181b] text-zinc-100 border-zinc-800'
+                                            : 'bg-white text-zinc-900 border-zinc-200 shadow-sm'
+                                }`}>
+                                    <p className="whitespace-pre-line leading-relaxed">{message.text}</p>
                                 </div>
 
                                 {/* Suggestions */}
                                 {message.suggestions && (
-                                    <div className="mt-2 flex flex-wrap gap-2">
+                                    <div className="mt-2 flex flex-wrap gap-1.5">
                                         {message.suggestions.map((suggestion, idx) => (
                                             <button
                                                 key={idx}
                                                 onClick={() => handleSuggestionClick(suggestion)}
-                                                className={`text-xs px-3 py-1.5 rounded-full transition-all ${darkMode
-                                                    ? 'bg-[#272757] hover:bg-[#505081] text-[#8686AC] border border-[#505081]'
-                                                    : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200'
-                                                    }`}
+                                                className={`text-xs px-2.5 py-1 rounded-lg border font-medium transition-all btn-interactive ${
+                                                    darkMode
+                                                        ? 'bg-zinc-900 hover:bg-zinc-800 text-zinc-300 border-zinc-800'
+                                                        : 'bg-zinc-100 hover:bg-zinc-200 text-zinc-800 border-zinc-300'
+                                                }`}
                                             >
                                                 {suggestion}
                                             </button>
@@ -343,14 +357,16 @@ const AdvancedCareerChatbot = ({ darkMode, onClose }) => {
 
                 {/* Loading indicator */}
                 {isLoading && (
-                    <div className="flex gap-2">
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center ${darkMode ? 'bg-[#272757]' : 'bg-indigo-100'
-                            }`}>
-                            <Sparkles className={`w-4 h-4 animate-spin ${darkMode ? 'text-[#8686AC]' : 'text-indigo-600'}`} />
+                    <div className="flex gap-2 animate-fade-in">
+                        <div className={`w-7 h-7 rounded-lg flex items-center justify-center border ${
+                            darkMode ? 'bg-zinc-900 text-zinc-300 border-zinc-800' : 'bg-zinc-100 text-zinc-800 border-zinc-300'
+                        }`}>
+                            <Sparkles className="w-3.5 h-3.5 animate-spin" />
                         </div>
-                        <div className={`rounded-2xl px-4 py-3 ${darkMode ? 'bg-[#1a1f2e] border border-[#272757]' : 'bg-white border border-indigo-100'
-                            }`}>
-                            <p className="text-xs text-gray-500">AI is thinking...</p>
+                        <div className={`rounded-2xl px-4 py-3 border ${
+                            darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-400' : 'bg-white border-zinc-200 text-zinc-500 shadow-sm'
+                        }`}>
+                            <p className="text-xs">Thinking & generating strategy...</p>
                         </div>
                     </div>
                 )}
@@ -359,27 +375,35 @@ const AdvancedCareerChatbot = ({ darkMode, onClose }) => {
             </div>
 
             {/* Input */}
-            <div className={`p-4 border-t ${darkMode ? 'border-[#272757] bg-[#1a1f2e]' : 'border-indigo-100 bg-white'
-                } rounded-b-2xl`}>
+            <div className={`p-3.5 border-t ${
+                darkMode ? 'border-zinc-800 bg-[#121215]' : 'border-zinc-200 bg-white'
+            } rounded-b-2xl`}>
                 <div className="flex gap-2">
                     <input
                         type="text"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         onKeyPress={handleKeyPress}
-                        placeholder="Ask me anything..."
+                        placeholder="Ask advisor pro..."
                         disabled={isLoading}
-                        className={`flex-1 px-4 py-3 rounded-xl transition-all ${darkMode
-                            ? 'bg-[#0f1419] border-[#272757] text-white placeholder-gray-500'
-                            : 'bg-gray-50 border-indigo-100 text-gray-900 placeholder-gray-400'
-                            } border focus:outline-none focus:ring-2 focus:ring-[#505081] disabled:opacity-50`}
+                        className={`flex-1 px-3.5 py-2.5 rounded-xl text-sm transition-all border outline-none ${
+                            darkMode
+                                ? 'bg-zinc-900 border-zinc-800 text-white placeholder-zinc-500 focus:border-zinc-400'
+                                : 'bg-zinc-50 border-zinc-200 text-black placeholder-zinc-400 focus:border-black'
+                        } disabled:opacity-50`}
                     />
                     <button
                         onClick={handleSend}
                         disabled={isLoading || !input.trim()}
-                        className="p-3 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white transition-all disabled:opacity-50"
+                        className={`p-2.5 rounded-xl transition-all btn-interactive flex items-center justify-center ${
+                            input.trim() && !isLoading
+                                ? darkMode
+                                    ? 'bg-white text-black hover:bg-zinc-200'
+                                    : 'bg-black text-white hover:bg-zinc-800'
+                                : 'bg-zinc-300 dark:bg-zinc-800 text-zinc-500 cursor-not-allowed'
+                        }`}
                     >
-                        <Send className="w-5 h-5" />
+                        <Send className="w-4 h-4" />
                     </button>
                 </div>
             </div>

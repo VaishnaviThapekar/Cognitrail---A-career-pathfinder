@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Calendar, BookOpen, Award, Briefcase, TrendingUp, CheckCircle, Circle, ChevronRight, Clock, Target, Lightbulb } from 'lucide-react';
+import { X, Calendar, BookOpen, Award, Briefcase, TrendingUp, CheckCircle2, ChevronRight, Clock, Target, Lightbulb } from 'lucide-react';
 
 const CareerRoadmap = ({ career, onClose, darkMode }) => {
     const [selectedPhase, setSelectedPhase] = useState(null);
@@ -9,26 +9,25 @@ const CareerRoadmap = ({ career, onClose, darkMode }) => {
         return [
             {
                 id: 1,
-                phase: "Foundation",
+                phase: "Foundation & Secondary School",
                 duration: "1-2 Years",
                 icon: BookOpen,
-                color: "indigo",
                 milestones: [
                     {
-                        title: "Complete 10th Grade",
-                        description: "Focus on Mathematics, Science, and English",
-                        duration: "1 year",
+                        title: "Complete 10th & 12th Grade",
+                        description: "Build strong subject base in Mathematics, Sciences, or Humanities",
+                        duration: "2 years",
                         type: "education"
                     },
                     {
-                        title: "Choose Right Stream",
-                        description: `Select ${career.education || 'relevant stream'} in 11th grade`,
+                        title: "Choose Stream & Career Alignment",
+                        description: `Select optimal pathway for ${career.name}`,
                         duration: "Decision point",
                         type: "decision"
                     },
                     {
-                        title: "Build Core Skills",
-                        description: career.skills?.slice(0, 3).join(", ") || "Develop fundamental skills",
+                        title: "Build Core Foundations",
+                        description: (career.skills || ['Communication', 'Analytical Thinking']).slice(0, 3).join(", "),
                         duration: "Ongoing",
                         type: "skill"
                     }
@@ -36,26 +35,25 @@ const CareerRoadmap = ({ career, onClose, darkMode }) => {
             },
             {
                 id: 2,
-                phase: "Education & Training",
+                phase: "Undergraduate Education & Projects",
                 duration: "3-4 Years",
                 icon: Award,
-                color: "blue",
                 milestones: [
                     {
-                        title: "Pursue Degree/Certification",
-                        description: `Complete ${career.education || 'relevant qualification'}`,
+                        title: "Pursue Formal Degree / Certification",
+                        description: `Complete ${career.education || 'Bachelor Degree in related field'}`,
                         duration: "3-4 years",
                         type: "education"
                     },
                     {
-                        title: "Gain Practical Experience",
-                        description: "Internships, projects, and hands-on learning",
+                        title: "Industry Internships & Labs",
+                        description: "Gain 2-3 real industry internship experiences",
                         duration: "6-12 months",
                         type: "experience"
                     },
                     {
-                        title: "Build Portfolio",
-                        description: "Create projects showcasing your skills",
+                        title: "Build Public Portfolio & Projects",
+                        description: "Showcase real-world problem solving and tools mastery",
                         duration: "Ongoing",
                         type: "project"
                     }
@@ -63,26 +61,25 @@ const CareerRoadmap = ({ career, onClose, darkMode }) => {
             },
             {
                 id: 3,
-                phase: "Entry Level",
+                phase: "Entry Level & Professional Launch",
                 duration: "2-3 Years",
                 icon: Briefcase,
-                color: "teal",
                 milestones: [
                     {
-                        title: "First Job/Role",
-                        description: `Start as Junior ${career.name}`,
+                        title: "First Full-Time Role",
+                        description: `Start as Junior Associate / ${career.name}`,
                         duration: "1-2 years",
                         type: "job"
                     },
                     {
-                        title: "Learn Industry Standards",
-                        description: "Understand workflows, tools, and best practices",
+                        title: "Industry Workflows & Tool Mastery",
+                        description: "Master production workflows and corporate collaboration",
                         duration: "6-12 months",
                         type: "learning"
                     },
                     {
-                        title: "Obtain Certifications",
-                        description: "Industry-recognized certifications",
+                        title: "Obtain Advanced Credentials",
+                        description: "Industry certifications and specialized domain credentials",
                         duration: "6-18 months",
                         type: "certification"
                     }
@@ -90,26 +87,19 @@ const CareerRoadmap = ({ career, onClose, darkMode }) => {
             },
             {
                 id: 4,
-                phase: "Growth & Advancement",
+                phase: "Mid-Senior & Specialization",
                 duration: "3-5 Years",
                 icon: TrendingUp,
-                color: "purple",
                 milestones: [
                     {
-                        title: "Mid-Level Position",
+                        title: "Mid-Level Specialist & Lead",
                         description: `Progress to Senior ${career.name}`,
                         duration: "2-3 years",
                         type: "promotion"
                     },
                     {
-                        title: "Specialize",
-                        description: "Develop expertise in specific area",
-                        duration: "1-2 years",
-                        type: "specialization"
-                    },
-                    {
-                        title: "Lead Projects",
-                        description: "Take ownership of significant projects",
+                        title: "Lead Strategic Initiatives",
+                        description: "Take full ownership of major client projects or products",
                         duration: "Ongoing",
                         type: "leadership"
                     }
@@ -117,28 +107,15 @@ const CareerRoadmap = ({ career, onClose, darkMode }) => {
             },
             {
                 id: 5,
-                phase: "Expert Level",
+                phase: "Executive Leadership & Domain Mastery",
                 duration: "5+ Years",
                 icon: Target,
-                color: "orange",
                 milestones: [
                     {
-                        title: "Leadership Role",
-                        description: "Team Lead, Manager, or Specialist position",
-                        duration: "2-3 years",
+                        title: "Director / Principal Specialist",
+                        description: "Drive company strategy, mentor talent, and publish innovations",
+                        duration: "Ongoing",
                         type: "leadership"
-                    },
-                    {
-                        title: "Industry Recognition",
-                        description: "Speaking, writing, contributing to field",
-                        duration: "Ongoing",
-                        type: "recognition"
-                    },
-                    {
-                        title: "Strategic Impact",
-                        description: "Drive major initiatives and innovations",
-                        duration: "Ongoing",
-                        type: "impact"
                     }
                 ]
             }
@@ -147,236 +124,128 @@ const CareerRoadmap = ({ career, onClose, darkMode }) => {
 
     const roadmap = generateRoadmap();
 
-    const getColorClasses = (color) => {
-        const colors = {
-            indigo: {
-                bg: darkMode ? 'bg-indigo-900/30' : 'bg-indigo-50',
-                border: darkMode ? 'border-indigo-500/30' : 'border-indigo-200',
-                text: darkMode ? 'text-indigo-400' : 'text-indigo-600',
-                icon: darkMode ? 'text-indigo-400' : 'text-indigo-600',
-                gradient: darkMode ? 'from-indigo-900/50 to-indigo-800/30' : 'from-indigo-100 to-indigo-50'
-            },
-            blue: {
-                bg: darkMode ? 'bg-blue-900/30' : 'bg-blue-50',
-                border: darkMode ? 'border-blue-500/30' : 'border-blue-200',
-                text: darkMode ? 'text-blue-400' : 'text-blue-600',
-                icon: darkMode ? 'text-blue-400' : 'text-blue-600',
-                gradient: darkMode ? 'from-blue-900/50 to-blue-800/30' : 'from-blue-100 to-blue-50'
-            },
-            teal: {
-                bg: darkMode ? 'bg-teal-900/30' : 'bg-teal-50',
-                border: darkMode ? 'border-teal-500/30' : 'border-teal-200',
-                text: darkMode ? 'text-teal-400' : 'text-teal-600',
-                icon: darkMode ? 'text-teal-400' : 'text-teal-600',
-                gradient: darkMode ? 'from-teal-900/50 to-teal-800/30' : 'from-teal-100 to-teal-50'
-            },
-            purple: {
-                bg: darkMode ? 'bg-purple-900/30' : 'bg-purple-50',
-                border: darkMode ? 'border-purple-500/30' : 'border-purple-200',
-                text: darkMode ? 'text-purple-400' : 'text-purple-600',
-                icon: darkMode ? 'text-purple-400' : 'text-purple-600',
-                gradient: darkMode ? 'from-purple-900/50 to-purple-800/30' : 'from-purple-100 to-purple-50'
-            },
-            orange: {
-                bg: darkMode ? 'bg-orange-900/30' : 'bg-orange-50',
-                border: darkMode ? 'border-orange-500/30' : 'border-orange-200',
-                text: darkMode ? 'text-orange-400' : 'text-orange-600',
-                icon: darkMode ? 'text-orange-400' : 'text-orange-600',
-                gradient: darkMode ? 'from-orange-900/50 to-orange-800/30' : 'from-orange-100 to-orange-50'
-            }
-        };
-        return colors[color] || colors.indigo;
-    };
-
-    const getMilestoneIcon = (type) => {
-        switch (type) {
-            case 'education': return BookOpen;
-            case 'skill': return Lightbulb;
-            case 'certification': return Award;
-            case 'job': return Briefcase;
-            case 'promotion': return TrendingUp;
-            case 'leadership': return Target;
-            default: return CheckCircle;
-        }
-    };
-
     return (
-        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#0f1419]' : 'bg-gradient-to-br from-slate-50 to-indigo-50'
-            }`}>
-            <div className="max-w-6xl mx-auto px-4 py-8">
+        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b]' : 'bg-zinc-50'}`}>
+            <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h2 className={`text-3xl font-black ${darkMode ? 'text-white' : 'text-gray-900'} mb-2`}>
-                            Career Roadmap
+                        <h2 className={`text-3xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-1`}>
+                            🗺️ {career.name} Roadmap
                         </h2>
-                        <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            Your path to becoming a {career.name}
+                        <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                            Structured milestone pathway to mastery in {career.name}
                         </p>
                     </div>
                     <button
                         onClick={onClose}
-                        className={`p-2 rounded-xl transition-colors ${darkMode ? 'bg-[#1a1f2e] hover:bg-[#272757]' : 'bg-white hover:bg-gray-100'
-                            }`}
+                        className={`p-2.5 rounded-xl border btn-interactive hover-lift ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:text-white' : 'bg-white border-zinc-200 text-zinc-700 hover:text-black'}`}
                     >
-                        <X className={`w-6 h-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`} />
+                        <X className="w-6 h-6" />
                     </button>
                 </div>
 
-                {/* Timeline Summary */}
-                <div className={`rounded-2xl p-6 mb-8 ${darkMode ? 'bg-[#1a1f2e] border border-[#272757]' : 'bg-white border border-indigo-100'
-                    }`}>
-                    <div className="flex items-center gap-4 mb-4">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${darkMode ? 'bg-gradient-to-br from-[#505081] to-[#8686AC]' : 'bg-gradient-to-br from-indigo-500 to-blue-500'
-                            }`}>
-                            <Calendar className="w-6 h-6 text-white" />
+                {/* Timeline Summary Bar */}
+                <div className={`rounded-3xl p-6 sm:p-8 mb-8 border ${darkMode ? 'bg-[#121215] border-zinc-800' : 'bg-white border-zinc-200 shadow-md'}`}>
+                    <div className="flex items-center gap-4 mb-6">
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                            <Calendar className="w-6 h-6" />
                         </div>
                         <div>
-                            <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                Total Timeline
+                            <h3 className={`text-xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
+                                5-Phase Career Journey
                             </h3>
-                            <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                Approximately 10-15 years to expert level
+                            <p className={`text-xs font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                High school preparation through senior executive positions
                             </p>
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                        {roadmap.map((phase) => {
-                            const colors = getColorClasses(phase.color);
-                            return (
-                                <div key={phase.id} className={`p-3 rounded-xl border ${colors.bg} ${colors.border}`}>
-                                    <div className={`text-sm font-semibold ${colors.text} mb-1`}>
-                                        Phase {phase.id}
-                                    </div>
-                                    <div className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                        {phase.duration}
-                                    </div>
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                        {roadmap.map((phase) => (
+                            <div key={phase.id} className={`p-3.5 rounded-2xl border ${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'}`}>
+                                <div className={`text-xs font-black uppercase tracking-wider ${darkMode ? 'text-white' : 'text-black'} mb-1`}>
+                                    Phase {phase.id}
                                 </div>
-                            );
-                        })}
+                                <div className={`text-xs ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                    {phase.duration}
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
 
-                {/* Roadmap Timeline */}
-                <div className="relative">
-                    {/* Vertical Line */}
-                    <div className={`absolute left-8 top-0 bottom-0 w-1 ${darkMode ? 'bg-gradient-to-b from-indigo-500 via-blue-500 to-orange-500' : 'bg-gradient-to-b from-indigo-300 via-blue-300 to-orange-300'
-                        }`}></div>
+                {/* Roadmap Phases List */}
+                <div className="space-y-6">
+                    {roadmap.map((phase) => {
+                        const PhaseIcon = phase.icon;
+                        const isExpanded = selectedPhase === phase.id;
 
-                    {/* Phases */}
-                    <div className="space-y-8">
-                        {roadmap.map((phase) => {
-                            const colors = getColorClasses(phase.color);
-                            const PhaseIcon = phase.icon;
-                            const isExpanded = selectedPhase === phase.id;
-
-                            return (
-                                <div key={phase.id} className="relative">
-                                    <div className="flex items-start gap-6">
-                                        {/* Icon Node */}
-                                        <div className="relative z-10 flex-shrink-0">
-                                            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center border-4 ${darkMode ? 'border-[#0f1419]' : 'border-slate-50'
-                                                } bg-gradient-to-br ${colors.gradient}`}>
-                                                <PhaseIcon className={`w-8 h-8 ${colors.icon}`} />
+                        return (
+                            <div
+                                key={phase.id}
+                                className={`rounded-3xl border transition-all duration-300 overflow-hidden hover-lift ${darkMode ? 'bg-[#121215] border-zinc-800' : 'bg-white border-zinc-200 shadow-sm'}`}
+                            >
+                                <button
+                                    type="button"
+                                    onClick={() => setSelectedPhase(isExpanded ? null : phase.id)}
+                                    className="w-full p-6 text-left flex items-center justify-between gap-4"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-zinc-100 border-zinc-300 text-black'}`}>
+                                            <PhaseIcon className="w-6 h-6" />
+                                        </div>
+                                        <div>
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-400' : 'bg-zinc-100 border-zinc-300 text-zinc-600'}`}>
+                                                    Phase {phase.id} • {phase.duration}
+                                                </span>
                                             </div>
-                                        </div>
-
-                                        {/* Phase Content */}
-                                        <div className="flex-1">
-                                            <button
-                                                onClick={() => setSelectedPhase(isExpanded ? null : phase.id)}
-                                                className={`w-full text-left rounded-2xl p-6 border-2 transition-all duration-300 ${isExpanded
-                                                    ? `${colors.border} ${darkMode ? 'bg-[#1a1f2e]' : 'bg-white'}`
-                                                    : `${darkMode ? 'border-[#272757] bg-[#1a1f2e] hover:border-[#505081]' : 'border-gray-200 bg-white hover:border-indigo-200'}`
-                                                    }`}
-                                            >
-                                                <div className="flex items-center justify-between mb-2">
-                                                    <h3 className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                                        {phase.phase}
-                                                    </h3>
-                                                    <ChevronRight className={`w-6 h-6 transition-transform ${isExpanded ? 'rotate-90' : ''
-                                                        } ${darkMode ? 'text-gray-400' : 'text-gray-600'}`} />
-                                                </div>
-
-                                                <div className="flex items-center gap-4 mb-4">
-                                                    <div className="flex items-center gap-2">
-                                                        <Clock className={`w-4 h-4 ${colors.text}`} />
-                                                        <span className={`text-sm font-semibold ${colors.text}`}>
-                                                            {phase.duration}
-                                                        </span>
-                                                    </div>
-                                                    <div className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                                        {phase.milestones.length} milestones
-                                                    </div>
-                                                </div>
-
-                                                {/* Milestones */}
-                                                {isExpanded && (
-                                                    <div className="space-y-4 mt-6 animate-slideDown">
-                                                        {phase.milestones.map((milestone, idx) => {
-                                                            const MilestoneIcon = getMilestoneIcon(milestone.type);
-                                                            return (
-                                                                <div
-                                                                    key={idx}
-                                                                    className={`flex items-start gap-4 p-4 rounded-xl ${darkMode ? 'bg-[#272757]/30' : 'bg-gray-50'
-                                                                        }`}
-                                                                >
-                                                                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${colors.bg}`}>
-                                                                        <MilestoneIcon className={`w-5 h-5 ${colors.icon}`} />
-                                                                    </div>
-                                                                    <div className="flex-1">
-                                                                        <h4 className={`font-bold mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                                                            {milestone.title}
-                                                                        </h4>
-                                                                        <p className={`text-sm mb-2 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                                                            {milestone.description}
-                                                                        </p>
-                                                                        <div className="flex items-center gap-2">
-                                                                            <Clock className={`w-3 h-3 ${darkMode ? 'text-gray-500' : 'text-gray-400'}`} />
-                                                                            <span className={`text-xs ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>
-                                                                                {milestone.duration}
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <Circle className={`w-5 h-5 ${darkMode ? 'text-gray-600' : 'text-gray-300'}`} />
-                                                                </div>
-                                                            );
-                                                        })}
-                                                    </div>
-                                                )}
-                                            </button>
+                                            <h3 className={`text-xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
+                                                {phase.phase}
+                                            </h3>
                                         </div>
                                     </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                                    <ChevronRight className={`w-6 h-6 transition-transform duration-200 ${isExpanded ? 'rotate-90' : ''} text-zinc-400`} />
+                                </button>
+
+                                {isExpanded && (
+                                    <div className={`p-6 pt-0 border-t ${darkMode ? 'border-zinc-800' : 'border-zinc-100'} space-y-3 animate-fade-in`}>
+                                        {phase.milestones.map((m, idx) => (
+                                            <div key={idx} className={`p-4 rounded-2xl border flex items-start justify-between gap-4 ${darkMode ? 'bg-zinc-900/50 border-zinc-800' : 'bg-zinc-50 border-zinc-200'}`}>
+                                                <div>
+                                                    <h4 className={`font-bold text-sm mb-1 ${darkMode ? 'text-white' : 'text-black'}`}>
+                                                        {m.title}
+                                                    </h4>
+                                                    <p className={`text-xs ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                                        {m.description}
+                                                    </p>
+                                                </div>
+                                                <span className={`text-xs font-semibold whitespace-nowrap ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>
+                                                    ⏱️ {m.duration}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
 
-                {/* Tips Section */}
-                <div className={`mt-8 rounded-2xl p-6 ${darkMode
-                    ? 'bg-gradient-to-r from-indigo-900/20 to-blue-900/20 border border-indigo-500/20'
-                    : 'bg-gradient-to-r from-indigo-50 to-blue-50 border border-indigo-200'
-                    }`}>
-                    <div className="flex items-start gap-4">
-                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${darkMode ? 'bg-indigo-500/20' : 'bg-indigo-100'
-                            }`}>
-                            <Lightbulb className={`w-6 h-6 ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`} />
-                        </div>
-                        <div>
-                            <h3 className={`text-lg font-bold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                💡 Pro Tips
-                            </h3>
-                            <ul className={`space-y-2 text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                                <li>✓ This roadmap is flexible - adapt it to your pace</li>
-                                <li>✓ Focus on continuous learning and skill development</li>
-                                <li>✓ Network and build relationships at every stage</li>
-                                <li>✓ Document your progress with a portfolio</li>
-                                <li>✓ Seek mentorship from experienced professionals</li>
-                            </ul>
-                        </div>
+                {/* Pro Tips */}
+                <div className={`mt-8 rounded-3xl p-6 sm:p-8 border ${darkMode ? 'bg-[#121215] border-zinc-800 text-zinc-300' : 'bg-black text-white'}`}>
+                    <div className="flex items-center gap-3 mb-4">
+                        <Lightbulb className="w-5 h-5 text-zinc-400" />
+                        <h3 className="text-base font-black uppercase tracking-wider">
+                            Actionable Guidance for Students
+                        </h3>
                     </div>
+                    <ul className="space-y-2 text-xs leading-relaxed text-zinc-400">
+                        <li>• Adapt these milestones to your personal speed and graduation schedule.</li>
+                        <li>• Focus on mastering core skills and keeping a live GitHub/portfolio repository.</li>
+                        <li>• Seek mentorship from professionals currently working in this role.</li>
+                    </ul>
                 </div>
             </div>
         </div>
