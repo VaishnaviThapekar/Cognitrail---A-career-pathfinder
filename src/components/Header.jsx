@@ -32,7 +32,7 @@ const Header = ({
 
   return (
     <>
-      <header className={`sticky top-0 z-40 transition-colors duration-200 border-b backdrop-blur-md ${darkMode ? 'bg-[#0e131d]/90 border-slate-800 text-white' : 'bg-white/95 border-slate-200 text-slate-900'
+      <header className={`sticky top-0 z-40 transition-colors duration-200 border-b backdrop-blur-md ${darkMode ? 'bg-[#09090b]/90 border-zinc-800 text-white' : 'bg-white/95 border-zinc-200 text-black'
         } shadow-sm`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5">
           <div className="flex items-center justify-between gap-4">
@@ -44,14 +44,17 @@ const Header = ({
               }}
               className="flex items-center gap-2.5 cursor-pointer select-none group flex-shrink-0"
             >
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-tr from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-500/20 group-hover:scale-105 transition-transform">
-                <span className="text-xl">💡</span>
+              <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl shadow-md transition-transform group-hover:scale-105 ${darkMode
+                ? 'bg-white text-black'
+                : 'bg-black text-white'
+                }`}>
+                💡
               </div>
               <div>
-                <h1 className={`text-xl font-black tracking-tight ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                <h1 className={`text-xl font-black tracking-tight ${darkMode ? 'text-white' : 'text-black'}`}>
                   COGNITRAIL
                 </h1>
-                <p className={`text-[10px] font-bold uppercase tracking-wider ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>
+                <p className={`text-[10px] font-bold uppercase tracking-wider ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                   Career Pathfinder
                 </p>
               </div>
@@ -65,14 +68,14 @@ const Header = ({
                   const el = document.getElementById('domains');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-slate-300 hover:text-white hover:bg-slate-800' : 'text-slate-700 hover:text-indigo-600 hover:bg-slate-100'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-white hover:bg-zinc-800' : 'text-zinc-700 hover:text-black hover:bg-zinc-100'}`}
               >
                 Careers
               </button>
 
               <button
                 onClick={() => onOpenQuiz && onOpenQuiz()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-indigo-300 hover:text-white hover:bg-indigo-950/60' : 'text-indigo-600 hover:bg-indigo-50'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-zinc-200 hover:text-white hover:bg-zinc-800' : 'text-black hover:bg-zinc-100'}`}
               >
                 <HelpCircle className="w-3.5 h-3.5" />
                 AI Quiz
@@ -81,7 +84,7 @@ const Header = ({
               {setShowCollegeFinder && (
                 <button
                   onClick={() => setShowCollegeFinder(true)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-slate-300 hover:text-white hover:bg-slate-800' : 'text-slate-700 hover:text-indigo-600 hover:bg-slate-100'}`}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-white hover:bg-zinc-800' : 'text-zinc-700 hover:text-black hover:bg-zinc-100'}`}
                 >
                   Colleges
                 </button>
@@ -90,7 +93,7 @@ const Header = ({
               {setShowComparison && (
                 <button
                   onClick={() => setShowComparison(true)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-slate-300 hover:text-white hover:bg-slate-800' : 'text-slate-700 hover:text-indigo-600 hover:bg-slate-100'}`}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-white hover:bg-zinc-800' : 'text-zinc-700 hover:text-black hover:bg-zinc-100'}`}
                 >
                   Compare
                 </button>
@@ -98,21 +101,21 @@ const Header = ({
 
               <button
                 onClick={() => onOpenSkills && onOpenSkills()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-slate-300 hover:text-white hover:bg-slate-800' : 'text-slate-700 hover:text-indigo-600 hover:bg-slate-100'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-white hover:bg-zinc-800' : 'text-zinc-700 hover:text-black hover:bg-zinc-100'}`}
               >
                 Skill Gap
               </button>
 
               <button
                 onClick={() => onOpenRoadmap && onOpenRoadmap()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-slate-300 hover:text-white hover:bg-slate-800' : 'text-slate-700 hover:text-indigo-600 hover:bg-slate-100'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-white hover:bg-zinc-800' : 'text-zinc-700 hover:text-black hover:bg-zinc-100'}`}
               >
                 Roadmaps
               </button>
 
               <button
                 onClick={() => onOpenAdvisor && onOpenAdvisor()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-pink-400 hover:bg-pink-950/40' : 'text-pink-600 hover:bg-pink-50'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-zinc-300 hover:text-white hover:bg-zinc-800' : 'text-zinc-700 hover:text-black hover:bg-zinc-100'}`}
               >
                 <Bot className="w-3.5 h-3.5" />
                 Advisor Pro
@@ -122,15 +125,15 @@ const Header = ({
             {/* Search Bar - Desktop */}
             <div className="flex-1 max-w-xs lg:max-w-sm hidden md:block">
               <div className="relative">
-                <Search className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-slate-400' : 'text-slate-400'}`} />
+                <Search className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`} />
                 <input
                   type="text"
                   placeholder="Search 150+ careers, skills..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className={`w-full pl-9 pr-4 py-2 rounded-xl text-xs transition-all border focus:outline-none ${darkMode
-                    ? 'bg-[#161b26] border-slate-700 text-white placeholder-slate-400 focus:border-indigo-500'
-                    : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:border-indigo-500 focus:bg-white'
+                    ? 'bg-[#18181b] border-zinc-700 text-white placeholder-zinc-500 focus:border-zinc-400'
+                    : 'bg-zinc-50 border-zinc-200 text-black placeholder-zinc-400 focus:border-black focus:bg-white'
                     }`}
                 />
               </div>
@@ -142,8 +145,8 @@ const Header = ({
               <button
                 onClick={toggleDarkMode}
                 className={`p-2.5 rounded-xl transition-all border ${darkMode
-                  ? 'bg-[#161b26] border-slate-700 text-amber-400 hover:bg-slate-800'
-                  : 'bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200'
+                  ? 'bg-[#18181b] border-zinc-700 text-zinc-200 hover:bg-zinc-800'
+                  : 'bg-zinc-100 border-zinc-200 text-zinc-800 hover:bg-zinc-200'
                   }`}
                 aria-label="Toggle dark mode"
                 title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
@@ -156,15 +159,15 @@ const Header = ({
                 <button
                   onClick={() => setShowGamification && setShowGamification(true)}
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-xl transition-all border ${darkMode
-                    ? 'bg-[#161b26] border-slate-700 hover:border-indigo-500'
-                    : 'bg-slate-50 border-slate-200 hover:border-indigo-300'
+                    ? 'bg-[#18181b] border-zinc-700 hover:border-zinc-500'
+                    : 'bg-zinc-50 border-zinc-200 hover:border-zinc-400'
                     }`}
                   title="Your points & level"
                 >
-                  <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 text-white font-bold text-xs flex items-center justify-center">
+                  <div className={`w-6 h-6 rounded-lg font-bold text-xs flex items-center justify-center ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
                     {level}
                   </div>
-                  <span className={`text-xs font-bold hidden sm:inline ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
+                  <span className={`text-xs font-bold hidden sm:inline ${darkMode ? 'text-zinc-200' : 'text-zinc-700'}`}>
                     {points} pts
                   </span>
                 </button>
@@ -174,9 +177,12 @@ const Header = ({
               {isAuthenticated ? (
                 <button
                   onClick={() => setShowProfile(true)}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xs hover:opacity-90 shadow-sm transition-all"
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl font-bold text-xs shadow-sm transition-all ${darkMode
+                    ? 'bg-white text-black hover:bg-zinc-200'
+                    : 'bg-black text-white hover:bg-zinc-800'
+                    }`}
                 >
-                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                  <div className="w-6 h-6 rounded-full bg-zinc-500/20 flex items-center justify-center">
                     <User className="w-3.5 h-3.5" />
                   </div>
                   <span className="hidden sm:inline">{user?.name?.split(' ')[0] || 'Profile'}</span>
@@ -184,7 +190,10 @@ const Header = ({
               ) : (
                 <button
                   onClick={() => setShowAuthModal(true)}
-                  className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-xs shadow-md shadow-indigo-500/20 hover:scale-105 transition-all"
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold text-xs shadow-md transition-all ${darkMode
+                    ? 'bg-white text-black hover:bg-zinc-200 shadow-white/10'
+                    : 'bg-black text-white hover:bg-zinc-800 shadow-black/20'
+                    }`}
                 >
                   <LogIn className="w-3.5 h-3.5" />
                   <span>Sign In</span>
@@ -195,8 +204,8 @@ const Header = ({
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className={`xl:hidden p-2.5 rounded-xl transition-colors border ${darkMode
-                  ? 'bg-[#161b26] border-slate-700 text-white'
-                  : 'bg-slate-100 border-slate-200 text-slate-800'
+                  ? 'bg-[#18181b] border-zinc-700 text-white'
+                  : 'bg-zinc-100 border-zinc-200 text-zinc-800'
                   }`}
                 aria-label="Open navigation menu"
               >
@@ -208,17 +217,17 @@ const Header = ({
 
         {/* Mobile Navigation Drawer / Menu */}
         {mobileMenuOpen && (
-          <div className={`xl:hidden border-t px-4 py-4 space-y-3 transition-all ${darkMode ? 'bg-[#0e131d] border-slate-800' : 'bg-white border-slate-200 shadow-xl'
+          <div className={`xl:hidden border-t px-4 py-4 space-y-3 transition-all ${darkMode ? 'bg-[#09090b] border-zinc-800' : 'bg-white border-zinc-200 shadow-xl'
             }`}>
             {/* Search Input on Mobile */}
             <div className="relative mb-3">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
               <input
                 type="text"
                 placeholder="Search careers, skills, fields..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full pl-9 pr-4 py-2.5 rounded-xl text-xs border focus:outline-none ${darkMode ? 'bg-[#161b26] border-slate-700 text-white placeholder-slate-400' : 'bg-slate-50 border-slate-200 text-slate-900'}`}
+                className={`w-full pl-9 pr-4 py-2.5 rounded-xl text-xs border focus:outline-none ${darkMode ? 'bg-[#18181b] border-zinc-700 text-white placeholder-zinc-500' : 'bg-zinc-50 border-zinc-200 text-black'}`}
               />
             </div>
 
@@ -231,9 +240,9 @@ const Header = ({
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                   closeMobileMenu();
                 }}
-                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#161b26] border-slate-800 text-slate-200' : 'bg-slate-50 border-slate-200 text-slate-800'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-200' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}
               >
-                <Compass className="w-4 h-4 text-indigo-500" />
+                <Compass className="w-4 h-4" />
                 <span>Explore Careers</span>
               </button>
 
@@ -242,9 +251,9 @@ const Header = ({
                   if (onOpenQuiz) onOpenQuiz();
                   closeMobileMenu();
                 }}
-                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-indigo-950/40 border-indigo-800/40 text-indigo-300' : 'bg-indigo-50 border-indigo-200 text-indigo-700'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-zinc-100 border-zinc-300 text-black'}`}
               >
-                <HelpCircle className="w-4 h-4 text-indigo-500" />
+                <HelpCircle className="w-4 h-4" />
                 <span>AI Career Quiz</span>
               </button>
 
@@ -254,9 +263,9 @@ const Header = ({
                     setShowCollegeFinder(true);
                     closeMobileMenu();
                   }}
-                  className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#161b26] border-slate-800 text-slate-200' : 'bg-slate-50 border-slate-200 text-slate-800'}`}
+                  className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-200' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}
                 >
-                  <School className="w-4 h-4 text-emerald-500" />
+                  <School className="w-4 h-4" />
                   <span>College Finder</span>
                 </button>
               )}
@@ -267,9 +276,9 @@ const Header = ({
                     setShowComparison(true);
                     closeMobileMenu();
                   }}
-                  className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#161b26] border-slate-800 text-slate-200' : 'bg-slate-50 border-slate-200 text-slate-800'}`}
+                  className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-200' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}
                 >
-                  <Scale className="w-4 h-4 text-blue-500" />
+                  <Scale className="w-4 h-4" />
                   <span>Compare Careers</span>
                 </button>
               )}
@@ -279,9 +288,9 @@ const Header = ({
                   if (onOpenSkills) onOpenSkills();
                   closeMobileMenu();
                 }}
-                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#161b26] border-slate-800 text-slate-200' : 'bg-slate-50 border-slate-200 text-slate-800'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-200' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}
               >
-                <Target className="w-4 h-4 text-purple-500" />
+                <Target className="w-4 h-4" />
                 <span>Skills Gap</span>
               </button>
 
@@ -290,9 +299,9 @@ const Header = ({
                   if (onOpenRoadmap) onOpenRoadmap();
                   closeMobileMenu();
                 }}
-                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#161b26] border-slate-800 text-slate-200' : 'bg-slate-50 border-slate-200 text-slate-800'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-200' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}
               >
-                <Map className="w-4 h-4 text-pink-500" />
+                <Map className="w-4 h-4" />
                 <span>Roadmaps</span>
               </button>
 
@@ -301,9 +310,9 @@ const Header = ({
                   if (onOpenNews) onOpenNews();
                   closeMobileMenu();
                 }}
-                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#161b26] border-slate-800 text-slate-200' : 'bg-slate-50 border-slate-200 text-slate-800'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-200' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}
               >
-                <Newspaper className="w-4 h-4 text-amber-500" />
+                <Newspaper className="w-4 h-4" />
                 <span>Career News</span>
               </button>
 
@@ -312,9 +321,9 @@ const Header = ({
                   if (onOpenAdvisor) onOpenAdvisor();
                   closeMobileMenu();
                 }}
-                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-pink-950/40 border-pink-800/40 text-pink-300' : 'bg-pink-50 border-pink-200 text-pink-700'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-zinc-100 border-zinc-300 text-black'}`}
               >
-                <Bot className="w-4 h-4 text-pink-500" />
+                <Bot className="w-4 h-4" />
                 <span>AI Advisor Pro</span>
               </button>
             </div>

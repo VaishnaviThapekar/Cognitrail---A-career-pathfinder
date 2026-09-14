@@ -26,13 +26,9 @@ import { useAuth } from './contexts/AuthContext';
 import { CAREER_DATABASE } from './data/careerDatabase';
 
 function App() {
-  // Authentication Hook
   const { isAuthenticated, user } = useAuth();
-
-  // Gamification Hook
   const { trackCareerExplored, trackCareerSaved, trackQuizComplete } = useGamification();
 
-  // State Management
   const [selectedDomain, setSelectedDomain] = useState(null);
   const [selectedSubField, setSelectedSubField] = useState(null);
   const [selectedCareer, setSelectedCareer] = useState(null);
@@ -56,9 +52,8 @@ function App() {
   const [showInterviewSimulator, setShowInterviewSimulator] = useState(false);
   const [infoModalContent, setInfoModalContent] = useState(null);
 
-  // Effects
   useEffect(() => {
-    const timer = setTimeout(() => setShowWelcome(false), 2200);
+    const timer = setTimeout(() => setShowWelcome(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -118,7 +113,6 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Filter domains based on search
   const filteredDomains = Object.entries(CAREER_DATABASE).filter(([key, domain]) => {
     if (!searchQuery) return true;
     const query = searchQuery.toLowerCase();
@@ -132,7 +126,6 @@ function App() {
     );
   });
 
-  // Get all careers for comparison
   const getAllCareers = () => {
     const careers = [];
     Object.values(CAREER_DATABASE).forEach(domain => {
@@ -143,55 +136,48 @@ function App() {
     return careers;
   };
 
-  // Welcome Screen
+  // Welcome Screen in sleek Black & White
   if (showWelcome) {
     return (
-      <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4 bg-[#0a0e17]">
-        {/* Animated Gradient Background */}
+      <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4 bg-[#09090b]">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/25 rounded-full filter blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/25 rounded-full filter blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-zinc-700/15 rounded-full filter blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-zinc-600/15 rounded-full filter blur-3xl animate-pulse"></div>
         </div>
 
-        {/* Content */}
         <div className="relative z-10 text-center max-w-lg">
-          {/* Logo */}
           <div className="mb-6 relative inline-block">
-            <div className="w-24 h-24 mx-auto rounded-3xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 p-1 shadow-2xl shadow-indigo-500/30 flex items-center justify-center">
-              <div className="w-full h-full bg-[#0a0e17] rounded-[22px] flex items-center justify-center">
-                <Lightbulb className="w-12 h-12 text-amber-400 animate-pulse" />
+            <div className="w-24 h-24 mx-auto rounded-3xl bg-zinc-800 border border-zinc-700 p-1 shadow-2xl flex items-center justify-center">
+              <div className="w-full h-full bg-black rounded-[22px] flex items-center justify-center">
+                <Lightbulb className="w-12 h-12 text-white animate-pulse" />
               </div>
             </div>
           </div>
 
-          {/* Title */}
           <h1 className="text-4xl sm:text-5xl font-black mb-3 tracking-tight text-white">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
-              COGNITRAIL
-            </span>
+            COGNITRAIL
           </h1>
 
-          <p className="text-lg text-slate-300 font-light mb-6">
+          <p className="text-lg text-zinc-400 font-light mb-6">
             Your Intelligent Career Pathfinder
           </p>
 
-          {/* Feature Badges */}
           <div className="flex flex-wrap justify-center gap-2 mb-8">
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-950/80 border border-indigo-500/40 text-indigo-300">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-zinc-900 border border-zinc-700 text-zinc-300">
               150+ Careers
             </span>
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-purple-950/80 border border-purple-500/40 text-purple-300">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-zinc-900 border border-zinc-700 text-zinc-300">
               500+ Top Colleges
             </span>
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-pink-950/80 border border-pink-500/40 text-pink-300">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-zinc-900 border border-zinc-700 text-zinc-300">
               AI Powered
             </span>
           </div>
 
           <div className="flex justify-center items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce"></div>
-            <div className="w-2 h-2 rounded-full bg-purple-500 animate-bounce delay-150"></div>
-            <div className="w-2 h-2 rounded-full bg-pink-500 animate-bounce delay-300"></div>
+            <div className="w-2 h-2 rounded-full bg-white animate-bounce"></div>
+            <div className="w-2 h-2 rounded-full bg-zinc-400 animate-bounce delay-150"></div>
+            <div className="w-2 h-2 rounded-full bg-zinc-600 animate-bounce delay-300"></div>
           </div>
         </div>
       </div>
@@ -199,7 +185,7 @@ function App() {
   }
 
   return (
-    <div className={`min-h-screen transition-colors duration-200 ${darkMode ? 'bg-[#0a0e17] text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
+    <div className={`min-h-screen transition-colors duration-200 ${darkMode ? 'bg-[#09090b] text-zinc-100' : 'bg-[#fafafa] text-black'}`}>
       <CustomScrollbar darkMode={darkMode} />
 
       {/* Advanced Profile Page */}
@@ -255,14 +241,14 @@ function App() {
           {/* Main Content */}
           <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 pb-32">
             {!selectedDomain ? (
-              // Home Page with Hero, How It Works, Features & Domains
+              // Home Page
               <div>
                 <HeroSection
                   darkMode={darkMode}
                   onStartQuiz={() => setShowQuiz(true)}
                 />
 
-                {/* How Cognitrail Works Section */}
+                {/* How Cognitrail Works */}
                 <HowItWorksSection
                   darkMode={darkMode}
                   onStartQuiz={() => setShowQuiz(true)}
@@ -274,28 +260,28 @@ function App() {
                   onOpenRoadmap={() => setShowRoadmapBuilder(true)}
                 />
 
-                {/* Feature Shortcuts Grid */}
+                {/* Feature Shortcuts Grid - Monochrome */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
                   {/* Career Quiz Card */}
                   <button
                     onClick={() => setShowQuiz(true)}
                     className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
-                      ? 'bg-[#161b26] border-slate-800 hover:border-indigo-500/50'
-                      : 'bg-white border-slate-200 hover:border-indigo-400 shadow-sm'
+                      ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
+                      : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                       }`}
                   >
                     <div>
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-3xl shadow-lg shadow-indigo-500/20 mb-5 group-hover:scale-110 transition-transform">
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 transition-transform ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         🎯
                       </div>
-                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-indigo-400' : 'text-slate-900 group-hover:text-indigo-600'}`}>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
                         AI Career Quiz
                       </h3>
-                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                         5-minute intelligent assessment matching your skills, interests & work style
                       </p>
                     </div>
-                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-indigo-400' : 'text-indigo-600'} group-hover:gap-2.5 transition-all`}>
+                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                       <span>Start Assessment</span>
                       <ChevronRight className="w-4 h-4" />
                     </div>
@@ -305,22 +291,22 @@ function App() {
                   <button
                     onClick={() => setShowAdvancedChatbot(true)}
                     className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
-                      ? 'bg-[#161b26] border-slate-800 hover:border-purple-500/50'
-                      : 'bg-white border-slate-200 hover:border-purple-400 shadow-sm'
+                      ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
+                      : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                       }`}
                   >
                     <div>
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-3xl shadow-lg shadow-purple-500/20 mb-5 group-hover:scale-110 transition-transform">
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 transition-transform ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         ✨
                       </div>
-                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-purple-400' : 'text-slate-900 group-hover:text-purple-600'}`}>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
                         AI Career Advisor Pro
                       </h3>
-                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                         Interactive chat for salary negotiation, interview prep, and career transitions
                       </p>
                     </div>
-                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-purple-400' : 'text-purple-600'} group-hover:gap-2.5 transition-all`}>
+                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                       <span>Launch Chat</span>
                       <ChevronRight className="w-4 h-4" />
                     </div>
@@ -330,22 +316,22 @@ function App() {
                   <button
                     onClick={() => setShowSkillsAnalyzer(true)}
                     className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
-                      ? 'bg-[#161b26] border-slate-800 hover:border-cyan-500/50'
-                      : 'bg-white border-slate-200 hover:border-cyan-400 shadow-sm'
+                      ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
+                      : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                       }`}
                   >
                     <div>
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-500 to-teal-600 flex items-center justify-center text-3xl shadow-lg shadow-cyan-500/20 mb-5 group-hover:scale-110 transition-transform">
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 transition-transform ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         🎯
                       </div>
-                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-cyan-400' : 'text-slate-900 group-hover:text-cyan-600'}`}>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
                         Skills Gap Analyzer
                       </h3>
-                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                         AI-powered skill analysis & tailored learning roadmap for your target job
                       </p>
                     </div>
-                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-cyan-400' : 'text-cyan-600'} group-hover:gap-2.5 transition-all`}>
+                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                       <span>Analyze Skills</span>
                       <ChevronRight className="w-4 h-4" />
                     </div>
@@ -355,22 +341,22 @@ function App() {
                   <button
                     onClick={() => setShowRoadmapBuilder(true)}
                     className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
-                      ? 'bg-[#161b26] border-slate-800 hover:border-amber-500/50'
-                      : 'bg-white border-slate-200 hover:border-amber-400 shadow-sm'
+                      ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
+                      : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                       }`}
                   >
                     <div>
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-3xl shadow-lg shadow-amber-500/20 mb-5 group-hover:scale-110 transition-transform">
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 transition-transform ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         🗺️
                       </div>
-                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-amber-400' : 'text-slate-900 group-hover:text-amber-600'}`}>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
                         Roadmap Builder
                       </h3>
-                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                         Build customized stage-by-stage milestones from student to senior lead
                       </p>
                     </div>
-                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-amber-400' : 'text-amber-600'} group-hover:gap-2.5 transition-all`}>
+                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                       <span>Build Roadmap</span>
                       <ChevronRight className="w-4 h-4" />
                     </div>
@@ -380,22 +366,22 @@ function App() {
                   <button
                     onClick={() => setShowCollegeFinder(true)}
                     className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
-                      ? 'bg-[#161b26] border-slate-800 hover:border-emerald-500/50'
-                      : 'bg-white border-slate-200 hover:border-emerald-400 shadow-sm'
+                      ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
+                      : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                       }`}
                   >
                     <div>
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-3xl shadow-lg shadow-emerald-500/20 mb-5 group-hover:scale-110 transition-transform">
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 transition-transform ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         🏫
                       </div>
-                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-emerald-400' : 'text-slate-900 group-hover:text-emerald-600'}`}>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
                         College Finder
                       </h3>
-                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                         Explore 500+ colleges with ratings, entrance exams, and direct links
                       </p>
                     </div>
-                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-emerald-400' : 'text-emerald-600'} group-hover:gap-2.5 transition-all`}>
+                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                       <span>Find Colleges</span>
                       <ChevronRight className="w-4 h-4" />
                     </div>
@@ -405,22 +391,22 @@ function App() {
                   <button
                     onClick={() => setShowComparison(true)}
                     className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
-                      ? 'bg-[#161b26] border-slate-800 hover:border-blue-500/50'
-                      : 'bg-white border-slate-200 hover:border-blue-400 shadow-sm'
+                      ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
+                      : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                       }`}
                   >
                     <div>
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-3xl shadow-lg shadow-blue-500/20 mb-5 group-hover:scale-110 transition-transform">
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 transition-transform ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         ⚖️
                       </div>
-                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-blue-400' : 'text-slate-900 group-hover:text-blue-600'}`}>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
                         Compare Careers
                       </h3>
-                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                         Side-by-side comparison of salaries, required skills, and career outlooks
                       </p>
                     </div>
-                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-blue-400' : 'text-blue-600'} group-hover:gap-2.5 transition-all`}>
+                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                       <span>Compare Now</span>
                       <ChevronRight className="w-4 h-4" />
                     </div>
@@ -432,10 +418,10 @@ function App() {
                 {/* Domain Selection Section */}
                 <div id="domains" className="pt-4">
                   <div className="text-center mb-12">
-                    <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-slate-900'} mb-3`}>
+                    <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-3`}>
                       Explore Career Domains
                     </h2>
-                    <p className={`text-base sm:text-lg ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                    <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                       Select an area of interest to discover specialized paths and salary data
                     </p>
                   </div>
@@ -446,28 +432,27 @@ function App() {
                         key={key}
                         onClick={() => setSelectedDomain(key)}
                         className={`group relative rounded-3xl p-8 border transition-all duration-300 text-left overflow-hidden hover:shadow-2xl hover:-translate-y-1.5 ${darkMode
-                          ? 'bg-[#161b26] border-slate-800 hover:border-indigo-500/50'
-                          : 'bg-white border-slate-200 hover:border-indigo-300 shadow-md'
+                          ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
+                          : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                           }`}
                       >
                         <div className="relative z-10">
-                          {/* Domain Icon */}
-                          <div className="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-slate-800/80 border border-indigo-100 dark:border-slate-700 shadow-sm group-hover:scale-110 transition-transform">
+                          <div className={`mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl border shadow-sm group-hover:scale-110 transition-transform ${darkMode
+                            ? 'bg-zinc-900 border-zinc-700 text-white'
+                            : 'bg-zinc-100 border-zinc-300 text-black'
+                            }`}>
                             <span className="text-4xl">{domain.icon}</span>
                           </div>
 
-                          {/* Title */}
-                          <h3 className={`text-2xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-indigo-400' : 'text-slate-900 group-hover:text-indigo-600'}`}>
+                          <h3 className={`text-2xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
                             {domain.name}
                           </h3>
 
-                          {/* Subtitle */}
-                          <p className={`text-xs font-semibold mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                          <p className={`text-xs font-semibold mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>
                             {domain.subFields.length} specialized fields • 25+ career tracks
                           </p>
 
-                          {/* Explore Link */}
-                          <div className={`flex items-center gap-1.5 font-bold text-sm ${darkMode ? 'text-indigo-400' : 'text-indigo-600'} group-hover:gap-2.5 transition-all`}>
+                          <div className={`flex items-center gap-1.5 font-bold text-sm ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                             <span>Explore Fields</span>
                             <ChevronRight className="w-4 h-4" />
                           </div>
@@ -483,17 +468,17 @@ function App() {
                 <div className="mb-6">
                   <button
                     onClick={() => setSelectedDomain(null)}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:opacity-80 transition-all"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white hover:opacity-80 transition-all"
                   >
                     ← Back to All Domains
                   </button>
                 </div>
 
                 <div className="text-center mb-12">
-                  <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-slate-900'} mb-3`}>
+                  <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-3`}>
                     {CAREER_DATABASE[selectedDomain].name}
                   </h2>
-                  <p className={`text-base sm:text-lg ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                  <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                     Select a specialization field to view career pathways
                   </p>
                 </div>
@@ -504,21 +489,21 @@ function App() {
                       key={subField.id}
                       onClick={() => setSelectedSubField(subField)}
                       className={`group rounded-3xl p-8 border transition-all duration-300 text-left hover:shadow-2xl hover:-translate-y-1 ${darkMode
-                        ? 'bg-[#161b26] border-slate-800 hover:border-cyan-500/50'
-                        : 'bg-white border-slate-200 hover:border-cyan-400 shadow-md'
+                        ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
+                        : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                         }`}
                     >
-                      <h3 className={`text-2xl font-bold mb-3 ${darkMode ? 'text-white group-hover:text-cyan-400' : 'text-slate-900 group-hover:text-cyan-600'} transition-colors`}>
+                      <h3 className={`text-2xl font-bold mb-3 ${darkMode ? 'text-white' : 'text-black'} transition-colors`}>
                         {subField.name}
                       </h3>
-                      <p className={`text-sm mb-6 leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                      <p className={`text-sm mb-6 leading-relaxed ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                         {subField.description}
                       </p>
-                      <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-bold">
-                        <span className={darkMode ? 'text-slate-400' : 'text-slate-500'}>
+                      <div className="flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-800 text-xs font-bold">
+                        <span className={darkMode ? 'text-zinc-400' : 'text-zinc-500'}>
                           {subField.careers.length} career options
                         </span>
-                        <div className="flex items-center gap-1 text-cyan-500 group-hover:gap-2 transition-all">
+                        <div className={`flex items-center gap-1 ${darkMode ? 'text-white' : 'text-black'} group-hover:gap-2 transition-all`}>
                           <span>View Careers</span>
                           <ChevronRight className="w-4 h-4" />
                         </div>
@@ -533,17 +518,17 @@ function App() {
                 <div className="mb-6 flex items-center gap-4">
                   <button
                     onClick={() => setSelectedSubField(null)}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:opacity-80 transition-all"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold bg-zinc-200 dark:bg-zinc-800 text-black dark:text-white hover:opacity-80 transition-all"
                   >
                     ← Back to Specializations
                   </button>
                 </div>
 
                 <div className="text-center mb-12">
-                  <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-slate-900'} mb-3`}>
+                  <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-3`}>
                     {selectedSubField.name}
                   </h2>
-                  <p className={`text-base sm:text-lg ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                  <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                     {selectedSubField.description}
                   </p>
                 </div>
@@ -581,13 +566,13 @@ function App() {
           )}
 
           {/* Footer */}
-          <footer className={`border-t mt-20 ${darkMode ? 'bg-[#0a0e17] border-slate-800 text-slate-400' : 'bg-white border-slate-200 text-slate-600'}`}>
+          <footer className={`border-t mt-20 ${darkMode ? 'bg-[#09090b] border-zinc-800 text-zinc-400' : 'bg-white border-zinc-200 text-zinc-600'}`}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
                 <div>
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm">💡</div>
-                    <span className={`text-lg font-black tracking-tight ${darkMode ? 'text-white' : 'text-slate-900'}`}>COGNITRAIL</span>
+                    <div className={`w-7 h-7 rounded-lg flex items-center justify-center text-sm font-bold ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>💡</div>
+                    <span className={`text-lg font-black tracking-tight ${darkMode ? 'text-white' : 'text-black'}`}>COGNITRAIL</span>
                   </div>
                   <p className="text-xs leading-relaxed">
                     Think Smart. Choose Right. Grow Ahead. AI-driven career guidance for next-gen students.
@@ -595,7 +580,7 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-3 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-3 ${darkMode ? 'text-white' : 'text-black'}`}>
                     Quick Links
                   </h4>
                   <ul className="space-y-2 text-xs">
@@ -606,7 +591,7 @@ function App() {
                           icon: Info,
                           content: 'Cognitrail is an intelligent career navigation platform designed to bridge the gap between student aspirations and real-world career success. With real-time salary insights, 500+ college listings, AI assessment quizzes, roadmap builders, and skills gap analysis, Cognitrail equips every student with clear, actionable pathways.'
                         })}
-                        className="hover:text-indigo-500 transition-colors"
+                        className="hover:text-black dark:hover:text-white transition-colors"
                       >
                         About Us
                       </button>
@@ -618,7 +603,7 @@ function App() {
                           icon: Mail,
                           content: 'Have questions, suggestions, or feedback? Reach our academic counseling and technical support team anytime at support@cognitrail.ai or through our AI Advisor Pro assistant.'
                         })}
-                        className="hover:text-indigo-500 transition-colors"
+                        className="hover:text-black dark:hover:text-white transition-colors"
                       >
                         Contact & Support
                       </button>
@@ -627,7 +612,7 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-3 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-3 ${darkMode ? 'text-white' : 'text-black'}`}>
                     Resources
                   </h4>
                   <ul className="space-y-2 text-xs">
@@ -638,7 +623,7 @@ function App() {
                           icon: FileText,
                           content: 'Our 2026 Comprehensive Career Guide covers high-growth industries including Artificial Intelligence, Clean Energy, Biomedical Engineering, Fintech, Corporate Law, and Creative Design with required entrance exams and degrees.'
                         })}
-                        className="hover:text-indigo-500 transition-colors"
+                        className="hover:text-black dark:hover:text-white transition-colors"
                       >
                         Career Guide
                       </button>
@@ -646,7 +631,7 @@ function App() {
                     <li>
                       <button
                         onClick={() => setShowNews(true)}
-                        className="hover:text-indigo-500 transition-colors"
+                        className="hover:text-black dark:hover:text-white transition-colors"
                       >
                         Exams & News Feed
                       </button>
@@ -655,7 +640,7 @@ function App() {
                 </div>
 
                 <div>
-                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-3 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-3 ${darkMode ? 'text-white' : 'text-black'}`}>
                     Trust & Legal
                   </h4>
                   <ul className="space-y-2 text-xs">
@@ -666,7 +651,7 @@ function App() {
                           icon: Shield,
                           content: 'Cognitrail values your privacy. Quiz responses and profile data are stored securely to generate personalized recommendations and are never sold to third-party advertisers.'
                         })}
-                        className="hover:text-indigo-500 transition-colors"
+                        className="hover:text-black dark:hover:text-white transition-colors"
                       >
                         Privacy Policy
                       </button>
@@ -678,7 +663,7 @@ function App() {
                           icon: FileText,
                           content: 'All recommendations and guides on Cognitrail are intended for informational and educational guidance purposes. Students are advised to verify official college admissions and entrance exam notifications independently.'
                         })}
-                        className="hover:text-indigo-500 transition-colors"
+                        className="hover:text-black dark:hover:text-white transition-colors"
                       >
                         Terms of Service
                       </button>
@@ -687,7 +672,7 @@ function App() {
                 </div>
               </div>
 
-              <div className="pt-8 border-t border-slate-200 dark:border-slate-800 text-center text-xs">
+              <div className="pt-8 border-t border-zinc-200 dark:border-zinc-800 text-center text-xs">
                 <p>© 2026 COGNITRAIL • 150+ Career Paths • 500+ Top Colleges • AI Powered Guidance</p>
               </div>
             </div>
@@ -711,15 +696,15 @@ function App() {
 
       {/* Career News Modal */}
       {showNews && (
-        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#0a0e17]' : 'bg-slate-50'}`}>
+        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b]' : 'bg-zinc-50'}`}>
           <div className="max-w-7xl mx-auto px-4 py-8">
             <div className="flex items-center justify-between mb-8">
-              <h2 className={`text-3xl font-black ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+              <h2 className={`text-3xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
                 Career News & Exam Updates
               </h2>
               <button
                 onClick={() => setShowNews(false)}
-                className={`p-2.5 rounded-xl transition-colors ${darkMode ? 'bg-slate-800 text-slate-300 hover:text-white' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}`}
+                className={`p-2.5 rounded-xl transition-colors ${darkMode ? 'bg-zinc-800 text-zinc-300 hover:text-white' : 'bg-white text-zinc-700 hover:bg-zinc-100 border border-zinc-200'}`}
               >
                 <X className="w-6 h-6" />
               </button>
@@ -749,12 +734,13 @@ function App() {
       {!showAdvancedChatbot && !showChatbot && (
         <button
           onClick={() => setShowAdvancedChatbot(true)}
-          className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full shadow-2xl bg-gradient-to-r from-indigo-600 to-pink-600 text-white flex items-center justify-center hover:scale-110 transition-all cursor-pointer group"
+          className={`fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all cursor-pointer group border ${darkMode
+            ? 'bg-white text-black border-zinc-300'
+            : 'bg-black text-white border-zinc-700'
+            }`}
           title="Open AI Career Advisor Pro"
         >
-          <div className="absolute inset-0 rounded-full animate-ping opacity-30 bg-indigo-500"></div>
           <Sparkles className="w-6 h-6 transform group-hover:rotate-12 transition-transform" />
-          <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-white dark:border-black"></div>
         </button>
       )}
 
@@ -806,29 +792,29 @@ function App() {
       {/* Informational Modal for Footer Links */}
       {infoModalContent && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
-          <div className={`max-w-lg w-full rounded-3xl p-6 sm:p-8 border shadow-2xl ${darkMode ? 'bg-[#161b26] border-slate-800 text-slate-200' : 'bg-white border-slate-200 text-slate-800'}`}>
+          <div className={`max-w-lg w-full rounded-3xl p-6 sm:p-8 border shadow-2xl ${darkMode ? 'bg-[#121215] border-zinc-800 text-zinc-200' : 'bg-white border-zinc-300 text-black'}`}>
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-indigo-600 text-white">
+                <div className={`p-2 rounded-xl ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
                   <infoModalContent.icon className="w-5 h-5" />
                 </div>
-                <h3 className={`text-xl font-black ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                <h3 className={`text-xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
                   {infoModalContent.title}
                 </h3>
               </div>
               <button
                 onClick={() => setInfoModalContent(null)}
-                className="p-2 rounded-xl text-slate-400 hover:text-white"
+                className="p-2 rounded-xl text-zinc-400 hover:text-white"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <p className="text-sm leading-relaxed mb-6 text-slate-300 dark:text-slate-300">
+            <p className="text-sm leading-relaxed mb-6 text-zinc-600 dark:text-zinc-300">
               {infoModalContent.content}
             </p>
             <button
               onClick={() => setInfoModalContent(null)}
-              className="w-full py-3 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-500 text-white transition-all text-sm"
+              className={`w-full py-3 rounded-xl font-bold transition-all text-sm ${darkMode ? 'bg-white text-black hover:bg-zinc-200' : 'bg-black text-white hover:bg-zinc-800'}`}
             >
               Close
             </button>

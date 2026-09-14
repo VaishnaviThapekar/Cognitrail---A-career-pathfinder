@@ -85,14 +85,12 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
         }
     ];
 
-    // State initialization with sessionStorage restore
     const [currentStep, setCurrentStep] = useState(0);
     const [answers, setAnswers] = useState({});
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [results, setResults] = useState(null);
     const [savedProgressDetected, setSavedProgressDetected] = useState(false);
 
-    // Restore state from sessionStorage on mount
     useEffect(() => {
         try {
             const saved = sessionStorage.getItem(STORAGE_KEY);
@@ -114,7 +112,6 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
         }
     }, []);
 
-    // Save in-progress quiz state to sessionStorage
     useEffect(() => {
         if (results) {
             sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ answers, currentStep, results }));
@@ -145,7 +142,6 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
         return true;
     };
 
-    // Flatten all careers from CAREER_DATABASE with domain and subfield context
     const getAllDatabaseCareers = () => {
         const allCareers = [];
         Object.entries(CAREER_DATABASE).forEach(([domainKey, domain]) => {
@@ -163,7 +159,6 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
         return allCareers;
     };
 
-    // Comprehensive multi-vector matching engine
     const calculateCareerRecommendations = (userAnswers) => {
         const interests = userAnswers.interests || [];
         const workStyle = userAnswers.workStyle || '';
@@ -174,10 +169,9 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
         const allCareers = getAllDatabaseCareers();
 
         const scoredCareers = allCareers.map(career => {
-            let score = 50; // Base score
+            let score = 50;
             const reasons = [];
 
-            // 1. Interest Affinity (Weight: 35 pts)
             let interestMatched = false;
             if (interests.includes('tech')) {
                 if (['engineering', 'computer_science', 'it'].includes(career.domainKey) ||
@@ -251,11 +245,10 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                 score += 15;
             }
 
-            // 2. Work Environment Compatibility (Weight: 15 pts)
             const careerEnv = (career.workEnvironment || '').toLowerCase();
             if (workStyle === 'remote' && (careerEnv.includes('remote') || career.name.toLowerCase().includes('software') || career.name.toLowerCase().includes('designer') || career.name.toLowerCase().includes('data'))) {
                 score += 15;
-                reasons.push('Offers high remote & flexible work flexibility');
+                reasons.push('Offers high remote & flexible work options');
             } else if (workStyle === 'lab' && (careerEnv.includes('lab') || careerEnv.includes('research') || careerEnv.includes('hospital'))) {
                 score += 15;
                 reasons.push('Operates in state-of-the-art laboratory & diagnostic research environments');
@@ -272,7 +265,6 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                 score += 8;
             }
 
-            // 3. Skill Overlap (Weight: 25 pts)
             const careerSkills = (career.skills || []).map(s => s.toLowerCase());
             let skillMatchCount = 0;
             skills.forEach(skillId => {
@@ -296,13 +288,11 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                 }
             });
 
-            const skillBonus = Math.min(25, skillMatchCount * 9);
-            score += skillBonus;
+            score += Math.min(25, skillMatchCount * 9);
             if (skillMatchCount >= 2) {
                 reasons.push(`Strong overlap with your top skills: ${skills.slice(0, 2).map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(' & ')}`);
             }
 
-            // 4. Value Compatibility (Weight: 10 pts)
             if (values === 'salary' && (career.salaryRange?.includes('Cr') || career.salaryRange?.includes('80 LPA') || career.salaryRange?.includes('50 LPA') || career.salaryRange?.includes('25 LPA'))) {
                 score += 10;
                 reasons.push('High-growth salary tier fulfilling your financial targets');
@@ -322,7 +312,6 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                 score += 6;
             }
 
-            // 5. Subject Alignment (Weight: 15 pts)
             let subjectMatchCount = 0;
             if (subjects.includes('computer') && (career.name.toLowerCase().includes('software') || career.name.toLowerCase().includes('data') || career.name.toLowerCase().includes('it') || career.name.toLowerCase().includes('cyber'))) {
                 subjectMatchCount++;
@@ -345,10 +334,8 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
             score += Math.min(15, subjectMatchCount * 8);
 
-            // Normalized percentage (Range: 76% - 98%)
             const matchPercentage = Math.min(98, Math.max(76, Math.round((score / 145) * 100)));
 
-            // Ensure at least 3 descriptive reasons
             if (reasons.length < 3) {
                 if (career.jobOutlook) reasons.push(`Industry Outlook: ${career.jobOutlook}`);
                 if (career.education) reasons.push(`Structured roadmap: ${career.education}`);
@@ -368,7 +355,6 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
             };
         });
 
-        // Deduplicate and return top 5 unique careers sorted by match
         const uniqueMap = new Map();
         scoredCareers.forEach(c => {
             if (!uniqueMap.has(c.career) || uniqueMap.get(c.career).match < c.match) {
@@ -381,7 +367,6 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
     };
 
     const processQuizCompletion = () => {
-        // Validation check for all questions
         for (let i = 0; i < questions.length; i++) {
             const q = questions[i];
             const ans = answers[q.id];
@@ -393,7 +378,6 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
         setIsAnalyzing(true);
 
-        // Smooth analysis transition for polished UX
         setTimeout(() => {
             try {
                 const generatedResults = calculateCareerRecommendations(answers);
@@ -403,7 +387,6 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                 }
             } catch (err) {
                 console.error('Quiz recommendation calculation error:', err);
-                // Guaranteed safety fallback
                 const fallbackResults = [
                     {
                         career: 'Software Engineer',
@@ -436,7 +419,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
             } finally {
                 setIsAnalyzing(false);
             }
-        }, 1200);
+        }, 1000);
     };
 
     const nextStep = () => {
@@ -467,40 +450,42 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
         setSavedProgressDetected(false);
     };
 
-    // Calculate percentage accurately
     const progressPercentage = Math.round(((currentStep + 1) / questions.length) * 100);
 
     // ================= RESULTS VIEW =================
     if (results) {
         return (
-            <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#0f1419]' : 'bg-gradient-to-br from-slate-50 via-indigo-50/50 to-blue-50'}`}>
+            <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b] text-white' : 'bg-zinc-50 text-black'}`}>
                 <div className="max-w-5xl mx-auto px-4 py-8">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                         <div>
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold mb-2">
+                            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-2 border ${darkMode
+                                ? 'bg-zinc-900 border-zinc-700 text-zinc-300'
+                                : 'bg-zinc-200 border-zinc-300 text-black'
+                                }`}>
                                 <Sparkles className="w-3.5 h-3.5" />
-                                Personalized AI Assessment Complete
+                                AI Assessment Complete
                             </div>
-                            <h2 className={`text-3xl md:text-4xl font-black ${darkMode ? 'text-white' : 'text-slate-900'}`}>
-                                Your Top Career Matches 🎯
+                            <h2 className={`text-3xl md:text-4xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
+                                Top Career Recommendations 🎯
                             </h2>
                         </div>
                         <div className="flex items-center gap-2">
                             <button
                                 onClick={handleRetakeQuiz}
                                 className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all border ${darkMode
-                                    ? 'bg-[#1a1f2e] border-slate-700 text-slate-300 hover:bg-slate-800'
-                                    : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50 shadow-sm'
+                                    ? 'bg-zinc-900 border-zinc-700 text-zinc-200 hover:bg-zinc-800'
+                                    : 'bg-white border-zinc-300 text-black hover:bg-zinc-100 shadow-sm'
                                     }`}
                                 title="Retake Quiz"
                             >
-                                <RotateCcw className="w-4 h-4 text-indigo-500" />
+                                <RotateCcw className="w-4 h-4" />
                                 <span className="hidden sm:inline">Retake Quiz</span>
                             </button>
                             <button
                                 onClick={onClose}
-                                className={`p-2.5 rounded-xl transition-colors ${darkMode ? 'bg-[#1a1f2e] text-slate-400 hover:text-white hover:bg-slate-800' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 shadow-sm'}`}
+                                className={`p-2.5 rounded-xl transition-colors border ${darkMode ? 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white' : 'bg-white border-zinc-300 text-zinc-700 hover:bg-zinc-100'}`}
                                 aria-label="Close"
                             >
                                 <X className="w-6 h-6" />
@@ -510,10 +495,10 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
                     {/* Guidance & Advisory Disclaimer */}
                     <div className={`mb-8 p-4 rounded-2xl border flex items-start gap-3.5 ${darkMode
-                        ? 'bg-indigo-950/40 border-indigo-500/30 text-indigo-200'
-                        : 'bg-indigo-50 border-indigo-200 text-indigo-900 shadow-sm'
+                        ? 'bg-zinc-900/80 border-zinc-800 text-zinc-300'
+                        : 'bg-zinc-100 border-zinc-300 text-zinc-800 shadow-sm'
                         }`}>
-                        <Info className="w-5 h-5 text-indigo-500 mt-0.5 flex-shrink-0" />
+                        <Info className="w-5 h-5 text-zinc-500 mt-0.5 flex-shrink-0" />
                         <div className="text-sm leading-relaxed">
                             <span className="font-bold">Guidance Note: </span>
                             These recommendations are algorithmic guidance and career exploration tools designed to help you discover options based on your answers, rather than guaranteed predictions. We encourage you to research multiple paths and consult academic advisors.
@@ -526,34 +511,30 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                             <div
                                 key={idx}
                                 className={`rounded-3xl p-6 md:p-8 transition-all duration-300 border ${darkMode
-                                    ? 'bg-[#161b26] border-slate-800 hover:border-indigo-500/40 shadow-xl'
-                                    : 'bg-white border-slate-200 hover:border-indigo-300 shadow-xl'
+                                    ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600 shadow-xl'
+                                    : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-lg'
                                     }`}
                             >
                                 {/* Top bar with Match Score */}
-                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-dashed border-slate-200 dark:border-slate-800">
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200 dark:border-zinc-800">
                                     <div className="flex items-center gap-3">
-                                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg ${idx === 0
-                                            ? 'bg-gradient-to-br from-amber-400 to-amber-600 text-white shadow-lg shadow-amber-500/30 ring-4 ring-amber-400/20'
-                                            : idx === 1
-                                                ? 'bg-gradient-to-br from-slate-300 to-slate-500 text-white shadow-md'
-                                                : idx === 2
-                                                    ? 'bg-gradient-to-br from-amber-700 to-amber-900 text-amber-100 shadow-md'
-                                                    : 'bg-indigo-600 text-white'
+                                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg ${darkMode
+                                            ? 'bg-white text-black'
+                                            : 'bg-black text-white'
                                             }`}>
                                             #{idx + 1}
                                         </div>
                                         <div>
-                                            <h3 className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                                            <h3 className={`text-2xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
                                                 {result.career}
                                             </h3>
                                             <div className="flex items-center gap-3 text-xs mt-1">
-                                                <span className={`flex items-center gap-1 font-semibold ${darkMode ? 'text-emerald-400' : 'text-emerald-600'}`}>
+                                                <span className="flex items-center gap-1 font-semibold text-zinc-500 dark:text-zinc-400">
                                                     <Briefcase className="w-3.5 h-3.5" />
                                                     {result.jobOutlook}
                                                 </span>
-                                                <span className="text-slate-400">•</span>
-                                                <span className={`flex items-center gap-1 font-semibold ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                                                <span className="text-zinc-400">•</span>
+                                                <span className="flex items-center gap-1 font-semibold text-zinc-500 dark:text-zinc-400">
                                                     <DollarSign className="w-3.5 h-3.5" />
                                                     {result.salaryRange}
                                                 </span>
@@ -563,11 +544,11 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
                                     {/* Match Badge */}
                                     <div className="flex items-center sm:flex-col items-end gap-2 sm:gap-0">
-                                        <div className="text-3xl md:text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+                                        <div className={`text-3xl md:text-4xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
                                             {result.match}%
                                         </div>
-                                        <span className={`text-xs font-semibold uppercase tracking-wider ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
-                                            Compatibility Match
+                                        <span className={`text-xs font-semibold uppercase tracking-wider ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>
+                                            Match Score
                                         </span>
                                     </div>
                                 </div>
@@ -576,15 +557,15 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                                 <div className="grid md:grid-cols-2 gap-6 mt-6">
                                     {/* Left: Personalized Reasons */}
                                     <div>
-                                        <h4 className={`text-xs font-bold uppercase tracking-wider mb-3.5 flex items-center gap-1.5 ${darkMode ? 'text-indigo-400' : 'text-indigo-700'}`}>
+                                        <h4 className={`text-xs font-bold uppercase tracking-wider mb-3.5 flex items-center gap-1.5 ${darkMode ? 'text-zinc-300' : 'text-zinc-700'}`}>
                                             <Sparkles className="w-4 h-4" />
                                             Why this career fits your profile:
                                         </h4>
                                         <div className="space-y-2.5">
                                             {result.reasons.map((reason, ridx) => (
                                                 <div key={ridx} className="flex items-start gap-2.5">
-                                                    <CheckCircle2 className="w-4 h-4 text-emerald-500 mt-0.5 flex-shrink-0" />
-                                                    <span className={`text-sm leading-relaxed ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>
+                                                    <CheckCircle2 className={`w-4 h-4 mt-0.5 flex-shrink-0 ${darkMode ? 'text-zinc-300' : 'text-black'}`} />
+                                                    <span className={`text-sm leading-relaxed ${darkMode ? 'text-zinc-300' : 'text-zinc-700'}`}>
                                                         {reason}
                                                     </span>
                                                 </div>
@@ -595,33 +576,33 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                                     {/* Right: Education & Skills */}
                                     <div className="space-y-4">
                                         {/* Education Requirement */}
-                                        <div className={`p-3.5 rounded-2xl border ${darkMode ? 'bg-[#10141d] border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
-                                            <div className="flex items-center gap-2 mb-1.5 text-xs font-bold uppercase tracking-wider text-indigo-500">
+                                        <div className={`p-3.5 rounded-2xl border ${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'}`}>
+                                            <div className="flex items-center gap-2 mb-1.5 text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                                                 <GraduationCap className="w-4 h-4" />
                                                 Educational Pathway
                                             </div>
-                                            <div className={`text-sm font-semibold ${darkMode ? 'text-slate-200' : 'text-slate-800'}`}>
+                                            <div className={`text-sm font-semibold ${darkMode ? 'text-zinc-200' : 'text-zinc-900'}`}>
                                                 {result.education}
                                             </div>
                                             {result.entranceExams && result.entranceExams.length > 0 && (
-                                                <div className="text-xs text-slate-400 mt-1">
-                                                    Exams: <span className="text-slate-300 font-medium">{result.entranceExams.join(', ')}</span>
+                                                <div className="text-xs text-zinc-400 mt-1">
+                                                    Exams: <span className="text-zinc-300 dark:text-zinc-200 font-medium">{result.entranceExams.join(', ')}</span>
                                                 </div>
                                             )}
                                         </div>
 
                                         {/* Key Skills */}
                                         <div>
-                                            <div className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">
+                                            <div className="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-2">
                                                 Key In-Demand Skills:
                                             </div>
                                             <div className="flex flex-wrap gap-2">
                                                 {result.skills.map((skill, sidx) => (
                                                     <span
                                                         key={sidx}
-                                                        className={`px-3 py-1 rounded-xl text-xs font-semibold ${darkMode
-                                                            ? 'bg-indigo-950/60 border border-indigo-800/40 text-indigo-300'
-                                                            : 'bg-indigo-50 border border-indigo-200 text-indigo-700'
+                                                        className={`px-3 py-1 rounded-xl text-xs font-semibold border ${darkMode
+                                                            ? 'bg-zinc-900 border-zinc-800 text-zinc-300'
+                                                            : 'bg-zinc-100 border-zinc-300 text-zinc-800'
                                                             }`}
                                                     >
                                                         {skill}
@@ -634,19 +615,19 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
                                 {/* Footer Action */}
                                 {result.fullCareerData && onSelectCareer && (
-                                    <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end">
+                                    <div className="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800 flex justify-end">
                                         <button
                                             onClick={() => {
                                                 onSelectCareer(result.fullCareerData);
                                                 onClose();
                                             }}
-                                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all ${darkMode
-                                                ? 'bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 border border-indigo-500/30'
-                                                : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200'
+                                            className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold transition-all border ${darkMode
+                                                ? 'bg-zinc-900 hover:bg-white hover:text-black border-zinc-700 text-zinc-200'
+                                                : 'bg-zinc-100 hover:bg-black hover:text-white border-zinc-300 text-black'
                                                 }`}
                                         >
                                             <BookOpen className="w-4 h-4" />
-                                            Explore Complete Roadmaps & Top Colleges
+                                            Explore Complete Roadmaps & Colleges
                                             <ArrowRight className="w-4 h-4" />
                                         </button>
                                     </div>
@@ -656,12 +637,12 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                     </div>
 
                     {/* Bottom Actions */}
-                    <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-slate-200 dark:border-slate-800">
+                    <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
                         <button
                             onClick={handleRetakeQuiz}
-                            className={`flex-1 py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 ${darkMode
-                                ? 'bg-[#1a1f2e] border border-slate-700 text-slate-200 hover:bg-slate-800'
-                                : 'bg-white border border-slate-200 text-slate-800 hover:bg-slate-50 shadow-md'
+                            className={`flex-1 py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 border ${darkMode
+                                ? 'bg-zinc-900 border-zinc-700 text-zinc-200 hover:bg-zinc-800'
+                                : 'bg-white border-zinc-300 text-black hover:bg-zinc-100 shadow-md'
                                 }`}
                         >
                             <RotateCcw className="w-5 h-5" />
@@ -669,7 +650,10 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                         </button>
                         <button
                             onClick={onClose}
-                            className="flex-1 py-4 rounded-2xl font-bold bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white shadow-xl shadow-indigo-500/20 transition-all flex items-center justify-center gap-2"
+                            className={`flex-1 py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 shadow-xl ${darkMode
+                                ? 'bg-white text-black hover:bg-zinc-200'
+                                : 'bg-black text-white hover:bg-zinc-800'
+                                }`}
                         >
                             <CheckCircle2 className="w-5 h-5" />
                             Done & Explore Careers
@@ -683,22 +667,21 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
     // ================= ANALYZING VIEW =================
     if (isAnalyzing) {
         return (
-            <div className={`fixed inset-0 z-50 flex items-center justify-center ${darkMode ? 'bg-[#0f1419]' : 'bg-gradient-to-br from-slate-50 to-indigo-50'}`}>
-                <div className="text-center max-w-md px-6 py-12 rounded-3xl border border-indigo-500/20 shadow-2xl bg-white/10 dark:bg-black/40 backdrop-blur-xl">
+            <div className={`fixed inset-0 z-50 flex items-center justify-center ${darkMode ? 'bg-[#09090b] text-white' : 'bg-zinc-50 text-black'}`}>
+                <div className={`text-center max-w-md px-6 py-12 rounded-3xl border shadow-2xl backdrop-blur-xl ${darkMode ? 'bg-zinc-900/90 border-zinc-800' : 'bg-white border-zinc-300'}`}>
                     <div className="relative inline-block mb-6">
-                        <div className="w-20 h-20 rounded-full bg-gradient-to-tr from-indigo-600 to-pink-600 flex items-center justify-center animate-spin">
-                            <Sparkles className="w-10 h-10 text-white" />
+                        <div className={`w-20 h-20 rounded-full flex items-center justify-center animate-spin ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                            <Sparkles className="w-10 h-10" />
                         </div>
-                        <div className="absolute inset-0 rounded-full blur-xl bg-indigo-500/50 animate-pulse"></div>
                     </div>
-                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-black'}`}>
                         Analyzing 150+ Career Vectors...
                     </h3>
-                    <p className={`text-sm ${darkMode ? 'text-slate-300' : 'text-slate-600'} leading-relaxed mb-4`}>
-                        Evaluating your interests, core skills, work environment preferences, and academic subjects against our real-time database.
+                    <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'} leading-relaxed mb-4`}>
+                        Evaluating your interests, core skills, work environment preferences, and academic subjects.
                     </p>
-                    <div className="w-48 h-2 mx-auto rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
-                        <div className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-pulse w-full"></div>
+                    <div className="w-48 h-2 mx-auto rounded-full bg-zinc-200 dark:bg-zinc-800 overflow-hidden">
+                        <div className="h-full bg-black dark:bg-white animate-pulse w-full"></div>
                     </div>
                 </div>
             </div>
@@ -710,36 +693,36 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
     const QuestionIcon = question.icon;
 
     return (
-        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#0f1419]' : 'bg-gradient-to-br from-slate-50 via-indigo-50/40 to-blue-50'}`}>
+        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b] text-white' : 'bg-zinc-50 text-black'}`}>
             <div className="max-w-3xl mx-auto px-4 py-8">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">
                     <div>
                         <div className="flex items-center gap-2">
-                            <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-indigo-600 text-white">
+                            <span className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
                                 Step {currentStep + 1} of {questions.length}
                             </span>
                             {savedProgressDetected && (
-                                <span className="text-xs text-emerald-500 font-semibold">
+                                <span className="text-xs text-zinc-400 font-semibold">
                                     • Progress auto-restored
                                 </span>
                             )}
                         </div>
-                        <h2 className={`text-2xl md:text-3xl font-black mt-2 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                        <h2 className={`text-2xl md:text-3xl font-black mt-2 ${darkMode ? 'text-white' : 'text-black'}`}>
                             AI Career Pathfinder Quiz
                         </h2>
                     </div>
                     <div className="flex items-center gap-2">
                         <button
                             onClick={handleRetakeQuiz}
-                            className={`p-2 rounded-xl transition-colors ${darkMode ? 'bg-[#1a1f2e] text-slate-400 hover:text-white' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}`}
+                            className={`p-2 rounded-xl transition-colors border ${darkMode ? 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white' : 'bg-white border-zinc-300 text-zinc-700 hover:bg-zinc-100'}`}
                             title="Reset Quiz"
                         >
                             <RotateCcw className="w-5 h-5" />
                         </button>
                         <button
                             onClick={onClose}
-                            className={`p-2 rounded-xl transition-colors ${darkMode ? 'bg-[#1a1f2e] text-slate-400 hover:text-white' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}`}
+                            className={`p-2 rounded-xl transition-colors border ${darkMode ? 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white' : 'bg-white border-zinc-300 text-zinc-700 hover:bg-zinc-100'}`}
                             aria-label="Close"
                         >
                             <X className="w-6 h-6" />
@@ -750,16 +733,16 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                 {/* Progress Bar & Percentage */}
                 <div className="mb-8">
                     <div className="flex justify-between items-center text-xs font-bold mb-2">
-                        <span className={darkMode ? 'text-slate-300' : 'text-slate-600'}>
+                        <span className={darkMode ? 'text-zinc-400' : 'text-zinc-600'}>
                             Quiz Progress
                         </span>
-                        <span className="text-indigo-500">
+                        <span className={darkMode ? 'text-white' : 'text-black'}>
                             {progressPercentage}% Completed
                         </span>
                     </div>
-                    <div className={`h-2.5 rounded-full overflow-hidden ${darkMode ? 'bg-[#1a1f2e]' : 'bg-slate-200'}`}>
+                    <div className={`h-2.5 rounded-full overflow-hidden ${darkMode ? 'bg-zinc-800' : 'bg-zinc-200'}`}>
                         <div
-                            className="h-full bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 transition-all duration-300 ease-out"
+                            className={`h-full transition-all duration-300 ease-out ${darkMode ? 'bg-white' : 'bg-black'}`}
                             style={{ width: `${progressPercentage}%` }}
                         />
                     </div>
@@ -767,18 +750,18 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
                 {/* Question Card */}
                 <div className={`rounded-3xl p-6 md:p-8 mb-8 border transition-all ${darkMode
-                    ? 'bg-[#161b26] border-slate-800 shadow-2xl'
-                    : 'bg-white border-slate-200 shadow-xl'
+                    ? 'bg-[#121215] border-zinc-800 shadow-2xl'
+                    : 'bg-white border-zinc-200 shadow-xl'
                     }`}>
                     <div className="flex items-start gap-4 mb-6">
-                        <div className="p-3.5 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg shadow-indigo-500/30">
+                        <div className={`p-3.5 rounded-2xl ${darkMode ? 'bg-zinc-800 text-white' : 'bg-black text-white'}`}>
                             <QuestionIcon className="w-7 h-7" />
                         </div>
                         <div>
-                            <h3 className={`text-xl md:text-2xl font-black ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                            <h3 className={`text-xl md:text-2xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
                                 {question.title}
                             </h3>
-                            <p className={`text-sm mt-1 ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                            <p className={`text-sm mt-1 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                                 {question.subtitle}
                             </p>
                         </div>
@@ -798,11 +781,11 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                                     onClick={() => handleAnswer(question.id, option.id)}
                                     className={`p-5 rounded-2xl border-2 transition-all duration-200 text-left relative overflow-hidden group ${isSelected
                                         ? darkMode
-                                            ? 'bg-indigo-950/70 border-indigo-500 shadow-lg shadow-indigo-500/20'
-                                            : 'bg-indigo-50/80 border-indigo-600 shadow-md ring-2 ring-indigo-500/20'
+                                            ? 'bg-zinc-800 border-white text-white shadow-lg'
+                                            : 'bg-zinc-100 border-black text-black ring-1 ring-black shadow-md'
                                         : darkMode
-                                            ? 'bg-[#121620] border-slate-800 hover:border-slate-700 hover:bg-[#1a202c]'
-                                            : 'bg-white border-slate-200 hover:border-indigo-300 hover:bg-slate-50'
+                                            ? 'bg-[#18181b] border-zinc-800 hover:border-zinc-700 text-zinc-300'
+                                            : 'bg-white border-zinc-200 hover:border-zinc-400 text-zinc-800'
                                         }`}
                                 >
                                     <div className="flex items-start gap-3.5">
@@ -811,15 +794,15 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                                         </span>
                                         <div className="flex-1 pr-6">
                                             <div className={`font-bold text-base leading-snug ${isSelected
-                                                ? darkMode ? 'text-white' : 'text-indigo-950'
-                                                : darkMode ? 'text-slate-200' : 'text-slate-900'
+                                                ? darkMode ? 'text-white' : 'text-black'
+                                                : darkMode ? 'text-zinc-200' : 'text-zinc-900'
                                                 }`}>
                                                 {option.label}
                                             </div>
                                             {option.desc && (
                                                 <div className={`text-xs mt-1 ${isSelected
-                                                    ? darkMode ? 'text-indigo-200' : 'text-indigo-700'
-                                                    : darkMode ? 'text-slate-400' : 'text-slate-500'
+                                                    ? darkMode ? 'text-zinc-300' : 'text-zinc-700'
+                                                    : darkMode ? 'text-zinc-500' : 'text-zinc-500'
                                                     }`}>
                                                     {option.desc}
                                                 </div>
@@ -829,8 +812,8 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
                                     {/* Selected Indicator */}
                                     <div className={`absolute top-4 right-4 w-5 h-5 rounded-full flex items-center justify-center transition-all ${isSelected
-                                        ? 'bg-indigo-600 text-white scale-100'
-                                        : 'border-2 border-slate-400/40 opacity-40 scale-90'
+                                        ? darkMode ? 'bg-white text-black' : 'bg-black text-white'
+                                        : 'border-2 border-zinc-400/40 opacity-40 scale-90'
                                         }`}>
                                         {isSelected && <CheckCircle2 className="w-4 h-4" />}
                                     </div>
@@ -840,7 +823,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                     </div>
 
                     {question.type === 'multiple' && (
-                        <div className={`mt-5 text-xs font-semibold flex items-center gap-1.5 ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>
+                        <div className={`mt-5 text-xs font-semibold flex items-center gap-1.5 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
                             <Sparkles className="w-3.5 h-3.5" />
                             Multi-select enabled: Choose all choices that apply to you
                         </div>
@@ -853,8 +836,8 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                         <button
                             onClick={prevStep}
                             className={`px-6 py-4 rounded-2xl font-bold transition-all flex items-center gap-2 border ${darkMode
-                                ? 'bg-[#161b26] border-slate-700 text-slate-200 hover:bg-slate-800'
-                                : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50 shadow-md'
+                                ? 'bg-zinc-900 border-zinc-700 text-zinc-200 hover:bg-zinc-800'
+                                : 'bg-white border-zinc-300 text-black hover:bg-zinc-100 shadow-md'
                                 }`}
                         >
                             <ArrowLeft className="w-5 h-5" />
@@ -866,10 +849,12 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                         onClick={nextStep}
                         disabled={!canProceed()}
                         className={`flex-1 px-8 py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 text-base ${canProceed()
-                            ? 'bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white shadow-xl shadow-indigo-500/30 transform hover:scale-[1.01]'
+                            ? darkMode
+                                ? 'bg-white text-black hover:bg-zinc-200 shadow-xl'
+                                : 'bg-black text-white hover:bg-zinc-800 shadow-xl'
                             : darkMode
-                                ? 'bg-slate-800/60 text-slate-500 cursor-not-allowed border border-slate-800'
-                                : 'bg-slate-200 text-slate-400 cursor-not-allowed'
+                                ? 'bg-zinc-800 text-zinc-600 cursor-not-allowed border border-zinc-800'
+                                : 'bg-zinc-200 text-zinc-400 cursor-not-allowed'
                             }`}
                     >
                         {currentStep === questions.length - 1 ? (
