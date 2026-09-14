@@ -163,6 +163,23 @@ const CareerRoadmapBuilder = ({ onClose, darkMode }) => {
         priority: 'high'
     });
 
+    // Keyboard Escape key listener
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape') {
+                if (showCreateModal) {
+                    setShowCreateModal(false);
+                } else if (showResetConfirm) {
+                    setShowResetConfirm(false);
+                } else if (onClose) {
+                    onClose();
+                }
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [onClose, showCreateModal, showResetConfirm]);
+
     // Initialize/restore active roadmap from localStorage if available
     useEffect(() => {
         try {
@@ -375,7 +392,12 @@ Exported from Cognitrail Career Pathfinder • https://cognitrail.app
     const allTemplates = [...savedCustomRoadmaps, ...defaultTemplates];
 
     return (
-        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b]' : 'bg-zinc-50'}`}>
+        <div 
+            role="dialog"
+            aria-modal="true"
+            aria-label="Career Roadmap Builder"
+            className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b]' : 'bg-zinc-50'}`}
+        >
             <div className="max-w-7xl mx-auto px-4 py-8 animate-fade-in">
                 {/* Top Bar Header */}
                 <div className="flex items-center justify-between mb-8">

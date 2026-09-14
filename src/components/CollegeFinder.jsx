@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   X, Search, MapPin, Star, TrendingUp, Award, Phone, Globe, DollarSign, 
   GraduationCap, Filter, ChevronDown, BookOpen, ExternalLink, ShieldCheck, 
@@ -15,6 +15,21 @@ const CollegeFinder = ({ onClose, darkMode }) => {
   const [selectedTier, setSelectedTier] = useState('');
   const [selectedOwnership, setSelectedOwnership] = useState('');
   const [selectedCollege, setSelectedCollege] = useState(null);
+
+  // Keyboard Escape key listener
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        if (selectedCollege) {
+          setSelectedCollege(null);
+        } else if (onClose) {
+          onClose();
+        }
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose, selectedCollege]);
 
   // Robust verified list of top colleges
   const allCollegesList = useMemo(() => {
@@ -225,7 +240,12 @@ const CollegeFinder = ({ onClose, darkMode }) => {
   };
 
   return (
-    <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b]' : 'bg-zinc-50'}`}>
+    <div 
+      role="dialog"
+      aria-modal="true"
+      aria-label="College Finder"
+      className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b]' : 'bg-zinc-50'}`}
+    >
       <div className="max-w-7xl mx-auto px-4 py-8 animate-fade-in">
         
         {/* Header */}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   X, DollarSign, Calendar, GraduationCap, Award, MapPin,
   Star, Brain, ExternalLink, Map, TrendingUp, Sparkles,
@@ -16,6 +16,17 @@ const CareerDetailModal = ({
 }) => {
   const [showRoadmap, setShowRoadmap] = useState(false);
   const [activeCareer, setActiveCareer] = useState(career);
+
+  // Keyboard Escape listener
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        if (onClose) onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
 
   if (!activeCareer) return null;
 
@@ -101,18 +112,23 @@ const CareerDetailModal = ({
 
   return (
     <>
-      <div className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 z-50 animate-fade-in">
+      <div 
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="career-modal-title"
+        className="fixed inset-0 bg-black/80 backdrop-blur-md flex items-center justify-center p-2.5 sm:p-4 z-50 animate-fade-in"
+      >
         <div className={`${
           darkMode ? 'bg-[#121215] border-zinc-800 text-white' : 'bg-white border-zinc-200 text-black'
-        } border rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in-scale`}>
+        } border rounded-3xl max-w-4xl w-full max-h-[92vh] overflow-y-auto shadow-2xl animate-fade-in-scale`}>
           
           {/* Header */}
           <div className={`sticky top-0 ${
             darkMode ? 'bg-[#121215]/95 border-zinc-800' : 'bg-white/95 border-zinc-200'
-          } border-b p-6 sm:p-7 rounded-t-3xl z-10 backdrop-blur-md`}>
+          } border-b p-4 sm:p-7 rounded-t-3xl z-10 backdrop-blur-md`}>
             <div className="flex justify-between items-start gap-4">
               <div>
-                <div className="flex items-center gap-2 mb-2">
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <span className={`px-2.5 py-0.5 rounded-full text-xs font-black border ${
                     darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-black text-white border-black'
                   }`}>
@@ -124,7 +140,7 @@ const CareerDetailModal = ({
                     {jobOutlook}
                   </span>
                 </div>
-                <h2 className={`text-2xl sm:text-3xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
+                <h2 id="career-modal-title" className={`text-xl sm:text-3xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
                   {careerName}
                 </h2>
                 <p className={`text-xs sm:text-sm mt-1.5 leading-relaxed max-w-2xl ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>

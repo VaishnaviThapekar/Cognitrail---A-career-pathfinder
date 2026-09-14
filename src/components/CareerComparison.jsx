@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { 
   X, Plus, Trash2, DollarSign, GraduationCap, TrendingUp, Clock, Award, 
   Target, CheckCircle2, Sparkles, ChevronRight, HelpCircle, Layers, 
@@ -7,6 +7,17 @@ import {
 import { CAREER_DATABASE } from '../data/careerDatabase';
 
 const CareerComparison = ({ onClose, darkMode, allCareers }) => {
+  // Keyboard Escape key listener
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && onClose) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   // Extract all careers from database if not passed
   const availableCareers = useMemo(() => {
     if (allCareers && Array.isArray(allCareers) && allCareers.length > 0) {
@@ -103,7 +114,12 @@ const CareerComparison = ({ onClose, darkMode, allCareers }) => {
   }, [selectedCareers]);
 
   return (
-    <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b]' : 'bg-zinc-50'}`}>
+    <div 
+      role="dialog"
+      aria-modal="true"
+      aria-label="Compare Careers"
+      className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b]' : 'bg-zinc-50'}`}
+    >
       <div className="max-w-7xl mx-auto px-4 py-8 animate-fade-in">
         
         {/* Header */}

@@ -16,6 +16,17 @@ const SkillsGapAnalyzer = ({ onClose, darkMode }) => {
   const [selectedDomain, setSelectedDomain] = useState('all');
   const [completedMilestones, setCompletedMilestones] = useState([]);
 
+  // Keyboard Escape key listener
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && onClose) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   // Load saved progress for selected career if any
   useEffect(() => {
     if (selectedCareer) {
@@ -348,7 +359,12 @@ Empowering Next-Gen Students • Cognitrail Career Intelligence System
   };
 
   return (
-    <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b]' : 'bg-zinc-50'}`}>
+    <div 
+      role="dialog"
+      aria-modal="true"
+      aria-label="Skills Gap Analyzer"
+      className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b]' : 'bg-zinc-50'}`}
+    >
       <div className="max-w-6xl mx-auto px-4 py-8 animate-fade-in">
         
         {/* Header */}

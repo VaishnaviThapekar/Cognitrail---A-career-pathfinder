@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Video, Mic, CheckCircle2, Award, ChevronRight, RefreshCw, X, Sparkles, HelpCircle } from 'lucide-react';
 import { interviewCoach } from '../services/interviewCoach';
 import { useGamification } from '../contexts/GamificationContext';
@@ -16,6 +16,17 @@ export default function InterviewSimulator({ onClose, darkMode }) {
     const [sessionComplete, setSessionComplete] = useState(false);
     const [guideText, setGuideText] = useState('');
     const [loadingGuide, setLoadingGuide] = useState(false);
+
+    // Keyboard Escape key listener
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && onClose) {
+                onClose();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [onClose]);
 
     const startInteractiveSession = () => {
         const qList = interviewCoach.getMockQuestionsForRole(role);
@@ -66,7 +77,12 @@ export default function InterviewSimulator({ onClose, darkMode }) {
         : 0;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fade-in">
+        <div 
+            role="dialog"
+            aria-modal="true"
+            aria-label="AI Interview Simulator"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-md animate-fade-in"
+        >
             <div className={`w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl p-6 border transition-all ${
                 darkMode ? 'bg-[#121215] border-zinc-800 text-white' : 'bg-white border-zinc-200 text-black'
             }`}>

@@ -39,6 +39,17 @@ const AdvancedCareerChatbot = ({ darkMode, onClose }) => {
     const messagesEndRef = useRef(null);
     const conversationContextRef = useRef([]);
 
+    // Keyboard Escape key listener
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && onClose) {
+                onClose();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [onClose]);
+
     // Persist messages to localStorage
     useEffect(() => {
         try {

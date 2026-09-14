@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Upload, FileText, CheckCircle, AlertTriangle, Sparkles, X, Award, Briefcase } from 'lucide-react';
 import { resumeAnalyzer } from '../services/resumeAnalyzer';
 
@@ -8,6 +8,17 @@ export default function ResumeUploader({ onClose, darkMode }) {
     const [analysis, setAnalysis] = useState(null);
     const [loading, setLoading] = useState(false);
     const [targetRole, setTargetRole] = useState('Software Engineer');
+
+    // Keyboard Escape key listener
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && onClose) {
+                onClose();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [onClose]);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -39,7 +50,12 @@ export default function ResumeUploader({ onClose, darkMode }) {
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in">
+        <div 
+            role="dialog"
+            aria-modal="true"
+            aria-label="Resume ATS Analyzer"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-md animate-fade-in"
+        >
             <div className={`w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border shadow-2xl p-6 sm:p-8 animate-fade-in-scale ${darkMode ? 'bg-[#121215] border-zinc-800 text-white' : 'bg-white border-zinc-200 text-black'}`}>
                 {/* Header */}
                 <div className="flex justify-between items-center pb-4 border-b border-zinc-200 dark:border-zinc-800 mb-6">

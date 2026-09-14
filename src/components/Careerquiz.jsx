@@ -92,6 +92,17 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
     const [savedProgressDetected, setSavedProgressDetected] = useState(false);
     const [validationError, setValidationError] = useState('');
 
+    // Keyboard Escape key listener
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && onClose) {
+                onClose();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [onClose]);
+
     // Restore quiz progress from localStorage on initial mount
     useEffect(() => {
         try {
@@ -486,7 +497,12 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
     // ================= RESULTS VIEW =================
     if (results) {
         return (
-            <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b] text-white' : 'bg-zinc-50 text-black'}`}>
+            <div 
+                role="dialog"
+                aria-modal="true"
+                aria-label="Top Career Recommendations"
+                className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b] text-white' : 'bg-zinc-50 text-black'}`}
+            >
                 <div className="max-w-5xl mx-auto px-4 py-8">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
@@ -719,7 +735,12 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
     const QuestionIcon = question.icon;
 
     return (
-        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b] text-white' : 'bg-zinc-50 text-black'}`}>
+        <div 
+            role="dialog"
+            aria-modal="true"
+            aria-label="AI Career Pathfinder Quiz"
+            className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#09090b] text-white' : 'bg-zinc-50 text-black'}`}
+        >
             <div className="max-w-3xl mx-auto px-4 py-8">
                 {/* Header */}
                 <div className="flex items-center justify-between mb-6">

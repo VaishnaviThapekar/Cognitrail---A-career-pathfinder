@@ -30,6 +30,17 @@ const CareerChatbot = ({ darkMode, onClose }) => {
     const [isTyping, setIsTyping] = useState(false);
     const messagesEndRef = useRef(null);
 
+    // Keyboard Escape key listener
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && onClose) {
+                onClose();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [onClose]);
+
     // Save chat history
     useEffect(() => {
         try {
