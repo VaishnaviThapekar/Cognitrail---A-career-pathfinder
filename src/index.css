@@ -99,6 +99,38 @@
   animation: floatSlow 4s ease-in-out infinite;
 }
 
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-delay-1 {
+  animation: floatCard1 5s ease-in-out infinite;
+}
+
+.animate-float-delay-2 {
+  animation: floatCard2 6s ease-in-out infinite 0.7s;
+}
+
+.animate-float-delay-3 {
+  animation: floatCard3 5.5s ease-in-out infinite 1.4s;
+}
+
+.animate-float-delay-4 {
+  animation: floatCard4 6.5s ease-in-out infinite 2.1s;
+}
+
+.animate-orb-1 {
+  animation: orbMove1 12s ease-in-out infinite;
+}
+
+.animate-orb-2 {
+  animation: orbMove2 14s ease-in-out infinite 2s;
+}
+
+.animate-spin-slow {
+  animation: rotateSlow 20s linear infinite;
+}
+
 .animate-pulse-glow {
   animation: pulseGlow 3s ease-in-out infinite;
 }
@@ -115,6 +147,75 @@
   background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
   background-size: 200% 100%;
   animation: shimmer 2.5s infinite;
+}
+
+@keyframes floatCard1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes floatCard2 {
+  0%, 100% {
+    transform: translateY(12px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(2px) rotate(-1.5deg);
+  }
+}
+
+@keyframes floatCard3 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(-1deg);
+  }
+}
+
+@keyframes floatCard4 {
+  0%, 100% {
+    transform: translateY(12px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(0px) rotate(1.5deg);
+  }
+}
+
+@keyframes orbMove1 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+@keyframes orbMove2 {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(-40px, 30px) scale(1.15);
+  }
+  66% {
+    transform: translate(25px, -35px) scale(0.9);
+  }
+}
+
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Interactive Card & Button Transitions */
