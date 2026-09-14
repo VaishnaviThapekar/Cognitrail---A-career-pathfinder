@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Lightbulb, ChevronRight, Sparkles } from 'lucide-react';
+import { Lightbulb, ChevronRight, Sparkles, X, Mail, Shield, FileText, Info } from 'lucide-react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
+import HowItWorksSection from './components/HowItWorksSection';
 import WhyChooseSection from './components/WhyChooseSection';
 import CareerCard from './components/CareerCard';
 import CareerDetailModal from './components/CareerDetailModal';
@@ -53,10 +54,11 @@ function App() {
   const [showResumeUploader, setShowResumeUploader] = useState(false);
   const [showStudentProfile, setShowStudentProfile] = useState(false);
   const [showInterviewSimulator, setShowInterviewSimulator] = useState(false);
+  const [infoModalContent, setInfoModalContent] = useState(null);
 
   // Effects
   useEffect(() => {
-    const timer = setTimeout(() => setShowWelcome(false), 3000);
+    const timer = setTimeout(() => setShowWelcome(false), 2200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -75,11 +77,13 @@ function App() {
     window.openQuiz = () => setShowQuiz(true);
     window.openResume = () => setShowResumeUploader(true);
     window.openInterview = () => setShowInterviewSimulator(true);
+    window.openRoadmap = () => setShowRoadmapBuilder(true);
     return () => {
       delete window.openSkillGap;
       delete window.openQuiz;
       delete window.openResume;
       delete window.openInterview;
+      delete window.openRoadmap;
     };
   }, []);
 
@@ -92,19 +96,26 @@ function App() {
     }
   }, [darkMode]);
 
-  // Functions
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
 
-  // Handle protected features
-  const handleProtectedAction = (action) => {
-    if (!isAuthenticated) {
-      setShowAuthModal(true);
-      return false;
-    }
-    action();
-    return true;
+  const handleGoHome = () => {
+    setSelectedDomain(null);
+    setSelectedSubField(null);
+    setSelectedCareer(null);
+    setShowProfile(false);
+    setShowQuiz(false);
+    setShowNews(false);
+    setShowComparison(false);
+    setShowCollegeFinder(false);
+    setShowSkillsAnalyzer(false);
+    setShowRoadmapBuilder(false);
+    setShowResumeUploader(false);
+    setShowStudentProfile(false);
+    setShowInterviewSimulator(false);
+    setInfoModalContent(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Filter domains based on search
@@ -135,110 +146,63 @@ function App() {
   // Welcome Screen
   if (showWelcome) {
     return (
-      <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4">
+      <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4 bg-[#0a0e17]">
         {/* Animated Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#0f1419] via-[#1a1f3a] to-[#0f1419]">
-          {/* Animated gradient orbs */}
-          <div className="absolute top-0 left-0 w-96 h-96 bg-indigo-600/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
-          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
-          <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-teal-600/30 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-purple-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-3000"></div>
-
-          {/* Grid overlay */}
-          <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
-
-          {/* Floating particles */}
-          <div className="absolute inset-0">
-            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-indigo-400 rounded-full animate-float"></div>
-            <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-blue-400 rounded-full animate-float animation-delay-1000"></div>
-            <div className="absolute bottom-1/4 left-1/3 w-2 h-2 bg-teal-400 rounded-full animate-float animation-delay-2000"></div>
-            <div className="absolute top-2/3 right-1/3 w-1.5 h-1.5 bg-cyan-400 rounded-full animate-float animation-delay-3000"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-2.5 h-2.5 bg-purple-400 rounded-full animate-float animation-delay-1500"></div>
-          </div>
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-600/25 rounded-full filter blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/25 rounded-full filter blur-3xl animate-pulse"></div>
         </div>
 
         {/* Content */}
-        <div className="relative z-10 text-center animate-fadeIn">
-          {/* Logo with glow effect */}
-          <div className="mb-8 relative inline-block">
-            {/* Outer glow rings */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-40 h-40 rounded-full bg-gradient-to-r from-indigo-500/20 to-blue-500/20 animate-ping-slow"></div>
-            </div>
-            <div className="absolute inset-0 flex items-center justify-center animation-delay-1000">
-              <div className="w-32 h-32 rounded-full bg-gradient-to-r from-blue-500/30 to-teal-500/30 animate-ping-slow"></div>
-            </div>
-
-            {/* Main icon container */}
-            <div className="relative w-32 h-32 mx-auto flex items-center justify-center">
-              {/* Rotating gradient border */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500 via-blue-500 to-teal-500 animate-spin-slow"></div>
-              <div className="absolute inset-1 rounded-full bg-[#0f1419]"></div>
-
-              {/* Icon */}
-              <div className="relative z-10">
-                <Lightbulb className="w-16 h-16 text-yellow-400 animate-pulse-glow" />
+        <div className="relative z-10 text-center max-w-lg">
+          {/* Logo */}
+          <div className="mb-6 relative inline-block">
+            <div className="w-24 h-24 mx-auto rounded-3xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 p-1 shadow-2xl shadow-indigo-500/30 flex items-center justify-center">
+              <div className="w-full h-full bg-[#0a0e17] rounded-[22px] flex items-center justify-center">
+                <Lightbulb className="w-12 h-12 text-amber-400 animate-pulse" />
               </div>
             </div>
           </div>
 
-          {/* Title with gradient text */}
-          <h1 className="text-7xl font-black mb-4 tracking-tight animate-slideUp">
-            <span className="bg-gradient-to-r from-indigo-400 via-blue-400 to-teal-400 bg-clip-text text-transparent animate-gradient-x">
-              COGNITRIAL
+          {/* Title */}
+          <h1 className="text-4xl sm:text-5xl font-black mb-3 tracking-tight text-white">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">
+              COGNITRAIL
             </span>
           </h1>
 
-          {/* Subtitle with typewriter effect */}
-          <div className="h-8 mb-8">
-            <p className="text-2xl text-gray-300 font-light animate-fadeIn animation-delay-500">
-              Your Intelligent Career Pathfinder
-            </p>
+          <p className="text-lg text-slate-300 font-light mb-6">
+            Your Intelligent Career Pathfinder
+          </p>
+
+          {/* Feature Badges */}
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-950/80 border border-indigo-500/40 text-indigo-300">
+              150+ Careers
+            </span>
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-purple-950/80 border border-purple-500/40 text-purple-300">
+              500+ Top Colleges
+            </span>
+            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-pink-950/80 border border-pink-500/40 text-pink-300">
+              AI Powered
+            </span>
           </div>
 
-          {/* Feature badges */}
-          <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fadeIn animation-delay-1000">
-            <div className="px-4 py-2 rounded-full bg-gradient-to-r from-indigo-600/20 to-indigo-600/10 border border-indigo-500/30 backdrop-blur-sm">
-              <span className="text-indigo-300 text-sm font-semibold">150+ Careers</span>
-            </div>
-            <div className="px-4 py-2 rounded-full bg-gradient-to-r from-blue-600/20 to-blue-600/10 border border-blue-500/30 backdrop-blur-sm">
-              <span className="text-blue-300 text-sm font-semibold">AI-Powered</span>
-            </div>
-            <div className="px-4 py-2 rounded-full bg-gradient-to-r from-teal-600/20 to-teal-600/10 border border-teal-500/30 backdrop-blur-sm">
-              <span className="text-teal-300 text-sm font-semibold">Real-time Updates</span>
-            </div>
-          </div>
-
-          {/* Loading indicator */}
-          <div className="flex justify-center items-center gap-2 animate-fadeIn animation-delay-1500">
+          <div className="flex justify-center items-center gap-2">
             <div className="w-2 h-2 rounded-full bg-indigo-500 animate-bounce"></div>
-            <div className="w-2 h-2 rounded-full bg-blue-500 animate-bounce animation-delay-200"></div>
-            <div className="w-2 h-2 rounded-full bg-teal-500 animate-bounce animation-delay-400"></div>
-          </div>
-
-          {/* Bottom tagline */}
-          <div className="mt-12 animate-fadeIn animation-delay-2000">
-            <p className="text-gray-400 text-sm">
-              Think Smart. Choose Right. Grow Ahead.
-            </p>
+            <div className="w-2 h-2 rounded-full bg-purple-500 animate-bounce delay-150"></div>
+            <div className="w-2 h-2 rounded-full bg-pink-500 animate-bounce delay-300"></div>
           </div>
         </div>
-
-        {/* Corner decorations */}
-        <div className="absolute top-0 left-0 w-32 h-32 border-l-2 border-t-2 border-indigo-500/20 rounded-tl-3xl"></div>
-        <div className="absolute top-0 right-0 w-32 h-32 border-r-2 border-t-2 border-blue-500/20 rounded-tr-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-32 h-32 border-l-2 border-b-2 border-teal-500/20 rounded-bl-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-32 h-32 border-r-2 border-b-2 border-cyan-500/20 rounded-br-3xl"></div>
       </div>
     );
   }
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-[#0f1419]' : 'bg-gradient-to-br from-slate-50 to-teal-50'}`}>
-      {/* Custom Scrollbar Component */}
+    <div className={`min-h-screen transition-colors duration-200 ${darkMode ? 'bg-[#0a0e17] text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
       <CustomScrollbar darkMode={darkMode} />
 
-      {/* Advanced Profile Page (Only when authenticated) */}
+      {/* Advanced Profile Page */}
       {showProfile && isAuthenticated && (
         <AdvancedProfilePage
           darkMode={darkMode}
@@ -257,15 +221,15 @@ function App() {
       )}
 
       {showResumeUploader && (
-        <ResumeUploader onClose={() => setShowResumeUploader(false)} />
+        <ResumeUploader onClose={() => setShowResumeUploader(false)} darkMode={darkMode} />
       )}
 
       {showStudentProfile && (
-        <StudentProfile onClose={() => setShowStudentProfile(false)} />
+        <StudentProfile onClose={() => setShowStudentProfile(false)} darkMode={darkMode} />
       )}
 
       {showInterviewSimulator && (
-        <InterviewSimulator onClose={() => setShowInterviewSimulator(false)} />
+        <InterviewSimulator onClose={() => setShowInterviewSimulator(false)} darkMode={darkMode} />
       )}
 
       {!showProfile && (
@@ -276,6 +240,12 @@ function App() {
             toggleDarkMode={toggleDarkMode}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
+            onHomeClick={handleGoHome}
+            onOpenQuiz={() => setShowQuiz(true)}
+            onOpenRoadmap={() => setShowRoadmapBuilder(true)}
+            onOpenSkills={() => setShowSkillsAnalyzer(true)}
+            onOpenNews={() => setShowNews(true)}
+            onOpenAdvisor={() => setShowAdvancedChatbot(true)}
             setShowProfile={setShowProfile}
             setShowGamification={setShowGamification}
             setShowComparison={setShowComparison}
@@ -283,260 +253,166 @@ function App() {
           />
 
           {/* Main Content */}
-          <main className="max-w-7xl mx-auto px-4 py-8 pb-32">
+          <main className="max-w-7xl mx-auto px-4 sm:px-6 py-8 pb-32">
             {!selectedDomain ? (
-              // Home Page with Hero and Domains
+              // Home Page with Hero, How It Works, Features & Domains
               <div>
-                <HeroSection darkMode={darkMode} />
+                <HeroSection
+                  darkMode={darkMode}
+                  onStartQuiz={() => setShowQuiz(true)}
+                />
 
-                {/* Feature Shortcuts */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+                {/* How Cognitrail Works Section */}
+                <HowItWorksSection
+                  darkMode={darkMode}
+                  onStartQuiz={() => setShowQuiz(true)}
+                  onExploreDomains={() => {
+                    const el = document.getElementById('domains');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  onOpenSkills={() => setShowSkillsAnalyzer(true)}
+                  onOpenRoadmap={() => setShowRoadmapBuilder(true)}
+                />
+
+                {/* Feature Shortcuts Grid */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
                   {/* Career Quiz Card */}
                   <button
-                    onClick={() => handleProtectedAction(() => setShowQuiz(true))}
-                    className={`group relative rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left overflow-hidden ${darkMode
-                      ? 'bg-gradient-to-br from-[#272757] to-[#505081] border border-[#8686AC]/30'
-                      : 'bg-gradient-to-br from-indigo-500 to-blue-600 border border-indigo-300'
+                    onClick={() => setShowQuiz(true)}
+                    className={`group rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left relative overflow-hidden border ${darkMode
+                      ? 'bg-gradient-to-br from-[#161b26] to-[#1c2333] border-indigo-500/30'
+                      : 'bg-gradient-to-br from-indigo-600 to-blue-700 border-indigo-400 text-white shadow-xl'
                       }`}
                   >
-                    {/* Sparkle animation */}
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Sparkles className="w-6 h-6 text-white animate-pulse" />
+                    <div className="text-5xl mb-4">🎯</div>
+                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-white'}`}>
+                      AI Career Quiz
+                    </h3>
+                    <p className={`text-sm mb-4 ${darkMode ? 'text-slate-300' : 'text-indigo-100'}`}>
+                      5-minute intelligent assessment matching your skills, interests & work style
+                    </p>
+                    <div className="flex items-center gap-2 font-bold text-sm text-indigo-400 group-hover:gap-3 transition-all">
+                      <span className={darkMode ? 'text-indigo-300' : 'text-white'}>Start Assessment</span>
+                      <ChevronRight className={`w-4 h-4 ${darkMode ? 'text-indigo-300' : 'text-white'}`} />
                     </div>
-
-                    <div className="relative z-10">
-                      <div className="text-6xl mb-4">🎯</div>
-                      <h3 className="text-2xl font-black text-white mb-2">
-                        Take Career Quiz
-                      </h3>
-                      <p className="text-white/80 mb-4">
-                        AI-powered recommendations based on your interests
-                      </p>
-                      <div className="flex items-center gap-2 text-white font-semibold group-hover:gap-3 transition-all">
-                        <span>Start Quiz</span>
-                        <ChevronRight className="w-5 h-5" />
-                      </div>
-                    </div>
-
-                    {/* Animated gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
 
                   {/* AI Career Advisor Pro Card */}
                   <button
                     onClick={() => setShowAdvancedChatbot(true)}
-                    className={`group relative rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left overflow-hidden ${darkMode
-                      ? 'bg-gradient-to-br from-[#7c4a9e] to-[#5a3d8a] border border-[#a869d6]/30'
-                      : 'bg-gradient-to-br from-pink-500 to-rose-600 border border-pink-300'
+                    className={`group rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left relative overflow-hidden border ${darkMode
+                      ? 'bg-gradient-to-br from-[#1c1626] to-[#261c33] border-purple-500/30'
+                      : 'bg-gradient-to-br from-purple-600 to-pink-600 border-purple-400 text-white shadow-xl'
                       }`}
                   >
-                    {/* Sparkle animation */}
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Sparkles className="w-6 h-6 text-white animate-pulse" />
-                    </div>
-
-                    <div className="relative z-10">
-                      <div className="text-6xl mb-4">✨</div>
-                      <h3 className="text-2xl font-black text-white mb-2">
-                        AI Career Advisor Pro
-                      </h3>
-                      <p className="text-white/80 mb-4">
-                        Resume analysis, interview prep, salary negotiation & more
-                      </p>
-                      <div className="flex items-center gap-2 text-white font-semibold group-hover:gap-3 transition-all">
-                        <span>Chat Now</span>
-                        <ChevronRight className="w-5 h-5" />
-                      </div>
-                    </div>
-
-                    {/* Animated gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </button>
-
-                  {/* Resume Uploader Card */}
-                  <button
-                    onClick={() => setShowResumeUploader(true)}
-                    className={`group relative rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left overflow-hidden ${darkMode
-                      ? 'bg-gradient-to-br from-[#274060] to-[#1e2b3a] border border-[#6b8aa3]/30'
-                      : 'bg-gradient-to-br from-green-500 to-emerald-600 border border-green-300'
-                      }`}
-                  >
-                    <div className="relative z-10">
-                      <div className="text-6xl mb-4">📄</div>
-                      <h3 className="text-2xl font-black text-white mb-2">Upload Resume</h3>
-                      <p className="text-white/80 mb-4">Paste or upload your resume to get instant feedback</p>
-                      <div className="flex items-center gap-2 text-white font-semibold">
-                        <span>Upload</span>
-                        <ChevronRight className="w-5 h-5" />
-                      </div>
+                    <div className="text-5xl mb-4">✨</div>
+                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-white'}`}>
+                      AI Career Advisor Pro
+                    </h3>
+                    <p className={`text-sm mb-4 ${darkMode ? 'text-slate-300' : 'text-purple-100'}`}>
+                      Interactive chat for salary negotiation, interview prep, and career transitions
+                    </p>
+                    <div className="flex items-center gap-2 font-bold text-sm text-purple-400 group-hover:gap-3 transition-all">
+                      <span className={darkMode ? 'text-purple-300' : 'text-white'}>Launch Chat</span>
+                      <ChevronRight className={`w-4 h-4 ${darkMode ? 'text-purple-300' : 'text-white'}`} />
                     </div>
                   </button>
 
-                  {/* Student Profile Card */}
+                  {/* Skills Gap Analyzer Card */}
                   <button
-                    onClick={() => setShowStudentProfile(true)}
-                    className={`group relative rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left overflow-hidden ${darkMode
-                      ? 'bg-gradient-to-br from-[#3a3740] to-[#5a5865] border border-[#9b98a6]/20'
-                      : 'bg-gradient-to-br from-yellow-400 to-orange-500 border border-yellow-300'
+                    onClick={() => setShowSkillsAnalyzer(true)}
+                    className={`group rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left relative overflow-hidden border ${darkMode
+                      ? 'bg-gradient-to-br from-[#162226] to-[#1c2e33] border-cyan-500/30'
+                      : 'bg-gradient-to-br from-cyan-600 to-teal-700 border-cyan-400 text-white shadow-xl'
                       }`}
                   >
-                    <div className="relative z-10">
-                      <div className="text-6xl mb-4">🙋‍♀️</div>
-                      <h3 className="text-2xl font-black text-white mb-2">Student Profile</h3>
-                      <p className="text-white/80 mb-4">Save your education, skills, and goals</p>
-                      <div className="flex items-center gap-2 text-white font-semibold">
-                        <span>Edit Profile</span>
-                        <ChevronRight className="w-5 h-5" />
-                      </div>
+                    <div className="text-5xl mb-4">🎯</div>
+                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-white'}`}>
+                      Skills Gap Analyzer
+                    </h3>
+                    <p className={`text-sm mb-4 ${darkMode ? 'text-slate-300' : 'text-cyan-100'}`}>
+                      AI-powered skill analysis & tailored learning roadmap for your target job
+                    </p>
+                    <div className="flex items-center gap-2 font-bold text-sm text-cyan-400 group-hover:gap-3 transition-all">
+                      <span className={darkMode ? 'text-cyan-300' : 'text-white'}>Analyze Skills</span>
+                      <ChevronRight className={`w-4 h-4 ${darkMode ? 'text-cyan-300' : 'text-white'}`} />
                     </div>
-                  </button>
-
-                  {/* Interview Simulator Card */}
-                  <button
-                    onClick={() => setShowInterviewSimulator(true)}
-                    className={`group relative rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left overflow-hidden ${darkMode
-                      ? 'bg-gradient-to-br from-[#34526b] to-[#224155] border border-[#6b98ad]/30'
-                      : 'bg-gradient-to-br from-sky-500 to-indigo-500 border border-sky-300'
-                      }`}
-                  >
-                    <div className="relative z-10">
-                      <div className="text-6xl mb-4">🎤</div>
-                      <h3 className="text-2xl font-black text-white mb-2">Interview Simulator</h3>
-                      <p className="text-white/80 mb-4">Practice common questions and get AI guidance</p>
-                      <div className="flex items-center gap-2 text-white font-semibold">
-                        <span>Start</span>
-                        <ChevronRight className="w-5 h-5" />
-                      </div>
-                    </div>
-                  </button>
-
-                  {/* Career News Card */}
-                  <button
-                    onClick={() => setShowNews(true)}
-                    className={`group relative rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left overflow-hidden ${darkMode
-                      ? 'bg-gradient-to-br from-[#505081] to-[#8686AC] border border-[#8686AC]/30'
-                      : 'bg-gradient-to-br from-purple-500 to-pink-600 border border-purple-300'
-                      }`}
-                  >
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Sparkles className="w-6 h-6 text-white animate-pulse" />
-                    </div>
-
-                    <div className="relative z-10">
-                      <div className="text-6xl mb-4">📰</div>
-                      <h3 className="text-2xl font-black text-white mb-2">
-                        Latest Career News
-                      </h3>
-                      <p className="text-white/80 mb-4">
-                        Stay updated with exams, scholarships, and trends
-                      </p>
-                      <div className="flex items-center gap-2 text-white font-semibold group-hover:gap-3 transition-all">
-                        <span>View News</span>
-                        <ChevronRight className="w-5 h-5" />
-                      </div>
-                    </div>
-
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </button>
-
-                  {/* Compare Careers Card */}
-                  <button
-                    onClick={() => setShowComparison(true)}
-                    className={`group relative rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left overflow-hidden ${darkMode
-                      ? 'bg-gradient-to-br from-[#3d3d6b] to-[#6b6b9e] border border-[#6b6b9e]/30'
-                      : 'bg-gradient-to-br from-blue-500 to-indigo-600 border border-blue-300'
-                      }`}
-                  >
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Sparkles className="w-6 h-6 text-white animate-pulse" />
-                    </div>
-
-                    <div className="relative z-10">
-                      <div className="text-6xl mb-4">⚖️</div>
-                      <h3 className="text-2xl font-black text-white mb-2">
-                        Compare Careers
-                      </h3>
-                      <p className="text-white/80 mb-4">
-                        Side-by-side comparison of salary, skills, outlook
-                      </p>
-                      <div className="flex items-center gap-2 text-white font-semibold group-hover:gap-3 transition-all">
-                        <span>Start Comparing</span>
-                        <ChevronRight className="w-5 h-5" />
-                      </div>
-                    </div>
-
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </button>
-
-                  {/* AI Skills Gap Analyzer Card */}
-                  <button
-                    onClick={() => handleProtectedAction(() => setShowSkillsAnalyzer(true))}
-                    className={`group relative rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left overflow-hidden ${darkMode
-                      ? 'bg-gradient-to-br from-[#2d3d5a] to-[#4a6b9e] border border-[#4a6b9e]/30'
-                      : 'bg-gradient-to-br from-cyan-500 to-blue-600 border border-cyan-300'
-                      }`}
-                  >
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Sparkles className="w-6 h-6 text-white animate-pulse" />
-                    </div>
-
-                    <div className="relative z-10">
-                      <div className="text-6xl mb-4">🎯</div>
-                      <h3 className="text-2xl font-black text-white mb-2">
-                        Skills Gap Analyzer
-                      </h3>
-                      <p className="text-white/80 mb-4">
-                        AI-powered skill analysis & learning roadmap
-                      </p>
-                      <div className="flex items-center gap-2 text-white font-semibold group-hover:gap-3 transition-all">
-                        <span>Analyze Now</span>
-                        <ChevronRight className="w-5 h-5" />
-                      </div>
-                    </div>
-
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </button>
 
                   {/* Career Roadmap Builder Card */}
                   <button
-                    onClick={() => handleProtectedAction(() => setShowRoadmapBuilder(true))}
-                    className={`group relative rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left overflow-hidden ${darkMode
-                      ? 'bg-gradient-to-br from-[#4a2d5a] to-[#7c4a9e] border border-[#7c4a9e]/30'
-                      : 'bg-gradient-to-br from-violet-500 to-purple-600 border border-violet-300'
+                    onClick={() => setShowRoadmapBuilder(true)}
+                    className={`group rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left relative overflow-hidden border ${darkMode
+                      ? 'bg-gradient-to-br from-[#261e16] to-[#33281c] border-amber-500/30'
+                      : 'bg-gradient-to-br from-amber-600 to-orange-600 border-amber-400 text-white shadow-xl'
                       }`}
                   >
-                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Sparkles className="w-6 h-6 text-white animate-pulse" />
+                    <div className="text-5xl mb-4">🗺️</div>
+                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-white'}`}>
+                      Roadmap Builder
+                    </h3>
+                    <p className={`text-sm mb-4 ${darkMode ? 'text-slate-300' : 'text-amber-100'}`}>
+                      Build customized stage-by-stage milestones from student to senior lead
+                    </p>
+                    <div className="flex items-center gap-2 font-bold text-sm text-amber-400 group-hover:gap-3 transition-all">
+                      <span className={darkMode ? 'text-amber-300' : 'text-white'}>Build Roadmap</span>
+                      <ChevronRight className={`w-4 h-4 ${darkMode ? 'text-amber-300' : 'text-white'}`} />
                     </div>
+                  </button>
 
-                    <div className="relative z-10">
-                      <div className="text-6xl mb-4">🗺️</div>
-                      <h3 className="text-2xl font-black text-white mb-2">
-                        Roadmap Builder
-                      </h3>
-                      <p className="text-white/80 mb-4">
-                        Build your step-by-step career journey
-                      </p>
-                      <div className="flex items-center gap-2 text-white font-semibold group-hover:gap-3 transition-all">
-                        <span>Start Building</span>
-                        <ChevronRight className="w-5 h-5" />
-                      </div>
+                  {/* College Finder Card */}
+                  <button
+                    onClick={() => setShowCollegeFinder(true)}
+                    className={`group rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left relative overflow-hidden border ${darkMode
+                      ? 'bg-gradient-to-br from-[#16261f] to-[#1c3328] border-emerald-500/30'
+                      : 'bg-gradient-to-br from-emerald-600 to-teal-700 border-emerald-400 text-white shadow-xl'
+                      }`}
+                  >
+                    <div className="text-5xl mb-4">🏫</div>
+                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-white'}`}>
+                      College Finder
+                    </h3>
+                    <p className={`text-sm mb-4 ${darkMode ? 'text-slate-300' : 'text-emerald-100'}`}>
+                      Explore 500+ colleges with ratings, entrance exams, and direct links
+                    </p>
+                    <div className="flex items-center gap-2 font-bold text-sm text-emerald-400 group-hover:gap-3 transition-all">
+                      <span className={darkMode ? 'text-emerald-300' : 'text-white'}>Find Colleges</span>
+                      <ChevronRight className={`w-4 h-4 ${darkMode ? 'text-emerald-300' : 'text-white'}`} />
                     </div>
+                  </button>
 
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/0 to-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  {/* Career Comparison Card */}
+                  <button
+                    onClick={() => setShowComparison(true)}
+                    className={`group rounded-3xl p-8 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 text-left relative overflow-hidden border ${darkMode
+                      ? 'bg-gradient-to-br from-[#181626] to-[#201c33] border-blue-500/30'
+                      : 'bg-gradient-to-br from-blue-600 to-indigo-700 border-blue-400 text-white shadow-xl'
+                      }`}
+                  >
+                    <div className="text-5xl mb-4">⚖️</div>
+                    <h3 className={`text-2xl font-black mb-2 ${darkMode ? 'text-white' : 'text-white'}`}>
+                      Compare Careers
+                    </h3>
+                    <p className={`text-sm mb-4 ${darkMode ? 'text-slate-300' : 'text-blue-100'}`}>
+                      Side-by-side comparison of salaries, required skills, and career outlooks
+                    </p>
+                    <div className="flex items-center gap-2 font-bold text-sm text-blue-400 group-hover:gap-3 transition-all">
+                      <span className={darkMode ? 'text-blue-300' : 'text-white'}>Compare Now</span>
+                      <ChevronRight className={`w-4 h-4 ${darkMode ? 'text-blue-300' : 'text-white'}`} />
+                    </div>
                   </button>
                 </div>
 
                 <WhyChooseSection darkMode={darkMode} />
 
-                {/* Domain Selection */}
-                <div id="domains">
+                {/* Domain Selection Section */}
+                <div id="domains" className="pt-4">
                   <div className="text-center mb-12">
-                    <h2 className={`text-4xl font-black ${darkMode ? 'text-white' : 'text-gray-900'} mb-3`}>
+                    <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-slate-900'} mb-3`}>
                       Explore Career Domains
                     </h2>
-                    <p className={`text-xl ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                      Choose your area of interest to discover career paths
+                    <p className={`text-base sm:text-lg ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                      Select an area of interest to discover specialized paths and salary data
                     </p>
                   </div>
 
@@ -545,64 +421,33 @@ function App() {
                       <button
                         key={key}
                         onClick={() => setSelectedDomain(key)}
-                        className={`group relative ${darkMode ? 'bg-[#1a1f2e] border-[#272757] hover:border-[#505081]' : 'bg-white border-indigo-100 hover:border-indigo-300'} rounded-2xl p-8 border-2 transition-all duration-300 text-left overflow-hidden hover:shadow-2xl hover:-translate-y-1`}
+                        className={`group relative rounded-3xl p-8 border transition-all duration-300 text-left overflow-hidden hover:shadow-2xl hover:-translate-y-1.5 ${darkMode
+                          ? 'bg-[#161b26] border-slate-800 hover:border-indigo-500/50'
+                          : 'bg-white border-slate-200 hover:border-indigo-300 shadow-md'
+                          }`}
                       >
-                        {/* Animated gradient overlay on hover */}
-                        <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${darkMode
-                          ? 'bg-gradient-to-br from-[#272757]/5 via-transparent to-[#505081]/10'
-                          : 'bg-gradient-to-br from-indigo-50/50 via-transparent to-blue-50/50'
-                          }`}></div>
-
-                        {/* Sparkle particles on hover */}
-                        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300">
-                          <div className="relative">
-                            <Sparkles className={`w-5 h-5 ${darkMode ? 'text-[#8686AC]' : 'text-indigo-400'} animate-pulse`} />
-                            <div className="absolute inset-0 blur-md opacity-75">
-                              <Sparkles className={`w-5 h-5 ${darkMode ? 'text-[#8686AC]' : 'text-indigo-400'}`} />
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Content */}
                         <div className="relative z-10">
-                          {/* Icon with gradient background */}
-                          <div className={`mb-6 inline-flex items-center justify-center w-20 h-20 rounded-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 ${darkMode
-                            ? 'bg-gradient-to-br from-[#272757] to-[#505081] group-hover:shadow-lg group-hover:shadow-[#505081]/50'
-                            : 'bg-gradient-to-br from-indigo-100 to-blue-100 group-hover:shadow-lg group-hover:shadow-indigo-200'
-                            }`}>
-                            <span className="text-5xl filter drop-shadow-lg transform group-hover:scale-110 transition-transform duration-300">{domain.icon}</span>
+                          {/* Domain Icon */}
+                          <div className="mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-slate-800/80 border border-indigo-100 dark:border-slate-700 shadow-sm group-hover:scale-110 transition-transform">
+                            <span className="text-4xl">{domain.icon}</span>
                           </div>
 
                           {/* Title */}
-                          <h3 className={`text-2xl font-bold mb-3 transition-all duration-300 ${darkMode
-                            ? 'text-white group-hover:text-[#8686AC]'
-                            : 'text-gray-900 group-hover:text-indigo-600'
-                            }`}>
+                          <h3 className={`text-2xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-indigo-400' : 'text-slate-900 group-hover:text-indigo-600'}`}>
                             {domain.name}
                           </h3>
 
                           {/* Subtitle */}
-                          <p className={`text-sm mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            {domain.subFields.length} specialized fields
+                          <p className={`text-xs font-semibold mb-6 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>
+                            {domain.subFields.length} specialized fields • 25+ career tracks
                           </p>
 
-                          {/* Explore Button */}
-                          <div className={`flex items-center gap-2 font-semibold group-hover:gap-3 transition-all duration-300 ${darkMode ? 'text-[#8686AC]' : 'text-indigo-600'
-                            }`}>
-                            <span>Explore</span>
-                            <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                          {/* Explore Link */}
+                          <div className={`flex items-center gap-1.5 font-bold text-sm ${darkMode ? 'text-indigo-400' : 'text-indigo-600'} group-hover:gap-2.5 transition-all`}>
+                            <span>Explore Fields</span>
+                            <ChevronRight className="w-4 h-4" />
                           </div>
                         </div>
-
-                        {/* Bottom glow accent */}
-                        <div className={`absolute bottom-0 left-0 right-0 h-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${darkMode
-                          ? 'bg-gradient-to-r from-transparent via-[#505081] to-transparent'
-                          : 'bg-gradient-to-r from-transparent via-indigo-400 to-transparent'
-                          }`}></div>
-
-                        {/* Corner sparkle effects */}
-                        <div className="absolute bottom-4 left-4 w-2 h-2 rounded-full bg-[#8686AC] opacity-0 group-hover:opacity-100 group-hover:animate-ping"></div>
-                        <div className="absolute top-4 left-4 w-1 h-1 rounded-full bg-[#505081] opacity-0 group-hover:opacity-100 group-hover:animate-ping animation-delay-200"></div>
                       </button>
                     ))}
                   </div>
@@ -614,18 +459,18 @@ function App() {
                 <div className="mb-6">
                   <button
                     onClick={() => setSelectedDomain(null)}
-                    className={`${darkMode ? 'text-teal-400 hover:text-teal-300' : 'text-teal-600 hover:text-teal-700'} font-semibold flex items-center gap-2`}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:opacity-80 transition-all"
                   >
-                    ← Back to Domains
+                    ← Back to All Domains
                   </button>
                 </div>
 
                 <div className="text-center mb-12">
-                  <h2 className={`text-4xl font-black ${darkMode ? 'text-white' : 'text-gray-900'} mb-3`}>
+                  <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-slate-900'} mb-3`}>
                     {CAREER_DATABASE[selectedDomain].name}
                   </h2>
-                  <p className={`text-xl ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                    Select a specialized field
+                  <p className={`text-base sm:text-lg ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
+                    Select a specialization field to view career pathways
                   </p>
                 </div>
 
@@ -634,53 +479,48 @@ function App() {
                     <button
                       key={subField.id}
                       onClick={() => setSelectedSubField(subField)}
-                      className={`group relative ${darkMode ? 'bg-[#1a1f2e] border-gray-800 hover:border-cyan-500' : 'bg-white border-gray-200 hover:border-cyan-400'} rounded-2xl p-6 border-2 transition-all duration-300 text-left overflow-hidden`}
+                      className={`group rounded-3xl p-8 border transition-all duration-300 text-left hover:shadow-2xl hover:-translate-y-1 ${darkMode
+                        ? 'bg-[#161b26] border-slate-800 hover:border-cyan-500/50'
+                        : 'bg-white border-slate-200 hover:border-cyan-400 shadow-md'
+                        }`}
                     >
-                      {/* Hover Effect */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-                      <div className="relative z-10">
-                        <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-2 group-hover:text-cyan-400 transition-colors`}>
-                          {subField.name}
-                        </h3>
-                        <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-4 leading-relaxed`}>
-                          {subField.description}
-                        </p>
-                        <div className="flex items-center justify-between">
-                          <span className={`text-sm ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>
-                            {subField.careers.length} career options
-                          </span>
-                          <ChevronRight className={`w-5 h-5 text-orange-500 group-hover:translate-x-1 transition-all`} />
+                      <h3 className={`text-2xl font-bold mb-3 ${darkMode ? 'text-white group-hover:text-cyan-400' : 'text-slate-900 group-hover:text-cyan-600'} transition-colors`}>
+                        {subField.name}
+                      </h3>
+                      <p className={`text-sm mb-6 leading-relaxed ${darkMode ? 'text-slate-400' : 'text-slate-600'}`}>
+                        {subField.description}
+                      </p>
+                      <div className="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800 text-xs font-bold">
+                        <span className={darkMode ? 'text-slate-400' : 'text-slate-500'}>
+                          {subField.careers.length} career options
+                        </span>
+                        <div className="flex items-center gap-1 text-cyan-500 group-hover:gap-2 transition-all">
+                          <span>View Careers</span>
+                          <ChevronRight className="w-4 h-4" />
                         </div>
                       </div>
-
-                      {/* Bottom Border Accent */}
-                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </button>
                   ))}
                 </div>
               </div>
             ) : (
-              // Career Listing
-              <div className={`pb-20 rounded-3xl ${darkMode ? 'bg-[#0f1419]' : 'bg-gradient-to-br from-slate-50 to-teal-50'}`}>
+              // Career Listing View
+              <div>
                 <div className="mb-6 flex items-center gap-4">
                   <button
                     onClick={() => setSelectedSubField(null)}
-                    className={`${darkMode ? 'text-teal-400 hover:text-teal-300' : 'text-teal-600 hover:text-teal-700'} font-semibold flex items-center gap-2`}
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-bold bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 hover:opacity-80 transition-all"
                   >
-                    ← Back to Fields
+                    ← Back to Specializations
                   </button>
                 </div>
 
                 <div className="text-center mb-12">
-                  <h2 className={`text-4xl font-black ${darkMode ? 'text-white' : 'text-gray-900'} mb-3`}>
+                  <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-slate-900'} mb-3`}>
                     {selectedSubField.name}
                   </h2>
-                  <p className={`text-xl ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                  <p className={`text-base sm:text-lg ${darkMode ? 'text-slate-300' : 'text-slate-600'}`}>
                     {selectedSubField.description}
-                  </p>
-                  <p className={`text-lg ${darkMode ? 'text-gray-500' : 'text-gray-500'} mt-2`}>
-                    {selectedSubField.careers.length} career paths available
                   </p>
                 </div>
 
@@ -689,8 +529,8 @@ function App() {
                     <CareerCard
                       key={idx}
                       career={career}
-                      onSelect={(career) => {
-                        setSelectedCareer(career);
+                      onSelect={(c) => {
+                        setSelectedCareer(c);
                         trackCareerExplored();
                       }}
                       darkMode={darkMode}
@@ -717,76 +557,114 @@ function App() {
           )}
 
           {/* Footer */}
-          <footer className={`${darkMode ? 'bg-gray-900 border-gray-800' : 'bg-white border-gray-200'} border-t mt-20`}>
-            <div className="max-w-7xl mx-auto px-4 py-12">
-              <div className="grid md:grid-cols-4 gap-8">
+          <footer className={`border-t mt-20 ${darkMode ? 'bg-[#0a0e17] border-slate-800 text-slate-400' : 'bg-white border-slate-200 text-slate-600'}`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
                 <div>
-                  <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-4`}>
-                    COGNITRIAL
-                  </h3>
-                  <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'} mb-4`}>
-                    Think Smart. Choose Right. Grow Ahead.
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-7 h-7 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm">💡</div>
+                    <span className={`text-lg font-black tracking-tight ${darkMode ? 'text-white' : 'text-slate-900'}`}>COGNITRAIL</span>
+                  </div>
+                  <p className="text-xs leading-relaxed">
+                    Think Smart. Choose Right. Grow Ahead. AI-driven career guidance for next-gen students.
                   </p>
                 </div>
+
                 <div>
-                  <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-4`}>
+                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-3 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                     Quick Links
                   </h4>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 text-xs">
                     <li>
-                      <button className={`${darkMode ? 'text-gray-400 hover:text-teal-400' : 'text-gray-600 hover:text-teal-600'}`}>
+                      <button
+                        onClick={() => setInfoModalContent({
+                          title: 'About Cognitrail',
+                          icon: Info,
+                          content: 'Cognitrail is an intelligent career navigation platform designed to bridge the gap between student aspirations and real-world career success. With real-time salary insights, 500+ college listings, AI assessment quizzes, roadmap builders, and skills gap analysis, Cognitrail equips every student with clear, actionable pathways.'
+                        })}
+                        className="hover:text-indigo-500 transition-colors"
+                      >
                         About Us
                       </button>
                     </li>
                     <li>
-                      <button className={`${darkMode ? 'text-gray-400 hover:text-teal-400' : 'text-gray-600 hover:text-teal-600'}`}>
-                        Contact
+                      <button
+                        onClick={() => setInfoModalContent({
+                          title: 'Contact Support',
+                          icon: Mail,
+                          content: 'Have questions, suggestions, or feedback? Reach our academic counseling and technical support team anytime at support@cognitrail.ai or through our AI Advisor Pro assistant.'
+                        })}
+                        className="hover:text-indigo-500 transition-colors"
+                      >
+                        Contact & Support
                       </button>
                     </li>
                   </ul>
                 </div>
+
                 <div>
-                  <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-4`}>
+                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-3 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
                     Resources
                   </h4>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 text-xs">
                     <li>
-                      <button className={`${darkMode ? 'text-gray-400 hover:text-teal-400' : 'text-gray-600 hover:text-teal-600'}`}>
+                      <button
+                        onClick={() => setInfoModalContent({
+                          title: 'Career Exploration Guide',
+                          icon: FileText,
+                          content: 'Our 2026 Comprehensive Career Guide covers high-growth industries including Artificial Intelligence, Clean Energy, Biomedical Engineering, Fintech, Corporate Law, and Creative Design with required entrance exams and degrees.'
+                        })}
+                        className="hover:text-indigo-500 transition-colors"
+                      >
                         Career Guide
                       </button>
                     </li>
                     <li>
-                      <button className={`${darkMode ? 'text-gray-400 hover:text-teal-400' : 'text-gray-600 hover:text-teal-600'}`}>
-                        Blog
+                      <button
+                        onClick={() => setShowNews(true)}
+                        className="hover:text-indigo-500 transition-colors"
+                      >
+                        Exams & News Feed
                       </button>
                     </li>
                   </ul>
                 </div>
+
                 <div>
-                  <h4 className={`font-bold ${darkMode ? 'text-white' : 'text-gray-900'} mb-4`}>
-                    Legal
+                  <h4 className={`text-xs font-bold uppercase tracking-wider mb-3 ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                    Trust & Legal
                   </h4>
-                  <ul className="space-y-2">
+                  <ul className="space-y-2 text-xs">
                     <li>
-                      <button className={`${darkMode ? 'text-gray-400 hover:text-teal-400' : 'text-gray-600 hover:text-teal-600'}`}>
+                      <button
+                        onClick={() => setInfoModalContent({
+                          title: 'Privacy Policy',
+                          icon: Shield,
+                          content: 'Cognitrail values your privacy. Quiz responses and profile data are stored securely to generate personalized recommendations and are never sold to third-party advertisers.'
+                        })}
+                        className="hover:text-indigo-500 transition-colors"
+                      >
                         Privacy Policy
                       </button>
                     </li>
                     <li>
-                      <button className={`${darkMode ? 'text-gray-400 hover:text-teal-400' : 'text-gray-600 hover:text-teal-600'}`}>
+                      <button
+                        onClick={() => setInfoModalContent({
+                          title: 'Terms of Service',
+                          icon: FileText,
+                          content: 'All recommendations and guides on Cognitrail are intended for informational and educational guidance purposes. Students are advised to verify official college admissions and entrance exam notifications independently.'
+                        })}
+                        className="hover:text-indigo-500 transition-colors"
+                      >
                         Terms of Service
                       </button>
                     </li>
                   </ul>
                 </div>
               </div>
-              <div className={`${darkMode ? 'border-gray-800' : 'border-gray-200'} border-t mt-8 pt-8 text-center`}>
-                <p className={`${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  © 2026 COGNITRIAL. All rights reserved.
-                </p>
-                <p className={`${darkMode ? 'text-gray-500' : 'text-gray-500'} text-sm mt-2`}>
-                  150+ career paths • 192+ colleges • Updated for 2026
-                </p>
+
+              <div className="pt-8 border-t border-slate-200 dark:border-slate-800 text-center text-xs">
+                <p>© 2026 COGNITRAIL • 150+ Career Paths • 500+ Top Colleges • AI Powered Guidance</p>
               </div>
             </div>
           </footer>
@@ -798,28 +676,28 @@ function App() {
         <CareerQuiz
           onClose={() => setShowQuiz(false)}
           darkMode={darkMode}
-          onComplete={(results) => {
-            console.log('Quiz results:', results);
+          onComplete={(res) => {
             trackQuizComplete();
+          }}
+          onSelectCareer={(career) => {
+            setSelectedCareer(career);
           }}
         />
       )}
 
       {/* Career News Modal */}
       {showNews && (
-        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#0f1419]' : 'bg-gradient-to-br from-blue-50 via-indigo-50 to-slate-50'
-          }`}>
+        <div className={`fixed inset-0 z-50 overflow-y-auto ${darkMode ? 'bg-[#0a0e17]' : 'bg-slate-50'}`}>
           <div className="max-w-7xl mx-auto px-4 py-8">
             <div className="flex items-center justify-between mb-8">
-              <h2 className={`text-3xl font-black ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                Career News & Updates
+              <h2 className={`text-3xl font-black ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                Career News & Exam Updates
               </h2>
               <button
                 onClick={() => setShowNews(false)}
-                className={`p-2 rounded-xl transition-colors ${darkMode ? 'bg-[#1a1f2e] hover:bg-[#272757]' : 'bg-white hover:bg-gray-100'
-                  }`}
+                className={`p-2.5 rounded-xl transition-colors ${darkMode ? 'bg-slate-800 text-slate-300 hover:text-white' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'}`}
               >
-                <span className={`text-2xl ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>×</span>
+                <X className="w-6 h-6" />
               </button>
             </div>
             <CareerNewsFeed darkMode={darkMode} />
@@ -847,36 +725,12 @@ function App() {
       {!showAdvancedChatbot && !showChatbot && (
         <button
           onClick={() => setShowAdvancedChatbot(true)}
-          className={`fixed bottom-6 right-6 z-40 w-16 h-16 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 ${darkMode
-            ? 'bg-gradient-to-r from-pink-600 to-rose-600'
-            : 'bg-gradient-to-r from-pink-500 to-rose-600'
-            } flex items-center justify-center group`}
+          className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full shadow-2xl bg-gradient-to-r from-indigo-600 to-pink-600 text-white flex items-center justify-center hover:scale-110 transition-all cursor-pointer group"
+          title="Open AI Career Advisor Pro"
         >
-          {/* Pulse animation */}
-          <div className={`absolute inset-0 rounded-full animate-ping opacity-75 ${darkMode ? 'bg-rose-600' : 'bg-pink-500'
-            }`}></div>
-
-          {/* Icon */}
-          <div className="relative">
-            <svg
-              className="w-8 h-8 text-white transform group-hover:rotate-12 transition-transform"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-              />
-            </svg>
-          </div>
-
-          {/* Notification badge */}
-          <div className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center text-white text-xs font-bold animate-bounce">
-            💬
-          </div>
+          <div className="absolute inset-0 rounded-full animate-ping opacity-30 bg-indigo-500"></div>
+          <Sparkles className="w-6 h-6 transform group-hover:rotate-12 transition-transform" />
+          <div className="absolute -top-1 -right-1 w-4 h-4 bg-emerald-500 rounded-full border-2 border-white dark:border-black"></div>
         </button>
       )}
 
@@ -925,158 +779,38 @@ function App() {
         />
       )}
 
-      <style>{`
-        /* Custom Scrollbar with Auto-Hide Effect */
-        ::-webkit-scrollbar {
-          width: 12px;
-          height: 12px;
-        }
-        
-        ::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-          background: linear-gradient(180deg, #6366f1, #8b5cf6);
-          border-radius: 10px;
-          border: 2px solid transparent;
-          background-clip: padding-box;
-          transition: all 0.3s ease;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(180deg, #4f46e5, #7c3aed);
-          border: 2px solid transparent;
-          background-clip: padding-box;
-        }
-        
-        /* Auto-hide scrollbar - only show on hover */
-        * {
-          scrollbar-width: thin;
-          scrollbar-color: #8b5cf6 transparent;
-        }
-        
-        body:not(:hover)::-webkit-scrollbar-thumb {
-          opacity: 0;
-          transition: opacity 0.3s ease;
-        }
-        
-        /* Smooth scrollbar appearance */
-        html {
-          scroll-behavior: smooth;
-        }
-        
-        /* Dark mode scrollbar */
-        .dark ::-webkit-scrollbar-thumb {
-          background: linear-gradient(180deg, #505081, #8686AC);
-        }
-        
-        .dark ::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(180deg, #8686AC, #505081);
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        @keyframes slideUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideDown {
-          from { opacity: 0; transform: translateY(-10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-20px); }
-        }
-        @keyframes blob {
-          0%, 100% { transform: translate(0px, 0px) scale(1); }
-          33% { transform: translate(30px, -50px) scale(1.1); }
-          66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-        @keyframes shimmer {
-          0% { background-position: -1000px 0; }
-          100% { background-position: 1000px 0; }
-        }
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes ping-slow {
-          0% { transform: scale(0.95); opacity: 1; }
-          50% { transform: scale(1.05); opacity: 0.5; }
-          100% { transform: scale(0.95); opacity: 0; }
-        }
-        @keyframes pulse-glow {
-          0%, 100% { 
-            filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.5));
-            transform: scale(1);
-          }
-          50% { 
-            filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.8));
-            transform: scale(1.05);
-          }
-        }
-        @keyframes gradient-x {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-        }
-        @keyframes bounce-in {
-          0% { transform: scale(0); opacity: 0; }
-          50% { transform: scale(1.1); }
-          100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes slide-in-right {
-          from { transform: translateX(100%); opacity: 0; }
-          to { transform: translateX(0); opacity: 1; }
-        }
-        
-        .animate-fadeIn { animation: fadeIn 0.8s ease-out; }
-        .animate-slideUp { animation: slideUp 0.6s ease-out; }
-        .animate-slideDown { animation: slideDown 0.3s ease-out; }
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-blob { animation: blob 7s ease-in-out infinite; }
-        .animate-ping-slow { animation: ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite; }
-        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-        .animate-gradient-x { 
-          background-size: 200% 200%;
-          animation: gradient-x 3s ease infinite; 
-        }
-        .animate-bounce-in { animation: bounce-in 0.5s ease-out; }
-        .animate-slide-in-right { animation: slide-in-right 0.4s ease-out; }
-        
-        .animate-shimmer {
-          background-size: 1000px 100%;
-          animation: shimmer 2s infinite;
-        }
-        .animate-spin-slow { animation: spin-slow 3s linear infinite; }
-        
-        .animation-delay-200 { animation-delay: 0.2s; }
-        .animation-delay-400 { animation-delay: 0.4s; }
-        .animation-delay-500 { animation-delay: 0.5s; }
-        .animation-delay-1000 { animation-delay: 1s; }
-        .animation-delay-1500 { animation-delay: 1.5s; }
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animation-delay-3000 { animation-delay: 3s; }
-        .animation-delay-4000 { animation-delay: 4s; }
-        
-        .bg-grid-pattern {
-          background-image: 
-            linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
-          background-size: 50px 50px;
-        }
-        
-        .hover-lift {
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .hover-lift:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-      `}</style>
+      {/* Informational Modal for Footer Links */}
+      {infoModalContent && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className={`max-w-lg w-full rounded-3xl p-6 sm:p-8 border shadow-2xl ${darkMode ? 'bg-[#161b26] border-slate-800 text-slate-200' : 'bg-white border-slate-200 text-slate-800'}`}>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 rounded-xl bg-indigo-600 text-white">
+                  <infoModalContent.icon className="w-5 h-5" />
+                </div>
+                <h3 className={`text-xl font-black ${darkMode ? 'text-white' : 'text-slate-900'}`}>
+                  {infoModalContent.title}
+                </h3>
+              </div>
+              <button
+                onClick={() => setInfoModalContent(null)}
+                className="p-2 rounded-xl text-slate-400 hover:text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <p className="text-sm leading-relaxed mb-6 text-slate-300 dark:text-slate-300">
+              {infoModalContent.content}
+            </p>
+            <button
+              onClick={() => setInfoModalContent(null)}
+              className="w-full py-3 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-500 text-white transition-all text-sm"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
