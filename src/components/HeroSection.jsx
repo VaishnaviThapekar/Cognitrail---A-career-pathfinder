@@ -19,11 +19,11 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
       </div>
 
       {/* Main Content Container */}
-      <div className="relative grid lg:grid-cols-12 gap-8 items-center p-8 sm:p-12 lg:p-16">
+      <div className="relative grid lg:grid-cols-12 gap-8 items-center p-8 sm:p-12 lg:p-16 animate-fade-in">
         {/* Left Side - Text Content */}
         <div className="relative z-10 lg:col-span-7">
           {/* Small Label Badge */}
-          <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 border backdrop-blur-md transition-colors ${darkMode
+          <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 border backdrop-blur-md animate-float ${darkMode
             ? 'bg-zinc-900/90 border-zinc-700 text-zinc-300 shadow-md'
             : 'bg-zinc-100 border-zinc-300 text-zinc-800 shadow-sm'
             }`}>
@@ -52,23 +52,23 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
 
           {/* Feature Highlights */}
           <div className="flex flex-wrap gap-2.5 mb-8">
-            <div className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border ${darkMode
-              ? 'bg-zinc-900 border-zinc-800 text-zinc-300'
-              : 'bg-zinc-50 border-zinc-200 text-zinc-800 shadow-sm'
+            <div className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border hover-lift ${darkMode
+              ? 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:border-zinc-600'
+              : 'bg-zinc-50 border-zinc-200 text-zinc-800 shadow-sm hover:border-zinc-400'
               }`}>
               <TrendingUp className="w-3.5 h-3.5 text-zinc-400" />
               <span>Real-Time Salaries</span>
             </div>
-            <div className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border ${darkMode
-              ? 'bg-zinc-900 border-zinc-800 text-zinc-300'
-              : 'bg-zinc-50 border-zinc-200 text-zinc-800 shadow-sm'
+            <div className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border hover-lift ${darkMode
+              ? 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:border-zinc-600'
+              : 'bg-zinc-50 border-zinc-200 text-zinc-800 shadow-sm hover:border-zinc-400'
               }`}>
               <Target className="w-3.5 h-3.5 text-zinc-400" />
               <span>AI Fit Scoring</span>
             </div>
-            <div className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border ${darkMode
-              ? 'bg-zinc-900 border-zinc-800 text-zinc-300'
-              : 'bg-zinc-50 border-zinc-200 text-zinc-800 shadow-sm'
+            <div className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold border hover-lift ${darkMode
+              ? 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:border-zinc-600'
+              : 'bg-zinc-50 border-zinc-200 text-zinc-800 shadow-sm hover:border-zinc-400'
               }`}>
               <Zap className="w-3.5 h-3.5 text-zinc-400" />
               <span>Step-by-Step Roadmaps</span>
@@ -80,14 +80,14 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             {/* Primary Main Career Discovery CTA */}
             <button
               onClick={scrollToDomains}
-              className={`group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-black text-base sm:text-lg transition-all duration-300 shadow-xl hover:scale-[1.02] cursor-pointer ${darkMode
-                ? 'bg-white text-black hover:bg-zinc-200 shadow-white/10'
-                : 'bg-black text-white hover:bg-zinc-800 shadow-black/20'
+              className={`group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-black text-base sm:text-lg btn-interactive hover-lift shadow-xl cursor-pointer ${darkMode
+                ? 'bg-white text-black hover:bg-zinc-200 shadow-white/10 hover:shadow-white/20'
+                : 'bg-black text-white hover:bg-zinc-800 shadow-black/20 hover:shadow-black/30'
                 }`}
             >
-              <Compass className="w-5 h-5 group-hover:rotate-45 transition-transform" />
+              <Compass className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
               <span>Explore 150+ Career Paths</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
             </button>
 
             {/* Secondary Quiz CTA */}
@@ -96,12 +96,12 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 if (onStartQuiz) onStartQuiz();
                 else if (window.openQuiz) window.openQuiz();
               }}
-              className={`inline-flex items-center gap-2 px-6 py-4 rounded-2xl font-bold text-base transition-all border ${darkMode
+              className={`inline-flex items-center gap-2 px-6 py-4 rounded-2xl font-bold text-base btn-interactive hover-lift border ${darkMode
                 ? 'bg-[#18181b] hover:bg-zinc-800 border-zinc-700 text-zinc-200 hover:text-white'
                 : 'bg-white hover:bg-zinc-100 border-zinc-300 text-black shadow-md'
-                } hover:scale-[1.02] cursor-pointer`}
+                } cursor-pointer`}
             >
-              <HelpCircle className="w-5 h-5" />
+              <HelpCircle className="w-5 h-5 transition-transform duration-300 group-hover:rotate-12" />
               <span>Take AI Career Quiz</span>
             </button>
           </div>
@@ -111,7 +111,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             <span className={`font-semibold mr-1 ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>Quick Tools:</span>
             <button
               onClick={() => window.openResume && window.openResume()}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition-all border ${darkMode
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl btn-interactive hover-lift border ${darkMode
                 ? 'bg-zinc-900 hover:bg-zinc-800 border-zinc-800 text-zinc-300 hover:text-white'
                 : 'bg-zinc-100 hover:bg-zinc-200 border-zinc-200 text-zinc-800'
                 }`}
@@ -122,7 +122,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
 
             <button
               onClick={() => window.openInterview && window.openInterview()}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition-all border ${darkMode
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl btn-interactive hover-lift border ${darkMode
                 ? 'bg-zinc-900 hover:bg-zinc-800 border-zinc-800 text-zinc-300 hover:text-white'
                 : 'bg-zinc-100 hover:bg-zinc-200 border-zinc-200 text-zinc-800'
                 }`}
@@ -133,7 +133,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
 
             <button
               onClick={() => window.openSkillGap && window.openSkillGap()}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition-all border ${darkMode
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl btn-interactive hover-lift border ${darkMode
                 ? 'bg-zinc-900 hover:bg-zinc-800 border-zinc-800 text-zinc-300 hover:text-white'
                 : 'bg-zinc-100 hover:bg-zinc-200 border-zinc-200 text-zinc-800'
                 }`}
@@ -148,29 +148,29 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
         <div className="relative lg:col-span-5 flex flex-col items-center justify-center">
           <div className="w-full max-w-sm grid grid-cols-2 gap-3.5 relative z-10">
             {/* Career Floating Card 1 */}
-            <div className={`p-4 rounded-2xl border transition-all duration-300 hover:scale-105 ${darkMode ? 'bg-[#18181b] border-zinc-800 shadow-xl' : 'bg-white border-zinc-200 shadow-xl'}`}>
-              <span className="text-3xl mb-2 block">💻</span>
+            <div className={`p-4 rounded-2xl border hover-lift ${darkMode ? 'bg-[#18181b] border-zinc-800 shadow-xl hover:border-zinc-600' : 'bg-white border-zinc-200 shadow-xl hover:border-zinc-400'}`}>
+              <span className="text-3xl mb-2 block transition-transform hover:scale-125 duration-200">💻</span>
               <div className={`font-bold text-sm ${darkMode ? 'text-white' : 'text-black'}`}>Software & AI</div>
               <div className="text-xs text-zinc-500 font-semibold mt-0.5">₹8 - 45 LPA</div>
             </div>
 
             {/* Career Floating Card 2 */}
-            <div className={`p-4 rounded-2xl border transition-all duration-300 hover:scale-105 translate-y-3 ${darkMode ? 'bg-[#18181b] border-zinc-800 shadow-xl' : 'bg-white border-zinc-200 shadow-xl'}`}>
-              <span className="text-3xl mb-2 block">⚕️</span>
+            <div className={`p-4 rounded-2xl border hover-lift translate-y-3 ${darkMode ? 'bg-[#18181b] border-zinc-800 shadow-xl hover:border-zinc-600' : 'bg-white border-zinc-200 shadow-xl hover:border-zinc-400'}`}>
+              <span className="text-3xl mb-2 block transition-transform hover:scale-125 duration-200">⚕️</span>
               <div className={`font-bold text-sm ${darkMode ? 'text-white' : 'text-black'}`}>Medicine & Health</div>
               <div className="text-xs text-zinc-500 font-semibold mt-0.5">High Demand</div>
             </div>
 
             {/* Career Floating Card 3 */}
-            <div className={`p-4 rounded-2xl border transition-all duration-300 hover:scale-105 ${darkMode ? 'bg-[#18181b] border-zinc-800 shadow-xl' : 'bg-white border-zinc-200 shadow-xl'}`}>
-              <span className="text-3xl mb-2 block">💼</span>
+            <div className={`p-4 rounded-2xl border hover-lift ${darkMode ? 'bg-[#18181b] border-zinc-800 shadow-xl hover:border-zinc-600' : 'bg-white border-zinc-200 shadow-xl hover:border-zinc-400'}`}>
+              <span className="text-3xl mb-2 block transition-transform hover:scale-125 duration-200">💼</span>
               <div className={`font-bold text-sm ${darkMode ? 'text-white' : 'text-black'}`}>Finance & Mgmt</div>
               <div className="text-xs text-zinc-500 font-semibold mt-0.5">Top Colleges</div>
             </div>
 
             {/* Career Floating Card 4 */}
-            <div className={`p-4 rounded-2xl border transition-all duration-300 hover:scale-105 translate-y-3 ${darkMode ? 'bg-[#18181b] border-zinc-800 shadow-xl' : 'bg-white border-zinc-200 shadow-xl'}`}>
-              <span className="text-3xl mb-2 block">🎨</span>
+            <div className={`p-4 rounded-2xl border hover-lift translate-y-3 ${darkMode ? 'bg-[#18181b] border-zinc-800 shadow-xl hover:border-zinc-600' : 'bg-white border-zinc-200 shadow-xl hover:border-zinc-400'}`}>
+              <span className="text-3xl mb-2 block transition-transform hover:scale-125 duration-200">🎨</span>
               <div className={`font-bold text-sm ${darkMode ? 'text-white' : 'text-black'}`}>Design & Media</div>
               <div className="text-xs text-zinc-500 font-semibold mt-0.5">Creative Careers</div>
             </div>
@@ -184,8 +184,8 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
         : 'border-zinc-200 bg-zinc-50/70 backdrop-blur-md'
         }`}>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 p-6 sm:p-8">
-          <div className="text-center">
-            <div className={`text-3xl sm:text-4xl font-black mb-1 ${darkMode ? 'text-white' : 'text-black'}`}>
+          <div className="text-center group hover-lift p-2 rounded-xl">
+            <div className={`text-3xl sm:text-4xl font-black mb-1 transition-transform group-hover:scale-110 duration-200 ${darkMode ? 'text-white' : 'text-black'}`}>
               150+
             </div>
             <div className={`text-xs sm:text-sm font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
@@ -193,8 +193,8 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             </div>
           </div>
 
-          <div className="text-center">
-            <div className={`text-3xl sm:text-4xl font-black mb-1 ${darkMode ? 'text-white' : 'text-black'}`}>
+          <div className="text-center group hover-lift p-2 rounded-xl">
+            <div className={`text-3xl sm:text-4xl font-black mb-1 transition-transform group-hover:scale-110 duration-200 ${darkMode ? 'text-white' : 'text-black'}`}>
               500+
             </div>
             <div className={`text-xs sm:text-sm font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
@@ -202,8 +202,8 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             </div>
           </div>
 
-          <div className="text-center">
-            <div className={`text-3xl sm:text-4xl font-black mb-1 ${darkMode ? 'text-white' : 'text-black'}`}>
+          <div className="text-center group hover-lift p-2 rounded-xl">
+            <div className={`text-3xl sm:text-4xl font-black mb-1 transition-transform group-hover:scale-110 duration-200 ${darkMode ? 'text-white' : 'text-black'}`}>
               45,000+
             </div>
             <div className={`text-xs sm:text-sm font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
@@ -211,8 +211,8 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             </div>
           </div>
 
-          <div className="text-center">
-            <div className={`text-3xl sm:text-4xl font-black mb-1 ${darkMode ? 'text-white' : 'text-black'}`}>
+          <div className="text-center group hover-lift p-2 rounded-xl">
+            <div className={`text-3xl sm:text-4xl font-black mb-1 transition-transform group-hover:scale-110 duration-200 ${darkMode ? 'text-white' : 'text-black'}`}>
               96%
             </div>
             <div className={`text-xs sm:text-sm font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>

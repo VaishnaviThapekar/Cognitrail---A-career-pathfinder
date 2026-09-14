@@ -21,8 +21,8 @@ const WhyChooseSection = ({ darkMode }) => {
   ];
 
   return (
-    <div className="mb-20">
-      <div className="text-center mb-12 animate-slideUp">
+    <div className="mb-20 animate-fade-in">
+      <div className="text-center mb-12">
         <h2 className={`text-3xl md:text-5xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-4 tracking-tight`}>
           Why Choose <span className={`bg-clip-text text-transparent ${darkMode ? 'bg-gradient-to-r from-white via-zinc-300 to-zinc-500' : 'bg-gradient-to-r from-black via-zinc-800 to-zinc-600'}`}>COGNITRAIL</span>?
         </h2>
@@ -37,13 +37,13 @@ const WhyChooseSection = ({ darkMode }) => {
           return (
             <div
               key={index}
-              className={`border rounded-3xl p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group flex flex-col justify-between ${darkMode
+              className={`border rounded-3xl p-8 hover-lift group flex flex-col justify-between ${darkMode
                 ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
                 : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                 }`}
             >
               <div>
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transform group-hover:scale-110 transition-transform shadow-md ${darkMode
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 shadow-md ${darkMode
                   ? 'bg-zinc-900 border border-zinc-700 text-white'
                   : 'bg-black text-white'
                   }`}>

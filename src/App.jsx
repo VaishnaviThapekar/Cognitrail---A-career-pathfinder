@@ -261,17 +261,17 @@ function App() {
                 />
 
                 {/* Feature Shortcuts Grid - Monochrome */}
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20 animate-fade-in">
                   {/* Career Quiz Card */}
                   <button
                     onClick={() => setShowQuiz(true)}
-                    className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
+                    className={`group rounded-3xl p-7 border text-left flex flex-col justify-between hover-lift btn-interactive ${darkMode
                       ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
                       : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                       }`}
                   >
                     <div>
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 transition-transform ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         🎯
                       </div>
                       <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
@@ -283,20 +283,20 @@ function App() {
                     </div>
                     <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                       <span>Start Assessment</span>
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
 
                   {/* AI Career Advisor Pro Card */}
                   <button
                     onClick={() => setShowAdvancedChatbot(true)}
-                    className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
+                    className={`group rounded-3xl p-7 border text-left flex flex-col justify-between hover-lift btn-interactive ${darkMode
                       ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
                       : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                       }`}
                   >
                     <div>
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 transition-transform ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         ✨
                       </div>
                       <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
@@ -308,20 +308,20 @@ function App() {
                     </div>
                     <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                       <span>Launch Chat</span>
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
 
                   {/* Skills Gap Analyzer Card */}
                   <button
                     onClick={() => setShowSkillsAnalyzer(true)}
-                    className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
+                    className={`group rounded-3xl p-7 border text-left flex flex-col justify-between hover-lift btn-interactive ${darkMode
                       ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
                       : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                       }`}
                   >
                     <div>
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 transition-transform ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         🎯
                       </div>
                       <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
@@ -333,20 +333,20 @@ function App() {
                     </div>
                     <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                       <span>Analyze Skills</span>
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
 
                   {/* Career Roadmap Builder Card */}
                   <button
                     onClick={() => setShowRoadmapBuilder(true)}
-                    className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
+                    className={`group rounded-3xl p-7 border text-left flex flex-col justify-between hover-lift btn-interactive ${darkMode
                       ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
                       : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                       }`}
                   >
                     <div>
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 transition-transform ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         🗺️
                       </div>
                       <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
@@ -358,20 +358,20 @@ function App() {
                     </div>
                     <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                       <span>Build Roadmap</span>
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
 
                   {/* College Finder Card */}
                   <button
                     onClick={() => setShowCollegeFinder(true)}
-                    className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
+                    className={`group rounded-3xl p-7 border text-left flex flex-col justify-between hover-lift btn-interactive ${darkMode
                       ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
                       : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                       }`}
                   >
                     <div>
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 transition-transform ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         🏫
                       </div>
                       <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
@@ -383,20 +383,20 @@ function App() {
                     </div>
                     <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                       <span>Find Colleges</span>
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
 
                   {/* Career Comparison Card */}
                   <button
                     onClick={() => setShowComparison(true)}
-                    className={`group rounded-3xl p-7 border transition-all duration-300 hover:shadow-xl hover:-translate-y-1 text-left flex flex-col justify-between ${darkMode
+                    className={`group rounded-3xl p-7 border text-left flex flex-col justify-between hover-lift btn-interactive ${darkMode
                       ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
                       : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                       }`}
                   >
                     <div>
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 transition-transform ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
                         ⚖️
                       </div>
                       <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
@@ -408,7 +408,7 @@ function App() {
                     </div>
                     <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
                       <span>Compare Now</span>
-                      <ChevronRight className="w-4 h-4" />
+                      <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
                 </div>
@@ -416,7 +416,7 @@ function App() {
                 <WhyChooseSection darkMode={darkMode} />
 
                 {/* Domain Selection Section */}
-                <div id="domains" className="pt-4">
+                <div id="domains" className="pt-4 animate-fade-in">
                   <div className="text-center mb-12">
                     <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-3`}>
                       Explore Career Domains
@@ -431,13 +431,13 @@ function App() {
                       <button
                         key={key}
                         onClick={() => setSelectedDomain(key)}
-                        className={`group relative rounded-3xl p-8 border transition-all duration-300 text-left overflow-hidden hover:shadow-2xl hover:-translate-y-1.5 ${darkMode
+                        className={`group relative rounded-3xl p-8 border text-left overflow-hidden hover-lift btn-interactive ${darkMode
                           ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
                           : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
                           }`}
                       >
                         <div className="relative z-10">
-                          <div className={`mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl border shadow-sm group-hover:scale-110 transition-transform ${darkMode
+                          <div className={`mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl border shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ${darkMode
                             ? 'bg-zinc-900 border-zinc-700 text-white'
                             : 'bg-zinc-100 border-zinc-300 text-black'
                             }`}>
@@ -734,13 +734,13 @@ function App() {
       {!showAdvancedChatbot && !showChatbot && (
         <button
           onClick={() => setShowAdvancedChatbot(true)}
-          className={`fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-all cursor-pointer group border ${darkMode
-            ? 'bg-white text-black border-zinc-300'
-            : 'bg-black text-white border-zinc-700'
+          className={`fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center animate-float btn-interactive hover:scale-110 cursor-pointer group border ${darkMode
+            ? 'bg-white text-black border-zinc-300 shadow-white/10 hover:shadow-white/20'
+            : 'bg-black text-white border-zinc-700 shadow-black/30 hover:shadow-black/40'
             }`}
           title="Open AI Career Advisor Pro"
         >
-          <Sparkles className="w-6 h-6 transform group-hover:rotate-12 transition-transform" />
+          <Sparkles className="w-6 h-6 transform group-hover:rotate-45 transition-transform duration-300" />
         </button>
       )}
 

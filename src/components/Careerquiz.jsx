@@ -749,12 +749,12 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                 </div>
 
                 {/* Question Card */}
-                <div className={`rounded-3xl p-6 md:p-8 mb-8 border transition-all ${darkMode
+                <div key={currentStep} className={`rounded-3xl p-6 md:p-8 mb-8 border animate-fade-in ${darkMode
                     ? 'bg-[#121215] border-zinc-800 shadow-2xl'
                     : 'bg-white border-zinc-200 shadow-xl'
                     }`}>
                     <div className="flex items-start gap-4 mb-6">
-                        <div className={`p-3.5 rounded-2xl ${darkMode ? 'bg-zinc-800 text-white' : 'bg-black text-white'}`}>
+                        <div className={`p-3.5 rounded-2xl transition-transform hover:scale-110 ${darkMode ? 'bg-zinc-800 text-white' : 'bg-black text-white'}`}>
                             <QuestionIcon className="w-7 h-7" />
                         </div>
                         <div>
@@ -779,7 +779,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                                     key={option.id}
                                     type="button"
                                     onClick={() => handleAnswer(question.id, option.id)}
-                                    className={`p-5 rounded-2xl border-2 transition-all duration-200 text-left relative overflow-hidden group ${isSelected
+                                    className={`p-5 rounded-2xl border-2 transition-all duration-300 text-left relative overflow-hidden group hover-lift btn-interactive ${isSelected
                                         ? darkMode
                                             ? 'bg-zinc-800 border-white text-white shadow-lg'
                                             : 'bg-zinc-100 border-black text-black ring-1 ring-black shadow-md'
@@ -789,7 +789,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                                         }`}
                                 >
                                     <div className="flex items-start gap-3.5">
-                                        <span className="text-3xl filter drop-shadow group-hover:scale-110 transition-transform">
+                                        <span className="text-3xl filter drop-shadow group-hover:scale-110 transition-transform duration-200">
                                             {option.emoji}
                                         </span>
                                         <div className="flex-1 pr-6">
@@ -811,8 +811,8 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                                     </div>
 
                                     {/* Selected Indicator */}
-                                    <div className={`absolute top-4 right-4 w-5 h-5 rounded-full flex items-center justify-center transition-all ${isSelected
-                                        ? darkMode ? 'bg-white text-black' : 'bg-black text-white'
+                                    <div className={`absolute top-4 right-4 w-5 h-5 rounded-full flex items-center justify-center transition-all duration-200 ${isSelected
+                                        ? darkMode ? 'bg-white text-black scale-110' : 'bg-black text-white scale-110'
                                         : 'border-2 border-zinc-400/40 opacity-40 scale-90'
                                         }`}>
                                         {isSelected && <CheckCircle2 className="w-4 h-4" />}
@@ -835,7 +835,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                     {currentStep > 0 && (
                         <button
                             onClick={prevStep}
-                            className={`px-6 py-4 rounded-2xl font-bold transition-all flex items-center gap-2 border ${darkMode
+                            className={`px-6 py-4 rounded-2xl font-bold btn-interactive flex items-center gap-2 border ${darkMode
                                 ? 'bg-zinc-900 border-zinc-700 text-zinc-200 hover:bg-zinc-800'
                                 : 'bg-white border-zinc-300 text-black hover:bg-zinc-100 shadow-md'
                                 }`}
@@ -848,7 +848,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                     <button
                         onClick={nextStep}
                         disabled={!canProceed()}
-                        className={`flex-1 px-8 py-4 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 text-base ${canProceed()
+                        className={`flex-1 px-8 py-4 rounded-2xl font-bold btn-interactive flex items-center justify-center gap-2 text-base ${canProceed()
                             ? darkMode
                                 ? 'bg-white text-black hover:bg-zinc-200 shadow-xl'
                                 : 'bg-black text-white hover:bg-zinc-800 shadow-xl'
@@ -860,12 +860,12 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                         {currentStep === questions.length - 1 ? (
                             <>
                                 <span>Compute AI Career Matches</span>
-                                <Sparkles className="w-5 h-5" />
+                                <Sparkles className="w-5 h-5 animate-spin" />
                             </>
                         ) : (
                             <>
                                 <span>Next Question</span>
-                                <ArrowRight className="w-5 h-5" />
+                                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                             </>
                         )}
                     </button>

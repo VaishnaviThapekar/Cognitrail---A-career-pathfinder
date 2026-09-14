@@ -18,7 +18,7 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
   return (
     <div
       onClick={() => onSelect(career)}
-      className={`group cursor-pointer rounded-2xl border transition-all duration-300 overflow-hidden hover:shadow-xl hover:-translate-y-1 ${darkMode
+      className={`group cursor-pointer rounded-2xl border transition-all duration-300 overflow-hidden hover-lift ${darkMode
         ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
         : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-sm'
         }`}
@@ -27,7 +27,7 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
       <div className={`p-5 border-b ${darkMode ? 'border-zinc-800' : 'border-zinc-100'}`}>
         <div className="flex items-start justify-between mb-3">
           {/* High Demand Badge */}
-          <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${darkMode
+          <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border transition-transform group-hover:scale-105 ${darkMode
             ? 'bg-zinc-900 text-zinc-300 border-zinc-700'
             : 'bg-zinc-100 text-zinc-800 border-zinc-200'
             }`}>
@@ -39,10 +39,10 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
           {setSavedCareers && (
             <button
               onClick={toggleBookmark}
-              className={`p-2 rounded-full transition-all ${isBookmarked
+              className={`p-2 rounded-full transition-all duration-200 btn-interactive ${isBookmarked
                 ? darkMode
-                  ? 'bg-white text-black'
-                  : 'bg-black text-white'
+                  ? 'bg-white text-black scale-110'
+                  : 'bg-black text-white scale-110'
                 : darkMode
                   ? 'bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-white'
                   : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
@@ -70,7 +70,7 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
           {/* Salary */}
           <div className="flex items-center justify-between text-xs">
             <div className="flex items-center gap-2">
-              <div className={`p-1.5 rounded-lg ${darkMode ? 'bg-zinc-900 text-zinc-300' : 'bg-zinc-100 text-zinc-700'}`}>
+              <div className={`p-1.5 rounded-lg transition-transform group-hover:scale-110 ${darkMode ? 'bg-zinc-900 text-zinc-300' : 'bg-zinc-100 text-zinc-700'}`}>
                 <DollarSign className="w-4 h-4" />
               </div>
               <span className={`font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
@@ -85,7 +85,7 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
           {/* Education */}
           <div className="flex items-center justify-between text-xs">
             <div className="flex items-center gap-2">
-              <div className={`p-1.5 rounded-lg ${darkMode ? 'bg-zinc-900 text-zinc-300' : 'bg-zinc-100 text-zinc-700'}`}>
+              <div className={`p-1.5 rounded-lg transition-transform group-hover:scale-110 ${darkMode ? 'bg-zinc-900 text-zinc-300' : 'bg-zinc-100 text-zinc-700'}`}>
                 <GraduationCap className="w-4 h-4" />
               </div>
               <span className={`font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
@@ -100,7 +100,7 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
           {/* Growth */}
           <div className="flex items-center justify-between text-xs">
             <div className="flex items-center gap-2">
-              <div className={`p-1.5 rounded-lg ${darkMode ? 'bg-zinc-900 text-zinc-300' : 'bg-zinc-100 text-zinc-700'}`}>
+              <div className={`p-1.5 rounded-lg transition-transform group-hover:scale-110 ${darkMode ? 'bg-zinc-900 text-zinc-300' : 'bg-zinc-100 text-zinc-700'}`}>
                 <Star className="w-4 h-4" />
               </div>
               <span className={`font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
@@ -119,13 +119,13 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
             e.stopPropagation();
             onSelect(career);
           }}
-          className={`w-full py-3 px-4 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2 border ${darkMode
+          className={`w-full py-3 px-4 rounded-xl font-bold text-xs btn-interactive flex items-center justify-center gap-2 border ${darkMode
             ? 'bg-zinc-900 border-zinc-700 text-white hover:bg-white hover:text-black'
             : 'bg-black text-white hover:bg-zinc-800'
             }`}
         >
           Explore Details
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
         </button>
       </div>
     </div>

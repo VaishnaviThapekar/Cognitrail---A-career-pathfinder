@@ -144,27 +144,27 @@ const Header = ({
               {/* Dark Mode Toggle */}
               <button
                 onClick={toggleDarkMode}
-                className={`p-2.5 rounded-xl transition-all border ${darkMode
+                className={`p-2.5 rounded-xl border btn-interactive hover-lift ${darkMode
                   ? 'bg-[#18181b] border-zinc-700 text-zinc-200 hover:bg-zinc-800'
                   : 'bg-zinc-100 border-zinc-200 text-zinc-800 hover:bg-zinc-200'
                   }`}
                 aria-label="Toggle dark mode"
                 title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
               >
-                {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+                {darkMode ? <Sun className="w-4 h-4 transition-transform duration-300 hover:rotate-90" /> : <Moon className="w-4 h-4 transition-transform duration-300 hover:-rotate-45" />}
               </button>
 
               {/* Gamification Progress */}
               {isAuthenticated && (
                 <button
                   onClick={() => setShowGamification && setShowGamification(true)}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl transition-all border ${darkMode
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border btn-interactive hover-lift ${darkMode
                     ? 'bg-[#18181b] border-zinc-700 hover:border-zinc-500'
                     : 'bg-zinc-50 border-zinc-200 hover:border-zinc-400'
                     }`}
                   title="Your points & level"
                 >
-                  <div className={`w-6 h-6 rounded-lg font-bold text-xs flex items-center justify-center ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                  <div className={`w-6 h-6 rounded-lg font-bold text-xs flex items-center justify-center transition-transform hover:scale-110 ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
                     {level}
                   </div>
                   <span className={`text-xs font-bold hidden sm:inline ${darkMode ? 'text-zinc-200' : 'text-zinc-700'}`}>
@@ -177,7 +177,7 @@ const Header = ({
               {isAuthenticated ? (
                 <button
                   onClick={() => setShowProfile(true)}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl font-bold text-xs shadow-sm transition-all ${darkMode
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-xl font-bold text-xs shadow-sm btn-interactive hover-lift ${darkMode
                     ? 'bg-white text-black hover:bg-zinc-200'
                     : 'bg-black text-white hover:bg-zinc-800'
                     }`}
@@ -190,7 +190,7 @@ const Header = ({
               ) : (
                 <button
                   onClick={() => setShowAuthModal(true)}
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold text-xs shadow-md transition-all ${darkMode
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl font-bold text-xs shadow-md btn-interactive hover-lift ${darkMode
                     ? 'bg-white text-black hover:bg-zinc-200 shadow-white/10'
                     : 'bg-black text-white hover:bg-zinc-800 shadow-black/20'
                     }`}
@@ -203,13 +203,13 @@ const Header = ({
               {/* Mobile Hamburger Toggle Button */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`xl:hidden p-2.5 rounded-xl transition-colors border ${darkMode
+                className={`xl:hidden p-2.5 rounded-xl border btn-interactive ${darkMode
                   ? 'bg-[#18181b] border-zinc-700 text-white'
                   : 'bg-zinc-100 border-zinc-200 text-zinc-800'
                   }`}
                 aria-label="Open navigation menu"
               >
-                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {mobileMenuOpen ? <X className="w-5 h-5 transition-transform duration-200 rotate-90" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </div>
@@ -217,7 +217,7 @@ const Header = ({
 
         {/* Mobile Navigation Drawer / Menu */}
         {mobileMenuOpen && (
-          <div className={`xl:hidden border-t px-4 py-4 space-y-3 transition-all ${darkMode ? 'bg-[#09090b] border-zinc-800' : 'bg-white border-zinc-200 shadow-xl'
+          <div className={`xl:hidden border-t px-4 py-4 space-y-3 animate-slide-down ${darkMode ? 'bg-[#09090b] border-zinc-800' : 'bg-white border-zinc-200 shadow-xl'
             }`}>
             {/* Search Input on Mobile */}
             <div className="relative mb-3">
