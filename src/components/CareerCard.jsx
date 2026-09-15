@@ -37,20 +37,16 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
       onClick={() => onSelect && onSelect(career)}
       className={`group cursor-pointer rounded-3xl border transition-all duration-300 overflow-hidden hover-lift flex flex-col justify-between ${
         darkMode
-          ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600 shadow-xl'
-          : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
+          ? 'bg-[#0b1c15] border-emerald-900/60 hover:border-[#00E599] shadow-xl'
+          : 'bg-white border-emerald-100 hover:border-[#00E599] shadow-md hover:shadow-xl'
       }`}
     >
       {/* Header Section */}
-      <div className={`p-5 sm:p-6 border-b ${darkMode ? 'border-zinc-800/80' : 'border-zinc-100'}`}>
+      <div className={`p-5 sm:p-6 border-b ${darkMode ? 'border-emerald-900/40' : 'border-emerald-50'}`}>
         <div className="flex items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2">
             {/* Fit Score Badge */}
-            <div className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-black border ${
-              darkMode 
-                ? 'bg-zinc-900 border-zinc-700 text-white' 
-                : 'bg-black text-white border-black'
-            }`}>
+            <div className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-black bg-[#00E599] text-black shadow-sm">
               <Sparkles className="w-3 h-3" />
               <span>{fitScore}% Fit</span>
             </div>
@@ -58,10 +54,10 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
             {/* High Demand Badge */}
             <div className={`hidden sm:flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold border ${
               darkMode
-                ? 'bg-zinc-900/60 text-zinc-300 border-zinc-800'
-                : 'bg-zinc-100 text-zinc-700 border-zinc-200'
+                ? 'bg-[#0e241c] text-emerald-300 border-emerald-800'
+                : 'bg-[#E6F9F3] text-emerald-900 border-emerald-200'
             }`}>
-              <TrendingUp className="w-3 h-3 text-zinc-400" />
+              <TrendingUp className="w-3 h-3 text-emerald-600" />
               <span>{outlookDisplay.split('-')[0].trim()}</span>
             </div>
           </div>
@@ -73,12 +69,10 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
               aria-label={isBookmarked ? 'Unsave career' : 'Save career'}
               className={`p-2 rounded-xl transition-all duration-200 btn-interactive border ${
                 isBookmarked
-                  ? darkMode
-                    ? 'bg-white border-white text-black scale-105'
-                    : 'bg-black border-black text-white scale-105'
+                  ? 'bg-[#00E599] border-[#00E599] text-black scale-105'
                   : darkMode
-                    ? 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700'
-                    : 'bg-zinc-100 border-zinc-200 text-zinc-600 hover:text-black hover:border-zinc-300'
+                    ? 'bg-[#0e241c] border-emerald-800 text-emerald-400 hover:text-white hover:border-[#00E599]'
+                    : 'bg-[#E6F9F3] border-emerald-200 text-emerald-900 hover:text-black hover:border-emerald-400'
               }`}
             >
               <Bookmark className={`w-4 h-4 ${isBookmarked ? 'fill-current' : ''}`} />
@@ -88,14 +82,14 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
 
         {/* Career Name */}
         <h3 className={`text-xl font-black mb-2 transition-colors line-clamp-1 ${
-          darkMode ? 'text-white group-hover:text-zinc-200' : 'text-black group-hover:text-zinc-800'
+          darkMode ? 'text-white group-hover:text-[#00E599]' : 'text-black group-hover:text-emerald-800'
         }`}>
           {careerName}
         </h3>
 
         {/* Description */}
         <p className={`text-xs sm:text-sm leading-relaxed line-clamp-2 ${
-          darkMode ? 'text-zinc-400' : 'text-zinc-600'
+          darkMode ? 'text-emerald-200/70' : 'text-zinc-600'
         }`}>
           {careerDesc}
         </p>
@@ -107,8 +101,8 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
               key={idx}
               className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-lg border ${
                 darkMode
-                  ? 'bg-zinc-900/80 border-zinc-800 text-zinc-300'
-                  : 'bg-zinc-50 border-zinc-200 text-zinc-700'
+                  ? 'bg-[#0e241c] border-emerald-800 text-emerald-300'
+                  : 'bg-[#E6F9F3] border-emerald-200 text-emerald-950'
               }`}
             >
               {skill}
@@ -122,9 +116,9 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
         <div className="grid grid-cols-2 gap-2">
           {/* Salary */}
           <div className={`p-2.5 rounded-xl border ${
-            darkMode ? 'bg-zinc-900/50 border-zinc-800/80' : 'bg-zinc-50 border-zinc-200'
+            darkMode ? 'bg-[#0e241c] border-emerald-900/60' : 'bg-[#F4FBF7] border-emerald-200/70'
           }`}>
-            <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold text-zinc-400 mb-0.5">
+            <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold text-emerald-600 mb-0.5">
               <DollarSign className="w-3 h-3" />
               <span>Package</span>
             </div>
@@ -135,9 +129,9 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
 
           {/* Education */}
           <div className={`p-2.5 rounded-xl border ${
-            darkMode ? 'bg-zinc-900/50 border-zinc-800/80' : 'bg-zinc-50 border-zinc-200'
+            darkMode ? 'bg-[#0e241c] border-emerald-900/60' : 'bg-[#F4FBF7] border-emerald-200/70'
           }`}>
-            <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold text-zinc-400 mb-0.5">
+            <div className="flex items-center gap-1.5 text-[10px] uppercase font-bold text-emerald-600 mb-0.5">
               <GraduationCap className="w-3 h-3" />
               <span>Degree</span>
             </div>
@@ -153,11 +147,7 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
             e.stopPropagation();
             if (onSelect) onSelect(career);
           }}
-          className={`w-full py-3 px-4 rounded-xl font-bold text-xs btn-interactive flex items-center justify-center gap-2 border cursor-pointer ${
-            darkMode
-              ? 'bg-zinc-900 border-zinc-700 text-white hover:bg-white hover:text-black hover:border-white'
-              : 'bg-black border-black text-white hover:bg-zinc-800'
-          }`}
+          className="w-full py-3 px-4 rounded-xl font-bold text-xs btn-interactive flex items-center justify-center gap-2 border cursor-pointer bg-[#00E599] border-[#00E599] text-black hover:bg-[#00CC88]"
         >
           <span>Explore Career Roadmap</span>
           <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />

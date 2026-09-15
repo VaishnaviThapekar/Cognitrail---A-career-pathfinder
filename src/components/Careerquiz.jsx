@@ -507,9 +507,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                         <div>
-                            <div className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-2 border ${
-                                darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-200' : 'bg-zinc-200 border-zinc-300 text-black'
-                            }`}>
+                            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-2 bg-[#00E599] text-black shadow-sm">
                                 <Sparkles className="w-3.5 h-3.5" />
                                 AI Pathfinder Assessment Complete
                             </div>
@@ -520,9 +518,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                         <div className="flex items-center gap-2">
                             <button
                                 onClick={handleRetakeQuiz}
-                                className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm btn-interactive hover-lift border ${
-                                    darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-200 hover:bg-zinc-800' : 'bg-white border-zinc-300 text-black hover:bg-zinc-100 shadow-sm'
-                                }`}
+                                className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm btn-interactive hover-lift border bg-[#00E599] border-[#00E599] text-black hover:bg-[#00CC88]"
                                 title="Retake Quiz"
                             >
                                 <RotateCcw className="w-4 h-4" />
@@ -531,7 +527,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                             <button
                                 onClick={onClose}
                                 className={`p-2.5 rounded-xl transition-colors border ${
-                                    darkMode ? 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white' : 'bg-white border-zinc-300 text-zinc-700 hover:bg-zinc-100'
+                                    darkMode ? 'bg-[#0e241c] border-emerald-800 text-emerald-300 hover:text-white' : 'bg-white border-emerald-200 text-emerald-900 hover:bg-emerald-50'
                                 }`}
                                 aria-label="Close"
                             >
@@ -542,9 +538,9 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
                     {/* Guidance & Advisory Disclaimer */}
                     <div className={`mb-8 p-4.5 rounded-2xl border flex items-start gap-3.5 ${
-                        darkMode ? 'bg-zinc-900/80 border-zinc-800 text-zinc-300' : 'bg-zinc-100 border-zinc-300 text-zinc-800 shadow-sm'
+                        darkMode ? 'bg-[#0e241c] border-emerald-800 text-emerald-200/80' : 'bg-[#E6F9F3] border-emerald-200 text-emerald-950 shadow-sm'
                     }`}>
-                        <Info className="w-5 h-5 text-zinc-400 mt-0.5 flex-shrink-0" />
+                        <Info className="w-5 h-5 text-[#00E599] mt-0.5 flex-shrink-0" />
                         <div className="text-sm leading-relaxed">
                             <span className="font-bold text-black dark:text-white">Guidance & Advisory Notice: </span>
                             These recommendations are algorithmic guidance and career exploration tools designed to help you discover options based on your answers, rather than guaranteed predictions. We encourage you to research multiple paths and consult academic advisors.
@@ -557,15 +553,13 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                             <div
                                 key={idx}
                                 className={`rounded-3xl p-6 md:p-8 transition-all duration-300 border hover-lift ${
-                                    darkMode ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600 shadow-xl' : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-lg'
+                                    darkMode ? 'bg-[#0b1c15] border-emerald-900/60 hover:border-[#00E599] shadow-xl' : 'bg-white border-emerald-100 hover:border-[#00E599] shadow-lg'
                                 }`}
                             >
                                 {/* Top bar with Match Score */}
-                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200 dark:border-zinc-800">
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-emerald-200/50 dark:border-emerald-900/50">
                                     <div className="flex items-center gap-3.5">
-                                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg ${
-                                            darkMode ? 'bg-white text-black' : 'bg-black text-white'
-                                        }`}>
+                                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg bg-[#00E599] text-black">
                                             #{idx + 1}
                                         </div>
                                         <div>
@@ -573,12 +567,12 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                                                 {result.career}
                                             </h3>
                                             <div className="flex items-center gap-3 text-xs mt-1">
-                                                <span className="flex items-center gap-1 font-semibold text-zinc-500 dark:text-zinc-400">
+                                                <span className="flex items-center gap-1 font-semibold text-emerald-600 dark:text-emerald-400">
                                                     <Briefcase className="w-3.5 h-3.5" />
                                                     {result.jobOutlook}
                                                 </span>
                                                 <span className="text-zinc-400">•</span>
-                                                <span className="flex items-center gap-1 font-semibold text-zinc-500 dark:text-zinc-400">
+                                                <span className="flex items-center gap-1 font-semibold text-emerald-600 dark:text-emerald-400">
                                                     <DollarSign className="w-3.5 h-3.5" />
                                                     {result.salaryRange}
                                                 </span>
@@ -588,10 +582,10 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
                                     {/* Match Badge */}
                                     <div className="flex items-center sm:flex-col items-end gap-2 sm:gap-0">
-                                        <div className={`text-3xl md:text-4xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
+                                        <div className="text-3xl md:text-4xl font-black text-[#00E599]">
                                             {result.match}%
                                         </div>
-                                        <span className={`text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>
+                                        <span className={`text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-emerald-300' : 'text-emerald-900'}`}>
                                             Match Score
                                         </span>
                                     </div>

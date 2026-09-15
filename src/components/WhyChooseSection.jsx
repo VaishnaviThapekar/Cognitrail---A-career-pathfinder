@@ -24,9 +24,9 @@ const WhyChooseSection = ({ darkMode }) => {
     <div className="mb-20 animate-fade-in">
       <div className="text-center mb-12">
         <h2 className={`text-3xl md:text-5xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-4 tracking-tight`}>
-          Why Choose <span className={`bg-clip-text text-transparent ${darkMode ? 'bg-gradient-to-r from-white via-zinc-300 to-zinc-500' : 'bg-gradient-to-r from-black via-zinc-800 to-zinc-600'}`}>COGNITRAIL</span>?
+          Why Choose <span className="px-3 py-0.5 rounded-2xl bg-[#00E599] text-black font-black">COGNITRAIL</span>?
         </h2>
-        <p className={`text-base md:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+        <p className={`text-base md:text-lg ${darkMode ? 'text-emerald-200/70' : 'text-zinc-600'}`}>
           Everything you need to make confident, data-backed career decisions
         </p>
       </div>
@@ -38,21 +38,18 @@ const WhyChooseSection = ({ darkMode }) => {
             <div
               key={index}
               className={`border rounded-3xl p-8 hover-lift group flex flex-col justify-between ${darkMode
-                ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
-                : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
+                ? 'bg-[#0b1c15] border-emerald-900/60 hover:border-[#00E599]'
+                : 'bg-white border-emerald-100 hover:border-[#00E599] shadow-md'
                 }`}
             >
               <div>
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 shadow-md ${darkMode
-                  ? 'bg-zinc-900 border border-zinc-700 text-white'
-                  : 'bg-black text-white'
-                  }`}>
-                  <Icon className="w-7 h-7" />
+                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all duration-300 group-hover:scale-110 group-hover:-rotate-3 shadow-md bg-[#00E599] text-black">
+                  <Icon className="w-7 h-7 text-black" />
                 </div>
                 <h3 className={`text-xl font-bold ${darkMode ? 'text-white' : 'text-black'} mb-3`}>
                   {feature.title}
                 </h3>
-                <p className={`${darkMode ? 'text-zinc-400' : 'text-zinc-600'} leading-relaxed text-sm`}>
+                <p className={`${darkMode ? 'text-emerald-200/70' : 'text-zinc-600'} leading-relaxed text-sm`}>
                   {feature.description}
                 </p>
               </div>

@@ -49,17 +49,14 @@ const HowItWorksSection = ({ darkMode, onStartQuiz, onExploreDomains, onOpenSkil
         <section className="mb-20">
             {/* Section Header */}
             <div className="text-center max-w-3xl mx-auto mb-14">
-                <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border ${darkMode
-                    ? 'bg-zinc-900 border-zinc-700 text-zinc-300'
-                    : 'bg-zinc-100 border-zinc-300 text-zinc-800'
-                    }`}>
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 bg-[#00E599] text-black shadow-sm">
                     <Sparkles className="w-3.5 h-3.5" />
                     How Cognitrail Empowers Students
                 </div>
                 <h2 className={`text-3xl md:text-5xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-4 tracking-tight`}>
-                    From Confusion to <span className={`bg-clip-text text-transparent ${darkMode ? 'bg-gradient-to-r from-white via-zinc-300 to-zinc-500' : 'bg-gradient-to-r from-black via-zinc-800 to-zinc-600'}`}>Career Clarity</span>
+                    From Confusion to <span className="px-3 py-0.5 rounded-2xl bg-[#00E599] text-black font-black">Career Clarity</span>
                 </h2>
-                <p className={`text-base md:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'} leading-relaxed`}>
+                <p className={`text-base md:text-lg ${darkMode ? 'text-emerald-200/70' : 'text-zinc-600'} leading-relaxed`}>
                     Cognitrail is your all-in-one companion designed to eliminate guesswork, helping students make confident, data-backed career decisions at every stage.
                 </p>
             </div>
@@ -72,25 +69,22 @@ const HowItWorksSection = ({ darkMode, onStartQuiz, onExploreDomains, onOpenSkil
                         <div
                             key={index}
                             className={`rounded-3xl p-6 md:p-7 border transition-all duration-300 flex flex-col justify-between group hover-lift ${darkMode
-                                ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
-                                : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
+                                ? 'bg-[#0b1c15] border-emerald-900/60 hover:border-[#00E599]'
+                                : 'bg-white border-emerald-100 hover:border-[#00E599] shadow-md'
                                 }`}
                         >
                             <div>
                                 {/* Step Top Header */}
                                 <div className="flex items-center justify-between mb-6">
-                                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 shadow-md ${darkMode
-                                        ? 'bg-zinc-900 border border-zinc-700 text-white'
-                                        : 'bg-black text-white'
-                                        }`}>
-                                        <Icon className="w-6 h-6" />
+                                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 shadow-md bg-[#00E599] text-black">
+                                        <Icon className="w-6 h-6 text-black" />
                                     </div>
-                                    <span className={`text-3xl font-black transition-colors group-hover:text-zinc-400 ${darkMode ? 'text-zinc-700' : 'text-zinc-300'}`}>
+                                    <span className={`text-3xl font-black transition-colors ${darkMode ? 'text-emerald-400/50' : 'text-emerald-300'}`}>
                                         {step.number}
                                     </span>
                                 </div>
 
-                                <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3 transition-transform group-hover:scale-105 ${darkMode ? 'bg-zinc-900 text-zinc-300 border border-zinc-800' : 'bg-zinc-100 text-zinc-800 border border-zinc-200'}`}>
+                                <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3 transition-transform group-hover:scale-105 ${darkMode ? 'bg-[#0e241c] text-emerald-300 border border-emerald-800' : 'bg-[#E6F9F3] text-emerald-950 border border-emerald-200'}`}>
                                     {step.badge}
                                 </span>
 
@@ -98,7 +92,7 @@ const HowItWorksSection = ({ darkMode, onStartQuiz, onExploreDomains, onOpenSkil
                                     {step.title}
                                 </h3>
 
-                                <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'} leading-relaxed mb-5`}>
+                                <p className={`text-sm ${darkMode ? 'text-emerald-200/70' : 'text-zinc-600'} leading-relaxed mb-5`}>
                                     {step.description}
                                 </p>
 
@@ -106,8 +100,8 @@ const HowItWorksSection = ({ darkMode, onStartQuiz, onExploreDomains, onOpenSkil
                                 <div className="space-y-2 mb-6">
                                     {step.benefits.map((benefit, bidx) => (
                                         <div key={bidx} className="flex items-center gap-2 text-xs">
-                                            <CheckCircle2 className={`w-3.5 h-3.5 flex-shrink-0 ${darkMode ? 'text-zinc-400' : 'text-zinc-800'}`} />
-                                            <span className={darkMode ? 'text-zinc-300' : 'text-zinc-700 font-medium'}>
+                                            <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 text-[#00E599]" />
+                                            <span className={darkMode ? 'text-emerald-100' : 'text-zinc-700 font-medium'}>
                                                 {benefit}
                                             </span>
                                         </div>
@@ -119,10 +113,7 @@ const HowItWorksSection = ({ darkMode, onStartQuiz, onExploreDomains, onOpenSkil
                             {step.action && (
                                 <button
                                     onClick={step.action}
-                                    className={`w-full py-2.5 px-4 rounded-xl text-xs font-bold btn-interactive flex items-center justify-center gap-1.5 border ${darkMode
-                                        ? 'bg-zinc-900 border-zinc-700 hover:bg-white hover:text-black text-white'
-                                        : 'bg-zinc-100 border-zinc-200 hover:bg-black hover:text-white text-black'
-                                        }`}
+                                    className="w-full py-2.5 px-4 rounded-xl text-xs font-bold btn-interactive flex items-center justify-center gap-1.5 border bg-[#00E599] border-[#00E599] text-black hover:bg-[#00CC88]"
                                 >
                                     <span>{step.actionText}</span>
                                     <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />

@@ -413,17 +413,17 @@ Exported from Cognitrail Career Pathfinder • https://cognitrail.app
                             <h2 className={`text-2xl sm:text-3xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
                                 Career Roadmap Builder
                             </h2>
-                            <span className={`text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-300 text-zinc-800'}`}>
+                            <span className="text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full bg-[#00E599] text-black shadow-sm">
                                 Verified Curriculums
                             </span>
                         </div>
-                        <p className={`text-sm sm:text-base ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                        <p className={`text-sm sm:text-base ${darkMode ? 'text-emerald-200/70' : 'text-zinc-600'}`}>
                             Build, customize, and track actionable career milestones with persistent progress
                         </p>
                     </div>
                     <button
                         onClick={onClose}
-                        className={`p-2.5 rounded-xl border btn-interactive hover-lift ${darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:text-white' : 'bg-white border-zinc-200 text-zinc-700 hover:text-black'}`}
+                        className={`p-2.5 rounded-xl border btn-interactive hover-lift ${darkMode ? 'bg-[#0e241c] border-emerald-800 text-emerald-300 hover:text-white' : 'bg-white border-emerald-200 text-emerald-900 hover:bg-emerald-50'}`}
                     >
                         <X className="w-5 h-5" />
                     </button>
@@ -437,13 +437,13 @@ Exported from Cognitrail Career Pathfinder • https://cognitrail.app
                                 <h3 className={`text-xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
                                     Select a Pathway or Create Custom Track
                                 </h3>
-                                <p className={`text-xs ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                <p className={`text-xs ${darkMode ? 'text-emerald-200/70' : 'text-zinc-600'}`}>
                                     Choose from verified career pathways or build a personalized milestone roadmap
                                 </p>
                             </div>
                             <button
                                 onClick={() => setShowCreateModal(true)}
-                                className={`px-5 py-2.5 rounded-xl text-xs font-bold border flex items-center gap-2 btn-interactive hover-lift ${darkMode ? 'bg-white text-black border-white' : 'bg-black text-white border-black'}`}
+                                className="px-5 py-2.5 rounded-xl text-xs font-bold border flex items-center gap-2 btn-interactive hover-lift bg-[#00E599] text-black border-[#00E599] hover:bg-[#00CC88]"
                             >
                                 <Plus className="w-4 h-4" />
                                 <span>Create Custom Roadmap</span>

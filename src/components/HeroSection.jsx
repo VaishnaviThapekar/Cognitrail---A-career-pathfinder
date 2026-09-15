@@ -187,11 +187,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
               Architect Your Future.
             </span>
             <br />
-            <span className={`bg-clip-text text-transparent ${
-              darkMode 
-                ? 'bg-gradient-to-r from-white via-zinc-200 to-zinc-500' 
-                : 'bg-gradient-to-r from-black via-zinc-800 to-zinc-600'
-            }`}>
+            <span className="inline-block mt-1.5 px-3 py-1 rounded-2xl bg-[#00E599] text-black font-black shadow-sm">
               With Precision AI.
             </span>
           </h1>
@@ -207,10 +203,10 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
           <form onSubmit={handleSearchSubmit} className="mb-7 max-w-xl">
             <div className={`flex items-center gap-2 p-1.5 rounded-2xl border transition-all duration-300 ${
               darkMode 
-                ? 'bg-[#16161a] border-zinc-700/80 focus-within:border-white focus-within:shadow-[0_0_20px_rgba(255,255,255,0.08)]' 
-                : 'bg-white border-zinc-300 focus-within:border-black focus-within:shadow-lg'
+                ? 'bg-[#0e241c] border-emerald-800 focus-within:border-[#00E599]' 
+                : 'bg-[#F4FBF7] border-emerald-200 focus-within:border-[#00E599] focus-within:bg-white focus-within:shadow-lg'
             }`}>
-              <div className="pl-3 text-zinc-400">
+              <div className="pl-3 text-emerald-500">
                 <Search className="w-4 h-4" />
               </div>
               <input
@@ -218,15 +214,13 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 placeholder="Explore by career, skill, or degree (e.g. AI, MBBS, Fintech)..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full bg-transparent border-none text-xs sm:text-sm focus:outline-none placeholder-zinc-500 ${
+                className={`w-full bg-transparent border-none text-xs sm:text-sm focus:outline-none placeholder-emerald-600/60 ${
                   darkMode ? 'text-white' : 'text-black'
                 }`}
               />
               <button
                 type="submit"
-                className={`px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 btn-interactive cursor-pointer ${
-                  darkMode ? 'bg-white text-black hover:bg-zinc-200' : 'bg-black text-white hover:bg-zinc-800'
-                }`}
+                className="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 btn-interactive cursor-pointer bg-[#00E599] text-black hover:bg-[#00CC88]"
               >
                 <span>Find</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -235,7 +229,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
 
             {/* Quick Keyword Pills */}
             <div className="flex flex-wrap items-center gap-2 mt-2.5">
-              <span className={`text-[11px] font-semibold ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`}>Trending:</span>
+              <span className={`text-[11px] font-semibold ${darkMode ? 'text-emerald-400' : 'text-emerald-700'}`}>Trending:</span>
               {['AI & Robotics', 'Fullstack Dev', 'Investment Banking', 'UI/UX Design', 'Biotech'].map((tag) => (
                 <button
                   key={tag}
@@ -246,8 +240,8 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                   }}
                   className={`text-[11px] px-2.5 py-0.5 rounded-lg border font-medium transition-all hover:scale-105 ${
                     darkMode 
-                      ? 'bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-600' 
-                      : 'bg-zinc-100 border-zinc-200 text-zinc-600 hover:text-black hover:border-zinc-400'
+                      ? 'bg-[#0e241c] border-emerald-800 text-emerald-300 hover:text-white hover:border-[#00E599]' 
+                      : 'bg-[#E6F9F3] border-emerald-200 text-emerald-900 hover:text-black hover:border-emerald-400'
                   }`}
                 >
                   {tag}
@@ -260,11 +254,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
           <div className="flex flex-wrap items-center gap-4 mb-6">
             <button
               onClick={scrollToDomains}
-              className={`group relative inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl font-black text-sm sm:text-base btn-interactive hover-lift shadow-xl cursor-pointer ${
-                darkMode
-                  ? 'bg-white text-black hover:bg-zinc-200 shadow-white/10'
-                  : 'bg-black text-white hover:bg-zinc-800 shadow-black/20'
-              }`}
+              className="group relative inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl font-black text-sm sm:text-base btn-interactive hover-lift shadow-xl cursor-pointer bg-[#00E599] text-black hover:bg-[#00CC88] shadow-emerald-500/20"
             >
               <Compass className="w-4 h-4 group-hover:rotate-45 transition-transform duration-300" />
               <span>Browse 150+ Paths</span>
@@ -278,11 +268,11 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
               }}
               className={`group inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl font-bold text-sm sm:text-base btn-interactive hover-lift border ${
                 darkMode
-                  ? 'bg-[#16161a] hover:bg-zinc-800 border-zinc-700 text-zinc-200 hover:text-white'
-                  : 'bg-white hover:bg-zinc-100 border-zinc-300 text-black shadow-md'
+                  ? 'bg-[#0e241c] hover:bg-emerald-900/40 border-emerald-800 text-emerald-200'
+                  : 'bg-white hover:bg-emerald-50 border-emerald-200 text-black shadow-md'
               } cursor-pointer`}
             >
-              <HelpCircle className="w-4 h-4 transition-transform group-hover:scale-110" />
+              <HelpCircle className="w-4 h-4 text-[#00E599] transition-transform group-hover:scale-110" />
               <span>Take AI Career Quiz</span>
             </button>
           </div>
