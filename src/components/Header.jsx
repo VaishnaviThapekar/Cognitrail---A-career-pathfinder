@@ -44,7 +44,7 @@ const Header = ({
               }}
               className="flex items-center gap-2.5 cursor-pointer select-none group flex-shrink-0"
             >
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl shadow-md transition-transform group-hover:scale-105 bg-[#0265A6] text-white">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl shadow-md transition-all duration-300 group-hover:scale-110 bg-gradient-to-tr from-[#003B73] via-[#0265A6] to-[#6096BA] text-white shadow-[#0265A6]/30">
                 💡
               </div>
               <div>
@@ -65,14 +65,14 @@ const Header = ({
                   const el = document.getElementById('domains');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-[#0A1E3F]' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-[#EBF3FA]'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
               >
                 Careers
               </button>
 
               <button
                 onClick={() => onOpenQuiz && onOpenQuiz()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-[#6096BA] hover:text-white hover:bg-[#0A1E3F]' : 'text-[#0265A6] hover:bg-[#EBF3FA]'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-[#6096BA] hover:text-white hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
               >
                 <HelpCircle className="w-3.5 h-3.5 text-[#0265A6]" />
                 AI Quiz
@@ -81,7 +81,7 @@ const Header = ({
               {setShowCollegeFinder && (
                 <button
                   onClick={() => setShowCollegeFinder(true)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-[#0A1E3F]' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-[#EBF3FA]'}`}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
                 >
                   Colleges
                 </button>
@@ -90,7 +90,7 @@ const Header = ({
               {setShowComparison && (
                 <button
                   onClick={() => setShowComparison(true)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-[#0A1E3F]' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-[#EBF3FA]'}`}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
                 >
                   Compare
                 </button>
@@ -98,21 +98,21 @@ const Header = ({
 
               <button
                 onClick={() => onOpenSkills && onOpenSkills()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-[#0A1E3F]' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-[#EBF3FA]'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
               >
                 Skill Gap
               </button>
 
               <button
                 onClick={() => onOpenRoadmap && onOpenRoadmap()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-[#0A1E3F]' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-[#EBF3FA]'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
               >
                 Roadmaps
               </button>
 
               <button
                 onClick={() => onOpenAdvisor && onOpenAdvisor()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-[#0A1E3F]' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-[#EBF3FA]'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
               >
                 <Bot className="w-3.5 h-3.5 text-[#0265A6]" />
                 Advisor Pro
@@ -129,8 +129,8 @@ const Header = ({
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className={`w-full pl-9 pr-4 py-2 rounded-xl text-xs transition-all border focus:outline-none ${darkMode
-                    ? 'bg-[#0A1E3F] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6]'
-                    : 'bg-[#EBF3FA] border-[#BACDDF] text-black placeholder-zinc-500 focus:border-[#0265A6] focus:bg-white'
+                    ? 'bg-[#0A1E3F] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6] focus:ring-2 focus:ring-[#0265A6]/30'
+                    : 'bg-[#EBF3FA] border-[#BACDDF] text-black placeholder-zinc-500 focus:border-[#0265A6] focus:bg-white focus:ring-2 focus:ring-[#0265A6]/20'
                     }`}
                 />
               </div>
@@ -142,8 +142,8 @@ const Header = ({
               <button
                 onClick={toggleDarkMode}
                 className={`p-2.5 rounded-xl border btn-interactive hover-lift ${darkMode
-                  ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:bg-[#0A1E3F]/80'
-                  : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:bg-[#EBF3FA]/80'
+                  ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:bg-[#0A1E3F]/80 shadow-sm'
+                  : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:bg-[#EBF3FA]/80 shadow-sm'
                   }`}
                 aria-label="Toggle dark mode"
                 title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
@@ -161,7 +161,7 @@ const Header = ({
                     }`}
                   title="Your points & level"
                 >
-                  <div className="w-6 h-6 rounded-lg font-bold text-xs flex items-center justify-center transition-transform hover:scale-110 bg-[#0265A6] text-white">
+                  <div className="w-6 h-6 rounded-lg font-bold text-xs flex items-center justify-center transition-transform hover:scale-110 bg-gradient-to-tr from-[#003B73] to-[#0265A6] text-white shadow-sm">
                     {level}
                   </div>
                   <span className={`text-xs font-bold hidden sm:inline ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>
@@ -174,7 +174,7 @@ const Header = ({
               {isAuthenticated ? (
                 <button
                   onClick={() => setShowProfile(true)}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-xl font-bold text-xs shadow-sm btn-interactive hover-lift bg-[#0265A6] text-white hover:bg-[#003B73]"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-xl font-bold text-xs shadow-md btn-interactive hover-lift bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white hover:brightness-110"
                 >
                   <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                     <User className="w-3.5 h-3.5 text-white" />
@@ -184,7 +184,7 @@ const Header = ({
               ) : (
                 <button
                   onClick={() => setShowAuthModal(true)}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold text-xs shadow-md btn-interactive hover-lift bg-[#0265A6] text-white hover:bg-[#003B73] shadow-blue-500/20"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold text-xs shadow-lg btn-interactive hover-lift bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white hover:brightness-110 shadow-[#0265A6]/25"
                 >
                   <LogIn className="w-3.5 h-3.5" />
                   <span>Sign In</span>

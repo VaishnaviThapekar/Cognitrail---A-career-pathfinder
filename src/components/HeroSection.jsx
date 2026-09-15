@@ -41,13 +41,13 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
     }`}>
       {/* Background Animated Ambient Lights & Grid */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Subtle moving orbs */}
-        <div className={`absolute -top-32 -left-32 w-[34rem] h-[34rem] rounded-full blur-3xl opacity-30 animate-orb-1 ${
-          darkMode ? 'bg-zinc-600/30' : 'bg-zinc-300/60'
+        {/* Multi-shade glowing ambient mesh orbs */}
+        <div className={`absolute -top-32 -left-32 w-[34rem] h-[34rem] rounded-full blur-3xl opacity-40 animate-orb-1 ${
+          darkMode ? 'bg-[#003B73]/40' : 'bg-[#0265A6]/25'
         }`}></div>
 
-        <div className={`absolute -bottom-32 -right-32 w-[36rem] h-[36rem] rounded-full blur-3xl opacity-30 animate-orb-2 ${
-          darkMode ? 'bg-zinc-700/25' : 'bg-zinc-300/50'
+        <div className={`absolute -bottom-32 -right-32 w-[36rem] h-[36rem] rounded-full blur-3xl opacity-40 animate-orb-2 ${
+          darkMode ? 'bg-[#0265A6]/30' : 'bg-[#6096BA]/30'
         }`}></div>
 
         {/* High-tech matrix dot pattern */}
@@ -62,8 +62,8 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
         {/* Diagonal ambient shine */}
         <div className={`absolute inset-0 bg-gradient-to-tr ${
           darkMode 
-            ? 'from-transparent via-zinc-900/10 to-white/[0.02]' 
-            : 'from-transparent via-zinc-200/20 to-black/[0.01]'
+            ? 'from-transparent via-[#0A1E3F]/30 to-[#0265A6]/10' 
+            : 'from-transparent via-[#EBF3FA]/60 to-[#6096BA]/10'
         }`}></div>
       </div>
 
@@ -72,10 +72,10 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
         
         {/* Top Live Engine Status Pill */}
         <div className="flex items-center gap-3 mb-6 justify-center">
-          <div className={`inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border backdrop-blur-md shadow-sm ${
+          <div className={`inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border backdrop-blur-md shadow-md ${
             darkMode 
-              ? 'bg-zinc-900/90 border-zinc-700/80 text-zinc-200' 
-              : 'bg-white/90 border-zinc-300 text-zinc-800'
+              ? 'bg-[#0A1E3F]/90 border-[#003B73] text-zinc-200 shadow-[#0265A6]/15' 
+              : 'bg-white/95 border-[#BACDDF] text-zinc-800 shadow-sm'
           }`}>
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0265A6] opacity-75"></span>
@@ -87,7 +87,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
           </div>
 
           <div className={`hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold border ${
-            darkMode ? 'bg-zinc-900/60 border-zinc-800 text-zinc-400' : 'bg-zinc-100 border-zinc-200 text-zinc-600'
+            darkMode ? 'bg-[#0A1E3F]/60 border-[#003B73] text-[#6096BA]' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6]'
           }`}>
             <Activity className="w-3 h-3 animate-pulse text-[#0265A6]" />
             <span>150+ Career Streams Live</span>
@@ -100,7 +100,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             Architect Your Future.
           </span>
           <br />
-          <span className="inline-block mt-2 px-4 py-1 rounded-2xl bg-[#0265A6] text-white font-black shadow-sm">
+          <span className="inline-block mt-2 px-5 py-1.5 rounded-2xl bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#6096BA] text-white font-black shadow-lg shadow-[#0265A6]/30">
             With Precision AI.
           </span>
         </h1>
@@ -116,8 +116,8 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
         <form onSubmit={handleSearchSubmit} className="mb-8 w-full max-w-2xl">
           <div className={`flex items-center gap-2 p-2 rounded-2xl border transition-all duration-300 ${
             darkMode 
-              ? 'bg-[#0A1E3F] border-[#003B73] focus-within:border-[#0265A6]' 
-              : 'bg-[#EBF3FA] border-[#BACDDF] focus-within:border-[#0265A6] focus-within:bg-white focus-within:shadow-lg'
+              ? 'bg-[#0A1E3F] border-[#003B73] focus-within:border-[#0265A6] focus-within:ring-2 focus-within:ring-[#0265A6]/40 focus-within:shadow-[0_0_25px_rgba(2,101,166,0.3)]' 
+              : 'bg-[#EBF3FA] border-[#BACDDF] focus-within:border-[#0265A6] focus-within:bg-white focus-within:ring-2 focus-within:ring-[#0265A6]/30 focus-within:shadow-[0_8px_30px_rgba(2,101,166,0.2)]'
           }`}>
             <div className="pl-3 text-[#0265A6]">
               <Search className="w-5 h-5" />
@@ -133,7 +133,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             />
             <button
               type="submit"
-              className="px-5 sm:px-6 py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 btn-interactive cursor-pointer bg-[#0265A6] text-white hover:bg-[#003B73] flex-shrink-0 shadow-md"
+              className="px-5 sm:px-6 py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 btn-interactive cursor-pointer bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white hover:brightness-110 flex-shrink-0 shadow-lg shadow-[#0265A6]/30"
             >
               <span>Find</span>
               <ArrowRight className="w-4 h-4" />
@@ -153,8 +153,8 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 }}
                 className={`text-[11px] px-2.5 py-0.5 rounded-lg border font-medium transition-all hover:scale-105 ${
                   darkMode 
-                    ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white hover:border-[#0265A6]' 
-                    : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:text-white hover:border-[#0265A6] hover:bg-[#0265A6]'
+                    ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white hover:border-[#0265A6] hover:bg-gradient-to-r hover:from-[#003B73] hover:to-[#0265A6]' 
+                    : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:text-white hover:border-[#0265A6] hover:bg-gradient-to-r hover:from-[#0265A6] hover:to-[#003B73]'
                 }`}
               >
                 {tag}
@@ -167,7 +167,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
         <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
           <button
             onClick={scrollToDomains}
-            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-black text-sm sm:text-base btn-interactive hover-lift shadow-xl cursor-pointer bg-[#0265A6] text-white hover:bg-[#003B73] shadow-blue-500/20"
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-black text-sm sm:text-base btn-interactive hover-lift shadow-xl cursor-pointer bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white hover:brightness-110 shadow-[#0265A6]/35"
           >
             <Compass className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
             <span>Browse 150+ Paths</span>
@@ -181,8 +181,8 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             }}
             className={`group inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl font-bold text-sm sm:text-base btn-interactive hover-lift border ${
               darkMode
-                ? 'bg-[#0A1E3F] hover:bg-[#0A1E3F]/80 border-[#003B73] text-[#6096BA]'
-                : 'bg-white hover:bg-[#EBF3FA] border-[#BACDDF] text-zinc-900 shadow-md'
+                ? 'bg-[#0A1E3F] hover:bg-[#0A1E3F]/80 border-[#003B73] text-[#6096BA] hover:border-[#0265A6]'
+                : 'bg-white hover:bg-[#EBF3FA] border-[#BACDDF] text-zinc-900 shadow-md hover:border-[#0265A6]'
             } cursor-pointer`}
           >
             <HelpCircle className="w-5 h-5 text-[#0265A6] transition-transform group-hover:scale-110" />

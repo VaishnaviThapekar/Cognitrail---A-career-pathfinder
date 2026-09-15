@@ -250,7 +250,7 @@ const CollegeFinder = ({ onClose, darkMode }) => {
         {/* Header */}
         <div className="flex items-center justify-between mb-8 pb-6 border-b border-[#BACDDF] dark:border-[#003B73]">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold mb-2 bg-[#0265A6] text-white shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold mb-2 bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white shadow-md shadow-[#0265A6]/20">
               <Sparkles className="w-3.5 h-3.5 text-white" />
               Verified Educational Directory & Admissions Matrix
             </div>
@@ -272,7 +272,7 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
         {/* Source & Verification Notice */}
         <div className={`mb-6 p-4 rounded-2xl border flex items-start gap-3.5 ${
-          darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA]' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6]'
+          darkMode ? 'bg-gradient-to-r from-[#0A1E3F] to-[#071326] border-[#003B73] text-[#6096BA]' : 'bg-gradient-to-r from-[#EBF3FA] to-[#BACDDF]/30 border-[#BACDDF] text-[#0265A6]'
         }`}>
           <ShieldCheck className="w-5 h-5 text-[#0265A6] mt-0.5 flex-shrink-0" />
           <div className="text-xs sm:text-sm leading-relaxed">
@@ -283,7 +283,7 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
         {/* Filter Controls Card */}
         <div className={`rounded-3xl p-6 md:p-8 mb-8 border ${
-          darkMode ? 'bg-[#0A1E3F] border-[#003B73] shadow-xl' : 'bg-white border-[#BACDDF] shadow-md'
+          darkMode ? 'bg-gradient-to-b from-[#0A1E3F] to-[#071326] border-[#003B73] shadow-xl' : 'bg-gradient-to-b from-white to-[#EBF3FA]/30 border-[#BACDDF] shadow-md'
         }`}>
           <div className="flex items-center justify-between gap-3 mb-6">
             <div className="flex items-center gap-2">
@@ -292,7 +292,7 @@ const CollegeFinder = ({ onClose, darkMode }) => {
                 Filter & Search Institutions
               </h3>
             </div>
-            <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-[#0265A6] text-white">
+            <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white shadow-sm">
               {filteredColleges.length} Verified Colleges
             </span>
           </div>
@@ -307,10 +307,10 @@ const CollegeFinder = ({ onClose, darkMode }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search college name, courses, specializations, or city..."
-                className={`w-full pl-11 pr-4 py-3 rounded-2xl border text-sm outline-none transition-colors ${
+                className={`w-full pl-11 pr-4 py-3 rounded-2xl border text-sm outline-none transition-all ${
                   darkMode
-                    ? 'bg-[#071326] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6]'
-                    : 'bg-[#EBF3FA]/60 border-[#BACDDF] text-zinc-900 placeholder-blue-600/60 focus:border-[#0265A6] focus:bg-white'
+                    ? 'bg-[#071326] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6] focus:ring-2 focus:ring-[#0265A6]/30'
+                    : 'bg-[#EBF3FA]/60 border-[#BACDDF] text-zinc-900 placeholder-blue-600/60 focus:border-[#0265A6] focus:bg-white focus:ring-2 focus:ring-[#0265A6]/20'
                 }`}
               />
               {searchQuery && (

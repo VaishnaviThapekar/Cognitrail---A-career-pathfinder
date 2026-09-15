@@ -260,7 +260,7 @@ const CareerChatbot = ({ darkMode, onClose }) => {
                                     {/* Message Body */}
                                     <div className="flex-1 overflow-hidden">
                                         <div className={`rounded-2xl px-4 sm:px-5 py-3.5 border transition-all break-words ${message.type === 'user'
-                                            ? 'bg-[#0265A6] text-white border-[#0265A6] font-semibold'
+                                            ? 'bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white border-[#0265A6]/40 font-semibold shadow-md shadow-[#0265A6]/20'
                                             : darkMode
                                                 ? 'bg-[#0A1E3F] text-[#EBF3FA] border-[#003B73]'
                                                 : 'bg-white text-zinc-900 border-[#BACDDF] shadow-sm'
@@ -277,8 +277,8 @@ const CareerChatbot = ({ darkMode, onClose }) => {
                                                         disabled={isTyping}
                                                         onClick={() => handleSuggestionClick(suggestion)}
                                                         className={`text-xs px-3 py-1 rounded-xl border font-semibold transition-all btn-interactive disabled:opacity-50 ${darkMode
-                                                            ? 'bg-[#0A1E3F] hover:bg-[#0265A6] text-[#6096BA] hover:text-white border-[#003B73]'
-                                                            : 'bg-[#EBF3FA] hover:bg-[#0265A6] text-[#0265A6] hover:text-white border-[#BACDDF]'
+                                                            ? 'bg-[#0A1E3F] hover:bg-gradient-to-r hover:from-[#003B73] hover:to-[#0265A6] text-[#6096BA] hover:text-white border-[#003B73]'
+                                                            : 'bg-[#EBF3FA] hover:bg-gradient-to-r hover:from-[#0265A6] hover:to-[#003B73] text-[#0265A6] hover:text-white border-[#BACDDF]'
                                                             }`}
                                                     >
                                                         {suggestion}
@@ -294,7 +294,7 @@ const CareerChatbot = ({ darkMode, onClose }) => {
                         {/* Typing / Loading indicator */}
                         {isTyping && (
                             <div className="flex gap-3 animate-fade-in">
-                                <div className="w-8 h-8 rounded-xl flex items-center justify-center border bg-[#0265A6] text-white border-[#0265A6]">
+                                <div className="w-8 h-8 rounded-xl flex items-center justify-center border bg-gradient-to-tr from-[#003B73] to-[#0265A6] text-white border-[#0265A6]/40 shadow-sm">
                                     <Sparkles className="w-4 h-4 animate-spin text-white" />
                                 </div>
                                 <div className={`rounded-2xl px-5 py-3.5 border ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA]' : 'bg-white border-[#BACDDF] text-[#0265A6] shadow-sm'
@@ -325,15 +325,15 @@ const CareerChatbot = ({ darkMode, onClose }) => {
                             placeholder="Ask any career, college, exam, or salary question..."
                             disabled={isTyping}
                             className={`flex-1 px-4 py-3 rounded-2xl text-xs sm:text-sm transition-all border outline-none ${darkMode
-                                ? 'bg-[#071326] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6]'
-                                : 'bg-[#EBF3FA]/60 border-[#BACDDF] text-zinc-900 placeholder-blue-600/60 focus:border-[#0265A6] focus:bg-white'
+                                ? 'bg-[#071326] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6] focus:ring-2 focus:ring-[#0265A6]/30'
+                                : 'bg-[#EBF3FA]/60 border-[#BACDDF] text-zinc-900 placeholder-blue-600/60 focus:border-[#0265A6] focus:bg-white focus:ring-2 focus:ring-[#0265A6]/20'
                                 } disabled:opacity-50`}
                         />
                         <button
                             onClick={() => handleSend()}
                             disabled={isTyping || !input.trim()}
                             className={`px-5 py-3 rounded-2xl font-bold text-xs transition-all btn-interactive flex items-center justify-center gap-1.5 ${input.trim() && !isTyping
-                                ? 'bg-[#0265A6] text-white hover:bg-[#003B73] shadow-sm'
+                                ? 'bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white hover:brightness-110 shadow-md shadow-[#0265A6]/25'
                                 : 'bg-zinc-800 text-zinc-500 cursor-not-allowed border border-zinc-700'
                                 }`}
                         >

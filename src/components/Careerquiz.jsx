@@ -507,7 +507,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                         <div>
-                            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-2 bg-[#0265A6] text-white shadow-sm">
+                            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-2 bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white shadow-md shadow-[#0265A6]/20">
                                 <Sparkles className="w-3.5 h-3.5 text-white" />
                                 AI Pathfinder Assessment Complete
                             </div>
@@ -518,7 +518,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                         <div className="flex items-center gap-2">
                             <button
                                 onClick={handleRetakeQuiz}
-                                className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm btn-interactive hover-lift border bg-[#0265A6] border-[#0265A6] text-white hover:bg-[#003B73] shadow-sm"
+                                className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm btn-interactive hover-lift border bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] border-[#0265A6]/40 text-white hover:brightness-110 shadow-md shadow-[#0265A6]/20"
                                 title="Retake Quiz"
                             >
                                 <RotateCcw className="w-4 h-4 text-white" />
@@ -538,7 +538,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
                     {/* Guidance & Advisory Disclaimer */}
                     <div className={`mb-8 p-4.5 rounded-2xl border flex items-start gap-3.5 ${
-                        darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA]' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] shadow-sm'
+                        darkMode ? 'bg-gradient-to-r from-[#0A1E3F] to-[#071326] border-[#003B73] text-[#6096BA]' : 'bg-gradient-to-r from-[#EBF3FA] to-[#BACDDF]/30 border-[#BACDDF] text-[#0265A6] shadow-sm'
                     }`}>
                         <Info className="w-5 h-5 text-[#0265A6] mt-0.5 flex-shrink-0" />
                         <div className="text-sm leading-relaxed">
@@ -553,13 +553,13 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                             <div
                                 key={idx}
                                 className={`rounded-3xl p-6 md:p-8 transition-all duration-300 border hover-lift ${
-                                    darkMode ? 'bg-[#0A1E3F] border-[#003B73] hover:border-[#0265A6] shadow-xl' : 'bg-white border-[#BACDDF] hover:border-[#0265A6] shadow-lg'
+                                    darkMode ? 'bg-gradient-to-b from-[#0A1E3F] to-[#071326] border-[#003B73] hover:border-[#0265A6] shadow-xl' : 'bg-gradient-to-b from-white to-[#EBF3FA]/30 border-[#BACDDF] hover:border-[#0265A6] shadow-lg'
                                 }`}
                             >
                                 {/* Top bar with Match Score */}
                                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#BACDDF] dark:border-[#003B73]">
                                     <div className="flex items-center gap-3.5">
-                                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg bg-[#0265A6] text-white">
+                                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg bg-gradient-to-tr from-[#003B73] to-[#0265A6] text-white shadow-sm">
                                             #{idx + 1}
                                         </div>
                                         <div>
@@ -582,7 +582,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
                                     {/* Match Badge */}
                                     <div className="flex items-center sm:flex-col items-end gap-2 sm:gap-0">
-                                        <div className="text-3xl md:text-4xl font-black text-[#0265A6]">
+                                        <div className="text-3xl md:text-4xl font-black bg-clip-text text-transparent bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#6096BA]">
                                             {result.match}%
                                         </div>
                                         <span className={`text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>

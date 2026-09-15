@@ -413,7 +413,7 @@ Exported from Cognitrail Career Pathfinder • https://cognitrail.app
                             <h2 className={`text-2xl sm:text-3xl font-black ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>
                                 Career Roadmap Builder
                             </h2>
-                            <span className="text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full bg-[#0265A6] text-white shadow-sm">
+                            <span className="text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white shadow-md shadow-[#0265A6]/20">
                                 Verified Curriculums
                             </span>
                         </div>
@@ -443,7 +443,7 @@ Exported from Cognitrail Career Pathfinder • https://cognitrail.app
                             </div>
                             <button
                                 onClick={() => setShowCreateModal(true)}
-                                className="px-5 py-2.5 rounded-xl text-xs font-bold border flex items-center gap-2 btn-interactive hover-lift bg-[#0265A6] text-white border-[#0265A6] hover:bg-[#003B73] shadow-sm"
+                                className="px-5 py-2.5 rounded-xl text-xs font-bold border flex items-center gap-2 btn-interactive hover-lift bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] border-[#0265A6]/40 text-white hover:brightness-110 shadow-md shadow-[#0265A6]/25"
                             >
                                 <Plus className="w-4 h-4 text-white" />
                                 <span>Create Custom Roadmap</span>
