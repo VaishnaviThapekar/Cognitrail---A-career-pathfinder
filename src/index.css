@@ -303,11 +303,11 @@
   }
 }
 
-/* Mint Green Theme Utility Classes */
+/* Lime & Olive Palette Theme Utility Classes */
 .mint-badge {
-  background-color: #00E599;
-  color: #000000;
-  font-weight: 700;
+  background-color: #ADE852;
+  color: #1c2e14;
+  font-weight: 800;
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   display: inline-flex;
@@ -316,8 +316,8 @@
 }
 
 .mint-highlight {
-  background-color: #00E599;
-  color: #000000;
+  background-color: #ADE852;
+  color: #1c2e14;
   padding: 0.125rem 0.5rem;
   border-radius: 0.5rem;
   font-weight: 800;
@@ -325,9 +325,9 @@
 }
 
 .btn-mint {
-  background-color: #00E599;
-  color: #000000;
-  font-weight: 700;
+  background-color: #ADE852;
+  color: #1c2e14;
+  font-weight: 800;
   padding: 0.625rem 1.25rem;
   border-radius: 0.75rem;
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -335,13 +335,13 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 14px rgba(0, 229, 153, 0.3);
+  box-shadow: 0 4px 14px rgba(173, 232, 82, 0.35);
 }
 
 .btn-mint:hover {
-  background-color: #00CC88;
+  background-color: #9CDD3D;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 229, 153, 0.45);
+  box-shadow: 0 6px 20px rgba(173, 232, 82, 0.5);
 }
 
 .btn-mint:active {
@@ -355,19 +355,19 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f0fdf4;
+  background: #EFF4BE;
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #061a14;
+  background: #1c2e14;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00E599;
+  background: #ADE852;
   border-radius: 9999px;
   transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00CC88;
+  background: #9CDD3D;
 }

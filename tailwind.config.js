@@ -9,25 +9,19 @@ export default {
         extend: {
             colors: {
                 mint: {
-                    DEFAULT: '#00E599',
-                    hover: '#00CC88',
-                    light: '#E6F9F3',
-                    dark: '#059669',
-                    deep: '#062C21',
+                    DEFAULT: '#ADE852',
+                    hover: '#9CDD3D',
+                    light: '#EFF4BE',
+                    dark: '#749D1C',
+                    deep: '#507237',
                 },
-                emerald: {
-                    50: '#f0fdf4',
-                    100: '#dcfce7',
-                    200: '#bbf7d0',
-                    300: '#86efac',
-                    400: '#4ade80',
-                    500: '#10b981',
-                    600: '#059669',
-                    700: '#047857',
-                    800: '#065f46',
-                    900: '#064e3b',
-                    950: '#022c22',
-                }
+                limePalette: {
+                    1: '#EFF4BE',
+                    2: '#ADE852',
+                    3: '#A7C62E',
+                    4: '#749D1C',
+                    5: '#507237',
+                },
             },
             animation: {
                 'fade-in': 'fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards',

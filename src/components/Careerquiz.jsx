@@ -507,8 +507,8 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                     {/* Header */}
                     <div className="flex items-center justify-between mb-6">
                         <div>
-                            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-2 bg-[#00E599] text-black shadow-sm">
-                                <Sparkles className="w-3.5 h-3.5" />
+                            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold mb-2 bg-[#ADE852] text-[#1c2e14] shadow-sm">
+                                <Sparkles className="w-3.5 h-3.5 text-[#1c2e14]" />
                                 AI Pathfinder Assessment Complete
                             </div>
                             <h2 className={`text-3xl md:text-4xl font-black ${darkMode ? 'text-white' : 'text-black'}`}>
@@ -518,16 +518,16 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                         <div className="flex items-center gap-2">
                             <button
                                 onClick={handleRetakeQuiz}
-                                className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm btn-interactive hover-lift border bg-[#00E599] border-[#00E599] text-black hover:bg-[#00CC88]"
+                                className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm btn-interactive hover-lift border bg-[#ADE852] border-[#ADE852] text-[#1c2e14] hover:bg-[#9CDD3D] shadow-sm"
                                 title="Retake Quiz"
                             >
-                                <RotateCcw className="w-4 h-4" />
+                                <RotateCcw className="w-4 h-4 text-[#1c2e14]" />
                                 <span className="hidden sm:inline">Retake Quiz</span>
                             </button>
                             <button
                                 onClick={onClose}
                                 className={`p-2.5 rounded-xl transition-colors border ${
-                                    darkMode ? 'bg-[#0e241c] border-emerald-800 text-emerald-300 hover:text-white' : 'bg-white border-emerald-200 text-emerald-900 hover:bg-emerald-50'
+                                    darkMode ? 'bg-[#1c2e14] border-[#507237] text-[#ADE852] hover:text-white' : 'bg-[#EFF4BE] border-[#A7C62E]/60 text-[#507237] hover:bg-[#ADE852] hover:text-[#1c2e14]'
                                 }`}
                                 aria-label="Close"
                             >
@@ -538,9 +538,9 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
                     {/* Guidance & Advisory Disclaimer */}
                     <div className={`mb-8 p-4.5 rounded-2xl border flex items-start gap-3.5 ${
-                        darkMode ? 'bg-[#0e241c] border-emerald-800 text-emerald-200/80' : 'bg-[#E6F9F3] border-emerald-200 text-emerald-950 shadow-sm'
+                        darkMode ? 'bg-[#1c2e14] border-[#507237] text-[#EFF4BE]' : 'bg-[#EFF4BE] border-[#A7C62E]/60 text-[#507237] shadow-sm'
                     }`}>
-                        <Info className="w-5 h-5 text-[#00E599] mt-0.5 flex-shrink-0" />
+                        <Info className="w-5 h-5 text-[#ADE852] mt-0.5 flex-shrink-0" />
                         <div className="text-sm leading-relaxed">
                             <span className="font-bold text-black dark:text-white">Guidance & Advisory Notice: </span>
                             These recommendations are algorithmic guidance and career exploration tools designed to help you discover options based on your answers, rather than guaranteed predictions. We encourage you to research multiple paths and consult academic advisors.
@@ -553,13 +553,13 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                             <div
                                 key={idx}
                                 className={`rounded-3xl p-6 md:p-8 transition-all duration-300 border hover-lift ${
-                                    darkMode ? 'bg-[#0b1c15] border-emerald-900/60 hover:border-[#00E599] shadow-xl' : 'bg-white border-emerald-100 hover:border-[#00E599] shadow-lg'
+                                    darkMode ? 'bg-[#1c2e14] border-[#507237] hover:border-[#ADE852] shadow-xl' : 'bg-white border-[#A7C62E]/40 hover:border-[#ADE852] shadow-lg'
                                 }`}
                             >
                                 {/* Top bar with Match Score */}
-                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-emerald-200/50 dark:border-emerald-900/50">
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#A7C62E]/30 dark:border-[#507237]/40">
                                     <div className="flex items-center gap-3.5">
-                                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg bg-[#00E599] text-black">
+                                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center font-black text-lg bg-[#ADE852] text-[#1c2e14]">
                                             #{idx + 1}
                                         </div>
                                         <div>
@@ -567,13 +567,13 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                                                 {result.career}
                                             </h3>
                                             <div className="flex items-center gap-3 text-xs mt-1">
-                                                <span className="flex items-center gap-1 font-semibold text-emerald-600 dark:text-emerald-400">
-                                                    <Briefcase className="w-3.5 h-3.5" />
+                                                <span className="flex items-center gap-1 font-semibold text-[#749D1C]">
+                                                    <Briefcase className="w-3.5 h-3.5 text-[#749D1C]" />
                                                     {result.jobOutlook}
                                                 </span>
                                                 <span className="text-zinc-400">•</span>
-                                                <span className="flex items-center gap-1 font-semibold text-emerald-600 dark:text-emerald-400">
-                                                    <DollarSign className="w-3.5 h-3.5" />
+                                                <span className="flex items-center gap-1 font-semibold text-[#749D1C]">
+                                                    <DollarSign className="w-3.5 h-3.5 text-[#749D1C]" />
                                                     {result.salaryRange}
                                                 </span>
                                             </div>
@@ -582,10 +582,10 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
 
                                     {/* Match Badge */}
                                     <div className="flex items-center sm:flex-col items-end gap-2 sm:gap-0">
-                                        <div className="text-3xl md:text-4xl font-black text-[#00E599]">
+                                        <div className="text-3xl md:text-4xl font-black text-[#ADE852]">
                                             {result.match}%
                                         </div>
-                                        <span className={`text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-emerald-300' : 'text-emerald-900'}`}>
+                                        <span className={`text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-[#ADE852]' : 'text-[#507237]'}`}>
                                             Match Score
                                         </span>
                                     </div>

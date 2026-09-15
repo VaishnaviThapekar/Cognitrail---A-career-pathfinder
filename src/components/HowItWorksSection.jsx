@@ -49,14 +49,14 @@ const HowItWorksSection = ({ darkMode, onStartQuiz, onExploreDomains, onOpenSkil
         <section className="mb-20">
             {/* Section Header */}
             <div className="text-center max-w-3xl mx-auto mb-14">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 bg-[#00E599] text-black shadow-sm">
-                    <Sparkles className="w-3.5 h-3.5" />
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-4 bg-[#ADE852] text-[#1c2e14] shadow-sm">
+                    <Sparkles className="w-3.5 h-3.5 text-[#1c2e14]" />
                     How Cognitrail Empowers Students
                 </div>
                 <h2 className={`text-3xl md:text-5xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-4 tracking-tight`}>
-                    From Confusion to <span className="px-3 py-0.5 rounded-2xl bg-[#00E599] text-black font-black">Career Clarity</span>
+                    From Confusion to <span className="px-3 py-0.5 rounded-2xl bg-[#ADE852] text-[#1c2e14] font-black">Career Clarity</span>
                 </h2>
-                <p className={`text-base md:text-lg ${darkMode ? 'text-emerald-200/70' : 'text-zinc-600'} leading-relaxed`}>
+                <p className={`text-base md:text-lg ${darkMode ? 'text-zinc-300' : 'text-zinc-600'} leading-relaxed`}>
                     Cognitrail is your all-in-one companion designed to eliminate guesswork, helping students make confident, data-backed career decisions at every stage.
                 </p>
             </div>
@@ -69,22 +69,22 @@ const HowItWorksSection = ({ darkMode, onStartQuiz, onExploreDomains, onOpenSkil
                         <div
                             key={index}
                             className={`rounded-3xl p-6 md:p-7 border transition-all duration-300 flex flex-col justify-between group hover-lift ${darkMode
-                                ? 'bg-[#0b1c15] border-emerald-900/60 hover:border-[#00E599]'
-                                : 'bg-white border-emerald-100 hover:border-[#00E599] shadow-md'
+                                ? 'bg-[#1c2e14] border-[#507237] hover:border-[#ADE852]'
+                                : 'bg-white border-[#A7C62E]/40 hover:border-[#ADE852] shadow-md'
                                 }`}
                         >
                             <div>
                                 {/* Step Top Header */}
                                 <div className="flex items-center justify-between mb-6">
-                                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 shadow-md bg-[#00E599] text-black">
-                                        <Icon className="w-6 h-6 text-black" />
+                                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 shadow-md bg-[#ADE852] text-[#1c2e14]">
+                                        <Icon className="w-6 h-6 text-[#1c2e14]" />
                                     </div>
-                                    <span className={`text-3xl font-black transition-colors ${darkMode ? 'text-emerald-400/50' : 'text-emerald-300'}`}>
+                                    <span className={`text-3xl font-black transition-colors ${darkMode ? 'text-[#A7C62E]/60' : 'text-[#749D1C]/60'}`}>
                                         {step.number}
                                     </span>
                                 </div>
 
-                                <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3 transition-transform group-hover:scale-105 ${darkMode ? 'bg-[#0e241c] text-emerald-300 border border-emerald-800' : 'bg-[#E6F9F3] text-emerald-950 border border-emerald-200'}`}>
+                                <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-3 transition-transform group-hover:scale-105 ${darkMode ? 'bg-[#1c2e14] text-[#ADE852] border border-[#507237]' : 'bg-[#EFF4BE] text-[#507237] border border-[#A7C62E]/60'}`}>
                                     {step.badge}
                                 </span>
 
@@ -92,7 +92,7 @@ const HowItWorksSection = ({ darkMode, onStartQuiz, onExploreDomains, onOpenSkil
                                     {step.title}
                                 </h3>
 
-                                <p className={`text-sm ${darkMode ? 'text-emerald-200/70' : 'text-zinc-600'} leading-relaxed mb-5`}>
+                                <p className={`text-sm ${darkMode ? 'text-zinc-300' : 'text-zinc-600'} leading-relaxed mb-5`}>
                                     {step.description}
                                 </p>
 
@@ -100,8 +100,8 @@ const HowItWorksSection = ({ darkMode, onStartQuiz, onExploreDomains, onOpenSkil
                                 <div className="space-y-2 mb-6">
                                     {step.benefits.map((benefit, bidx) => (
                                         <div key={bidx} className="flex items-center gap-2 text-xs">
-                                            <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 text-[#00E599]" />
-                                            <span className={darkMode ? 'text-emerald-100' : 'text-zinc-700 font-medium'}>
+                                            <CheckCircle2 className="w-3.5 h-3.5 flex-shrink-0 text-[#ADE852]" />
+                                            <span className={darkMode ? 'text-zinc-200' : 'text-zinc-700 font-medium'}>
                                                 {benefit}
                                             </span>
                                         </div>
@@ -113,7 +113,7 @@ const HowItWorksSection = ({ darkMode, onStartQuiz, onExploreDomains, onOpenSkil
                             {step.action && (
                                 <button
                                     onClick={step.action}
-                                    className="w-full py-2.5 px-4 rounded-xl text-xs font-bold btn-interactive flex items-center justify-center gap-1.5 border bg-[#00E599] border-[#00E599] text-black hover:bg-[#00CC88]"
+                                    className="w-full py-2.5 px-4 rounded-xl text-xs font-bold btn-interactive flex items-center justify-center gap-1.5 border bg-[#ADE852] border-[#ADE852] text-[#1c2e14] hover:bg-[#9CDD3D] shadow-sm"
                                 >
                                     <span>{step.actionText}</span>
                                     <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
