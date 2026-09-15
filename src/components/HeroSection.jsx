@@ -78,8 +78,8 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
               : 'bg-white/90 border-zinc-300 text-zinc-800'
           }`}>
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0265A6] opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0265A6]"></span>
             </span>
             <span className="text-[11px] font-black uppercase tracking-wider font-mono">
               Cognitrail AI Engine 2.6
@@ -89,18 +89,18 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
           <div className={`hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold border ${
             darkMode ? 'bg-zinc-900/60 border-zinc-800 text-zinc-400' : 'bg-zinc-100 border-zinc-200 text-zinc-600'
           }`}>
-            <Activity className="w-3 h-3 animate-pulse text-[#10B981]" />
+            <Activity className="w-3 h-3 animate-pulse text-[#0265A6]" />
             <span>150+ Career Streams Live</span>
           </div>
         </div>
 
         {/* Hero Headline */}
         <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black mb-6 leading-[1.08] tracking-tight">
-          <span className={darkMode ? 'text-white' : 'text-[#111827]'}>
+          <span className={darkMode ? 'text-white' : 'text-[#051C3E]'}>
             Architect Your Future.
           </span>
           <br />
-          <span className="inline-block mt-2 px-4 py-1 rounded-2xl bg-[#10B981] text-white font-black shadow-sm">
+          <span className="inline-block mt-2 px-4 py-1 rounded-2xl bg-[#0265A6] text-white font-black shadow-sm">
             With Precision AI.
           </span>
         </h1>
@@ -116,10 +116,10 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
         <form onSubmit={handleSearchSubmit} className="mb-8 w-full max-w-2xl">
           <div className={`flex items-center gap-2 p-2 rounded-2xl border transition-all duration-300 ${
             darkMode 
-              ? 'bg-[#14231E] border-emerald-800/60 focus-within:border-[#10B981]' 
-              : 'bg-[#ECFDF5] border-emerald-200 focus-within:border-[#10B981] focus-within:bg-white focus-within:shadow-lg'
+              ? 'bg-[#0A1E3F] border-[#003B73] focus-within:border-[#0265A6]' 
+              : 'bg-[#EBF3FA] border-[#BACDDF] focus-within:border-[#0265A6] focus-within:bg-white focus-within:shadow-lg'
           }`}>
-            <div className="pl-3 text-[#059669]">
+            <div className="pl-3 text-[#0265A6]">
               <Search className="w-5 h-5" />
             </div>
             <input
@@ -127,13 +127,13 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
               placeholder="Explore by career, skill, or degree (e.g. AI, MBBS, Fintech)..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className={`w-full bg-transparent border-none text-xs sm:text-base focus:outline-none placeholder-emerald-600/60 ${
+              className={`w-full bg-transparent border-none text-xs sm:text-base focus:outline-none placeholder-blue-600/60 ${
                 darkMode ? 'text-white' : 'text-zinc-900'
               }`}
             />
             <button
               type="submit"
-              className="px-5 sm:px-6 py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 btn-interactive cursor-pointer bg-[#10B981] text-white hover:bg-[#059669] flex-shrink-0 shadow-md"
+              className="px-5 sm:px-6 py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center gap-1.5 btn-interactive cursor-pointer bg-[#0265A6] text-white hover:bg-[#003B73] flex-shrink-0 shadow-md"
             >
               <span>Find</span>
               <ArrowRight className="w-4 h-4" />
@@ -142,7 +142,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
 
           {/* Quick Keyword Pills */}
           <div className="flex flex-wrap items-center justify-center gap-2 mt-3">
-            <span className={`text-[11px] font-semibold ${darkMode ? 'text-[#6EE7B7]' : 'text-[#059669]'}`}>Trending:</span>
+            <span className={`text-[11px] font-semibold ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>Trending:</span>
             {['AI & Robotics', 'Fullstack Dev', 'Investment Banking', 'UI/UX Design', 'Biotech'].map((tag) => (
               <button
                 key={tag}
@@ -153,8 +153,8 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 }}
                 className={`text-[11px] px-2.5 py-0.5 rounded-lg border font-medium transition-all hover:scale-105 ${
                   darkMode 
-                    ? 'bg-[#14231E] border-emerald-800/60 text-[#6EE7B7] hover:text-white hover:border-[#10B981]' 
-                    : 'bg-[#ECFDF5] border-emerald-200 text-[#059669] hover:text-white hover:border-[#10B981] hover:bg-[#10B981]'
+                    ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white hover:border-[#0265A6]' 
+                    : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:text-white hover:border-[#0265A6] hover:bg-[#0265A6]'
                 }`}
               >
                 {tag}
@@ -167,7 +167,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
         <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
           <button
             onClick={scrollToDomains}
-            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-black text-sm sm:text-base btn-interactive hover-lift shadow-xl cursor-pointer bg-[#10B981] text-white hover:bg-[#059669] shadow-emerald-500/20"
+            className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-black text-sm sm:text-base btn-interactive hover-lift shadow-xl cursor-pointer bg-[#0265A6] text-white hover:bg-[#003B73] shadow-blue-500/20"
           >
             <Compass className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
             <span>Browse 150+ Paths</span>
@@ -181,11 +181,11 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             }}
             className={`group inline-flex items-center gap-2.5 px-7 py-4 rounded-2xl font-bold text-sm sm:text-base btn-interactive hover-lift border ${
               darkMode
-                ? 'bg-[#14231E] hover:bg-[#14231E]/80 border-emerald-800/60 text-[#6EE7B7]'
-                : 'bg-white hover:bg-[#ECFDF5] border-emerald-200 text-zinc-900 shadow-md'
+                ? 'bg-[#0A1E3F] hover:bg-[#0A1E3F]/80 border-[#003B73] text-[#6096BA]'
+                : 'bg-white hover:bg-[#EBF3FA] border-[#BACDDF] text-zinc-900 shadow-md'
             } cursor-pointer`}
           >
-            <HelpCircle className="w-5 h-5 text-[#10B981] transition-transform group-hover:scale-110" />
+            <HelpCircle className="w-5 h-5 text-[#0265A6] transition-transform group-hover:scale-110" />
             <span>Take AI Career Quiz</span>
           </button>
         </div>
@@ -201,7 +201,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 : 'bg-zinc-100 hover:bg-zinc-200 border-zinc-200 text-zinc-800'
             }`}
           >
-            <FileText className="w-4 h-4 text-[#10B981]" />
+            <FileText className="w-4 h-4 text-[#0265A6]" />
             <span>ATS Resume Scanner</span>
           </button>
 
@@ -213,7 +213,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 : 'bg-zinc-100 hover:bg-zinc-200 border-zinc-200 text-zinc-800'
             }`}
           >
-            <Video className="w-4 h-4 text-[#10B981]" />
+            <Video className="w-4 h-4 text-[#0265A6]" />
             <span>AI Interview Prep</span>
           </button>
 
@@ -225,7 +225,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 : 'bg-zinc-100 hover:bg-zinc-200 border-zinc-200 text-zinc-800'
             }`}
           >
-            <Target className="w-4 h-4 text-[#10B981]" />
+            <Target className="w-4 h-4 text-[#0265A6]" />
             <span>Skills Gap Check</span>
           </button>
         </div>

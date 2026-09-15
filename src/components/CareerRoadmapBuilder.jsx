@@ -410,10 +410,10 @@ Exported from Cognitrail Career Pathfinder • https://cognitrail.app
                     <div>
                         <div className="flex items-center gap-2 mb-1">
                             <span className="text-2xl">🗺️</span>
-                            <h2 className={`text-2xl sm:text-3xl font-black ${darkMode ? 'text-white' : 'text-[#111827]'}`}>
+                            <h2 className={`text-2xl sm:text-3xl font-black ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>
                                 Career Roadmap Builder
                             </h2>
-                            <span className="text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full bg-[#10B981] text-white shadow-sm">
+                            <span className="text-[10px] font-extrabold uppercase px-3 py-0.5 rounded-full bg-[#0265A6] text-white shadow-sm">
                                 Verified Curriculums
                             </span>
                         </div>
@@ -423,7 +423,7 @@ Exported from Cognitrail Career Pathfinder • https://cognitrail.app
                     </div>
                     <button
                         onClick={onClose}
-                        className={`p-2.5 rounded-xl border btn-interactive hover-lift ${darkMode ? 'bg-[#14231E] border-emerald-800/60 text-[#6EE7B7] hover:text-white' : 'bg-[#ECFDF5] border-emerald-200 text-[#059669] hover:bg-[#10B981] hover:text-white'}`}
+                        className={`p-2.5 rounded-xl border btn-interactive hover-lift ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:bg-[#0265A6] hover:text-white'}`}
                     >
                         <X className="w-5 h-5" />
                     </button>
@@ -434,7 +434,7 @@ Exported from Cognitrail Career Pathfinder • https://cognitrail.app
                     <div>
                         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
                             <div>
-                                <h3 className={`text-xl font-black ${darkMode ? 'text-white' : 'text-[#111827]'}`}>
+                                <h3 className={`text-xl font-black ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>
                                     Select a Pathway or Create Custom Track
                                 </h3>
                                 <p className={`text-xs ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
@@ -443,7 +443,7 @@ Exported from Cognitrail Career Pathfinder • https://cognitrail.app
                             </div>
                             <button
                                 onClick={() => setShowCreateModal(true)}
-                                className="px-5 py-2.5 rounded-xl text-xs font-bold border flex items-center gap-2 btn-interactive hover-lift bg-[#10B981] text-white border-[#10B981] hover:bg-[#059669] shadow-sm"
+                                className="px-5 py-2.5 rounded-xl text-xs font-bold border flex items-center gap-2 btn-interactive hover-lift bg-[#0265A6] text-white border-[#0265A6] hover:bg-[#003B73] shadow-sm"
                             >
                                 <Plus className="w-4 h-4 text-white" />
                                 <span>Create Custom Roadmap</span>

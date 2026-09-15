@@ -32,7 +32,7 @@ const Header = ({
 
   return (
     <>
-      <header className={`sticky top-0 z-40 transition-colors duration-200 border-b backdrop-blur-md ${darkMode ? 'bg-[#09090b]/90 border-zinc-800 text-white' : 'bg-white/95 border-zinc-200 text-black'
+      <header className={`sticky top-0 z-40 transition-colors duration-200 border-b backdrop-blur-md ${darkMode ? 'bg-[#071326]/90 border-[#003B73] text-white' : 'bg-white/95 border-zinc-200 text-black'
         } shadow-sm`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5">
           <div className="flex items-center justify-between gap-4">
@@ -44,14 +44,14 @@ const Header = ({
               }}
               className="flex items-center gap-2.5 cursor-pointer select-none group flex-shrink-0"
             >
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl shadow-md transition-transform group-hover:scale-105 bg-[#10B981] text-white">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl shadow-md transition-transform group-hover:scale-105 bg-[#0265A6] text-white">
                 💡
               </div>
               <div>
-                <h1 className={`text-xl font-black tracking-tight ${darkMode ? 'text-white' : 'text-[#111827]'}`}>
+                <h1 className={`text-xl font-black tracking-tight ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>
                   COGNITRAIL
                 </h1>
-                <p className={`text-[10px] font-bold uppercase tracking-wider ${darkMode ? 'text-[#6EE7B7]' : 'text-[#059669]'}`}>
+                <p className={`text-[10px] font-bold uppercase tracking-wider ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>
                   Career Pathfinder
                 </p>
               </div>
@@ -65,23 +65,23 @@ const Header = ({
                   const el = document.getElementById('domains');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6EE7B7] hover:bg-[#14231E]' : 'text-zinc-800 hover:text-[#059669] hover:bg-[#ECFDF5]'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-[#0A1E3F]' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-[#EBF3FA]'}`}
               >
                 Careers
               </button>
 
               <button
                 onClick={() => onOpenQuiz && onOpenQuiz()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-[#6EE7B7] hover:text-white hover:bg-[#14231E]' : 'text-[#059669] hover:bg-[#ECFDF5]'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-[#6096BA] hover:text-white hover:bg-[#0A1E3F]' : 'text-[#0265A6] hover:bg-[#EBF3FA]'}`}
               >
-                <HelpCircle className="w-3.5 h-3.5 text-[#10B981]" />
+                <HelpCircle className="w-3.5 h-3.5 text-[#0265A6]" />
                 AI Quiz
               </button>
 
               {setShowCollegeFinder && (
                 <button
                   onClick={() => setShowCollegeFinder(true)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6EE7B7] hover:bg-[#14231E]' : 'text-zinc-800 hover:text-[#059669] hover:bg-[#ECFDF5]'}`}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-[#0A1E3F]' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-[#EBF3FA]'}`}
                 >
                   Colleges
                 </button>
@@ -90,7 +90,7 @@ const Header = ({
               {setShowComparison && (
                 <button
                   onClick={() => setShowComparison(true)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6EE7B7] hover:bg-[#14231E]' : 'text-zinc-800 hover:text-[#059669] hover:bg-[#ECFDF5]'}`}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-[#0A1E3F]' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-[#EBF3FA]'}`}
                 >
                   Compare
                 </button>
@@ -98,23 +98,23 @@ const Header = ({
 
               <button
                 onClick={() => onOpenSkills && onOpenSkills()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6EE7B7] hover:bg-[#14231E]' : 'text-zinc-800 hover:text-[#059669] hover:bg-[#ECFDF5]'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-[#0A1E3F]' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-[#EBF3FA]'}`}
               >
                 Skill Gap
               </button>
 
               <button
                 onClick={() => onOpenRoadmap && onOpenRoadmap()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6EE7B7] hover:bg-[#14231E]' : 'text-zinc-800 hover:text-[#059669] hover:bg-[#ECFDF5]'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-[#0A1E3F]' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-[#EBF3FA]'}`}
               >
                 Roadmaps
               </button>
 
               <button
                 onClick={() => onOpenAdvisor && onOpenAdvisor()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6EE7B7] hover:bg-[#14231E]' : 'text-zinc-800 hover:text-[#059669] hover:bg-[#ECFDF5]'}`}
+                className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-[#0A1E3F]' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-[#EBF3FA]'}`}
               >
-                <Bot className="w-3.5 h-3.5 text-[#10B981]" />
+                <Bot className="w-3.5 h-3.5 text-[#0265A6]" />
                 Advisor Pro
               </button>
             </nav>
@@ -122,15 +122,15 @@ const Header = ({
             {/* Search Bar - Desktop */}
             <div className="flex-1 max-w-xs lg:max-w-sm hidden md:block">
               <div className="relative">
-                <Search className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-[#6EE7B7]' : 'text-[#059669]'}`} />
+                <Search className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`} />
                 <input
                   type="text"
                   placeholder="Search 150+ careers, skills..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className={`w-full pl-9 pr-4 py-2 rounded-xl text-xs transition-all border focus:outline-none ${darkMode
-                    ? 'bg-[#14231E] border-emerald-800/60 text-white placeholder-zinc-400 focus:border-[#10B981]'
-                    : 'bg-[#ECFDF5]/60 border-emerald-200 text-black placeholder-zinc-500 focus:border-[#10B981] focus:bg-white'
+                    ? 'bg-[#0A1E3F] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6]'
+                    : 'bg-[#EBF3FA] border-[#BACDDF] text-black placeholder-zinc-500 focus:border-[#0265A6] focus:bg-white'
                     }`}
                 />
               </div>
@@ -142,13 +142,13 @@ const Header = ({
               <button
                 onClick={toggleDarkMode}
                 className={`p-2.5 rounded-xl border btn-interactive hover-lift ${darkMode
-                  ? 'bg-[#14231E] border-emerald-800/60 text-[#6EE7B7] hover:bg-[#14231E]/80'
-                  : 'bg-[#ECFDF5] border-emerald-200 text-[#059669] hover:bg-[#ECFDF5]/80'
+                  ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:bg-[#0A1E3F]/80'
+                  : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:bg-[#EBF3FA]/80'
                   }`}
                 aria-label="Toggle dark mode"
                 title={darkMode ? "Switch to light mode" : "Switch to dark mode"}
               >
-                {darkMode ? <Sun className="w-4 h-4 text-[#6EE7B7] transition-transform duration-300 hover:rotate-90" /> : <Moon className="w-4 h-4 text-[#059669] transition-transform duration-300 hover:-rotate-45" />}
+                {darkMode ? <Sun className="w-4 h-4 text-[#6096BA] transition-transform duration-300 hover:rotate-90" /> : <Moon className="w-4 h-4 text-[#0265A6] transition-transform duration-300 hover:-rotate-45" />}
               </button>
 
               {/* Gamification Progress */}
@@ -156,15 +156,15 @@ const Header = ({
                 <button
                   onClick={() => setShowGamification && setShowGamification(true)}
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-xl border btn-interactive hover-lift ${darkMode
-                    ? 'bg-[#14231E] border-emerald-800/60 hover:border-[#10B981]'
-                    : 'bg-[#ECFDF5] border-emerald-200 hover:border-[#059669]'
+                    ? 'bg-[#0A1E3F] border-[#003B73] hover:border-[#0265A6]'
+                    : 'bg-[#EBF3FA] border-[#BACDDF] hover:border-[#0265A6]'
                     }`}
                   title="Your points & level"
                 >
-                  <div className="w-6 h-6 rounded-lg font-bold text-xs flex items-center justify-center transition-transform hover:scale-110 bg-[#10B981] text-white">
+                  <div className="w-6 h-6 rounded-lg font-bold text-xs flex items-center justify-center transition-transform hover:scale-110 bg-[#0265A6] text-white">
                     {level}
                   </div>
-                  <span className={`text-xs font-bold hidden sm:inline ${darkMode ? 'text-[#6EE7B7]' : 'text-[#059669]'}`}>
+                  <span className={`text-xs font-bold hidden sm:inline ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>
                     {points} pts
                   </span>
                 </button>
@@ -174,7 +174,7 @@ const Header = ({
               {isAuthenticated ? (
                 <button
                   onClick={() => setShowProfile(true)}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-xl font-bold text-xs shadow-sm btn-interactive hover-lift bg-[#10B981] text-white hover:bg-[#059669]"
+                  className="flex items-center gap-2 px-3 py-1.5 rounded-xl font-bold text-xs shadow-sm btn-interactive hover-lift bg-[#0265A6] text-white hover:bg-[#003B73]"
                 >
                   <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                     <User className="w-3.5 h-3.5 text-white" />
@@ -184,7 +184,7 @@ const Header = ({
               ) : (
                 <button
                   onClick={() => setShowAuthModal(true)}
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold text-xs shadow-md btn-interactive hover-lift bg-[#10B981] text-white hover:bg-[#059669] shadow-emerald-500/20"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold text-xs shadow-md btn-interactive hover-lift bg-[#0265A6] text-white hover:bg-[#003B73] shadow-blue-500/20"
                 >
                   <LogIn className="w-3.5 h-3.5" />
                   <span>Sign In</span>
@@ -195,7 +195,7 @@ const Header = ({
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className={`xl:hidden p-2.5 rounded-xl border btn-interactive ${darkMode
-                  ? 'bg-[#18181b] border-zinc-700 text-white'
+                  ? 'bg-[#0A1E3F] border-[#003B73] text-white'
                   : 'bg-zinc-100 border-zinc-200 text-zinc-800'
                   }`}
                 aria-label="Open navigation menu"

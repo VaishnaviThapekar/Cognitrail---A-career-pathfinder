@@ -248,13 +248,13 @@ const CollegeFinder = ({ onClose, darkMode }) => {
         
         {/* Header */}
         {/* Header */}
-        <div className="flex items-center justify-between mb-8 pb-6 border-b border-emerald-100 dark:border-emerald-800/40">
+        <div className="flex items-center justify-between mb-8 pb-6 border-b border-[#BACDDF] dark:border-[#003B73]">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold mb-2 bg-[#10B981] text-white shadow-sm">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold mb-2 bg-[#0265A6] text-white shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-white" />
               Verified Educational Directory & Admissions Matrix
             </div>
-            <h2 className={`text-2xl sm:text-3xl font-black ${darkMode ? 'text-white' : 'text-[#111827]'}`}>
+            <h2 className={`text-2xl sm:text-3xl font-black ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>
               Find Top Colleges & Universities 🎓
             </h2>
           </div>
@@ -262,7 +262,7 @@ const CollegeFinder = ({ onClose, darkMode }) => {
           <button
             onClick={onClose}
             className={`p-2.5 rounded-xl border btn-interactive hover-lift cursor-pointer ${
-              darkMode ? 'bg-[#14231E] border-emerald-800/60 text-[#6EE7B7] hover:text-white' : 'bg-[#ECFDF5] border-emerald-200 text-[#059669] hover:text-[#10B981]'
+              darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:text-[#0265A6]'
             }`}
             aria-label="Close"
           >
@@ -272,9 +272,9 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
         {/* Source & Verification Notice */}
         <div className={`mb-6 p-4 rounded-2xl border flex items-start gap-3.5 ${
-          darkMode ? 'bg-[#14231E] border-emerald-800/60 text-[#6EE7B7]' : 'bg-[#ECFDF5] border-emerald-200 text-[#047857]'
+          darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA]' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6]'
         }`}>
-          <ShieldCheck className="w-5 h-5 text-[#10B981] mt-0.5 flex-shrink-0" />
+          <ShieldCheck className="w-5 h-5 text-[#0265A6] mt-0.5 flex-shrink-0" />
           <div className="text-xs sm:text-sm leading-relaxed">
             <span className="font-bold text-black dark:text-white">Source & Verification Notice: </span>
             Institutional ratings, NIRF rankings, and placement figures are compiled from the National Institutional Ranking Framework (NIRF), verified official university reports, and educational disclosure audits. Always consult official university admissions portals for real-time cutoffs and fees.
@@ -283,16 +283,16 @@ const CollegeFinder = ({ onClose, darkMode }) => {
 
         {/* Filter Controls Card */}
         <div className={`rounded-3xl p-6 md:p-8 mb-8 border ${
-          darkMode ? 'bg-[#14231E] border-emerald-800/60 shadow-xl' : 'bg-white border-emerald-100 shadow-md'
+          darkMode ? 'bg-[#0A1E3F] border-[#003B73] shadow-xl' : 'bg-white border-[#BACDDF] shadow-md'
         }`}>
           <div className="flex items-center justify-between gap-3 mb-6">
             <div className="flex items-center gap-2">
-              <Filter className="w-5 h-5 text-[#10B981]" />
-              <h3 className={`text-lg font-black ${darkMode ? 'text-white' : 'text-[#111827]'}`}>
+              <Filter className="w-5 h-5 text-[#0265A6]" />
+              <h3 className={`text-lg font-black ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>
                 Filter & Search Institutions
               </h3>
             </div>
-            <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-[#10B981] text-white">
+            <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-[#0265A6] text-white">
               {filteredColleges.length} Verified Colleges
             </span>
           </div>
@@ -301,7 +301,7 @@ const CollegeFinder = ({ onClose, darkMode }) => {
             
             {/* Search Box */}
             <div className="sm:col-span-2 lg:col-span-4 relative">
-              <Search className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#059669]`} />
+              <Search className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#0265A6]`} />
               <input
                 type="text"
                 value={searchQuery}
@@ -309,8 +309,8 @@ const CollegeFinder = ({ onClose, darkMode }) => {
                 placeholder="Search college name, courses, specializations, or city..."
                 className={`w-full pl-11 pr-4 py-3 rounded-2xl border text-sm outline-none transition-colors ${
                   darkMode
-                    ? 'bg-[#0D1512] border-emerald-800/60 text-white placeholder-zinc-400 focus:border-[#10B981]'
-                    : 'bg-[#ECFDF5]/60 border-emerald-200 text-zinc-900 placeholder-emerald-600/60 focus:border-[#10B981] focus:bg-white'
+                    ? 'bg-[#071326] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6]'
+                    : 'bg-[#EBF3FA]/60 border-[#BACDDF] text-zinc-900 placeholder-blue-600/60 focus:border-[#0265A6] focus:bg-white'
                 }`}
               />
               {searchQuery && (

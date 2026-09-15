@@ -260,10 +260,10 @@ const CareerChatbot = ({ darkMode, onClose }) => {
                                     {/* Message Body */}
                                     <div className="flex-1 overflow-hidden">
                                         <div className={`rounded-2xl px-4 sm:px-5 py-3.5 border transition-all break-words ${message.type === 'user'
-                                            ? 'bg-[#10B981] text-white border-[#10B981] font-semibold'
+                                            ? 'bg-[#0265A6] text-white border-[#0265A6] font-semibold'
                                             : darkMode
-                                                ? 'bg-[#14231E] text-[#ECFDF5] border-emerald-800/60'
-                                                : 'bg-white text-zinc-900 border-emerald-200 shadow-sm'
+                                                ? 'bg-[#0A1E3F] text-[#EBF3FA] border-[#003B73]'
+                                                : 'bg-white text-zinc-900 border-[#BACDDF] shadow-sm'
                                             }`}>
                                             <p className="text-xs sm:text-sm whitespace-pre-line leading-relaxed">{message.text}</p>
                                         </div>
@@ -277,8 +277,8 @@ const CareerChatbot = ({ darkMode, onClose }) => {
                                                         disabled={isTyping}
                                                         onClick={() => handleSuggestionClick(suggestion)}
                                                         className={`text-xs px-3 py-1 rounded-xl border font-semibold transition-all btn-interactive disabled:opacity-50 ${darkMode
-                                                            ? 'bg-[#14231E] hover:bg-[#10B981] text-[#6EE7B7] hover:text-white border-emerald-800/60'
-                                                            : 'bg-[#ECFDF5] hover:bg-[#10B981] text-[#059669] hover:text-white border-emerald-200'
+                                                            ? 'bg-[#0A1E3F] hover:bg-[#0265A6] text-[#6096BA] hover:text-white border-[#003B73]'
+                                                            : 'bg-[#EBF3FA] hover:bg-[#0265A6] text-[#0265A6] hover:text-white border-[#BACDDF]'
                                                             }`}
                                                     >
                                                         {suggestion}
@@ -294,15 +294,15 @@ const CareerChatbot = ({ darkMode, onClose }) => {
                         {/* Typing / Loading indicator */}
                         {isTyping && (
                             <div className="flex gap-3 animate-fade-in">
-                                <div className="w-8 h-8 rounded-xl flex items-center justify-center border bg-[#10B981] text-white border-[#10B981]">
+                                <div className="w-8 h-8 rounded-xl flex items-center justify-center border bg-[#0265A6] text-white border-[#0265A6]">
                                     <Sparkles className="w-4 h-4 animate-spin text-white" />
                                 </div>
-                                <div className={`rounded-2xl px-5 py-3.5 border ${darkMode ? 'bg-[#14231E] border-emerald-800/60 text-[#6EE7B7]' : 'bg-white border-emerald-200 text-[#059669] shadow-sm'
+                                <div className={`rounded-2xl px-5 py-3.5 border ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA]' : 'bg-white border-[#BACDDF] text-[#0265A6] shadow-sm'
                                     }`}>
                                     <div className="flex items-center gap-2">
-                                        <div className="w-2 h-2 rounded-full bg-[#10B981] animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                                        <div className="w-2 h-2 rounded-full bg-[#10B981] animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                                        <div className="w-2 h-2 rounded-full bg-[#10B981] animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-[#0265A6] animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-[#0265A6] animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                                        <div className="w-2 h-2 rounded-full bg-[#0265A6] animate-bounce" style={{ animationDelay: '300ms' }}></div>
                                         <span className="text-xs font-semibold ml-1">Consulting knowledge base...</span>
                                     </div>
                                 </div>
@@ -314,7 +314,7 @@ const CareerChatbot = ({ darkMode, onClose }) => {
                 </div>
 
                 {/* Input Bar */}
-                <div className={`p-4 border-t ${darkMode ? 'border-emerald-800/40 bg-[#0D1512]' : 'border-emerald-200/60 bg-white'
+                <div className={`p-4 border-t ${darkMode ? 'border-[#003B73] bg-[#071326]' : 'border-[#BACDDF] bg-white'
                     }`}>
                     <div className="max-w-3xl mx-auto flex gap-2">
                         <input
@@ -325,15 +325,15 @@ const CareerChatbot = ({ darkMode, onClose }) => {
                             placeholder="Ask any career, college, exam, or salary question..."
                             disabled={isTyping}
                             className={`flex-1 px-4 py-3 rounded-2xl text-xs sm:text-sm transition-all border outline-none ${darkMode
-                                ? 'bg-[#0D1512] border-emerald-800/60 text-white placeholder-zinc-400 focus:border-[#10B981]'
-                                : 'bg-[#ECFDF5]/60 border-emerald-200 text-zinc-900 placeholder-emerald-600/60 focus:border-[#10B981] focus:bg-white'
+                                ? 'bg-[#071326] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6]'
+                                : 'bg-[#EBF3FA]/60 border-[#BACDDF] text-zinc-900 placeholder-blue-600/60 focus:border-[#0265A6] focus:bg-white'
                                 } disabled:opacity-50`}
                         />
                         <button
                             onClick={() => handleSend()}
                             disabled={isTyping || !input.trim()}
                             className={`px-5 py-3 rounded-2xl font-bold text-xs transition-all btn-interactive flex items-center justify-center gap-1.5 ${input.trim() && !isTyping
-                                ? 'bg-[#10B981] text-white hover:bg-[#059669] shadow-sm'
+                                ? 'bg-[#0265A6] text-white hover:bg-[#003B73] shadow-sm'
                                 : 'bg-zinc-800 text-zinc-500 cursor-not-allowed border border-zinc-700'
                                 }`}
                         >

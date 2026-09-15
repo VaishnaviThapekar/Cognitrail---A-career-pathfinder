@@ -303,9 +303,9 @@
   }
 }
 
-/* Modern Sage & Emerald Palette Theme Utility Classes */
+/* 5-Shade Ocean & Royal Blue Palette Theme Utility Classes */
 .mint-badge {
-  background-color: #10B981;
+  background-color: #0265A6;
   color: #ffffff;
   font-weight: 700;
   padding: 0.25rem 0.75rem;
@@ -316,7 +316,7 @@
 }
 
 .mint-highlight {
-  background-color: #10B981;
+  background-color: #0265A6;
   color: #ffffff;
   padding: 0.125rem 0.6rem;
   border-radius: 0.5rem;
@@ -325,7 +325,7 @@
 }
 
 .btn-mint {
-  background-color: #10B981;
+  background-color: #0265A6;
   color: #ffffff;
   font-weight: 700;
   padding: 0.625rem 1.25rem;
@@ -335,13 +335,13 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+  box-shadow: 0 4px 14px rgba(2, 101, 166, 0.25);
 }
 
 .btn-mint:hover {
-  background-color: #059669;
+  background-color: #005087;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 6px 20px rgba(2, 101, 166, 0.35);
 }
 
 .btn-mint:active {
@@ -355,19 +355,19 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #EBF3FA;
 }
 
 .dark ::-webkit-scrollbar-track {
-  background: #0D1512;
+  background: #071326;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #10B981;
+  background: #0265A6;
   border-radius: 9999px;
   transition: background 0.2s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #059669;
+  background: #005087;
 }
