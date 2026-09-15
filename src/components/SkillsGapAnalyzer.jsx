@@ -795,7 +795,7 @@ Empowering Next-Gen Students • Cognitrail Career Intelligence System
 
                       <span className={`text-xs font-bold px-3 py-1 rounded-full border ${
                         isMilestoneDone
-                          ? 'bg-zinc-900 border-zinc-700 text-[#ADE852]'
+                          ? 'bg-zinc-900 border-zinc-700 text-[#10B981]'
                           : darkMode ? 'bg-zinc-900/60 border-zinc-800 text-zinc-400' : 'bg-zinc-100 border-zinc-300 text-zinc-700'
                       }`}>
                         {isMilestoneDone ? '✓ Completed Milestone (+12% Boost)' : 'In Progress'}

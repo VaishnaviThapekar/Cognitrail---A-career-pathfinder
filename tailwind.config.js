@@ -9,18 +9,18 @@ export default {
         extend: {
             colors: {
                 mint: {
-                    DEFAULT: '#ADE852',
-                    hover: '#9CDD3D',
-                    light: '#EFF4BE',
-                    dark: '#749D1C',
-                    deep: '#507237',
+                    DEFAULT: '#10B981',
+                    hover: '#059669',
+                    light: '#ECFDF5',
+                    dark: '#047857',
+                    deep: '#064E3B',
                 },
-                limePalette: {
-                    1: '#EFF4BE',
-                    2: '#ADE852',
-                    3: '#A7C62E',
-                    4: '#749D1C',
-                    5: '#507237',
+                emeraldPalette: {
+                    1: '#ECFDF5',
+                    2: '#10B981',
+                    3: '#059669',
+                    4: '#047857',
+                    5: '#064E3B',
                 },
             },
             animation: {
