@@ -50,7 +50,6 @@ const CareerComparison = ({ onClose, darkMode, allCareers }) => {
     return availableCareers.slice(0, 2);
   });
   const [searchQuery, setSearchQuery] = useState('');
-  const [userInterestFocus, setUserInterestFocus] = useState('balanced'); // 'salary', 'speed', 'balance', 'growth', 'balanced'
 
   // Add career to comparison (Max 3, no duplicates)
   const addCareer = (career) => {

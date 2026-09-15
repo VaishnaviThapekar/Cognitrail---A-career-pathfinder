@@ -1,8 +1,6 @@
 // Resume Analysis Service
 // Provides AI-powered resume feedback and optimization suggestions
 
-import { aiAdvisor } from './aiCareerAdvisor';
-
 const RESUME_ANALYSIS_PROMPT = `You are an expert resume and career coach. Analyze the provided resume and provide:
 
 1. **Overall Score** (out of 100)

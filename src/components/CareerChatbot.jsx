@@ -3,6 +3,8 @@ import { X, Send, Bot, User, Sparkles, Lightbulb, TrendingUp, GraduationCap, Bri
 
 const STORAGE_KEY = 'cognitrail_modal_chat_history';
 
+const generateId = (prefix) => `${prefix}_${Date.now()}_${Math.random().toString(36).substr(2, 5)}`;
+
 const CareerChatbot = ({ darkMode, onClose }) => {
     const defaultWelcome = {
         id: 'modal_welcome',
@@ -141,7 +143,7 @@ const CareerChatbot = ({ darkMode, onClose }) => {
         if (!textToSend || isTyping) return;
 
         const userMessage = {
-            id: `usr_${Date.now()}`,
+            id: generateId('usr'),
             type: 'user',
             text: textToSend
         };
@@ -150,7 +152,7 @@ const CareerChatbot = ({ darkMode, onClose }) => {
         setInput('');
 
         const botResponse = await generateResponse(textToSend);
-        setMessages(prev => [...prev, { ...botResponse, id: `bot_${Date.now()}` }]);
+        setMessages(prev => [...prev, { ...botResponse, id: generateId('bot') }]);
     };
 
     const handleSuggestionClick = (suggestion) => {

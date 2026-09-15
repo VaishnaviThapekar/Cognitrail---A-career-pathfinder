@@ -26,7 +26,7 @@ import { useAuth } from './contexts/AuthContext';
 import { CAREER_DATABASE } from './data/careerDatabase';
 
 function App() {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { trackCareerExplored, trackCareerSaved, trackQuizComplete } = useGamification();
 
   const [selectedDomain, setSelectedDomain] = useState(null);
@@ -34,14 +34,20 @@ function App() {
   const [selectedCareer, setSelectedCareer] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [showWelcome, setShowWelcome] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    try {
+      return localStorage.getItem('darkMode') === 'true';
+    } catch {
+      return false;
+    }
+  });
   const [showProfile, setShowProfile] = useState(false);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [savedCareers, setSavedCareers] = useState(() => {
     try {
       const stored = localStorage.getItem('cognitrail_saved_careers');
       return stored ? JSON.parse(stored) : [];
-    } catch (e) {
+    } catch {
       return [];
     }
   });
@@ -63,13 +69,6 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => setShowWelcome(false), 2000);
     return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    const savedDarkMode = localStorage.getItem('darkMode');
-    if (savedDarkMode === 'true') {
-      setDarkMode(true);
-    }
   }, []);
 
   useEffect(() => {
@@ -925,7 +924,7 @@ function App() {
         <CareerQuiz
           onClose={() => setShowQuiz(false)}
           darkMode={darkMode}
-          onComplete={(res) => {
+          onComplete={() => {
             trackQuizComplete();
           }}
           onSelectCareer={(career) => {

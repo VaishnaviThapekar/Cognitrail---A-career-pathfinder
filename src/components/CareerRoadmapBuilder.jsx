@@ -146,8 +146,32 @@ const CareerRoadmapBuilder = ({ onClose, darkMode }) => {
     });
 
     // Active roadmap selection
-    const [selectedCareer, setSelectedCareer] = useState(null);
-    const [roadmapSteps, setRoadmapSteps] = useState([]);
+    const [selectedCareer, setSelectedCareer] = useState(() => {
+        try {
+            const cachedActive = localStorage.getItem('cognitrail_active_roadmap_state');
+            if (cachedActive) {
+                const parsed = JSON.parse(cachedActive);
+                if (parsed.career && parsed.steps) return parsed.career;
+            }
+        } catch {
+            // ignore
+        }
+        return null;
+    });
+
+    const [roadmapSteps, setRoadmapSteps] = useState(() => {
+        try {
+            const cachedActive = localStorage.getItem('cognitrail_active_roadmap_state');
+            if (cachedActive) {
+                const parsed = JSON.parse(cachedActive);
+                if (parsed.career && parsed.steps) return parsed.steps;
+            }
+        } catch {
+            // ignore
+        }
+        return [];
+    });
+
     const [isAddingStep, setIsAddingStep] = useState(false);
     const [editingStepId, setEditingStepId] = useState(null);
     const [editStepData, setEditStepData] = useState({ title: '', description: '', duration: '', priority: 'medium', category: 'education' });
@@ -179,22 +203,6 @@ const CareerRoadmapBuilder = ({ onClose, darkMode }) => {
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [onClose, showCreateModal, showResetConfirm]);
-
-    // Initialize/restore active roadmap from localStorage if available
-    useEffect(() => {
-        try {
-            const cachedActive = localStorage.getItem('cognitrail_active_roadmap_state');
-            if (cachedActive) {
-                const parsed = JSON.parse(cachedActive);
-                if (parsed.career && parsed.steps) {
-                    setSelectedCareer(parsed.career);
-                    setRoadmapSteps(parsed.steps);
-                }
-            }
-        } catch (e) {
-            console.error('Failed to load active roadmap state:', e);
-        }
-    }, []);
 
     // Save active roadmap on changes
     useEffect(() => {
@@ -388,8 +396,6 @@ Exported from Cognitrail Career Pathfinder • https://cognitrail.app
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     };
-
-    const allTemplates = [...savedCustomRoadmaps, ...defaultTemplates];
 
     return (
         <div 

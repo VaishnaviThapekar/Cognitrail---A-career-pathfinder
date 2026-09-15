@@ -4,7 +4,7 @@ import {
   GraduationCap, Filter, ChevronDown, BookOpen, ExternalLink, ShieldCheck, 
   Info, Sparkles, Building2, CheckCircle2, RotateCcw
 } from 'lucide-react';
-import { COLLEGES_DATABASE, getAllColleges, getCollegesByState, getCollegesByCity, getAllStates, getCitiesByState } from '../data/collegesDatabase';
+import { getAllColleges } from '../data/collegesDatabase';
 
 const CollegeFinder = ({ onClose, darkMode }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -226,8 +226,6 @@ const CollegeFinder = ({ onClose, darkMode }) => {
   }, [allCollegesList, selectedState]);
 
   const collegeTypes = ['Engineering', 'Management', 'Medical', 'Law', 'Arts & Science', 'Multi-Disciplinary'];
-  const tiers = ['Tier 1', 'Tier 2', 'Tier 3'];
-  const ownerships = ['Government', 'Private'];
 
   const resetAllFilters = () => {
     setSearchQuery('');
@@ -432,10 +430,6 @@ const CollegeFinder = ({ onClose, darkMode }) => {
         {filteredColleges.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredColleges.map((college) => {
-              const websiteUrl = college.website 
-                ? (college.website.startsWith('http') ? college.website : `https://${college.website}`)
-                : null;
-
               return (
                 <div
                   key={college.id || college.name}

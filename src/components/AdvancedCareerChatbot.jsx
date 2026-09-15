@@ -210,7 +210,7 @@ const AdvancedCareerChatbot = ({ darkMode, onClose }) => {
         return `💡 **Career Advisory Insights for "${userQuery}"**\n\nWhile our cloud AI service is connecting, here is the strategic recommendation:\n\n1. **Core Pathway**: Align your next milestone with verified industry skill benchmarks (DSA, System Design, or domain-specific certifications).\n2. **Portfolio Evidence**: Build and deploy at least 2 production-grade projects demonstrating end-to-end implementation.\n3. **Network & Mock Interviews**: Practice STAR behavioral answers and participate in peer code reviews.\n4. **Cognitrail Tools**: Check the **Skills Gap Analyzer** and **Roadmap Builder** to track your step-by-step progress.\n\n*(Note: For dynamic cloud AI responses, ensure your API keys are configured in the environment settings).*`;
     };
 
-    const generateSuggestions = (feature, query) => {
+    const generateSuggestions = (feature) => {
         const suggestions = {
             general: [
                 'Take Career Quiz',

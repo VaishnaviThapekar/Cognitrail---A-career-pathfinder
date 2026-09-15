@@ -787,7 +787,7 @@ export const COLLEGES_DATABASE = {
             }
         }
     },
-    karnataka: {
+    karnataka_extra_db: {
         name: "Karnataka",
         cities: {
             bangalore: {
@@ -825,7 +825,7 @@ export const COLLEGES_DATABASE = {
             }
         }
     },
-    westbengal: {
+    westbengal_extra_db: {
         name: "West Bengal",
         cities: {
             kolkata: {
@@ -863,7 +863,7 @@ export const COLLEGES_DATABASE = {
             }
         }
     },
-    maharashtra: {
+    maharashtra_extra_db: {
         name: "Maharashtra",
         cities: {
             mumbai: {
@@ -1208,7 +1208,7 @@ export const COLLEGES_DATABASE = {
             }
         }
     },
-    tamilnadu: {
+    tamilnadu_extra_db: {
         name: "Tamil Nadu",
         cities: {
             chennai: {

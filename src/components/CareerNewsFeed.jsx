@@ -6,12 +6,59 @@ import {
 } from 'lucide-react';
 import { fetchCareerNewsWithCache, clearNewsCache } from '../services/newsService';
 
+// Simulated news data fallback
+const MOCK_NEWS_DATA = [
+    {
+        id: 1,
+        category: 'Exams',
+        title: 'JEE Main 2026 Registration Opens - Apply Now',
+        summary: 'NTA has announced JEE Main 2026 session registration. Official notifications and eligibility criteria published.',
+        date: '2026-01-16',
+        source: 'NTA Official',
+        url: '#',
+        image: '📝',
+        trending: true
+    },
+    {
+        id: 2,
+        category: 'Scholarships',
+        title: 'PM National Scholarship Scheme 2026 for Students',
+        summary: 'Eligible undergraduate students in science, engineering, and commerce can apply for academic financial grants.',
+        date: '2026-01-15',
+        source: 'Ministry of Education',
+        url: '#',
+        image: '🎓',
+        featured: true
+    },
+    {
+        id: 3,
+        category: 'Trends',
+        title: 'Top 10 Emerging AI and Robotics Careers in 2026',
+        summary: 'Industry survey reveals 42% growth in demand for generative AI engineers, robotics specialists, and prompt architects.',
+        date: '2026-01-14',
+        source: 'Tech India Insights',
+        url: '#',
+        image: '🤖',
+        trending: true
+    },
+    {
+        id: 4,
+        category: 'Jobs',
+        title: 'Global Tech Hiring Accelerates for Cloud & Security Roles',
+        summary: 'Major software firms announce expansion in engineering hubs across Bangalore, Hyderabad, and Pune.',
+        date: '2026-01-13',
+        source: 'NASSCOM Report',
+        url: '#',
+        image: '💼'
+    }
+];
+
 const CareerNewsFeed = ({ darkMode }) => {
     const [news, setNews] = useState([]);
     const [filteredNews, setFilteredNews] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [searchQuery, setSearchQuery] = useState('');
-    const [loading, setLoading] = useState(true);
+    const [_loading, setLoading] = useState(true);
     const [bookmarkedItems, setBookmarkedItems] = useState([]);
     const [displayCount, setDisplayCount] = useState(6);
     const [notificationsEnabled, setNotificationsEnabled] = useState(false);
@@ -26,53 +73,6 @@ const CareerNewsFeed = ({ darkMode }) => {
         { id: 'Trends', icon: TrendingUp }
     ];
 
-    // Simulated news data fallback
-    const mockNewsData = [
-        {
-            id: 1,
-            category: 'Exams',
-            title: 'JEE Main 2026 Registration Opens - Apply Now',
-            summary: 'NTA has announced JEE Main 2026 session registration. Official notifications and eligibility criteria published.',
-            date: '2026-01-16',
-            source: 'NTA Official',
-            url: '#',
-            image: '📝',
-            trending: true
-        },
-        {
-            id: 2,
-            category: 'Scholarships',
-            title: 'PM National Scholarship Scheme 2026 for Students',
-            summary: 'Eligible undergraduate students in science, engineering, and commerce can apply for academic financial grants.',
-            date: '2026-01-15',
-            source: 'Ministry of Education',
-            url: '#',
-            image: '🎓',
-            featured: true
-        },
-        {
-            id: 3,
-            category: 'Trends',
-            title: 'Top 10 Emerging AI and Robotics Careers in 2026',
-            summary: 'Industry survey reveals 42% growth in demand for generative AI engineers, robotics specialists, and prompt architects.',
-            date: '2026-01-14',
-            source: 'Tech India Insights',
-            url: '#',
-            image: '🤖',
-            trending: true
-        },
-        {
-            id: 4,
-            category: 'Jobs',
-            title: 'Global Tech Hiring Accelerates for Cloud & Security Roles',
-            summary: 'Major software firms announce expansion in engineering hubs across Bangalore, Hyderabad, and Pune.',
-            date: '2026-01-13',
-            source: 'NASSCOM Report',
-            url: '#',
-            image: '💼'
-        }
-    ];
-
     useEffect(() => {
         const loadNews = async () => {
             setLoading(true);
@@ -83,13 +83,13 @@ const CareerNewsFeed = ({ darkMode }) => {
                     setFilteredNews(realNews);
                     setUsingMockData(false);
                 } else {
-                    setNews(mockNewsData);
-                    setFilteredNews(mockNewsData);
+                    setNews(MOCK_NEWS_DATA);
+                    setFilteredNews(MOCK_NEWS_DATA);
                     setUsingMockData(true);
                 }
-            } catch (error) {
-                setNews(mockNewsData);
-                setFilteredNews(mockNewsData);
+            } catch {
+                setNews(MOCK_NEWS_DATA);
+                setFilteredNews(MOCK_NEWS_DATA);
                 setUsingMockData(true);
             } finally {
                 setLoading(false);
@@ -111,7 +111,7 @@ const CareerNewsFeed = ({ darkMode }) => {
             } else {
                 alert('⚠️ Unable to fetch fresh news. Using cached data.');
             }
-        } catch (error) {
+        } catch {
             alert('❌ Failed to refresh news.');
         } finally {
             setIsRefreshing(false);

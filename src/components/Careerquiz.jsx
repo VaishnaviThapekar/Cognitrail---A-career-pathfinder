@@ -123,7 +123,7 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
         } catch (e) {
             console.warn('Could not restore quiz progress', e);
         }
-    }, []);
+    }, [questions.length]);
 
     // Sync quiz state changes to localStorage continuously
     useEffect(() => {

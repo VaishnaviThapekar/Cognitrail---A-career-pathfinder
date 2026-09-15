@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { X, User, Mail, GraduationCap, Award, Target, Save, Trash2 } from 'lucide-react';
 
 export default function StudentProfile({ onClose, darkMode }) {
-    const [profile, setProfile] = useState({ name: '', email: '', education: '', skills: '', careerGoal: '' });
-
-    useEffect(() => {
-        const saved = localStorage.getItem('studentProfile');
-        if (saved) setProfile(JSON.parse(saved));
-    }, []);
+    const [profile, setProfile] = useState(() => {
+        try {
+            const saved = localStorage.getItem('studentProfile');
+            return saved ? JSON.parse(saved) : { name: '', email: '', education: '', skills: '', careerGoal: '' };
+        } catch {
+            return { name: '', email: '', education: '', skills: '', careerGoal: '' };
+        }
+    });
 
     const handleSave = () => {
         localStorage.setItem('studentProfile', JSON.stringify(profile));

@@ -12,23 +12,59 @@ export const useAuth = () => {
     return context;
 };
 
-export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+const generateAvatar = (name) => {
+    const colors = [
+        'bg-zinc-800 text-white border border-zinc-700',
+        'bg-zinc-900 text-white border border-zinc-700',
+        'bg-black text-white border border-zinc-800',
+        'bg-zinc-700 text-white border border-zinc-600',
+        'bg-zinc-950 text-white border border-zinc-800',
+    ];
+    const initials = (name || 'User')
+        .split(' ')
+        .map(word => word[0])
+        .join('')
+        .toUpperCase()
+        .slice(0, 2);
 
-    // Load user from localStorage on mount
-    useEffect(() => {
+    return {
+        initials,
+        color: colors[Math.floor(Math.random() * colors.length)]
+    };
+};
+
+const buildNewUser = (userData) => ({
+    id: Date.now(),
+    ...userData,
+    createdAt: new Date().toISOString(),
+    avatar: generateAvatar(userData.name),
+    stats: {
+        quizzesTaken: 0,
+        careersExplored: 0,
+        hoursLearned: 0,
+        achievementsUnlocked: 0,
+    },
+    savedCareers: [],
+    preferences: {
+        theme: 'light',
+        notifications: true,
+    }
+});
+
+export function AuthProvider({ children }) {
+    const [user, setUser] = useState(() => {
         const savedUser = localStorage.getItem('cognitrial_user');
         if (savedUser) {
             try {
-                setUser(JSON.parse(savedUser));
+                return JSON.parse(savedUser);
             } catch (error) {
                 console.error('Error loading user:', error);
                 localStorage.removeItem('cognitrial_user');
             }
         }
-        setLoading(false);
-    }, []);
+        return null;
+    });
+    const [loading] = useState(false);
 
     // Save user to localStorage whenever it changes
     useEffect(() => {
@@ -41,23 +77,7 @@ export function AuthProvider({ children }) {
 
     // Sign Up function
     const signUp = (userData) => {
-        const newUser = {
-            id: Date.now(),
-            ...userData,
-            createdAt: new Date().toISOString(),
-            avatar: generateAvatar(userData.name),
-            stats: {
-                quizzesTaken: 0,
-                careersExplored: 0,
-                hoursLearned: 0,
-                achievementsUnlocked: 0,
-            },
-            savedCareers: [],
-            preferences: {
-                theme: 'light',
-                notifications: true,
-            }
-        };
+        const newUser = buildNewUser(userData);
 
         // Save to users database
         const users = JSON.parse(localStorage.getItem('cognitrial_users') || '[]');
@@ -155,28 +175,6 @@ export function AuthProvider({ children }) {
         localStorage.setItem('cognitrial_users', JSON.stringify(updatedUsers));
 
         setUser(updatedUser);
-    };
-
-    // Generate avatar from name
-    const generateAvatar = (name) => {
-        const colors = [
-            'bg-zinc-800 text-white border border-zinc-700',
-            'bg-zinc-900 text-white border border-zinc-700',
-            'bg-black text-white border border-zinc-800',
-            'bg-zinc-700 text-white border border-zinc-600',
-            'bg-zinc-950 text-white border border-zinc-800',
-        ];
-        const initials = name
-            .split(' ')
-            .map(word => word[0])
-            .join('')
-            .toUpperCase()
-            .slice(0, 2);
-
-        return {
-            initials,
-            color: colors[Math.floor(Math.random() * colors.length)]
-        };
     };
 
     const value = {

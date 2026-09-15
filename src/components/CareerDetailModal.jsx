@@ -10,7 +10,6 @@ const CareerDetailModal = ({
   career, 
   onClose, 
   darkMode, 
-  onSelectCareer, 
   savedCareers, 
   setSavedCareers 
 }) => {
