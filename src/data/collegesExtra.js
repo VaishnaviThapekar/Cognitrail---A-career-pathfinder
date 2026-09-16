@@ -958,6 +958,338 @@ export const EXTRA_COLLEGES = {
                 ]
             }
         }
+    },
+    tier_classification_extended: {
+        name: "Tier 1 to 3 Multi-Domain National Network",
+        cities: {
+            pan_india_tier123: {
+                name: "National & Regional Hubs",
+                colleges: [
+                    // --- Tier 2 & Tier 3 Engineering ---
+                    {
+                        id: 501,
+                        name: "MS Ramaiah Institute of Technology (MSRIT Bengaluru)",
+                        type: "Engineering",
+                        tier: "Tier 2",
+                        rating: 4.5,
+                        nirf: 67,
+                        established: 1962,
+                        courses: ["B.E.", "M.Tech", "MCA", "Ph.D."],
+                        specializations: ["Computer Science", "Artificial Intelligence & Data Science", "Information Science", "ECE"],
+                        fees: "₹2.4L/year",
+                        placements: "Avg: ₹7.8L, Highest: ₹50L",
+                        contact: "+91-80-23600822",
+                        website: "www.msrit.edu",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 502,
+                        name: "Sinhgad College of Engineering (SCOE Vadgaon Pune)",
+                        type: "Engineering",
+                        tier: "Tier 3",
+                        rating: 4.0,
+                        established: 1996,
+                        courses: ["B.E.", "M.E.", "MBA"],
+                        specializations: ["Computer Engineering", "IT", "Mechanical", "Civil"],
+                        fees: "₹1.15L/year",
+                        placements: "Avg: ₹4.5L, Highest: ₹18L",
+                        contact: "+91-20-24354705",
+                        website: "www.sinhgad.edu",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 503,
+                        name: "D.Y. Patil College of Engineering (Akurdi Pune)",
+                        type: "Engineering",
+                        tier: "Tier 3",
+                        rating: 4.1,
+                        established: 1984,
+                        courses: ["B.E.", "M.E."],
+                        specializations: ["Artificial Intelligence & Data Science", "Robotics & Automation", "Computer Engineering"],
+                        fees: "₹1.28L/year",
+                        placements: "Avg: ₹4.8L, Highest: ₹26L",
+                        contact: "+91-20-27653058",
+                        website: "www.dypcoeakurdi.ac.in",
+                        ownership: "Private"
+                    },
+
+                    // --- Tier 2 & Tier 3 Medical ---
+                    {
+                        id: 510,
+                        name: "Kasturba Medical College (KMC Mangalore / Manipal)",
+                        type: "Medical",
+                        tier: "Tier 2",
+                        rating: 4.7,
+                        nirf: 30,
+                        established: 1953,
+                        courses: ["MBBS", "MD", "MS", "M.Ch"],
+                        specializations: ["Anesthesiology", "General Medicine", "Pediatrics", "Orthopedics"],
+                        fees: "₹17.8L/year",
+                        placements: "Avg: ₹12.5L (Clinical Residency & Fellowship)",
+                        contact: "+91-824-2422271",
+                        website: "manipal.edu/kmc-mangalore",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 511,
+                        name: "MGM Medical College & Hospital (Navi Mumbai)",
+                        type: "Medical",
+                        tier: "Tier 3",
+                        rating: 4.2,
+                        established: 1989,
+                        courses: ["MBBS", "MD", "MS", "B.Sc Nursing"],
+                        specializations: ["General Surgery", "Obstetrics & Gynecology", "Radiology", "Dermatology"],
+                        fees: "₹20L/year",
+                        placements: "Avg: ₹6.5L (Hospital Residency)",
+                        contact: "+91-22-27437900",
+                        website: "www.mgmmcnm.edu.in",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 512,
+                        name: "Vydehi Institute of Medical Sciences & Research (Bengaluru)",
+                        type: "Medical",
+                        tier: "Tier 3",
+                        rating: 4.1,
+                        established: 2000,
+                        courses: ["MBBS", "MD", "MS", "B.Sc Allied Health"],
+                        specializations: ["Cardiology", "Neurology", "Emergency Medicine"],
+                        fees: "₹14L/year",
+                        placements: "Avg: ₹5.8L (Clinical Practice)",
+                        contact: "+91-80-49069000",
+                        website: "www.vims.ac.in",
+                        ownership: "Private"
+                    },
+
+                    // --- Tier 2 & Tier 3 Management ---
+                    {
+                        id: 520,
+                        name: "T. A. Pai Management Institute (TAPMI Manipal)",
+                        type: "Management",
+                        tier: "Tier 2",
+                        rating: 4.6,
+                        nirf: 42,
+                        established: 1980,
+                        courses: ["MBA (Core)", "MBA Banking & Financial Services", "MBA Marketing", "MBA HR"],
+                        specializations: ["Fintech", "BFSI", "Brand Management", "Analytics"],
+                        fees: "₹16.5L (Total)",
+                        placements: "Avg: ₹15.7L, Highest: ₹24.8L",
+                        contact: "+91-820-2701000",
+                        website: "www.tapmi.edu.in",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 521,
+                        name: "Welingkar Institute of Management (WeSchool Mumbai)",
+                        type: "Management",
+                        tier: "Tier 2",
+                        rating: 4.4,
+                        nirf: 73,
+                        established: 1977,
+                        courses: ["MMS", "PGDM", "PGDM E-Business", "PGDM Healthcare"],
+                        specializations: ["Digital Media & E-Commerce", "Retail Management", "Operations"],
+                        fees: "₹13L (Total)",
+                        placements: "Avg: ₹12.5L, Highest: ₹25L",
+                        contact: "+91-22-24198300",
+                        website: "www.welingkar.org",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 522,
+                        name: "Pune Institute of Business Management (PIBM Pune)",
+                        type: "Management",
+                        tier: "Tier 3",
+                        rating: 4.1,
+                        established: 2007,
+                        courses: ["PGDM", "MBA"],
+                        specializations: ["Financial Analytics", "Digital Marketing", "Supply Chain"],
+                        fees: "₹7.8L (Total)",
+                        placements: "Avg: ₹7.1L, Highest: ₹17L",
+                        contact: "+91-20-66032000",
+                        website: "www.pibm.in",
+                        ownership: "Private"
+                    },
+
+                    // --- Tier 2 & Tier 3 Law ---
+                    {
+                        id: 530,
+                        name: "ILS Law College (Pune)",
+                        type: "Law",
+                        tier: "Tier 2",
+                        rating: 4.6,
+                        established: 1924,
+                        courses: ["BA LL.B", "LL.B (3 Year)", "LLM", "Diploma in Cyber Law"],
+                        specializations: ["Litigation & Advocacy", "Constitutional Law", "Corporate & IPR Law"],
+                        fees: "₹42K/year",
+                        placements: "Avg: ₹8.5L (Chambers of Senior Advocates & Law Firms)",
+                        contact: "+91-20-25656775",
+                        website: "ilslaw.edu",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 531,
+                        name: "Bharati Vidyapeeth New Law College (Pune)",
+                        type: "Law",
+                        tier: "Tier 3",
+                        rating: 4.1,
+                        nirf: 76,
+                        established: 1978,
+                        courses: ["BA LL.B (5 Year)", "BBA LL.B", "LL.B", "LLM"],
+                        specializations: ["Criminal Law", "Labor Law", "Cyber Security & Law"],
+                        fees: "₹85K/year",
+                        placements: "Avg: ₹5.2L",
+                        contact: "+91-20-25444616",
+                        website: "nlc.bharatividyapeeth.edu",
+                        ownership: "Private"
+                    },
+
+                    // --- Tier 2 & Tier 3 Design & Architecture ---
+                    {
+                        id: 540,
+                        name: "MIT Institute of Design (MIT-ID Pune)",
+                        type: "Design & Architecture",
+                        tier: "Tier 2",
+                        rating: 4.5,
+                        established: 2006,
+                        courses: ["B.Des", "M.Des"],
+                        specializations: ["Product Design", "User Experience (UX/UI) Design", "Animation Film Design"],
+                        fees: "₹3.8L/year",
+                        placements: "Avg: ₹9.2L, Highest: ₹22L",
+                        contact: "+91-20-30273400",
+                        website: "www.mitid.edu.in",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 541,
+                        name: "World University of Design (WUD Sonipat / NCR)",
+                        type: "Design & Architecture",
+                        tier: "Tier 3",
+                        rating: 4.1,
+                        established: 2018,
+                        courses: ["B.Des", "B.Arch", "M.Des"],
+                        specializations: ["Fashion Art", "Interior Architecture", "Game Design"],
+                        fees: "₹2.8L/year",
+                        placements: "Avg: ₹5.5L",
+                        contact: "+91-7056770060",
+                        website: "worlduniversityofdesign.ac.in",
+                        ownership: "Private"
+                    },
+
+                    // --- Tier 2 & Tier 3 Arts, Science & Commerce ---
+                    {
+                        id: 550,
+                        name: "Fergusson College (Autonomous Pune)",
+                        type: "Arts & Science",
+                        tier: "Tier 2",
+                        rating: 4.6,
+                        nirf: 41,
+                        established: 1885,
+                        courses: ["B.Sc Computer Science", "B.Sc Animation", "B.A. Economics", "M.Sc Data Science"],
+                        specializations: ["Biotechnology", "Microbiology", "Data Science", "Psychology"],
+                        fees: "₹12K - ₹65K/year",
+                        placements: "Avg: ₹5.8L, Highest: ₹14L",
+                        contact: "+91-20-67656000",
+                        website: "www.fergusson.edu",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 551,
+                        name: "Modern College of Arts, Science & Commerce (Ganeshkhind Pune)",
+                        type: "Arts & Science",
+                        tier: "Tier 3",
+                        rating: 4.0,
+                        established: 1992,
+                        courses: ["B.Sc Computer Science", "B.Com", "B.A.", "M.Sc Computer Science"],
+                        specializations: ["Information Technology", "Commerce & Banking", "Organic Chemistry"],
+                        fees: "₹25K/year",
+                        placements: "Avg: ₹3.8L",
+                        contact: "+91-20-25634021",
+                        website: "moderncollegegk.org",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 552,
+                        name: "Ness Wadia College of Commerce (Pune)",
+                        type: "Arts & Science",
+                        tier: "Tier 3",
+                        rating: 4.1,
+                        established: 1969,
+                        courses: ["B.Com", "BBA", "BBA Computer Applications", "M.Com"],
+                        specializations: ["Cost & Works Accounting", "Banking & Finance", "Business Analytics"],
+                        fees: "₹35K/year",
+                        placements: "Avg: ₹4.2L",
+                        contact: "+91-20-26167024",
+                        website: "nesswadiacollege.edu.in",
+                        ownership: "Private"
+                    },
+
+                    // --- Tier 2 & Tier 3 Aviation & Marine ---
+                    {
+                        id: 560,
+                        name: "AMET University (Academy of Maritime Education & Training Chennai)",
+                        type: "Aviation & Marine",
+                        tier: "Tier 2",
+                        rating: 4.4,
+                        established: 1993,
+                        courses: ["B.E. Marine Engineering", "B.Sc Nautical Science", "MBA Shipping"],
+                        specializations: ["Harbor Technology", "Naval Architecture", "Port Management"],
+                        fees: "₹3.5L/year",
+                        placements: "Avg: ₹10.2L (Mercantile Marine & Global Tankers)",
+                        contact: "+91-44-27444625",
+                        website: "www.ametuniv.ac.in",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 561,
+                        name: "Samundra Institute of Maritime Studies (Lonavala Pune)",
+                        type: "Aviation & Marine",
+                        tier: "Tier 3",
+                        rating: 4.2,
+                        established: 2005,
+                        courses: ["B.Tech Marine Engineering", "Graduate Marine Engineering (GME)"],
+                        specializations: ["Ship Engine Overhaul", "Automated Cargo Handling"],
+                        fees: "₹4.0L/year",
+                        placements: "Avg: ₹8.5L (Executive Ship Management)",
+                        contact: "+91-2114-399500",
+                        website: "www.samundra.com",
+                        ownership: "Private"
+                    },
+
+                    // --- Tier 2 & Tier 3 Agriculture & Forestry ---
+                    {
+                        id: 570,
+                        name: "University of Agricultural Sciences (UAS GKVK Bengaluru)",
+                        type: "Agriculture & Forestry",
+                        tier: "Tier 2",
+                        rating: 4.5,
+                        nirf: 9,
+                        established: 1964,
+                        courses: ["B.Sc (Hons) Agriculture", "B.Tech Agricultural Engineering", "M.Sc Agri"],
+                        specializations: ["Precision Farming", "Agricultural Marketing", "Food Technology"],
+                        fees: "₹48K/year",
+                        placements: "Avg: ₹6.8L (Agri-Business & State Agri Officers)",
+                        contact: "+91-80-23330153",
+                        website: "uasbangalore.edu.in",
+                        ownership: "Government"
+                    },
+                    {
+                        id: 571,
+                        name: "Mahatma Phule Krishi Vidyapeeth (MPKV Rahuri Ahmednagar)",
+                        type: "Agriculture & Forestry",
+                        tier: "Tier 3",
+                        rating: 4.1,
+                        established: 1968,
+                        courses: ["B.Sc (Hons) Agriculture", "B.Tech Agri Engg", "M.Sc Agronomy"],
+                        specializations: ["Horticulture", "Irrigation Drainage Engineering", "Soil Conservation"],
+                        fees: "₹32K/year",
+                        placements: "Avg: ₹4.2L",
+                        contact: "+91-2426-243208",
+                        website: "mpkv.ac.in",
+                        ownership: "Government"
+                    }
+                ]
+            }
+        }
     }
 };
 
