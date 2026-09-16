@@ -20,6 +20,7 @@ import SkillsGapAnalyzer from './components/SkillsGapAnalyzer';
 import CareerRoadmapBuilder from './components/CareerRoadmapBuilder';
 import CustomScrollbar from './components/CustomScrollbar';
 import AuthModal from './components/AuthModal';
+import StudentPlacementWall from './components/StudentPlacementWall';
 import { LevelUpNotification, AchievementNotification, GamificationDashboard } from './components/GamificationComponents';
 import { useGamification } from './contexts/GamificationContext';
 import { useAuth } from './contexts/AuthContext';
@@ -322,28 +323,28 @@ function App() {
                   onOpenRoadmap={() => setShowRoadmapBuilder(true)}
                 />
 
-                {/* Feature Shortcuts Grid - Monochrome */}
+                {/* Feature Shortcuts Grid - 5-Shade Royal Blue Theme */}
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20 animate-fade-in">
                   {/* Career Quiz Card */}
                   <button
                     onClick={() => setShowQuiz(true)}
                     className={`group rounded-3xl p-7 border text-left flex flex-col justify-between hover-lift btn-interactive ${darkMode
-                      ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
-                      : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
+                      ? 'bg-gradient-to-b from-[#0A1E3F] to-[#071326] border-[#003B73] hover:border-[#0265A6] shadow-xl'
+                      : 'bg-white border-[#BACDDF] hover:border-[#0265A6] shadow-md'
                       }`}
                   >
                     <div>
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                      <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 bg-gradient-to-br from-[#003B73] via-[#0265A6] to-[#003B73] text-white">
                         🎯
                       </div>
-                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'}`}>
                         AI Career Quiz
                       </h3>
-                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
                         5-minute intelligent assessment matching your skills, interests & work style
                       </p>
                     </div>
-                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
+                    <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
                       <span>Start Assessment</span>
                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
@@ -353,22 +354,22 @@ function App() {
                   <button
                     onClick={() => setShowAdvancedChatbot(true)}
                     className={`group rounded-3xl p-7 border text-left flex flex-col justify-between hover-lift btn-interactive ${darkMode
-                      ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
-                      : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
+                      ? 'bg-gradient-to-b from-[#0A1E3F] to-[#071326] border-[#003B73] hover:border-[#0265A6] shadow-xl'
+                      : 'bg-white border-[#BACDDF] hover:border-[#0265A6] shadow-md'
                       }`}
                   >
                     <div>
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                      <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 bg-gradient-to-br from-[#003B73] via-[#0265A6] to-[#003B73] text-white">
                         ✨
                       </div>
-                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'}`}>
                         AI Career Advisor Pro
                       </h3>
-                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
                         Interactive chat for salary negotiation, interview prep, and career transitions
                       </p>
                     </div>
-                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
+                    <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
                       <span>Launch Chat</span>
                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
@@ -378,22 +379,22 @@ function App() {
                   <button
                     onClick={() => setShowSkillsAnalyzer(true)}
                     className={`group rounded-3xl p-7 border text-left flex flex-col justify-between hover-lift btn-interactive ${darkMode
-                      ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
-                      : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
+                      ? 'bg-gradient-to-b from-[#0A1E3F] to-[#071326] border-[#003B73] hover:border-[#0265A6] shadow-xl'
+                      : 'bg-white border-[#BACDDF] hover:border-[#0265A6] shadow-md'
                       }`}
                   >
                     <div>
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                      <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 bg-gradient-to-br from-[#003B73] via-[#0265A6] to-[#003B73] text-white">
                         🎯
                       </div>
-                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'}`}>
                         Skills Gap Analyzer
                       </h3>
-                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
                         AI-powered skill analysis & tailored learning roadmap for your target job
                       </p>
                     </div>
-                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
+                    <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
                       <span>Analyze Skills</span>
                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
@@ -403,22 +404,22 @@ function App() {
                   <button
                     onClick={() => setShowRoadmapBuilder(true)}
                     className={`group rounded-3xl p-7 border text-left flex flex-col justify-between hover-lift btn-interactive ${darkMode
-                      ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
-                      : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
+                      ? 'bg-gradient-to-b from-[#0A1E3F] to-[#071326] border-[#003B73] hover:border-[#0265A6] shadow-xl'
+                      : 'bg-white border-[#BACDDF] hover:border-[#0265A6] shadow-md'
                       }`}
                   >
                     <div>
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                      <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 bg-gradient-to-br from-[#003B73] via-[#0265A6] to-[#003B73] text-white">
                         🗺️
                       </div>
-                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'}`}>
                         Roadmap Builder
                       </h3>
-                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
                         Build customized stage-by-stage milestones from student to senior lead
                       </p>
                     </div>
-                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
+                    <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
                       <span>Build Roadmap</span>
                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
@@ -428,22 +429,22 @@ function App() {
                   <button
                     onClick={() => setShowCollegeFinder(true)}
                     className={`group rounded-3xl p-7 border text-left flex flex-col justify-between hover-lift btn-interactive ${darkMode
-                      ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
-                      : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
+                      ? 'bg-gradient-to-b from-[#0A1E3F] to-[#071326] border-[#003B73] hover:border-[#0265A6] shadow-xl'
+                      : 'bg-white border-[#BACDDF] hover:border-[#0265A6] shadow-md'
                       }`}
                   >
                     <div>
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                      <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 bg-gradient-to-br from-[#003B73] via-[#0265A6] to-[#003B73] text-white">
                         🏫
                       </div>
-                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'}`}>
                         College Finder
                       </h3>
-                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
                         Explore 500+ colleges with ratings, entrance exams, and direct links
                       </p>
                     </div>
-                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
+                    <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
                       <span>Find Colleges</span>
                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
@@ -453,22 +454,22 @@ function App() {
                   <button
                     onClick={() => setShowComparison(true)}
                     className={`group rounded-3xl p-7 border text-left flex flex-col justify-between hover-lift btn-interactive ${darkMode
-                      ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600'
-                      : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
+                      ? 'bg-gradient-to-b from-[#0A1E3F] to-[#071326] border-[#003B73] hover:border-[#0265A6] shadow-xl'
+                      : 'bg-white border-[#BACDDF] hover:border-[#0265A6] shadow-md'
                       }`}
                   >
                     <div>
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 ${darkMode ? 'bg-zinc-900 border border-zinc-700 text-white' : 'bg-black text-white'}`}>
+                      <div className="w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-md mb-5 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 bg-gradient-to-br from-[#003B73] via-[#0265A6] to-[#003B73] text-white">
                         ⚖️
                       </div>
-                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'}`}>
+                      <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'}`}>
                         Compare Careers
                       </h3>
-                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                      <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
                         Side-by-side comparison of salaries, required skills, and career outlooks
                       </p>
                     </div>
-                    <div className={`flex items-center gap-1.5 font-bold text-xs ${darkMode ? 'text-zinc-300' : 'text-black'} group-hover:gap-2.5 transition-all`}>
+                    <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
                       <span>Compare Now</span>
                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
@@ -477,10 +478,13 @@ function App() {
 
                 <WhyChooseSection darkMode={darkMode} />
 
+                {/* Student Success & Placement Wall */}
+                <StudentPlacementWall darkMode={darkMode} />
+
                 {/* Domain & Career Discovery Section */}
                 <div id="domains" className="pt-4 animate-fade-in">
                   <div className="text-center mb-8">
-                    <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-3`}>
+                    <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-[#051C3E]'} mb-3`}>
                       Explore Career Pathways & Domains
                     </h2>
                     <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'} max-w-2xl mx-auto`}>
@@ -490,21 +494,21 @@ function App() {
 
                   {/* Search and Domain Filter Controls */}
                   <div className={`p-4 sm:p-6 rounded-3xl border mb-8 ${
-                    darkMode ? 'bg-[#121215] border-zinc-800 shadow-xl' : 'bg-white border-zinc-200 shadow-md'
+                    darkMode ? 'bg-[#0A1E3F]/90 border-[#003B73] shadow-xl' : 'bg-white border-[#BACDDF] shadow-md'
                   }`}>
                     {/* Search Input Bar */}
                     <div className="flex flex-col sm:flex-row items-center gap-3 mb-5">
                       <div className={`flex-1 flex items-center gap-2 px-4 py-3 rounded-2xl border w-full ${
-                        darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-zinc-50 border-zinc-300 text-black'
+                        darkMode ? 'bg-[#071326] border-[#003B73] text-white' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#051C3E]'
                       }`}>
-                        <span className="text-zinc-400 text-sm">🔍</span>
+                        <span className="text-[#0265A6] text-sm">🔍</span>
                         <input
                           id="career-search"
                           type="text"
                           placeholder="Search careers by name, skills, or degree (e.g. AI, Doctor, UI/UX, Finance)..."
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
-                          className="w-full bg-transparent border-none text-sm focus:outline-none placeholder-zinc-500"
+                          className="w-full bg-transparent border-none text-sm focus:outline-none placeholder:text-zinc-400"
                         />
                         {searchQuery && (
                           <button
@@ -522,8 +526,8 @@ function App() {
                           onClick={handleResetFilters}
                           className={`px-5 py-3 rounded-2xl font-bold text-xs btn-interactive border whitespace-nowrap flex items-center gap-1.5 cursor-pointer ${
                             darkMode 
-                              ? 'bg-zinc-900 border-zinc-700 text-zinc-200 hover:bg-zinc-800' 
-                              : 'bg-zinc-100 border-zinc-300 text-black hover:bg-zinc-200'
+                              ? 'bg-[#0A1E3F] border-[#003B73] text-zinc-200 hover:bg-[#003B73]' 
+                              : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:bg-[#BACDDF]/40'
                           }`}
                         >
                           <X className="w-3.5 h-3.5" />
@@ -550,12 +554,10 @@ function App() {
                           onClick={() => setActiveDomainFilter(chip.id)}
                           className={`px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-1.5 btn-interactive cursor-pointer ${
                             activeDomainFilter === chip.id
-                              ? darkMode
-                                ? 'bg-white text-black shadow-md scale-105'
-                                : 'bg-black text-white shadow-md scale-105'
+                              ? 'bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white shadow-md scale-105'
                               : darkMode
-                                ? 'bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700'
-                                : 'bg-zinc-100 border border-zinc-200 text-zinc-700 hover:text-black hover:border-zinc-300'
+                                ? 'bg-[#071326] border border-[#003B73] text-zinc-300 hover:text-white hover:border-[#0265A6]'
+                                : 'bg-[#EBF3FA] border border-[#BACDDF] text-[#0265A6] hover:bg-[#0265A6] hover:text-white'
                           }`}
                         >
                           <span>{chip.icon}</span>
@@ -570,11 +572,11 @@ function App() {
                     <div>
                       <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-2">
-                          <span className={`text-sm font-bold ${darkMode ? 'text-zinc-200' : 'text-zinc-800'}`}>
+                          <span className={`text-sm font-bold ${darkMode ? 'text-zinc-200' : 'text-[#051C3E]'}`}>
                             Search & Filter Results
                           </span>
                           <span className={`text-xs px-2.5 py-0.5 rounded-full font-mono font-bold border ${
-                            darkMode ? 'bg-zinc-900 border-zinc-700 text-zinc-300' : 'bg-zinc-100 border-zinc-300 text-black'
+                            darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA]' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6]'
                           }`}>
                             {getFilteredCareers().length} Matching
                           </span>
@@ -582,7 +584,7 @@ function App() {
 
                         <button
                           onClick={handleResetFilters}
-                          className="text-xs font-semibold text-zinc-400 hover:underline cursor-pointer"
+                          className="text-xs font-semibold text-[#0265A6] hover:underline cursor-pointer"
                         >
                           Clear Filters
                         </button>
@@ -612,23 +614,23 @@ function App() {
                       ) : (
                         /* Useful No Results State */
                         <div className={`p-10 rounded-3xl border text-center my-8 animate-fade-in ${
-                          darkMode ? 'bg-[#121215] border-zinc-800' : 'bg-white border-zinc-200 shadow-sm'
+                          darkMode ? 'bg-[#0A1E3F] border-[#003B73]' : 'bg-white border-[#BACDDF] shadow-sm'
                         }`}>
                           <div className={`w-16 h-16 mx-auto rounded-2xl flex items-center justify-center text-3xl mb-4 border ${
-                            darkMode ? 'bg-zinc-900 border-zinc-700' : 'bg-zinc-100 border-zinc-300'
+                            darkMode ? 'bg-[#071326] border-[#003B73]' : 'bg-[#EBF3FA] border-[#BACDDF]'
                           }`}>
                             🔍
                           </div>
-                          <h3 className={`text-xl font-black mb-2 ${darkMode ? 'text-white' : 'text-black'}`}>
+                          <h3 className={`text-xl font-black mb-2 ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>
                             No Careers Found Matching "{searchQuery}"
                           </h3>
-                          <p className={`text-sm mb-6 max-w-md mx-auto ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                          <p className={`text-sm mb-6 max-w-md mx-auto ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
                             We couldn't find any direct matches in the selected filter. Try searching for broader terms or explore trending fields below.
                           </p>
 
                           {/* Quick Keyword Suggestions */}
                           <div className="flex flex-wrap items-center justify-center gap-2 mb-6">
-                            <span className={`text-xs font-semibold ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`}>Try searching:</span>
+                            <span className={`text-xs font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>Try searching:</span>
                             {['Software Engineer', 'MBBS Doctor', 'Data Scientist', 'Investment Banker', 'Product Designer', 'Lawyer'].map((sug) => (
                               <button
                                 key={sug}
@@ -638,8 +640,8 @@ function App() {
                                 }}
                                 className={`text-xs px-3 py-1 rounded-xl border font-bold transition-all hover:scale-105 cursor-pointer ${
                                   darkMode 
-                                    ? 'bg-zinc-900 border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-600' 
-                                    : 'bg-zinc-100 border-zinc-200 text-zinc-700 hover:text-black hover:border-zinc-400'
+                                    ? 'bg-[#071326] border-[#003B73] text-[#6096BA] hover:text-white hover:border-[#0265A6]' 
+                                    : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:bg-[#0265A6] hover:text-white'
                                 }`}
                               >
                                 {sug}
@@ -649,9 +651,7 @@ function App() {
 
                           <button
                             onClick={handleResetFilters}
-                            className={`px-6 py-3 rounded-2xl font-bold text-sm btn-interactive cursor-pointer ${
-                              darkMode ? 'bg-white text-black hover:bg-zinc-200' : 'bg-black text-white hover:bg-zinc-800'
-                            }`}
+                            className="px-6 py-3 rounded-2xl font-bold text-sm btn-interactive cursor-pointer bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white hover:brightness-110 shadow-md"
                           >
                             Reset All Filters & View 150+ Careers
                           </button>
@@ -659,44 +659,68 @@ function App() {
                       )}
                     </div>
                   ) : (
-                    /* Default Domain Browser Cards */
+                    /* Default Domain Browser Cards with High-Res Covers */
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {Object.entries(CAREER_DATABASE).map(([key, domain]) => (
-                        <button
-                          key={key}
-                          onClick={() => setSelectedDomain(key)}
-                          className={`group relative rounded-3xl p-8 border text-left overflow-hidden hover-lift btn-interactive cursor-pointer ${
-                            darkMode
-                              ? 'bg-[#121215] border-zinc-800 hover:border-zinc-600 shadow-xl'
-                              : 'bg-white border-zinc-200 hover:border-zinc-400 shadow-md'
-                          }`}
-                        >
-                          <div className="relative z-10">
-                            <div className={`mb-6 inline-flex items-center justify-center w-16 h-16 rounded-2xl border shadow-sm group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ${
-                              darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-zinc-100 border-zinc-300 text-black'
-                            }`}>
-                              <span className="text-4xl">{domain.icon}</span>
+                      {Object.entries(CAREER_DATABASE).map(([key, domain]) => {
+                        const domainCovers = {
+                          science: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=600&q=80',
+                          engineering: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=600&q=80',
+                          commerce: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80',
+                          arts: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80',
+                          law: 'https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?auto=format&fit=crop&w=600&q=80',
+                          government: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=600&q=80',
+                          education: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80',
+                          sports: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80'
+                        };
+                        const bgImg = domainCovers[key] || domainCovers.engineering;
+
+                        return (
+                          <button
+                            key={key}
+                            onClick={() => setSelectedDomain(key)}
+                            className={`group relative rounded-3xl border text-left overflow-hidden hover-lift btn-interactive cursor-pointer h-72 flex flex-col justify-end ${
+                              darkMode
+                                ? 'bg-[#0A1E3F] border-[#003B73] hover:border-[#0265A6] shadow-xl'
+                                : 'bg-white border-[#BACDDF] hover:border-[#0265A6] shadow-md'
+                            }`}
+                          >
+                            {/* Background Cover Image with Gradient Overlay */}
+                            <img
+                              src={bgImg}
+                              alt={domain.name}
+                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-30 group-hover:opacity-40"
+                            />
+                            <div className={`absolute inset-0 bg-gradient-to-t ${
+                              darkMode
+                                ? 'from-[#071326] via-[#0A1E3F]/90 to-transparent'
+                                : 'from-white via-white/90 to-transparent'
+                            }`} />
+
+                            <div className="relative z-10 p-7">
+                              <div className={`mb-4 inline-flex items-center justify-center w-14 h-14 rounded-2xl border shadow-md group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 ${
+                                darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-white' : 'bg-white border-[#BACDDF] text-[#051C3E]'
+                              }`}>
+                                <span className="text-3xl">{domain.icon}</span>
+                              </div>
+
+                              <h3 className={`text-2xl font-black mb-1.5 transition-colors ${
+                                darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'
+                              }`}>
+                                {domain.name}
+                              </h3>
+
+                              <p className={`text-xs font-semibold mb-4 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
+                                {domain.subFields.length} specialized fields • 25+ career tracks
+                              </p>
+
+                              <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
+                                <span>Explore Specializations</span>
+                                <ChevronRight className="w-4 h-4" />
+                              </div>
                             </div>
-
-                            <h3 className={`text-2xl font-black mb-2 transition-colors ${
-                              darkMode ? 'text-white group-hover:text-zinc-300' : 'text-black group-hover:text-zinc-700'
-                            }`}>
-                              {domain.name}
-                            </h3>
-
-                            <p className={`text-xs font-semibold mb-6 ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>
-                              {domain.subFields.length} specialized fields • 25+ career tracks
-                            </p>
-
-                            <div className={`flex items-center gap-1.5 font-bold text-sm ${
-                              darkMode ? 'text-zinc-300' : 'text-black'
-                            } group-hover:gap-2.5 transition-all`}>
-                              <span>Explore Fields</span>
-                              <ChevronRight className="w-4 h-4" />
-                            </div>
-                          </div>
-                        </button>
-                      ))}
+                          </button>
+                        );
+                      })}
                     </div>
                   )}
                 </div>
