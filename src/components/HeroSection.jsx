@@ -67,13 +67,13 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
         }`}></div>
       </div>
 
-      {/* Main Grid Content Layout */}
-      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-12 gap-8 items-center p-6 sm:p-10 lg:p-14 z-10">
+      {/* Main Content Layout */}
+      <div className="relative max-w-4xl mx-auto flex flex-col items-center text-center p-6 sm:p-10 lg:p-14 z-10">
         
-        {/* Left Column: Headline, Search & CTAs */}
-        <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
+        {/* Main Content Column */}
+        <div className="w-full flex flex-col items-center text-center">
           {/* Top Live Engine Status Pill */}
-          <div className="flex flex-wrap items-center gap-2.5 mb-6 justify-center lg:justify-start">
+          <div className="flex flex-wrap items-center gap-2.5 mb-6 justify-center">
             <div className={`inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full border backdrop-blur-md shadow-md ${
               darkMode 
                 ? 'bg-[#0A1E3F]/90 border-[#003B73] text-zinc-200 shadow-[#0265A6]/15' 
@@ -108,14 +108,14 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
           </h1>
 
           {/* Value Prop Description */}
-          <p className={`text-base sm:text-lg mb-8 leading-relaxed max-w-xl ${
+          <p className={`text-base sm:text-lg mb-8 leading-relaxed max-w-2xl mx-auto ${
             darkMode ? 'text-zinc-300' : 'text-zinc-600'
           }`}>
             Eliminate career uncertainty. Unlock data-driven roadmaps, salary forecasts, ATS skill gap analysis, and tailored college recommendations across India's top programs.
           </p>
 
           {/* Instant Search / Query Bar */}
-          <form onSubmit={handleSearchSubmit} className="mb-8 w-full max-w-xl">
+          <form onSubmit={handleSearchSubmit} className="mb-8 w-full max-w-xl mx-auto">
             <div className={`flex items-center gap-2 p-2 rounded-2xl border transition-all duration-300 ${
               darkMode 
                 ? 'bg-[#0A1E3F] border-[#003B73] focus-within:border-[#0265A6] focus-within:ring-2 focus-within:ring-[#0265A6]/40 focus-within:shadow-[0_0_25px_rgba(2,101,166,0.3)]' 
@@ -143,7 +143,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             </div>
 
             {/* Quick Keyword Pills */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mt-3">
+            <div className="flex flex-wrap items-center justify-center gap-2 mt-3">
               <span className={`text-[11px] font-semibold ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>Trending:</span>
               {['AI & Robotics', 'Fullstack Dev', 'Investment Banking', 'UI/UX Design', 'Biotech'].map((tag) => (
                 <button
@@ -166,7 +166,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
           </form>
 
           {/* Action CTAs */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mb-8">
+          <div className="flex flex-wrap items-center justify-center gap-4 mb-8">
             <button
               onClick={scrollToDomains}
               className="group relative inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-2xl font-black text-sm btn-interactive hover-lift shadow-xl cursor-pointer bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white hover:brightness-110 shadow-[#0265A6]/35"
@@ -193,7 +193,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
           </div>
 
           {/* Quick Tool Pills */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs">
+          <div className="flex flex-wrap items-center justify-center gap-2 text-xs">
             <span className={`font-semibold mr-1 ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>Direct Tools:</span>
             <button
               onClick={() => window.openResume && window.openResume()}
@@ -230,75 +230,6 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
               <Target className="w-3.5 h-3.5 text-[#0265A6]" />
               <span>Skills Gap</span>
             </button>
-          </div>
-        </div>
-
-        {/* Right Column: Realistic Live Career Match Showcase Widget */}
-        <div className="lg:col-span-5 relative">
-          <div className={`rounded-3xl p-6 border transition-all duration-300 shadow-2xl relative z-10 ${
-            darkMode ? 'bg-gradient-to-b from-[#0A1E3F] to-[#071326] border-[#003B73]' : 'bg-gradient-to-b from-white to-[#EBF3FA]/60 border-[#BACDDF]'
-          }`}>
-            {/* Widget Top Banner */}
-            <div className="flex items-center justify-between pb-4 border-b border-[#BACDDF]/40 dark:border-[#003B73]/60 mb-5">
-              <div className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-                <span className="text-[11px] font-mono font-bold uppercase tracking-wider ml-1 text-zinc-400">
-                  Live Placement Pathfinder
-                </span>
-              </div>
-              <span className="text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#0265A6] text-white">
-                Verified Matrix
-              </span>
-            </div>
-
-            {/* Featured Student Match Card */}
-            <div className={`p-4 rounded-2xl border mb-4 ${
-              darkMode ? 'bg-[#071326] border-[#003B73]' : 'bg-white border-[#BACDDF]'
-            }`}>
-              <div className="flex items-center gap-3 mb-3">
-                <img 
-                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&h=120&q=80" 
-                  alt="Student Priya S."
-                  className="w-12 h-12 rounded-xl object-cover border-2 border-[#0265A6] shadow-sm"
-                />
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <span className={`font-bold text-sm ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>Priya Sharma</span>
-                    <span className="text-[10px] font-bold uppercase px-2 py-0.2 rounded-md bg-[#0265A6]/20 text-[#0265A6]">98% Fit</span>
-                  </div>
-                  <p className="text-xs text-zinc-400">Targeting: <span className="font-semibold text-black dark:text-white">AI & Data Architect</span></p>
-                </div>
-              </div>
-
-              {/* Stats Bar */}
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                <div className={`p-2 rounded-xl ${darkMode ? 'bg-[#0A1E3F]' : 'bg-[#EBF3FA]'}`}>
-                  <div className="text-[10px] uppercase font-bold text-[#0265A6]">Avg Package</div>
-                  <div className="font-black text-xs text-black dark:text-white">₹18 - 42 LPA</div>
-                </div>
-                <div className={`p-2 rounded-xl ${darkMode ? 'bg-[#0A1E3F]' : 'bg-[#EBF3FA]'}`}>
-                  <div className="text-[10px] uppercase font-bold text-[#0265A6]">Top Recruiters</div>
-                  <div className="font-black text-xs text-black dark:text-white">Google, Microsoft</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Overlapping Student Community Avatars */}
-            <div className="flex items-center justify-between pt-2">
-              <div className="flex items-center gap-2">
-                <div className="flex -space-x-2">
-                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&h=80&q=80" alt="Student Rohan" className="w-8 h-8 rounded-full border-2 border-white dark:border-[#071326] object-cover" />
-                  <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=80&h=80&q=80" alt="Student Ananya" className="w-8 h-8 rounded-full border-2 border-white dark:border-[#071326] object-cover" />
-                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=80&h=80&q=80" alt="Student Arjun" className="w-8 h-8 rounded-full border-2 border-white dark:border-[#071326] object-cover" />
-                </div>
-                <span className={`text-xs font-bold ${darkMode ? 'text-zinc-300' : 'text-zinc-700'}`}>
-                  45,000+ Students Guided
-                </span>
-              </div>
-              <Sparkles className="w-5 h-5 text-[#0265A6]" />
-            </div>
           </div>
         </div>
       </div>

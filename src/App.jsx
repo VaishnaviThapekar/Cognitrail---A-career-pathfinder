@@ -20,7 +20,6 @@ import SkillsGapAnalyzer from './components/SkillsGapAnalyzer';
 import CareerRoadmapBuilder from './components/CareerRoadmapBuilder';
 import CustomScrollbar from './components/CustomScrollbar';
 import AuthModal from './components/AuthModal';
-import StudentPlacementWall from './components/StudentPlacementWall';
 import { LevelUpNotification, AchievementNotification, GamificationDashboard } from './components/GamificationComponents';
 import { useGamification } from './contexts/GamificationContext';
 import { useAuth } from './contexts/AuthContext';
@@ -477,9 +476,6 @@ function App() {
                 </div>
 
                 <WhyChooseSection darkMode={darkMode} />
-
-                {/* Student Success & Placement Wall */}
-                <StudentPlacementWall darkMode={darkMode} />
 
                 {/* Domain & Career Discovery Section */}
                 <div id="domains" className="pt-4 animate-fade-in">
