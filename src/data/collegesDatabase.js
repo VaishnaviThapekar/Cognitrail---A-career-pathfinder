@@ -1455,12 +1455,20 @@ export const COLLEGES_DATABASE = {
     }
 };
 
-// Helper function to get all colleges
+// Helper function to get all colleges with guaranteed state and city properties
 export const getAllColleges = () => {
     const colleges = [];
     Object.values(COLLEGES_DATABASE).forEach(state => {
+        if (!state.cities) return;
         Object.values(state.cities).forEach(city => {
-            colleges.push(...city.colleges.map(col => annotateCollege(col)));
+            if (!city.colleges) return;
+            city.colleges.forEach(col => {
+                colleges.push(annotateCollege({
+                    ...col,
+                    state: col.state || state.name,
+                    city: col.city || city.name
+                }));
+            });
         });
     });
     return colleges;
@@ -1471,10 +1479,17 @@ export const getCollegesByState = (stateName) => {
     const stateKey = Object.keys(COLLEGES_DATABASE).find(
         key => COLLEGES_DATABASE[key].name.toLowerCase() === stateName.toLowerCase()
     );
-    if (!stateKey) return [];
+    if (!stateKey || !COLLEGES_DATABASE[stateKey].cities) return [];
     const colleges = [];
     Object.values(COLLEGES_DATABASE[stateKey].cities).forEach(city => {
-        colleges.push(...city.colleges.map(col => annotateCollege(col)));
+        if (!city.colleges) return;
+        city.colleges.forEach(col => {
+            colleges.push(annotateCollege({
+                ...col,
+                state: col.state || COLLEGES_DATABASE[stateKey].name,
+                city: col.city || city.name
+            }));
+        });
     });
     return colleges;
 };
@@ -1484,14 +1499,21 @@ export const getCollegesByCity = (stateName, cityName) => {
     const stateKey = Object.keys(COLLEGES_DATABASE).find(
         key => COLLEGES_DATABASE[key].name.toLowerCase() === stateName.toLowerCase()
     );
-    if (!stateKey) return [];
+    if (!stateKey || !COLLEGES_DATABASE[stateKey].cities) return [];
 
     const cityKey = Object.keys(COLLEGES_DATABASE[stateKey].cities).find(
         key => COLLEGES_DATABASE[stateKey].cities[key].name.toLowerCase() === cityName.toLowerCase()
     );
-    if (!cityKey) return [];
+    if (!cityKey || !COLLEGES_DATABASE[stateKey].cities[cityKey].colleges) return [];
 
-    return COLLEGES_DATABASE[stateKey].cities[cityKey].colleges.map(col => annotateCollege(col));
+    const cityNameVal = COLLEGES_DATABASE[stateKey].cities[cityKey].name;
+    const stateNameVal = COLLEGES_DATABASE[stateKey].name;
+
+    return COLLEGES_DATABASE[stateKey].cities[cityKey].colleges.map(col => annotateCollege({
+        ...col,
+        state: col.state || stateNameVal,
+        city: col.city || cityNameVal
+    }));
 };
 
 // --- Tier & Ownership helpers ---
