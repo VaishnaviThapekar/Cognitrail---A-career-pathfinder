@@ -20,6 +20,8 @@ import SkillsGapAnalyzer from './components/SkillsGapAnalyzer';
 import CareerRoadmapBuilder from './components/CareerRoadmapBuilder';
 import CustomScrollbar from './components/CustomScrollbar';
 import AuthModal from './components/AuthModal';
+import SalaryCalculatorModal from './components/SalaryCalculatorModal';
+import ExamCountdownTracker from './components/ExamCountdownTracker';
 import { LevelUpNotification, AchievementNotification, GamificationDashboard } from './components/GamificationComponents';
 import { useGamification } from './contexts/GamificationContext';
 import { useAuth } from './contexts/AuthContext';
@@ -63,6 +65,8 @@ function App() {
   const [showResumeUploader, setShowResumeUploader] = useState(false);
   const [showStudentProfile, setShowStudentProfile] = useState(false);
   const [showInterviewSimulator, setShowInterviewSimulator] = useState(false);
+  const [showSalaryCalculator, setShowSalaryCalculator] = useState(false);
+  const [showExamTracker, setShowExamTracker] = useState(false);
   const [infoModalContent, setInfoModalContent] = useState(null);
   const [activeDomainFilter, setActiveDomainFilter] = useState('all');
 
@@ -88,12 +92,16 @@ function App() {
     window.openResume = () => setShowResumeUploader(true);
     window.openInterview = () => setShowInterviewSimulator(true);
     window.openRoadmap = () => setShowRoadmapBuilder(true);
+    window.openSalary = () => setShowSalaryCalculator(true);
+    window.openExams = () => setShowExamTracker(true);
     return () => {
       delete window.openSkillGap;
       delete window.openQuiz;
       delete window.openResume;
       delete window.openInterview;
       delete window.openRoadmap;
+      delete window.openSalary;
+      delete window.openExams;
     };
   }, []);
 
@@ -280,6 +288,14 @@ function App() {
         <InterviewSimulator onClose={() => setShowInterviewSimulator(false)} darkMode={darkMode} />
       )}
 
+      {showSalaryCalculator && (
+        <SalaryCalculatorModal onClose={() => setShowSalaryCalculator(false)} darkMode={darkMode} />
+      )}
+
+      {showExamTracker && (
+        <ExamCountdownTracker onClose={() => setShowExamTracker(false)} darkMode={darkMode} />
+      )}
+
       {!showProfile && (
         <>
           {/* Header */}
@@ -294,6 +310,8 @@ function App() {
             onOpenSkills={() => setShowSkillsAnalyzer(true)}
             onOpenNews={() => setShowNews(true)}
             onOpenAdvisor={() => setShowAdvancedChatbot(true)}
+            onOpenSalaryCalculator={() => setShowSalaryCalculator(true)}
+            onOpenExamTracker={() => setShowExamTracker(true)}
             setShowProfile={setShowProfile}
             setShowGamification={setShowGamification}
             setShowComparison={setShowComparison}

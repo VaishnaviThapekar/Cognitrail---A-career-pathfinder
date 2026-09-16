@@ -8,7 +8,9 @@ import {
   Video, 
   Compass, 
   Search, 
-  Activity
+  Activity,
+  DollarSign,
+  Clock
 } from 'lucide-react';
 
 const HeroSection = ({ darkMode, onStartQuiz }) => {
@@ -229,6 +231,30 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             >
               <Target className="w-3.5 h-3.5 text-[#0265A6]" />
               <span>Skills Gap</span>
+            </button>
+
+            <button
+              onClick={() => window.openSalary && window.openSalary()}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl btn-interactive hover-lift border ${
+                darkMode
+                  ? 'bg-[#0A1E3F] hover:bg-[#0A1E3F]/80 border-[#003B73] text-zinc-300'
+                  : 'bg-white hover:bg-[#EBF3FA] border-zinc-200 text-zinc-800'
+              }`}
+            >
+              <DollarSign className="w-3.5 h-3.5 text-[#0265A6]" />
+              <span>Salary Calc</span>
+            </button>
+
+            <button
+              onClick={() => window.openExams && window.openExams()}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl btn-interactive hover-lift border ${
+                darkMode
+                  ? 'bg-[#0A1E3F] hover:bg-[#0A1E3F]/80 border-[#003B73] text-zinc-300'
+                  : 'bg-white hover:bg-[#EBF3FA] border-zinc-200 text-zinc-800'
+              }`}
+            >
+              <Clock className="w-3.5 h-3.5 text-[#0265A6]" />
+              <span>Exam Timers</span>
             </button>
           </div>
         </div>

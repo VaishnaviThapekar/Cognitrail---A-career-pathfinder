@@ -5,6 +5,7 @@ import {
   Layers, Code2, ArrowRight, Bookmark, CheckCircle2, Briefcase
 } from 'lucide-react';
 import CareerRoadmap from './CareerRoadmap';
+import DayInLifeShowcase from './DayInLifeShowcase';
 
 const CareerDetailModal = ({ 
   career, 
@@ -263,6 +264,9 @@ const CareerDetailModal = ({
                 ))}
               </div>
             </div>
+
+            {/* Day in the Life, Toolchain Stack & Mobility Tree */}
+            <DayInLifeShowcase career={activeCareer} darkMode={darkMode} />
 
             {/* Typical Career Progression Pathway */}
             <div className={`${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'} p-5 sm:p-6 rounded-2xl border`}>
