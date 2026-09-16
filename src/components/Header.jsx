@@ -201,17 +201,17 @@ const Header = ({
 
         {/* Mobile Navigation Drawer / Menu */}
         {mobileMenuOpen && (
-          <div className={`xl:hidden border-t px-4 py-4 space-y-3 animate-slide-down ${darkMode ? 'bg-[#09090b] border-zinc-800' : 'bg-white border-zinc-200 shadow-xl'
+          <div className={`xl:hidden border-t px-4 py-4 space-y-3 animate-slide-down ${darkMode ? 'bg-[#071326] border-[#003B73]' : 'bg-[#EBF3FA] border-[#BACDDF] shadow-xl'
             }`}>
             {/* Search Input on Mobile */}
             <div className="relative mb-3">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
+              <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`} />
               <input
                 type="text"
                 placeholder="Search careers, skills, fields..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full pl-9 pr-4 py-2.5 rounded-xl text-xs border focus:outline-none ${darkMode ? 'bg-[#18181b] border-zinc-700 text-white placeholder-zinc-500' : 'bg-zinc-50 border-zinc-200 text-black'}`}
+                className={`w-full pl-9 pr-4 py-2.5 rounded-xl text-xs border focus:outline-none ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-black focus:border-[#0265A6]'}`}
               />
             </div>
 
@@ -224,9 +224,9 @@ const Header = ({
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                   closeMobileMenu();
                 }}
-                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-200' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
               >
-                <Compass className="w-4 h-4" />
+                <Compass className="w-4 h-4 text-[#0265A6]" />
                 <span>Explore Careers</span>
               </button>
 
@@ -235,9 +235,9 @@ const Header = ({
                   if (onOpenQuiz) onOpenQuiz();
                   closeMobileMenu();
                 }}
-                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-zinc-100 border-zinc-300 text-black'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-gradient-to-r from-[#003B73] to-[#0265A6] border-[#0265A6] text-white' : 'bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white'}`}
               >
-                <HelpCircle className="w-4 h-4" />
+                <HelpCircle className="w-4 h-4 text-[#6096BA]" />
                 <span>AI Career Quiz</span>
               </button>
 
@@ -247,9 +247,9 @@ const Header = ({
                     setShowCollegeFinder(true);
                     closeMobileMenu();
                   }}
-                  className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-200' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}
+                  className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
                 >
-                  <School className="w-4 h-4" />
+                  <School className="w-4 h-4 text-[#0265A6]" />
                   <span>College Finder</span>
                 </button>
               )}
@@ -260,9 +260,9 @@ const Header = ({
                     setShowComparison(true);
                     closeMobileMenu();
                   }}
-                  className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-200' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}
+                  className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
                 >
-                  <Scale className="w-4 h-4" />
+                  <Scale className="w-4 h-4 text-[#0265A6]" />
                   <span>Compare Careers</span>
                 </button>
               )}
@@ -272,9 +272,9 @@ const Header = ({
                   if (onOpenSkills) onOpenSkills();
                   closeMobileMenu();
                 }}
-                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-200' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
               >
-                <Target className="w-4 h-4" />
+                <Target className="w-4 h-4 text-[#0265A6]" />
                 <span>Skills Gap</span>
               </button>
 
@@ -283,9 +283,9 @@ const Header = ({
                   if (onOpenRoadmap) onOpenRoadmap();
                   closeMobileMenu();
                 }}
-                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-200' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
               >
-                <Map className="w-4 h-4" />
+                <Map className="w-4 h-4 text-[#0265A6]" />
                 <span>Roadmaps</span>
               </button>
 
@@ -294,9 +294,9 @@ const Header = ({
                   if (onOpenNews) onOpenNews();
                   closeMobileMenu();
                 }}
-                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-[#18181b] border-zinc-800 text-zinc-200' : 'bg-zinc-50 border-zinc-200 text-zinc-800'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
               >
-                <Newspaper className="w-4 h-4" />
+                <Newspaper className="w-4 h-4 text-[#0265A6]" />
                 <span>Career News</span>
               </button>
 
@@ -305,9 +305,9 @@ const Header = ({
                   if (onOpenAdvisor) onOpenAdvisor();
                   closeMobileMenu();
                 }}
-                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border ${darkMode ? 'bg-zinc-900 border-zinc-700 text-white' : 'bg-zinc-100 border-zinc-300 text-black'}`}
+                className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-gradient-to-r from-[#003B73] to-[#0265A6] border-[#0265A6] text-white' : 'bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white'}`}
               >
-                <Bot className="w-4 h-4" />
+                <Bot className="w-4 h-4 text-[#6096BA]" />
                 <span>AI Advisor Pro</span>
               </button>
             </div>

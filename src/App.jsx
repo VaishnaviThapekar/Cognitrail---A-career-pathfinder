@@ -23,6 +23,7 @@ import AuthModal from './components/AuthModal';
 import SalaryCalculatorModal from './components/SalaryCalculatorModal';
 import ExamCountdownTracker from './components/ExamCountdownTracker';
 import ReadinessScorecardModal from './components/ReadinessScorecardModal';
+import FloatingQuickDock from './components/FloatingQuickDock';
 import { LevelUpNotification, AchievementNotification, GamificationDashboard } from './components/GamificationComponents';
 import { useGamification } from './contexts/GamificationContext';
 import { useAuth } from './contexts/AuthContext';
@@ -1158,6 +1159,17 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Floating Quick Action Speed Dial Dock */}
+      <FloatingQuickDock
+        onOpenQuiz={() => setShowQuiz(true)}
+        onOpenSkills={() => setShowSkillsAnalyzer(true)}
+        onOpenRoadmap={() => setShowRoadmapBuilder(true)}
+        onOpenCollegeFinder={() => setShowCollegeFinder(true)}
+        onOpenAIAdvisor={() => setShowAdvancedChatbot(true)}
+        onOpenSalary={() => setShowSalaryCalculator(true)}
+        onOpenExams={() => setShowExamTracker(true)}
+      />
     </div>
   );
 }
