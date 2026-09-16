@@ -174,8 +174,13 @@ const CollegeFinder = ({ onClose, darkMode }) => {
       }
 
       // Type Filter
-      if (selectedType && college.type && college.type.toLowerCase() !== selectedType.toLowerCase()) {
-        return false;
+      if (selectedType && college.type) {
+        const cType = college.type.toLowerCase();
+        const sType = selectedType.toLowerCase();
+        const firstWord = sType.split(' ')[0];
+        if (!cType.includes(sType) && !cType.includes(firstWord) && !sType.includes(cType)) {
+          return false;
+        }
       }
 
       // Rating Filter
@@ -227,7 +232,19 @@ const CollegeFinder = ({ onClose, darkMode }) => {
     return Array.from(cities).sort();
   }, [allCollegesList, selectedState]);
 
-  const collegeTypes = ['Engineering', 'Management', 'Medical', 'Law', 'Arts & Science', 'Multi-Disciplinary'];
+  const collegeTypes = [
+    'Engineering',
+    'Management',
+    'Medical',
+    'Law',
+    'Arts & Science',
+    'Design & Architecture',
+    'Aviation & Marine',
+    'Agriculture & Forestry',
+    'Pure Sciences & Research',
+    'Global Premier Universities',
+    'Multi-Disciplinary'
+  ];
 
   const resetAllFilters = () => {
     setSearchQuery('');

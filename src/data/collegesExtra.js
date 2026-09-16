@@ -638,7 +638,7 @@ export const EXTRA_COLLEGES = {
                     {
                         id: 90,
                         name: "National Institute of Design (NID Ahmedabad)",
-                        type: "Arts & Science",
+                        type: "Design & Architecture",
                         tier: "Tier 1",
                         rating: 4.9,
                         nirf: 1,
@@ -649,6 +649,310 @@ export const EXTRA_COLLEGES = {
                         placements: "Avg: ₹14L (Global Product & UX Design Studios)",
                         contact: "+91-79-26623692",
                         website: "www.nid.edu",
+                        ownership: "Government"
+                    }
+                ]
+            }
+        }
+    },
+    delhi_extended: {
+        name: "Delhi NCR",
+        cities: {
+            delhi: {
+                name: "New Delhi",
+                colleges: [
+                    {
+                        id: 301,
+                        name: "National Institute of Fashion Technology (NIFT New Delhi)",
+                        type: "Design & Architecture",
+                        tier: "Tier 1",
+                        rating: 4.9,
+                        nirf: 1,
+                        established: 1986,
+                        courses: ["B.Des", "B.FTech", "M.Des", "M.F.M"],
+                        specializations: ["Fashion Design", "Textile Design", "Fashion Communication", "Apparel Production"],
+                        fees: "₹3.2L/year",
+                        placements: "Avg: ₹12L, Highest: ₹38L (Global Fashion & UX Houses)",
+                        contact: "+91-11-26542000",
+                        website: "www.nift.ac.in",
+                        ownership: "Government"
+                    },
+                    {
+                        id: 302,
+                        name: "School of Planning and Architecture (SPA Delhi)",
+                        type: "Design & Architecture",
+                        tier: "Tier 1",
+                        rating: 4.8,
+                        nirf: 4,
+                        established: 1941,
+                        courses: ["B.Arch", "B.Plan", "M.Arch", "M.Plan"],
+                        specializations: ["Architectural Design", "Urban Planning", "Landscape Architecture", "Industrial Design"],
+                        fees: "₹1.5L/year",
+                        placements: "Avg: ₹10.5L, Highest: ₹28L",
+                        contact: "+91-11-23702345",
+                        website: "www.spa.ac.in",
+                        ownership: "Government"
+                    },
+                    {
+                        id: 303,
+                        name: "Faculty of Management Studies (FMS Delhi)",
+                        type: "Management",
+                        tier: "Tier 1",
+                        rating: 4.9,
+                        nirf: 8,
+                        established: 1954,
+                        courses: ["MBA", "Executive MBA", "PhD"],
+                        specializations: ["Finance", "Marketing", "Consulting", "Product Management"],
+                        fees: "₹2.0L (Total Course)",
+                        placements: "Avg: ₹34.1L, Highest: ₹1.2Cr (Highest ROI MBA in Asia)",
+                        contact: "+91-11-27666382",
+                        website: "fms.edu",
+                        ownership: "Government"
+                    },
+                    {
+                        id: 304,
+                        name: "ICAR - Indian Agricultural Research Institute (IARI New Delhi)",
+                        type: "Agriculture & Forestry",
+                        tier: "Tier 1",
+                        rating: 4.9,
+                        nirf: 1,
+                        established: 1905,
+                        courses: ["M.Sc Agriculture", "M.Tech Agri", "PhD"],
+                        specializations: ["Agronomy", "Genetics & Plant Breeding", "Soil Science", "Agri-Biotechnology"],
+                        fees: "₹35K/year",
+                        placements: "Avg: ₹11L (ICAR Scientist / Agri-Corporate)",
+                        contact: "+91-11-25843378",
+                        website: "www.iari.res.in",
+                        ownership: "Government"
+                    }
+                ]
+            }
+        }
+    },
+    maharashtra_extended: {
+        name: "Maharashtra Extended",
+        cities: {
+            pune: {
+                name: "Pune",
+                colleges: [
+                    {
+                        id: 310,
+                        name: "COEP Technological University (COEP Pune)",
+                        type: "Engineering",
+                        tier: "Tier 1",
+                        rating: 4.7,
+                        nirf: 52,
+                        established: 1854,
+                        courses: ["B.Tech", "M.Tech", "PhD"],
+                        specializations: ["Computer Engineering", "AI & Data Science", "Robotics", "Mechanical"],
+                        fees: "₹95K/year",
+                        placements: "Avg: ₹11.5L, Highest: ₹50L",
+                        contact: "+91-20-25507000",
+                        website: "www.coep.org.in",
+                        ownership: "Government"
+                    },
+                    {
+                        id: 311,
+                        name: "National Defence Academy (NDA Khadakwasla)",
+                        type: "Aviation & Marine",
+                        tier: "Tier 1",
+                        rating: 5.0,
+                        established: 1954,
+                        courses: ["B.Sc Military Science", "B.Tech Defense", "B.A."],
+                        specializations: ["Army Aviation", "Naval Warfare", "Air Force Flying Branch"],
+                        fees: "Fully Sponsored (Stipend Provided)",
+                        placements: "100% Commissioned Officers in Indian Armed Forces",
+                        contact: "+91-20-25291700",
+                        website: "nda.nic.in",
+                        ownership: "Government"
+                    },
+                    {
+                        id: 312,
+                        name: "Tolani Maritime Institute (TMI Pune)",
+                        type: "Aviation & Marine",
+                        tier: "Tier 1",
+                        rating: 4.8,
+                        established: 1998,
+                        courses: ["B.Tech Marine Engineering", "B.Sc Nautical Science"],
+                        specializations: ["Marine Propulsion", "Navigation Systems", "Offshore Robotics"],
+                        fees: "₹4.5L/year",
+                        placements: "Avg: ₹16L (Global Shipping Lines - Maersk, NYK)",
+                        contact: "+91-2114-669600",
+                        website: "tmi.tolani.edu",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 313,
+                        name: "Symbiosis Law School (SLS Pune)",
+                        type: "Law",
+                        tier: "Tier 1",
+                        rating: 4.7,
+                        nirf: 6,
+                        established: 1977,
+                        courses: ["BA LL.B (Hons)", "BBA LL.B (Hons)", "LLM"],
+                        specializations: ["Corporate Law", "Intellectual Property", "International Arbitration"],
+                        fees: "₹3.8L/year",
+                        placements: "Avg: ₹14.5L, Highest: ₹32L",
+                        contact: "+91-20-26551100",
+                        website: "www.symlaw.ac.in",
+                        ownership: "Private"
+                    }
+                ]
+            }
+        }
+    },
+    karnataka_extended: {
+        name: "Karnataka Sciences & Research",
+        cities: {
+            bengaluru: {
+                name: "Bengaluru",
+                colleges: [
+                    {
+                        id: 320,
+                        name: "Indian Institute of Science (IISc Bangalore)",
+                        type: "Pure Sciences & Research",
+                        tier: "Tier 1",
+                        rating: 5.0,
+                        nirf: 1,
+                        established: 1909,
+                        courses: ["BS (Research)", "M.Tech", "M.Des", "Ph.D."],
+                        specializations: ["Quantum Computing", "Aerospace Engineering", "Artificial Intelligence", "Molecular Biophysics"],
+                        fees: "₹30K/year",
+                        placements: "Avg: ₹28L, Highest: ₹85L (DeepTech & Global AI Labs)",
+                        contact: "+91-80-22932004",
+                        website: "www.iisc.ac.in",
+                        ownership: "Government"
+                    },
+                    {
+                        id: 321,
+                        name: "St. John's Medical College Bengaluru",
+                        type: "Medical",
+                        tier: "Tier 1",
+                        rating: 4.8,
+                        nirf: 14,
+                        established: 1963,
+                        courses: ["MBBS", "MD", "MS", "DM Cardiology"],
+                        specializations: ["Pediatrics", "Oncology", "Neuro Surgery", "Community Medicine"],
+                        fees: "₹7.5L/year",
+                        placements: "Avg: ₹15.8L (Clinical & Super-Specialty Residency)",
+                        contact: "+91-80-49466000",
+                        website: "www.stjohns.in",
+                        ownership: "Private"
+                    }
+                ]
+            }
+        }
+    },
+    tamilnadu_extended: {
+        name: "Tamil Nadu Medical & Engineering",
+        cities: {
+            chennai: {
+                name: "Chennai",
+                colleges: [
+                    {
+                        id: 330,
+                        name: "Indian Institute of Technology Madras (IIT Madras)",
+                        type: "Engineering",
+                        tier: "Tier 1",
+                        rating: 5.0,
+                        nirf: 1,
+                        established: 1959,
+                        courses: ["B.Tech", "BS Data Science", "M.Tech", "Ph.D."],
+                        specializations: ["Computer Science", "Artificial Intelligence", "Aerospace", "Ocean Engineering"],
+                        fees: "₹2.2L/year",
+                        placements: "Avg: ₹22.5L, Highest: ₹1.98Cr",
+                        contact: "+91-44-22578000",
+                        website: "www.iitm.ac.in",
+                        ownership: "Government"
+                    },
+                    {
+                        id: 331,
+                        name: "Christian Medical College (CMC Vellore)",
+                        type: "Medical",
+                        tier: "Tier 1",
+                        rating: 4.9,
+                        nirf: 3,
+                        established: 1900,
+                        courses: ["MBBS", "MD", "MS", "M.Ch Neurosurgery"],
+                        specializations: ["Cardiology", "Gastroenterology", "Pediatric Surgery", "Radiology"],
+                        fees: "₹52K/year",
+                        placements: "Avg: ₹18.2L (Global Clinical Residency)",
+                        contact: "+91-416-2281000",
+                        website: "www.cmch-vellore.edu",
+                        ownership: "Private"
+                    }
+                ]
+            }
+        }
+    },
+    global_universities: {
+        name: "Global Premier Universities",
+        cities: {
+            international: {
+                name: "Global / Overseas",
+                colleges: [
+                    {
+                        id: 401,
+                        name: "Massachusetts Institute of Technology (MIT)",
+                        type: "Global Premier Universities",
+                        tier: "Tier 1",
+                        rating: 5.0,
+                        nirf: 1,
+                        established: 1861,
+                        courses: ["B.S. CS & AI", "B.S. Robotics", "Ph.D. Quantum Physics", "M.S. Media Lab"],
+                        specializations: ["Artificial Intelligence", "Robotics", "Aerospace", "Biomedical Engineering"],
+                        fees: "$60,000/year",
+                        placements: "Avg: $145,000/year (Big Tech & DeepTech Founders)",
+                        contact: "+1-617-253-1000",
+                        website: "www.mit.edu",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 402,
+                        name: "Stanford University",
+                        type: "Global Premier Universities",
+                        tier: "Tier 1",
+                        rating: 5.0,
+                        nirf: 2,
+                        established: 1885,
+                        courses: ["B.S. Computer Science", "MS Symbolic Systems", "MBA", "Ph.D."],
+                        specializations: ["Silicon Valley VC & Startups", "AI Systems", "Biotech Leadership"],
+                        fees: "$62,000/year",
+                        placements: "Avg: $150,000/year",
+                        contact: "+1-650-723-2300",
+                        website: "www.stanford.edu",
+                        ownership: "Private"
+                    },
+                    {
+                        id: 403,
+                        name: "University of Oxford",
+                        type: "Global Premier Universities",
+                        tier: "Tier 1",
+                        rating: 5.0,
+                        nirf: 1,
+                        established: 1096,
+                        courses: ["BA PPE (Philosophy, Politics & Economics)", "BM BCh Medicine", "M.Sc AI", "Ph.D."],
+                        specializations: ["Clinical Medicine", "Public Policy", "Quantum Computing", "International Law"],
+                        fees: "£38,000/year",
+                        placements: "Avg: £85,000/year (Global Diplomatic & Clinical Practice)",
+                        contact: "+44-1865-270000",
+                        website: "www.ox.ac.uk",
+                        ownership: "Government"
+                    },
+                    {
+                        id: 404,
+                        name: "ETH Zurich (Swiss Federal Institute of Technology)",
+                        type: "Global Premier Universities",
+                        tier: "Tier 1",
+                        rating: 4.9,
+                        nirf: 7,
+                        established: 1855,
+                        courses: ["B.Sc Computer Science", "M.Sc Robotics", "Ph.D. Physics"],
+                        specializations: ["Autonomous Systems", "Machine Learning", "Micro-Nanotechnology"],
+                        fees: "CHF 1,500/year (Highly Subsidized)",
+                        placements: "Avg: CHF 110,000/year",
+                        contact: "+41-44-632-1111",
+                        website: "ethz.ch",
                         ownership: "Government"
                     }
                 ]
