@@ -224,6 +224,18 @@ const CareerDetailModal = ({
                   <Map className="w-3.5 h-3.5" />
                   <span>Interactive Roadmap</span>
                 </button>
+
+                <button
+                  onClick={() => window.openReadiness && window.openReadiness(activeCareer)}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold btn-interactive flex items-center gap-1.5 cursor-pointer border ${
+                    darkMode
+                      ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white hover:border-[#0265A6]'
+                      : 'bg-white border-[#BACDDF] text-[#0265A6] hover:bg-[#0265A6] hover:text-white'
+                  }`}
+                >
+                  <Award className="w-3.5 h-3.5" />
+                  <span>Resume Readiness Score</span>
+                </button>
               </div>
             </div>
             

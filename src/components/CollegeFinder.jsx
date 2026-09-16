@@ -5,6 +5,7 @@ import {
   Info, Sparkles, Building2, CheckCircle2, RotateCcw
 } from 'lucide-react';
 import { getAllColleges } from '../data/collegesDatabase';
+import CollegeCutoffPredictor from './CollegeCutoffPredictor';
 
 const CollegeFinder = ({ onClose, darkMode }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -15,6 +16,7 @@ const CollegeFinder = ({ onClose, darkMode }) => {
   const [selectedTier, setSelectedTier] = useState('');
   const [selectedOwnership, setSelectedOwnership] = useState('');
   const [selectedCollege, setSelectedCollege] = useState(null);
+  const [showPredictor, setShowPredictor] = useState(false);
 
   // Keyboard Escape key listener
   useEffect(() => {
@@ -271,15 +273,31 @@ const CollegeFinder = ({ onClose, darkMode }) => {
         </div>
 
         {/* Source & Verification Notice */}
-        <div className={`mb-6 p-4 rounded-2xl border flex items-start gap-3.5 ${
+        <div className={`mb-6 p-4 rounded-2xl border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3.5 ${
           darkMode ? 'bg-gradient-to-r from-[#0A1E3F] to-[#071326] border-[#003B73] text-[#6096BA]' : 'bg-gradient-to-r from-[#EBF3FA] to-[#BACDDF]/30 border-[#BACDDF] text-[#0265A6]'
         }`}>
-          <ShieldCheck className="w-5 h-5 text-[#0265A6] mt-0.5 flex-shrink-0" />
-          <div className="text-xs sm:text-sm leading-relaxed">
-            <span className="font-bold text-black dark:text-white">Source & Verification Notice: </span>
-            Institutional ratings, NIRF rankings, and placement figures are compiled from the National Institutional Ranking Framework (NIRF), verified official university reports, and educational disclosure audits. Always consult official university admissions portals for real-time cutoffs and fees.
+          <div className="flex items-start gap-3">
+            <ShieldCheck className="w-5 h-5 text-[#0265A6] mt-0.5 flex-shrink-0" />
+            <div className="text-xs sm:text-sm leading-relaxed">
+              <span className="font-bold text-black dark:text-white">Source & Verification Notice: </span>
+              Institutional ratings & cutoffs are compiled from NIRF, official university reports, and audit files.
+            </div>
           </div>
+
+          <button
+            onClick={() => setShowPredictor(!showPredictor)}
+            className="px-4 py-2 rounded-xl text-xs font-bold btn-interactive flex items-center gap-1.5 cursor-pointer bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white shadow-md hover:brightness-110 flex-shrink-0"
+          >
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>{showPredictor ? 'Hide Rank Predictor' : 'Launch Rank Cutoff Predictor'}</span>
+          </button>
         </div>
+
+        {showPredictor && (
+          <div className="mb-8">
+            <CollegeCutoffPredictor darkMode={darkMode} onClose={() => setShowPredictor(false)} />
+          </div>
+        )}
 
         {/* Filter Controls Card */}
         <div className={`rounded-3xl p-6 md:p-8 mb-8 border ${

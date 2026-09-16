@@ -22,6 +22,7 @@ import CustomScrollbar from './components/CustomScrollbar';
 import AuthModal from './components/AuthModal';
 import SalaryCalculatorModal from './components/SalaryCalculatorModal';
 import ExamCountdownTracker from './components/ExamCountdownTracker';
+import ReadinessScorecardModal from './components/ReadinessScorecardModal';
 import { LevelUpNotification, AchievementNotification, GamificationDashboard } from './components/GamificationComponents';
 import { useGamification } from './contexts/GamificationContext';
 import { useAuth } from './contexts/AuthContext';
@@ -67,6 +68,8 @@ function App() {
   const [showInterviewSimulator, setShowInterviewSimulator] = useState(false);
   const [showSalaryCalculator, setShowSalaryCalculator] = useState(false);
   const [showExamTracker, setShowExamTracker] = useState(false);
+  const [showReadinessScorecard, setShowReadinessScorecard] = useState(false);
+  const [selectedCareerForReadiness, setSelectedCareerForReadiness] = useState(null);
   const [infoModalContent, setInfoModalContent] = useState(null);
   const [activeDomainFilter, setActiveDomainFilter] = useState('all');
 
@@ -94,6 +97,10 @@ function App() {
     window.openRoadmap = () => setShowRoadmapBuilder(true);
     window.openSalary = () => setShowSalaryCalculator(true);
     window.openExams = () => setShowExamTracker(true);
+    window.openReadiness = (c) => {
+      if (c) setSelectedCareerForReadiness(c);
+      setShowReadinessScorecard(true);
+    };
     return () => {
       delete window.openSkillGap;
       delete window.openQuiz;
@@ -102,6 +109,7 @@ function App() {
       delete window.openRoadmap;
       delete window.openSalary;
       delete window.openExams;
+      delete window.openReadiness;
     };
   }, []);
 
@@ -294,6 +302,17 @@ function App() {
 
       {showExamTracker && (
         <ExamCountdownTracker onClose={() => setShowExamTracker(false)} darkMode={darkMode} />
+      )}
+
+      {showReadinessScorecard && (
+        <ReadinessScorecardModal
+          onClose={() => {
+            setShowReadinessScorecard(false);
+            setSelectedCareerForReadiness(null);
+          }}
+          darkMode={darkMode}
+          initialRole={selectedCareerForReadiness?.name}
+        />
       )}
 
       {!showProfile && (
