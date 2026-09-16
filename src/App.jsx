@@ -183,48 +183,63 @@ function App() {
     setSelectedSubField(null);
   };
 
-  // Welcome Screen in sleek Black & White
+  // Welcome Screen matching inside 5-Shade Ocean & Royal Blue UI
   if (showWelcome) {
     return (
-      <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4 bg-[#09090b]">
+      <div className="min-h-screen relative overflow-hidden flex items-center justify-center p-4 bg-[#071326]">
+        {/* Animated Multi-Shade Ambient Orbs & Mesh */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-zinc-700/15 rounded-full filter blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-zinc-600/15 rounded-full filter blur-3xl animate-pulse"></div>
+          <div className="absolute -top-32 -left-32 w-[34rem] h-[34rem] bg-[#003B73]/40 rounded-full filter blur-3xl animate-orb-1"></div>
+          <div className="absolute -bottom-32 -right-32 w-[36rem] h-[36rem] bg-[#0265A6]/30 rounded-full filter blur-3xl animate-orb-2"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40rem] h-[40rem] bg-[#6096BA]/15 rounded-full filter blur-3xl animate-pulse-glow"></div>
+          
+          {/* High-tech matrix dot pattern */}
+          <div 
+            className="absolute inset-0 opacity-[0.06]"
+            style={{
+              backgroundImage: 'radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)',
+              backgroundSize: '24px 24px'
+            }}
+          ></div>
         </div>
 
-        <div className="relative z-10 text-center max-w-lg">
+        <div className="relative z-10 text-center max-w-lg animate-fade-in-scale">
+          {/* Logo Badge Icon with Glow */}
           <div className="mb-6 relative inline-block">
-            <div className="w-24 h-24 mx-auto rounded-3xl bg-zinc-800 border border-zinc-700 p-1 shadow-2xl flex items-center justify-center">
-              <div className="w-full h-full bg-black rounded-[22px] flex items-center justify-center">
-                <Lightbulb className="w-12 h-12 text-white animate-pulse" />
+            <div className="w-24 h-24 mx-auto rounded-3xl bg-gradient-to-tr from-[#003B73] via-[#0265A6] to-[#6096BA] p-1 shadow-[0_0_40px_rgba(2,101,166,0.4)] flex items-center justify-center">
+              <div className="w-full h-full bg-[#071326] rounded-[22px] flex items-center justify-center">
+                <Lightbulb className="w-12 h-12 text-[#0265A6] animate-pulse" />
               </div>
             </div>
           </div>
 
+          {/* Main Title */}
           <h1 className="text-4xl sm:text-5xl font-black mb-3 tracking-tight text-white">
             COGNITRAIL
           </h1>
 
-          <p className="text-lg text-zinc-400 font-light mb-6">
+          <p className="text-lg font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#6096BA]">
             Your Intelligent Career Pathfinder
           </p>
 
+          {/* Feature Badge Pills */}
           <div className="flex flex-wrap justify-center gap-2 mb-8">
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-zinc-900 border border-zinc-700 text-zinc-300">
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#0A1E3F] border border-[#003B73] text-[#6096BA] shadow-sm">
               150+ Careers
             </span>
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-zinc-900 border border-zinc-700 text-zinc-300">
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#0A1E3F] border border-[#003B73] text-[#6096BA] shadow-sm">
               500+ Top Colleges
             </span>
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-zinc-900 border border-zinc-700 text-zinc-300">
-              AI Powered
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-bold bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white shadow-sm">
+              Precision AI
             </span>
           </div>
 
+          {/* Glowing Animated Loading Dots */}
           <div className="flex justify-center items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-white animate-bounce"></div>
-            <div className="w-2 h-2 rounded-full bg-zinc-400 animate-bounce delay-150"></div>
-            <div className="w-2 h-2 rounded-full bg-zinc-600 animate-bounce delay-300"></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-[#0265A6] animate-bounce" style={{ animationDelay: '0ms' }}></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-[#6096BA] animate-bounce" style={{ animationDelay: '150ms' }}></div>
+            <div className="w-2.5 h-2.5 rounded-full bg-[#003B73] animate-bounce" style={{ animationDelay: '300ms' }}></div>
           </div>
         </div>
       </div>
