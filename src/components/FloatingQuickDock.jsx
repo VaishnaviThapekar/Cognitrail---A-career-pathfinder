@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Compass, Sparkles, Target, Map, GraduationCap, Bot, DollarSign, Calendar, X } from 'lucide-react';
+import { Compass, Sparkles, Target, Map, GraduationCap, Bot, DollarSign, Calendar, UserCheck, Award, X } from 'lucide-react';
 
 export default function FloatingQuickDock({
   onOpenQuiz,
@@ -8,7 +8,9 @@ export default function FloatingQuickDock({
   onOpenCollegeFinder,
   onOpenAIAdvisor,
   onOpenSalary,
-  onOpenExams
+  onOpenExams,
+  onOpenMentors,
+  onOpenScholarships
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,6 +22,26 @@ export default function FloatingQuickDock({
       color: 'from-[#0265A6] to-[#6096BA]',
       onClick: () => {
         onOpenQuiz?.();
+        setIsOpen(false);
+      }
+    },
+    {
+      id: 'mentors',
+      label: 'Alumni Connect',
+      icon: UserCheck,
+      color: 'from-[#003B73] to-[#0265A6]',
+      onClick: () => {
+        onOpenMentors?.();
+        setIsOpen(false);
+      }
+    },
+    {
+      id: 'scholarships',
+      label: 'Scholarship Finder',
+      icon: Award,
+      color: 'from-[#0265A6] to-[#6096BA]',
+      onClick: () => {
+        onOpenScholarships?.();
         setIsOpen(false);
       }
     },

@@ -24,6 +24,8 @@ import SalaryCalculatorModal from './components/SalaryCalculatorModal';
 import ExamCountdownTracker from './components/ExamCountdownTracker';
 import ReadinessScorecardModal from './components/ReadinessScorecardModal';
 import FloatingQuickDock from './components/FloatingQuickDock';
+import AlumniConnectModal from './components/AlumniConnectModal';
+import ScholarshipFinderModal from './components/ScholarshipFinderModal';
 import { LevelUpNotification, AchievementNotification, GamificationDashboard } from './components/GamificationComponents';
 import { useGamification } from './contexts/GamificationContext';
 import { useAuth } from './contexts/AuthContext';
@@ -70,6 +72,8 @@ function App() {
   const [showSalaryCalculator, setShowSalaryCalculator] = useState(false);
   const [showExamTracker, setShowExamTracker] = useState(false);
   const [showReadinessScorecard, setShowReadinessScorecard] = useState(false);
+  const [showAlumniConnect, setShowAlumniConnect] = useState(false);
+  const [showScholarshipFinder, setShowScholarshipFinder] = useState(false);
   const [selectedCareerForReadiness, setSelectedCareerForReadiness] = useState(null);
   const [infoModalContent, setInfoModalContent] = useState(null);
   const [activeDomainFilter, setActiveDomainFilter] = useState('all');
@@ -98,6 +102,8 @@ function App() {
     window.openRoadmap = () => setShowRoadmapBuilder(true);
     window.openSalary = () => setShowSalaryCalculator(true);
     window.openExams = () => setShowExamTracker(true);
+    window.openMentors = () => setShowAlumniConnect(true);
+    window.openScholarships = () => setShowScholarshipFinder(true);
     window.openReadiness = (c) => {
       if (c) setSelectedCareerForReadiness(c);
       setShowReadinessScorecard(true);
@@ -110,6 +116,8 @@ function App() {
       delete window.openRoadmap;
       delete window.openSalary;
       delete window.openExams;
+      delete window.openMentors;
+      delete window.openScholarships;
       delete window.openReadiness;
     };
   }, []);
@@ -1160,6 +1168,22 @@ function App() {
         </div>
       )}
 
+      {/* Alumni Connect Modal */}
+      {showAlumniConnect && (
+        <AlumniConnectModal
+          onClose={() => setShowAlumniConnect(false)}
+          darkMode={darkMode}
+        />
+      )}
+
+      {/* Scholarship Finder Modal */}
+      {showScholarshipFinder && (
+        <ScholarshipFinderModal
+          onClose={() => setShowScholarshipFinder(false)}
+          darkMode={darkMode}
+        />
+      )}
+
       {/* Floating Quick Action Speed Dial Dock */}
       <FloatingQuickDock
         onOpenQuiz={() => setShowQuiz(true)}
@@ -1169,6 +1193,8 @@ function App() {
         onOpenAIAdvisor={() => setShowAdvancedChatbot(true)}
         onOpenSalary={() => setShowSalaryCalculator(true)}
         onOpenExams={() => setShowExamTracker(true)}
+        onOpenMentors={() => setShowAlumniConnect(true)}
+        onOpenScholarships={() => setShowScholarshipFinder(true)}
       />
     </div>
   );
