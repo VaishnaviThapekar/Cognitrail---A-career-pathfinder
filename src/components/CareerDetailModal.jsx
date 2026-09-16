@@ -481,17 +481,13 @@ const CareerDetailModal = ({
             </div>
 
             {/* Action Buttons */}
-            <div className="grid sm:grid-cols-2 gap-4 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
               <button
                 onClick={() => setShowRoadmap(true)}
-                className={`w-full py-4 px-6 rounded-2xl font-black text-sm btn-interactive hover-lift shadow-xl cursor-pointer ${
-                  darkMode ? 'bg-white text-black hover:bg-zinc-200' : 'bg-black text-white hover:bg-zinc-800'
-                }`}
+                className="w-full py-3.5 px-4 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] hover:brightness-110 shadow-lg cursor-pointer flex items-center justify-center gap-2"
               >
-                <div className="flex items-center justify-center gap-2.5">
-                  <Map className="w-5 h-5" />
-                  <span>View Step-by-Step Roadmap</span>
-                </div>
+                <Map className="w-4 h-4 text-[#6096BA]" />
+                <span>View Roadmap</span>
               </button>
 
               <button
@@ -499,14 +495,64 @@ const CareerDetailModal = ({
                   onClose();
                   if (window.openSkillGap) window.openSkillGap(activeCareer);
                 }}
-                className={`w-full py-4 px-6 rounded-2xl font-bold text-sm btn-interactive hover-lift border cursor-pointer ${
-                  darkMode ? 'bg-zinc-900 border-zinc-700 text-white hover:bg-zinc-800' : 'bg-zinc-100 border-zinc-300 text-black hover:bg-zinc-200'
+                className={`w-full py-3.5 px-4 rounded-xl font-bold text-xs border cursor-pointer flex items-center justify-center gap-2 transition-all ${
+                  darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'
                 }`}
               >
-                <div className="flex items-center justify-center gap-2.5">
-                  <Brain className="w-5 h-5" />
-                  <span>Analyze Skills Gap</span>
-                </div>
+                <Brain className="w-4 h-4 text-[#0265A6]" />
+                <span>Skills Gap</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  onClose();
+                  if (window.openReadiness) window.openReadiness(activeCareer);
+                }}
+                className={`w-full py-3.5 px-4 rounded-xl font-bold text-xs border cursor-pointer flex items-center justify-center gap-2 transition-all ${
+                  darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'
+                }`}
+              >
+                <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                <span>Resume Score</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  onClose();
+                  if (window.openMentors) window.openMentors();
+                }}
+                className={`w-full py-3.5 px-4 rounded-xl font-bold text-xs border cursor-pointer flex items-center justify-center gap-2 transition-all ${
+                  darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'
+                }`}
+              >
+                <Award className="w-4 h-4 text-[#6096BA]" />
+                <span>Alumni Mentors</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  onClose();
+                  if (window.openScholarships) window.openScholarships();
+                }}
+                className={`w-full py-3.5 px-4 rounded-xl font-bold text-xs border cursor-pointer flex items-center justify-center gap-2 transition-all ${
+                  darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'
+                }`}
+              >
+                <DollarSign className="w-4 h-4 text-emerald-400" />
+                <span>Scholarships</span>
+              </button>
+
+              <button
+                onClick={() => {
+                  onClose();
+                  if (window.openSalary) window.openSalary();
+                }}
+                className={`w-full py-3.5 px-4 rounded-xl font-bold text-xs border cursor-pointer flex items-center justify-center gap-2 transition-all ${
+                  darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'
+                }`}
+              >
+                <TrendingUp className="w-4 h-4 text-[#0265A6]" />
+                <span>Salary Benchmarks</span>
               </button>
             </div>
           </div>

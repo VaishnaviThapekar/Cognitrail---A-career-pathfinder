@@ -27,15 +27,15 @@ const CustomScrollbar = ({ darkMode }) => {
       }
       
       ::-webkit-scrollbar-track {
-        background: ${darkMode ? 'rgba(24, 24, 27, 0.4)' : 'rgba(228, 228, 231, 0.4)'};
+        background: ${darkMode ? 'rgba(5, 28, 62, 0.4)' : 'rgba(235, 243, 250, 0.6)'};
         border-radius: 10px;
         margin: 10px 0;
       }
       
       ::-webkit-scrollbar-thumb {
-        background: ${darkMode ? '#52525b' : '#a1a1aa'};
+        background: ${darkMode ? '#0265A6' : '#6096BA'};
         border-radius: 10px;
-        border: 2px solid ${darkMode ? '#18181b' : '#f4f4f5'};
+        border: 2px solid ${darkMode ? '#051C3E' : '#EBF3FA'};
         opacity: 0;
         transition: all 0.3s ease;
       }
@@ -45,7 +45,7 @@ const CustomScrollbar = ({ darkMode }) => {
       }
       
       body:hover ::-webkit-scrollbar-thumb {
-        opacity: 0.6;
+        opacity: 0.7;
       }
       
       body.is-scrolling:hover ::-webkit-scrollbar-thumb {
@@ -54,12 +54,12 @@ const CustomScrollbar = ({ darkMode }) => {
       
       ::-webkit-scrollbar-thumb:hover {
         opacity: 1 !important;
-        background: ${darkMode ? '#71717a' : '#71717a'};
+        background: ${darkMode ? '#6096BA' : '#0265A6'};
       }
       
       * {
         scrollbar-width: thin;
-        scrollbar-color: ${darkMode ? '#52525b rgba(24, 24, 27, 0.4)' : '#a1a1aa rgba(228, 228, 231, 0.4)'};
+        scrollbar-color: ${darkMode ? '#0265A6 rgba(5, 28, 62, 0.4)' : '#6096BA rgba(235, 243, 250, 0.6)'};
       }
       
       html {
