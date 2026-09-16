@@ -180,6 +180,52 @@ const CareerDetailModal = ({
           </div>
 
           <div className="p-6 sm:p-8 space-y-6">
+
+            {/* Selected Career Context Action Bar */}
+            <div className={`p-4 rounded-2xl border flex flex-wrap items-center justify-between gap-3 ${
+              darkMode ? 'bg-[#071326] border-[#003B73]' : 'bg-[#EBF3FA]/80 border-[#BACDDF]'
+            }`}>
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-[#0265A6]" />
+                <span className={`text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-zinc-300' : 'text-[#051C3E]'}`}>
+                  Career Deep Dive Tools
+                </span>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => window.openSalary && window.openSalary(activeCareer)}
+                  className="px-3.5 py-2 rounded-xl text-xs font-bold btn-interactive flex items-center gap-1.5 cursor-pointer bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white shadow-sm hover:brightness-110"
+                >
+                  <DollarSign className="w-3.5 h-3.5" />
+                  <span>Calculate Salary</span>
+                </button>
+
+                <button
+                  onClick={() => window.openExams && window.openExams()}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold btn-interactive flex items-center gap-1.5 cursor-pointer border ${
+                    darkMode
+                      ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white hover:border-[#0265A6]'
+                      : 'bg-white border-[#BACDDF] text-[#0265A6] hover:bg-[#0265A6] hover:text-white'
+                  }`}
+                >
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>Entrance Exams</span>
+                </button>
+
+                <button
+                  onClick={() => setShowRoadmap(true)}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold btn-interactive flex items-center gap-1.5 cursor-pointer border ${
+                    darkMode
+                      ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white hover:border-[#0265A6]'
+                      : 'bg-white border-[#BACDDF] text-[#0265A6] hover:bg-[#0265A6] hover:text-white'
+                  }`}
+                >
+                  <Map className="w-3.5 h-3.5" />
+                  <span>Interactive Roadmap</span>
+                </button>
+              </div>
+            </div>
             
             {/* Top Stats Grid */}
             <div className="grid sm:grid-cols-2 gap-4">

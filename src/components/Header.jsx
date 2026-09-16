@@ -18,8 +18,6 @@ const Header = ({
   onOpenSkills,
   onOpenNews,
   onOpenAdvisor,
-  onOpenSalaryCalculator,
-  onOpenExamTracker,
   setShowProfile,
   setShowGamification,
   setShowComparison,
@@ -104,31 +102,6 @@ const Header = ({
               >
                 Skill Gap
               </button>
-
-              <button
-                onClick={() => onOpenRoadmap && onOpenRoadmap()}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
-              >
-                Roadmaps
-              </button>
-
-              {onOpenSalaryCalculator && (
-                <button
-                  onClick={() => onOpenSalaryCalculator()}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
-                >
-                  Salary Calc
-                </button>
-              )}
-
-              {onOpenExamTracker && (
-                <button
-                  onClick={() => onOpenExamTracker()}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
-                >
-                  Exams 2026
-                </button>
-              )}
 
               <button
                 onClick={() => onOpenAdvisor && onOpenAdvisor()}

@@ -82,8 +82,8 @@ const ENTRANCE_EXAMS = [
   }
 ];
 
-const ExamCountdownTracker = ({ darkMode, onClose }) => {
-  const [selectedStream, setSelectedStream] = useState('all');
+const ExamCountdownTracker = ({ darkMode, onClose, initialStream }) => {
+  const [selectedStream, setSelectedStream] = useState(initialStream || 'all');
 
   const filteredExams = ENTRANCE_EXAMS.filter(
     (exam) => selectedStream === 'all' || exam.stream === selectedStream

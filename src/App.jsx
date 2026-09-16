@@ -310,8 +310,6 @@ function App() {
             onOpenSkills={() => setShowSkillsAnalyzer(true)}
             onOpenNews={() => setShowNews(true)}
             onOpenAdvisor={() => setShowAdvancedChatbot(true)}
-            onOpenSalaryCalculator={() => setShowSalaryCalculator(true)}
-            onOpenExamTracker={() => setShowExamTracker(true)}
             setShowProfile={setShowProfile}
             setShowGamification={setShowGamification}
             setShowComparison={setShowComparison}
@@ -753,13 +751,41 @@ function App() {
                   </button>
                 </div>
 
-                <div className="text-center mb-12">
-                  <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-black'} mb-3`}>
+                <div className="text-center mb-10">
+                  <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-[#051C3E]'} mb-3`}>
                     {CAREER_DATABASE[selectedDomain]?.name || 'Domain Details'}
                   </h2>
-                  <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                    Select a specialization field to view career pathways
+                  <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'} mb-6`}>
+                    Select a specialization field or launch domain-specific tools below:
                   </p>
+
+                  {/* Domain Tools Action Bar */}
+                  <div className="flex flex-wrap items-center justify-center gap-3">
+                    <button
+                      onClick={() => setShowSalaryCalculator(true)}
+                      className="px-4 py-2.5 rounded-xl font-bold text-xs btn-interactive flex items-center gap-2 cursor-pointer bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white shadow-md hover:brightness-110"
+                    >
+                      <span>📊 Salary Calculator</span>
+                    </button>
+
+                    <button
+                      onClick={() => setShowExamTracker(true)}
+                      className={`px-4 py-2.5 rounded-xl font-bold text-xs btn-interactive flex items-center gap-2 cursor-pointer border ${
+                        darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white' : 'bg-white border-[#BACDDF] text-[#0265A6] hover:bg-[#0265A6] hover:text-white'
+                      }`}
+                    >
+                      <span>⏳ Entrance Exams & Dates</span>
+                    </button>
+
+                    <button
+                      onClick={() => setShowRoadmapBuilder(true)}
+                      className={`px-4 py-2.5 rounded-xl font-bold text-xs btn-interactive flex items-center gap-2 cursor-pointer border ${
+                        darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white' : 'bg-white border-[#BACDDF] text-[#0265A6] hover:bg-[#0265A6] hover:text-white'
+                      }`}
+                    >
+                      <span>🗺️ Skill Roadmaps</span>
+                    </button>
+                  </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">

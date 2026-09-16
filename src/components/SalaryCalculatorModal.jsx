@@ -21,8 +21,17 @@ const LOCATION_MULTIPLIERS = {
   'remote': { label: 'Global Remote / Foreign Firm', factor: 1.45, tag: 'USD / Overseas Scale' }
 };
 
+const findMatchingRole = (name) => {
+  if (!name) return 'Software Engineer';
+  const keys = Object.keys(CAREER_SALARY_BENCHMARKS);
+  const exact = keys.find(k => k.toLowerCase() === name.toLowerCase());
+  if (exact) return exact;
+  const partial = keys.find(k => name.toLowerCase().includes(k.toLowerCase()) || k.toLowerCase().includes(name.toLowerCase()));
+  return partial || keys[0];
+};
+
 const SalaryCalculatorModal = ({ darkMode, onClose, initialCareerName }) => {
-  const [selectedRole, setSelectedRole] = useState(initialCareerName || 'Software Engineer');
+  const [selectedRole, setSelectedRole] = useState(() => findMatchingRole(initialCareerName));
   const [expYears, setExpYears] = useState(3);
   const [locationKey, setLocationKey] = useState('tier1');
 
