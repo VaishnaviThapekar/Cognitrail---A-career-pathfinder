@@ -1,416 +1,178 @@
-# 🎓 COGNITRIAL - Your Career Pathfinder
+# 💡 COGNITRAIL - Your Enterprise Career Pathfinder
 
 <div align="center">
 
-![COGNITRIAL Logo](https://img.shields.io/badge/COGNITRIAL-Career_Pathfinder-6366f1?style=for-the-badge)
+![Cognitrail Logo](https://img.shields.io/badge/COGNITRAIL-Career_Pathfinder-0265A6?style=for-the-badge&logo=compass&logoColor=white)
 
-**Transform your career aspirations into achievements with our comprehensive pathfinder**
+**Transforming career aspirations into structured, actionable achievements with AI diagnostics, 500+ colleges, and 1-on-1 alumni mentorship.**
 
-[![React](https://img.shields.io/badge/React-18.0+-61DAFB?style=flat-square&logo=react)](https://reactjs.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0+-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
-[![Lucide Icons](https://img.shields.io/badge/Lucide-Icons-F56565?style=flat-square)](https://lucide.dev/)
+[![React 19](https://img.shields.io/badge/React-19.0-61DAFB?style=flat-square&logo=react)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4+-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
+[![Lucide Icons](https://img.shields.io/badge/Lucide-React-F56565?style=flat-square)](https://lucide.dev/)
+[![Vite](https://img.shields.io/badge/Vite-7.3-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
+[![ESLint](https://img.shields.io/badge/ESLint-9.39-4B32C3?style=flat-square&logo=eslint)](https://eslint.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
-[Live Demo](#) | [Features](#-features) | [Installation](#-installation) | [Usage](#-usage)
+[GitHub Repository](https://github.com/VaishnaviThapekar/Cognitrail---A-career-pathfinder.git) | [Features](#-key-features) | [Tech Stack](#-tech-stack) | [Getting Started](#-getting-started)
 
 </div>
 
 ---
 
-## 📖 Table of Contents
+## 🎨 Official Visual Identity
 
-- [About](#-about)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Installation](#-installation)
-- [Usage](#-usage)
-- [Project Structure](#-project-structure)
-- [Components](#-components)
-- [Contributing](#-contributing)
-- [License](#-license)
+Cognitrail strictly adheres to our **5-Shade Ocean & Royal Blue Palette**:
 
----
-
-## 🌟 About
-
-**COGNITRIAL** is a comprehensive career guidance platform designed to help students and professionals explore, plan, and achieve their career goals. With 150+ careers, 192+ colleges, AI-powered tools, and gamification features, COGNITRIAL makes career planning interactive and engaging.
-
-### Why COGNITRIAL?
-
-- 🎯 **Personalized**: AI-powered career matching based on your interests
-- 📊 **Comprehensive**: 150+ careers across 8 domains
-- 🎓 **Educational**: 192+ colleges with detailed information
-- 🎮 **Engaging**: Gamification with levels, points, and achievements
-- 🗺️ **Interactive**: Visual roadmap builders and comparison tools
-- 🌓 **Beautiful**: Modern dark/light theme with smooth animations
+| Color Hex | Name | Purpose / UI Placement |
+| :--- | :--- | :--- |
+| `#051C3E` | **Midnight Ocean** | Deep background containers, hero gradient bases, and main headers |
+| `#003B73` | **Royal Deep Blue** | Glassmorphic cards, secondary backgrounds, and modal borders |
+| `#0265A6` | **Sapphire Blue** | Primary action buttons, active tab indicators, and icon highlights |
+| `#6096BA` | **Sky Accent** | Secondary text accents, pulsating live badges, and subtle glows |
+| `#EBF3FA` | **Ice White** | Light mode contrast backgrounds and primary text in dark mode |
 
 ---
 
-## ✨ Features
+## 🌟 About Cognitrail
 
-### 🎯 Core Features
+**Cognitrail** is an enterprise-grade, interactive career guidance platform designed for high school students, undergraduates, and professionals. Powered by intelligent diagnostic algorithms, Cognitrail offers a complete ecosystem to discover 150+ career paths across 8 major domains, analyze skill gaps, predict college cutoffs, calculate ATS resume readiness, and connect 1-on-1 with verified industry mentors.
 
-#### 1. **AI Career Quiz**
-- 10 personalized questions
-- Analyzes interests, strengths, and values
-- Provides top 3 career recommendations
-- Detailed career insights
+---
 
-#### 2. **Career Explorer**
-- 150+ careers across 8 domains
-- Detailed career information
-- Salary ranges and job outlook
-- Required skills and education
+## ✨ Key Features
 
-#### 3. **Skills Gap Analyzer**
-- Analyze skill gaps for any career
-- Personalized learning roadmap
-- Skill categorization and prioritization
-- Time estimates for skill acquisition
-- Export roadmap feature
+### 🎯 1. Interactive Career Explorer & Deep Dive
+- **150+ Detailed Career Profiles** spanning *Software & AI*, *Medicine & Health*, *Management & Finance*, *Law & Policy*, *Design & Product*, *Pure Sciences*, *Aviation & Marine*, and *Agriculture*.
+- **Day-in-a-Life Showcase**: Time-allocation donut charts, core tech stacks, and 10-year career mobility ladders.
+- **Action Launcher Bar**: Instant 1-click access to all 7 platform diagnostic tools directly from any career profile.
 
-#### 4. **Career Comparison Tool**
-- Compare up to 3 careers side-by-side
-- Salary comparison
-- Education requirements
-- Job outlook and demand
-- Skills comparison
+### 🏫 2. All-India College Finder & Rank Predictor
+- **500+ Tier 1, Tier 2, and Tier 3 Institutions** mapped across all **28 Indian States, Union Territories, and Overseas Premier Universities** (*MIT, Stanford, Oxford, ETH Zurich*).
+- **Entrance Cutoff Predictor**: Evaluates student scores for **JEE Main/Adv**, **NEET UG/PG**, **CAT**, and **CLAT** to predict admission probabilities (*High Match 90%+, Target Match, Safety Match*).
+- **Granular City Filtering**: Granular state-to-city dropdown filtering for all major hubs (*Mumbai, Pune, Delhi NCR, Bengaluru, Chennai, Hyderabad, Kolkata, etc.*).
 
-#### 5. **College Finder**
-- 192+ colleges database
-- Filter by state, city, rating
-- Detailed college information
-- Official website links
-- Rating system (1-5 stars)
+### 🎓 3. Alumni & Industry Mentor Connect
+- **Verified Mentor Directory**: Filterable profiles of leaders from *Google DeepMind*, *AIIMS New Delhi*, *Goldman Sachs*, *Microsoft Design*, *AZB & Partners*, and *Zerodha*.
+- **1-on-1 Booking Engine**: Schedule 45-minute mock interviews, ATS resume reviews, or 30-minute career strategy chats with instant Google Meet link confirmation.
 
-#### 6. **Career Roadmap Builder**
-- 6 pre-built career templates
-- Custom roadmap creation
-- Progress tracking
-- Milestone management
-- Export roadmap
+### 💸 4. Scholarship & Financial Aid Finder
+- **Active 2026 Grants Database**: Central government schemes (*NSP Portal, KVPY/INSPIRE Fellowship*), corporate foundation grants (*Reliance Foundation, Aditya Birla Capital*), medical fee waivers, and UK Chevening fellowships.
+- **Direct Portal Integration**: Direct 1-click links to official application portals.
 
-#### 7. **Career News Feed**
-- Latest career-related news
-- Industry updates
-- Educational opportunities
-- Scholarship information
+### 📊 5. ATS Resume & Interview Readiness Scorecard
+- **Role Alignment Evaluator**: Evaluates student qualifications for specific target roles.
+- **Diagnostic Matrix**: Live alignment scores for ATS Keyword Match %, Portfolio Weight %, and STAR Interview Preparedness %.
+- **Downloadable Sample ATS Resumes**: Instant text/file downloads for 5 domain-tailored sample ATS resume templates.
 
-#### 8. **Career Chatbot**
-- Interactive AI assistant
-- Career guidance
-- Answer questions
-- Provide recommendations
+### 💰 6. Interactive Salary Calculator
+- **Experience Sliders & Location Multipliers**: Real-time salary benchmark estimations based on years of experience and Tier 1 vs Tier 2/3 city cost-of-living index.
 
-### 🎮 Gamification System
+### 📅 7. Exam Countdown Tracker
+- **Real-Time Countdown Timers**: Live timers and official portal links for *JEE Main/Adv, NEET, CAT, CLAT, UPSC CSE, GATE, and NEET PG*.
 
-- **Level System**: 10 levels (Beginner to Legend)
-- **Points**: Earn points for activities
-- **Achievements**: Unlock badges and milestones
-- **Progress Tracking**: Visual progress indicators
-- **Leaderboard Ready**: Competitive elements
+### 🚀 8. Floating Quick-Action Speed Dial Dock
+- **Glassmorphic Floating Dock**: Fixed bottom-right speed dial giving 1-click access to AI Quiz, Skills Gap, Roadmap Builder, College Finder, Salary Calculator, Exam Tracker, Alumni Connect, and AI Advisor Pro.
 
-### 🎨 UI/UX Features
-
-- **Dark/Light Theme**: Seamless theme switching
-- **Responsive Design**: Works on all devices
-- **Smooth Animations**: Polished interactions
-- **Custom Scrollbar**: Beautiful auto-hide scrollbar
-- **Modern Design**: Clean and professional interface
+### 🎮 9. Gamification & XP System
+- **10 XP Levels**: Earn points for taking quizzes, exploring careers, saving colleges, and booking mentor sessions. Unlock achievements and track progress visually.
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- **React 18** - UI Library
-- **Tailwind CSS** - Styling
-- **Lucide React** - Icon Library
-- **React Context API** - State Management
-
-### Development
-- **Vite** - Build Tool
-- **ESLint** - Code Linting
-- **Prettier** - Code Formatting
+- **Frontend**: React 19, Tailwind CSS 3.4, Lucide React Icons
+- **State Management**: React Context API (`AuthContext.jsx`, `GamificationContext.jsx`)
+- **Build Tooling**: Vite 7.3
+- **Code Quality**: ESLint 9 (Strict `0 errors, 0 warnings` rule enforced)
 
 ---
 
-## 📦 Installation
+## 🚀 Getting Started
 
 ### Prerequisites
+- **Node.js**: `v18.0.0` or higher
+- **npm**: `v9.0.0` or higher
 
-- Node.js 16+ 
-- npm or yarn
+### Installation Steps
 
-### Steps
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/VaishnaviThapekar/Cognitrail---A-career-pathfinder.git
+   cd Cognitrail
+   ```
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/YOUR_USERNAME/cognitrial.git
-cd cognitrial
-```
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-2. **Install dependencies**
-```bash
-npm install
-# or
-yarn install
-```
+3. **Start Development Server**
+   ```bash
+   npm run dev
+   ```
+   Open `http://localhost:5173` in your browser.
 
-3. **Start development server**
-```bash
-npm run dev
-# or
-yarn dev
-```
+4. **Lint Codebase**
+   ```bash
+   npm run lint
+   ```
 
-4. **Build for production**
-```bash
-npm run build
-# or
-yarn build
-```
-
-5. **Preview production build**
-```bash
-npm run preview
-# or
-yarn preview
-```
+5. **Build for Production**
+   ```bash
+   npm run build
+   ```
 
 ---
 
-## 🚀 Usage
-
-### Running Locally
-
-1. Start the development server:
-```bash
-npm run dev
-```
-
-2. Open your browser and navigate to:
-```
-http://localhost:5173
-```
-
-### Environment Variables
-
-Create a `.env` file in the root directory (optional):
-
-```env
-# Add any API keys or environment variables here
-VITE_API_URL=your_api_url
-```
-
----
-
-## 📁 Project Structure
+## 📁 Project Directory Structure
 
 ```
-cognitrial/
+Cognitrail/
 ├── src/
 │   ├── components/
-│   │   ├── Header.jsx
-│   │   ├── ProfilePage.jsx
-│   │   ├── CareerQuiz.jsx
+│   │   ├── AdvancedCareerChatbot.jsx
+│   │   ├── AlumniConnectModal.jsx       # 1-on-1 Alumni Mentor Booking
 │   │   ├── CareerCard.jsx
-│   │   ├── CareerDetailModal.jsx
-│   │   ├── CareerChatbot.jsx
-│   │   ├── CareerNewsFeed.jsx
-│   │   ├── CareerComparison.jsx
-│   │   ├── CollegeFinder.jsx
-│   │   ├── SkillsGapAnalyzer.jsx
-│   │   ├── CareerRoadmapBuilder.jsx
-│   │   ├── CareerRoadmap.jsx
-│   │   ├── GamificationComponents.jsx
-│   │   ├── CustomScrollbar.jsx
-│   │   └── WhyChooseSection.jsx
+│   │   ├── CareerDetailModal.jsx        # Deep dive with 6-tool action bar
+│   │   ├── Careerquiz.jsx              # 10-Question AI Career Quiz
+│   │   ├── CollegeCutoffPredictor.jsx   # Entrance exam rank & cutoff matcher
+│   │   ├── CollegeFinder.jsx            # 500+ Tier 1-3 All-India College Finder
+│   │   ├── CustomScrollbar.jsx          # 5-shade Ocean Blue custom scrollbar
+│   │   ├── DayInLifeShowcase.jsx        # Daily time allocation & career ladder
+│   │   ├── ExamCountdownTracker.jsx     # Live exam countdown timers
+│   │   ├── FloatingQuickDock.jsx        # Bottom-right floating speed dial dock
+│   │   ├── GamificationComponents.jsx   # Level-up & achievement notifications
+│   │   ├── Header.jsx                   # Sticky header with 5-shade mobile drawer
+│   │   ├── HeroSection.jsx
+│   │   ├── ReadinessScorecardModal.jsx  # ATS match score & sample resume downloader
+│   │   ├── SalaryCalculatorModal.jsx    # Interactive experience & location slider
+│   │   ├── ScholarshipFinderModal.jsx   # Active 2026 grants & official portals
+│   │   ├── SkillsGapAnalyzer.jsx        # Visual skill acquisition roadmap
+│   │   └── StudentProfile.jsx
 │   ├── contexts/
+│   │   ├── AuthContext.jsx
 │   │   └── GamificationContext.jsx
 │   ├── data/
 │   │   ├── careerDatabase.js
-│   │   └── collegeDatabase.js
+│   │   ├── collegesDatabase.js          # Main Indian colleges database
+│   │   └── collegesExtra.js             # Extended Tier 1-3 & Global universities
 │   ├── App.jsx
 │   ├── main.jsx
 │   └── index.css
 ├── public/
-├── .gitignore
 ├── package.json
 ├── vite.config.js
-├── tailwind.config.js
-├── postcss.config.js
 └── README.md
 ```
 
 ---
 
-## 🧩 Components
-
-### Core Components
-
-| Component | Description |
-|-----------|-------------|
-| `App.jsx` | Main application component |
-| `Header.jsx` | Navigation header with search |
-| `ProfilePage.jsx` | User profile and achievements |
-| `CareerQuiz.jsx` | AI-powered career assessment |
-| `CareerCard.jsx` | Career display card |
-| `CareerDetailModal.jsx` | Detailed career information |
-
-### Feature Components
-
-| Component | Description |
-|-----------|-------------|
-| `CareerChatbot.jsx` | Interactive AI assistant |
-| `CareerNewsFeed.jsx` | Latest career news |
-| `CareerComparison.jsx` | Compare multiple careers |
-| `CollegeFinder.jsx` | College search and filter |
-| `SkillsGapAnalyzer.jsx` | Skill gap analysis tool |
-| `CareerRoadmapBuilder.jsx` | Interactive roadmap creator |
-| `CareerRoadmap.jsx` | Timeline visualization |
-
-### Utility Components
-
-| Component | Description |
-|-----------|-------------|
-| `GamificationComponents.jsx` | Gamification elements |
-| `CustomScrollbar.jsx` | Custom scrollbar styling |
-| `WhyChooseSection.jsx` | Marketing section |
-
----
-
-## 🎯 Key Features Breakdown
-
-### 1. Career Database
-- **150+ Careers** organized into:
-  - 💻 Technology
-  - 🔬 Science & Research
-  - ⚙️ Engineering
-  - 💼 Business & Management
-  - 🎨 Arts & Design
-  - ⚖️ Law & Governance
-  - 🌾 Agriculture
-  - 🛡️ Defense & Security
-
-### 2. College Database
-- **192+ Colleges** including:
-  - IITs, NITs, IIMs
-  - AIIMS, Government Medical Colleges
-  - Top Private Universities
-  - State Universities
-  - Specialized Institutions
-
-### 3. Gamification System
-- **10 Levels**: Beginner → Legend
-- **Points System**: 
-  - Take Quiz: 50 points
-  - Explore Career: 10 points
-  - Save Career: 20 points
-  - Complete Roadmap: 100 points
-- **Achievements**: 15+ unlockable badges
-
----
-
-## 🎨 Theme System
-
-### Dark Theme
-- Deep blue-black backgrounds
-- Purple accent colors
-- Smooth gradient overlays
-- High contrast for readability
-
-### Light Theme
-- Clean white backgrounds
-- Indigo/purple accents
-- Soft gradients
-- Professional appearance
-
----
-
-## 📱 Responsive Design
-
-- **Desktop**: Full-featured experience
-- **Tablet**: Optimized layout
-- **Mobile**: Touch-friendly interface
-- **All Devices**: Smooth scrolling and animations
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how you can help:
-
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. **Commit your changes**
-   ```bash
-   git commit -m 'Add some AmazingFeature'
-   ```
-4. **Push to the branch**
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-5. **Open a Pull Request**
-
-### Contribution Guidelines
-
-- Follow existing code style
-- Write meaningful commit messages
-- Test your changes thoroughly
-- Update documentation as needed
-
----
-
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👥 Authors
-
-- **Your Name** - *Initial work* - [YourGitHub](https://github.com/YOUR_USERNAME)
-
----
-
-## 🙏 Acknowledgments
-
-- Icons by [Lucide](https://lucide.dev/)
-- UI Framework by [Tailwind CSS](https://tailwindcss.com/)
-- Built with [React](https://reactjs.org/)
-
----
-
-## 📧 Contact
-
-For questions or feedback:
-- Email: your.email@example.com
-- GitHub: [@YOUR_USERNAME](https://github.com/YOUR_USERNAME)
-- LinkedIn: [Your Name](https://linkedin.com/in/yourprofile)
-
----
-
-## 🚀 Future Roadmap
-
-- [ ] Mobile app version
-- [ ] Advanced AI career matching
-- [ ] Integration with job portals
-- [ ] Virtual career counseling
-- [ ] Community features
-- [ ] Career salary calculator
-- [ ] Resume builder
-- [ ] Interview preparation tools
-
----
+Distributed under the **MIT License**. See `LICENSE` for more information.
 
 <div align="center">
 
-**Made with ❤️ by COGNITRIAL Team**
-
-⭐ Star this repo if you find it helpful!
+**Made with ❤️ by the Cognitrail Engineering Team**
 
 </div>
