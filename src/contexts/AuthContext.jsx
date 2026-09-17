@@ -91,21 +91,34 @@ export function AuthProvider({ children }) {
     // Sign In function
     const signIn = (email, password) => {
         const users = JSON.parse(localStorage.getItem('cognitrial_users') || '[]');
-        const foundUser = users.find(u => u.email === email && u.password === password);
+        const targetEmail = (email || '').toLowerCase().trim();
+        const foundUser = users.find(u => u.email && u.email.toLowerCase().trim() === targetEmail);
 
         if (foundUser) {
-            // Update last login
-            foundUser.lastLogin = new Date().toISOString();
-
-            // Update users array
-            const updatedUsers = users.map(u => u.id === foundUser.id ? foundUser : u);
-            localStorage.setItem('cognitrial_users', JSON.stringify(updatedUsers));
-
-            setUser(foundUser);
-            return { success: true, user: foundUser };
+            if (foundUser.password === password) {
+                foundUser.lastLogin = new Date().toISOString();
+                const updatedUsers = users.map(u => u.id === foundUser.id ? foundUser : u);
+                localStorage.setItem('cognitrial_users', JSON.stringify(updatedUsers));
+                setUser(foundUser);
+                return { success: true, user: foundUser };
+            } else {
+                return { success: false, error: 'Incorrect password for this account' };
+            }
         }
 
-        return { success: false, error: 'Invalid email or password' };
+        // Auto-create clean student account if signing in for the first time
+        const rawName = targetEmail.split('@')[0].replace(/[._-]/g, ' ');
+        const defaultName = rawName.charAt(0).toUpperCase() + rawName.slice(1);
+        const newUser = buildNewUser({
+            name: defaultName || 'Student',
+            email: targetEmail,
+            password: password
+        });
+
+        users.push(newUser);
+        localStorage.setItem('cognitrial_users', JSON.stringify(users));
+        setUser(newUser);
+        return { success: true, user: newUser };
     };
 
     // Sign Out function

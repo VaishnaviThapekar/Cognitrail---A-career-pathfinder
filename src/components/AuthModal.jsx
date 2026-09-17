@@ -152,29 +152,27 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
                 <div className="relative p-8">
                     {/* Header */}
                     <div className="text-center mb-8">
-                        <div className={`inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4 border transition-transform hover:scale-105 ${
-                            darkMode
-                                ? 'bg-zinc-900 border-zinc-800 text-white shadow-inner'
-                                : 'bg-zinc-100 border-zinc-200 text-black'
-                        }`}>
-                            <Sparkles className="w-7 h-7" />
+                        <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl mb-4 p-1 bg-gradient-to-tr from-[#003B73] via-[#0265A6] to-[#6096BA] shadow-lg shadow-[#0265A6]/25">
+                            <div className={`w-full h-full rounded-[14px] flex items-center justify-center ${darkMode ? 'bg-[#071326]' : 'bg-white'}`}>
+                                <Sparkles className="w-7 h-7 text-[#0265A6]" />
+                            </div>
                         </div>
 
-                        <h2 className="text-2xl font-black tracking-tight mb-2">
-                            {mode === 'signin' ? 'Welcome Back' : 'Join Cognitrail'}
+                        <h2 className={`text-2xl font-black tracking-tight mb-2 ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>
+                            {mode === 'signin' ? 'Welcome Back' : 'Create Cognitrail Account'}
                         </h2>
 
-                        <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                        <p className={`text-sm ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
                             {mode === 'signin'
-                                ? 'Sign in to continue your personalized career journey'
-                                : 'Create your account to unlock AI roadmaps and tools'}
+                                ? 'Sign in to access your personalized career roadmap & AI tools'
+                                : 'Join thousands of students building data-driven career paths'}
                         </p>
                     </div>
 
                     {/* Error message */}
                     {error && (
-                        <div className={`mb-6 p-4 rounded-xl border text-sm text-center ${
-                            darkMode ? 'bg-zinc-900 border-red-500/40 text-red-400' : 'bg-red-50 border-red-200 text-red-600'
+                        <div className={`mb-6 p-4 rounded-xl border text-sm text-center font-semibold ${
+                            darkMode ? 'bg-red-950/40 border-red-500/50 text-red-400' : 'bg-red-50 border-red-200 text-red-600'
                         }`}>
                             {error}
                         </div>
@@ -185,11 +183,11 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
                         {/* Name field (signup only) */}
                         {mode === 'signup' && (
                             <div>
-                                <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>
                                     Full Name
                                 </label>
                                 <div className="relative">
-                                    <User className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`} />
+                                    <User className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`} />
                                     <input
                                         type="text"
                                         name="name"
@@ -200,8 +198,8 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
                                             validationErrors.name
                                                 ? 'border-red-500 focus:border-red-600'
                                                 : darkMode
-                                                    ? 'bg-zinc-900/90 border-zinc-800 text-white placeholder-zinc-500 focus:border-zinc-400'
-                                                    : 'bg-zinc-50 border-zinc-200 text-black placeholder-zinc-400 focus:border-black'
+                                                    ? 'bg-[#071326] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6]'
+                                                    : 'bg-[#EBF3FA] border-[#BACDDF] text-[#051C3E] placeholder-zinc-500 focus:border-[#0265A6] focus:bg-white'
                                         }`}
                                     />
                                 </div>
@@ -213,11 +211,11 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
 
                         {/* Email field */}
                         <div>
-                            <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                            <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>
                                 Email Address
                             </label>
                             <div className="relative">
-                                <Mail className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`} />
+                                <Mail className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`} />
                                 <input
                                     type="email"
                                     name="email"
@@ -228,8 +226,8 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
                                         validationErrors.email
                                             ? 'border-red-500 focus:border-red-600'
                                             : darkMode
-                                                ? 'bg-zinc-900/90 border-zinc-800 text-white placeholder-zinc-500 focus:border-zinc-400'
-                                                : 'bg-zinc-50 border-zinc-200 text-black placeholder-zinc-400 focus:border-black'
+                                                ? 'bg-[#071326] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6]'
+                                                : 'bg-[#EBF3FA] border-[#BACDDF] text-[#051C3E] placeholder-zinc-500 focus:border-[#0265A6] focus:bg-white'
                                     }`}
                                 />
                             </div>
@@ -240,11 +238,11 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
 
                         {/* Password field */}
                         <div>
-                            <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                            <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>
                                 Password
                             </label>
                             <div className="relative">
-                                <Lock className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`} />
+                                <Lock className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`} />
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     name="password"
@@ -255,15 +253,15 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
                                         validationErrors.password
                                             ? 'border-red-500 focus:border-red-600'
                                             : darkMode
-                                                ? 'bg-zinc-900/90 border-zinc-800 text-white placeholder-zinc-500 focus:border-zinc-400'
-                                                : 'bg-zinc-50 border-zinc-200 text-black placeholder-zinc-400 focus:border-black'
+                                                ? 'bg-[#071326] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6]'
+                                                : 'bg-[#EBF3FA] border-[#BACDDF] text-[#051C3E] placeholder-zinc-500 focus:border-[#0265A6] focus:bg-white'
                                     }`}
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
                                     className={`absolute right-4 top-1/2 -translate-y-1/2 ${
-                                        darkMode ? 'text-zinc-500 hover:text-zinc-300' : 'text-zinc-400 hover:text-zinc-700'
+                                        darkMode ? 'text-zinc-400 hover:text-white' : 'text-zinc-500 hover:text-black'
                                     }`}
                                 >
                                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -277,11 +275,11 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
                         {/* Confirm Password (signup only) */}
                         {mode === 'signup' && (
                             <div>
-                                <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                <label className={`block text-xs font-bold uppercase tracking-wider mb-2 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>
                                     Confirm Password
                                 </label>
                                 <div className="relative">
-                                    <CheckCircle2 className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-zinc-500' : 'text-zinc-400'}`} />
+                                    <CheckCircle2 className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`} />
                                     <input
                                         type={showPassword ? 'text' : 'password'}
                                         name="confirmPassword"
@@ -292,8 +290,8 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
                                             validationErrors.confirmPassword
                                                 ? 'border-red-500 focus:border-red-600'
                                                 : darkMode
-                                                    ? 'bg-zinc-900/90 border-zinc-800 text-white placeholder-zinc-500 focus:border-zinc-400'
-                                                    : 'bg-zinc-50 border-zinc-200 text-black placeholder-zinc-400 focus:border-black'
+                                                    ? 'bg-[#071326] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6]'
+                                                    : 'bg-[#EBF3FA] border-[#BACDDF] text-[#051C3E] placeholder-zinc-500 focus:border-[#0265A6] focus:bg-white'
                                         }`}
                                     />
                                 </div>
@@ -307,18 +305,14 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
                         <button
                             type="submit"
                             disabled={loading}
-                            className={`w-full py-3.5 rounded-xl font-bold transition-all text-sm btn-interactive ${
-                                loading
-                                    ? 'bg-zinc-400 text-white cursor-not-allowed'
-                                    : darkMode
-                                        ? 'bg-white text-black hover:bg-zinc-200 shadow-md'
-                                        : 'bg-black text-white hover:bg-zinc-800 shadow-md'
+                            className={`w-full py-3.5 rounded-xl font-bold transition-all text-sm btn-interactive cursor-pointer bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white hover:brightness-110 shadow-lg shadow-[#0265A6]/30 ${
+                                loading ? 'opacity-70 cursor-not-allowed' : ''
                             }`}
                         >
                             {loading ? (
                                 <span className="flex items-center justify-center gap-2">
                                     <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
-                                    {mode === 'signin' ? 'Signing In...' : 'Creating Account...'}
+                                    {mode === 'signin' ? 'Authenticating...' : 'Creating Account...'}
                                 </span>
                             ) : (
                                 mode === 'signin' ? 'Sign In' : 'Create Account'
@@ -328,40 +322,18 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
 
                     {/* Switch mode */}
                     <div className="mt-6 text-center">
-                        <p className={`text-sm ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                        <p className={`text-sm ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
                             {mode === 'signin' ? "Don't have an account? " : 'Already have an account? '}
                             <button
                                 onClick={switchMode}
-                                className={`font-bold underline-offset-4 hover:underline ml-1 ${
-                                    darkMode ? 'text-white' : 'text-black'
+                                className={`font-bold underline-offset-4 hover:underline ml-1 cursor-pointer ${
+                                    darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'
                                 }`}
                             >
                                 {mode === 'signin' ? 'Sign Up' : 'Sign In'}
                             </button>
                         </p>
                     </div>
-
-                    {/* Social signin / demo */}
-                    {mode === 'signin' && (
-                        <div className="mt-6">
-                            <div className="relative">
-                                <div className="absolute inset-0 flex items-center">
-                                    <div className={`w-full border-t ${darkMode ? 'border-zinc-800' : 'border-zinc-200'}`}></div>
-                                </div>
-                                <div className="relative flex justify-center text-xs">
-                                    <span className={`px-3 uppercase tracking-wider font-semibold ${
-                                        darkMode ? 'bg-[#121215] text-zinc-500' : 'bg-white text-zinc-400'
-                                    }`}>
-                                        Demo Account
-                                    </span>
-                                </div>
-                            </div>
-
-                            <p className={`mt-3 text-xs text-center font-mono ${darkMode ? 'text-zinc-500' : 'text-zinc-500'}`}>
-                                Email: <span className="font-semibold text-zinc-300">demo@cognitrial.com</span> | Password: <span className="font-semibold text-zinc-300">demo123</span>
-                            </p>
-                        </div>
-                    )}
                 </div>
             </div>
         </div>
