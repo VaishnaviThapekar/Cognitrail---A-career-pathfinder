@@ -6,10 +6,10 @@
 
 **Transforming career aspirations into structured, actionable achievements with AI diagnostics, 500+ colleges, and 1-on-1 alumni mentorship.**
 
-[![React 19](https://img.shields.io/badge/React-19.0-61DAFB?style=flat-square&logo=react)](https://react.dev/)
+[![React 19](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4+-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 [![Lucide Icons](https://img.shields.io/badge/Lucide-React-F56565?style=flat-square)](https://lucide.dev/)
-[![Vite](https://img.shields.io/badge/Vite-7.3-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
+[![Vite](https://img.shields.io/badge/Vite-%5E7.2.4-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
 [![ESLint](https://img.shields.io/badge/ESLint-9.39-4B32C3?style=flat-square&logo=eslint)](https://eslint.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
@@ -80,9 +80,10 @@ Cognitrail strictly adheres to our **5-Shade Ocean & Royal Blue Palette**:
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 19, Tailwind CSS 3.4, Lucide React Icons
+- **Frontend**: React 19.2, Tailwind CSS 3.4, Lucide React Icons
 - **State Management**: React Context API (`AuthContext.jsx`, `GamificationContext.jsx`)
-- **Build Tooling**: Vite 7.3
+- **Build Tooling**: Vite ^7.2.4
+- **Testing**: Node Native Test Runner (`node --test test/cognitrail.test.mjs`)
 - **Code Quality**: ESLint 9 (Strict `0 errors, 0 warnings` rule enforced)
 
 ---
@@ -98,7 +99,7 @@ Cognitrail strictly adheres to our **5-Shade Ocean & Royal Blue Palette**:
 1. **Clone the Repository**
    ```bash
    git clone https://github.com/VaishnaviThapekar/Cognitrail---A-career-pathfinder.git
-   cd Cognitrail
+   cd Cognitrail---A-career-pathfinder
    ```
 
 2. **Install Dependencies**
@@ -112,12 +113,17 @@ Cognitrail strictly adheres to our **5-Shade Ocean & Royal Blue Palette**:
    ```
    Open `http://localhost:5173` in your browser.
 
-4. **Lint Codebase**
+4. **Run Automated Test Suite**
+   ```bash
+   npm test
+   ```
+
+5. **Lint Codebase**
    ```bash
    npm run lint
    ```
 
-5. **Build for Production**
+6. **Build for Production**
    ```bash
    npm run build
    ```
