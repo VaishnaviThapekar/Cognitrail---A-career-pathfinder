@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Award, CheckCircle2, FileText, Download, Sparkles, AlertCircle, BarChart2, ShieldCheck, ChevronRight } from 'lucide-react';
 
 const SAMPLE_RESUMES = [
@@ -17,6 +17,17 @@ const ReadinessScorecardModal = ({ darkMode, onClose, initialRole }) => {
   const [hasMockInterviews, setHasMockInterviews] = useState(true);
   const [hasGithubPortfolio, setHasGithubPortfolio] = useState(true);
   const [downloadSuccess, setDownloadSuccess] = useState('');
+
+  // Keyboard Escape key listener
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && onClose) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
 
   // Calculate dynamic readiness score
   let baseScore = 40;
@@ -62,7 +73,12 @@ const ReadinessScorecardModal = ({ darkMode, onClose, initialRole }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in overflow-y-auto">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Readiness Scorecard"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in overflow-y-auto"
+    >
       <div
         className={`w-full max-w-4xl rounded-3xl border shadow-2xl overflow-hidden transition-all my-8 ${
           darkMode

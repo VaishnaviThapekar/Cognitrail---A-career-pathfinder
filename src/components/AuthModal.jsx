@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Mail, Lock, User, Eye, EyeOff, Sparkles, CheckCircle2 } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -8,6 +8,17 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+
+    // Keyboard Escape key listener
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && onClose) {
+                onClose();
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [onClose]);
 
     // Form state
     const [formData, setFormData] = useState({
@@ -110,7 +121,12 @@ export default function AuthModal({ isOpen, onClose, darkMode, initialMode = 'si
     };
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fade-in">
+        <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="User Authentication"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md animate-fade-in"
+        >
             <div
                 className={`relative w-full max-w-md rounded-2xl shadow-2xl overflow-hidden border transition-all duration-300 ${
                     darkMode 

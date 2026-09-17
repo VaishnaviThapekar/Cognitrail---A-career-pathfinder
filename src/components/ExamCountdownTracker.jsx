@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, ExternalLink, GraduationCap, Sparkles, CheckCircle2, ChevronRight, X, AlertCircle } from 'lucide-react';
 
 const ENTRANCE_EXAMS = [
@@ -85,12 +85,28 @@ const ENTRANCE_EXAMS = [
 const ExamCountdownTracker = ({ darkMode, onClose, initialStream }) => {
   const [selectedStream, setSelectedStream] = useState(initialStream || 'all');
 
+  // Keyboard Escape key listener
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && onClose) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   const filteredExams = ENTRANCE_EXAMS.filter(
     (exam) => selectedStream === 'all' || exam.stream === selectedStream
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in overflow-y-auto">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Exam Countdown Tracker"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in overflow-y-auto"
+    >
       <div
         className={`w-full max-w-4xl rounded-3xl border shadow-2xl overflow-hidden transition-all my-8 ${
           darkMode

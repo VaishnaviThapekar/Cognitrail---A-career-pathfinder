@@ -307,11 +307,17 @@ export function GamificationProvider({ children }) {
         return ACHIEVEMENTS.filter(a => !stats.unlockedAchievements.includes(a.id));
     };
 
+    const currentLvl = getCurrentLevel(stats.totalPoints);
+    const unlockedAchs = getUnlockedAchievements();
+
     const value = {
         stats,
-        currentLevel: getCurrentLevel(stats.totalPoints),
+        currentLevel: currentLvl,
+        level: currentLvl.level,
+        points: stats.totalPoints,
+        achievements: unlockedAchs,
         progressToNextLevel: getProgressToNextLevel(),
-        unlockedAchievements: getUnlockedAchievements(),
+        unlockedAchievements: unlockedAchs,
         lockedAchievements: getLockedAchievements(),
         showLevelUp,
         showAchievement,
@@ -323,6 +329,7 @@ export function GamificationProvider({ children }) {
         trackItemShared,
         trackProfileComplete,
         addPoints,
+        awardPoints: addPoints,
         POINTS,
         LEVELS,
         ACHIEVEMENTS,

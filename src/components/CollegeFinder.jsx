@@ -177,8 +177,10 @@ const CollegeFinder = ({ onClose, darkMode }) => {
       if (selectedType && college.type) {
         const cType = college.type.toLowerCase();
         const sType = selectedType.toLowerCase();
-        const firstWord = sType.split(' ')[0];
-        if (!cType.includes(sType) && !cType.includes(firstWord) && !sType.includes(cType)) {
+        const words = sType.split(/[\s&,/]+/).filter(w => w.length > 2);
+        const matchesExact = cType.includes(sType) || sType.includes(cType);
+        const matchesAnyWord = words.some(w => cType.includes(w));
+        if (!matchesExact && !matchesAnyWord) {
           return false;
         }
       }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, DollarSign, Calculator, MapPin, Briefcase, TrendingUp, Sparkles, PieChart, ShieldCheck } from 'lucide-react';
 
 const CAREER_SALARY_BENCHMARKS = {
@@ -35,6 +35,17 @@ const SalaryCalculatorModal = ({ darkMode, onClose, initialCareerName }) => {
   const [expYears, setExpYears] = useState(3);
   const [locationKey, setLocationKey] = useState('tier1');
 
+  // Keyboard Escape key listener
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && onClose) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   // Benchmark calculations
   const roleData = CAREER_SALARY_BENCHMARKS[selectedRole] || CAREER_SALARY_BENCHMARKS['Software Engineer'];
   const locData = LOCATION_MULTIPLIERS[locationKey];
@@ -65,7 +76,12 @@ const SalaryCalculatorModal = ({ darkMode, onClose, initialCareerName }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in overflow-y-auto">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Salary & Compensation Calculator"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-fade-in overflow-y-auto"
+    >
       <div
         className={`w-full max-w-3xl rounded-3xl border shadow-2xl overflow-hidden transition-all my-8 ${
           darkMode
