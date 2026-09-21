@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Compass, Sparkles, Target, Map, GraduationCap, Bot, DollarSign, Calendar, UserCheck, Award, X } from 'lucide-react';
+import { Compass, Sparkles, Target, Map, GraduationCap, Bot, DollarSign, Calendar, UserCheck, Award, X, Brain, Cloud } from 'lucide-react';
 
 export default function FloatingQuickDock({
   onOpenQuiz,
@@ -10,7 +10,9 @@ export default function FloatingQuickDock({
   onOpenSalary,
   onOpenExams,
   onOpenMentors,
-  onOpenScholarships
+  onOpenScholarships,
+  onOpenMockInterview,
+  onOpenCloudSync
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -92,6 +94,26 @@ export default function FloatingQuickDock({
       color: 'from-[#003B73] to-[#0265A6]',
       onClick: () => {
         onOpenExams?.();
+        setIsOpen(false);
+      }
+    },
+    {
+      id: 'interview',
+      label: 'AI Mock Interview',
+      icon: Brain,
+      color: 'from-[#0265A6] to-[#003B73]',
+      onClick: () => {
+        onOpenMockInterview?.();
+        setIsOpen(false);
+      }
+    },
+    {
+      id: 'cloud',
+      label: 'Cloud Sync & Backup',
+      icon: Cloud,
+      color: 'from-[#003B73] to-[#6096BA]',
+      onClick: () => {
+        onOpenCloudSync?.();
         setIsOpen(false);
       }
     },

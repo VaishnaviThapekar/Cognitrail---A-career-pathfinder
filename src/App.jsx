@@ -26,6 +26,8 @@ import ReadinessScorecardModal from './components/ReadinessScorecardModal';
 import FloatingQuickDock from './components/FloatingQuickDock';
 import AlumniConnectModal from './components/AlumniConnectModal';
 import ScholarshipFinderModal from './components/ScholarshipFinderModal';
+import AIMockInterviewModal from './components/AIMockInterviewModal';
+import CloudSyncModal from './components/CloudSyncModal';
 import { LevelUpNotification, AchievementNotification, GamificationDashboard } from './components/GamificationComponents';
 import { useGamification } from './contexts/GamificationContext';
 import { useAuth } from './contexts/AuthContext';
@@ -74,9 +76,28 @@ function App() {
   const [showReadinessScorecard, setShowReadinessScorecard] = useState(false);
   const [showAlumniConnect, setShowAlumniConnect] = useState(false);
   const [showScholarshipFinder, setShowScholarshipFinder] = useState(false);
+  const [showMockInterview, setShowMockInterview] = useState(false);
+  const [showCloudSync, setShowCloudSync] = useState(false);
+  const [lang, setLang] = useState(() => {
+    try {
+      return localStorage.getItem('cognitrail_lang') || 'en';
+    } catch {
+      return 'en';
+    }
+  });
   const [selectedCareerForReadiness, setSelectedCareerForReadiness] = useState(null);
   const [infoModalContent, setInfoModalContent] = useState(null);
   const [activeDomainFilter, setActiveDomainFilter] = useState('all');
+
+  const toggleLanguage = () => {
+    const nextLang = lang === 'en' ? 'hi' : 'en';
+    setLang(nextLang);
+    try {
+      localStorage.setItem('cognitrail_lang', nextLang);
+    } catch (e) {
+      console.warn('Could not save language choice', e);
+    }
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => setShowWelcome(false), 2000);
@@ -99,6 +120,8 @@ function App() {
     window.openQuiz = () => setShowQuiz(true);
     window.openResume = () => setShowResumeUploader(true);
     window.openInterview = () => setShowInterviewSimulator(true);
+    window.openMockInterview = () => setShowMockInterview(true);
+    window.openCloudSync = () => setShowCloudSync(true);
     window.openRoadmap = () => setShowRoadmapBuilder(true);
     window.openSalary = () => setShowSalaryCalculator(true);
     window.openExams = () => setShowExamTracker(true);
@@ -113,6 +136,8 @@ function App() {
       delete window.openQuiz;
       delete window.openResume;
       delete window.openInterview;
+      delete window.openMockInterview;
+      delete window.openCloudSync;
       delete window.openRoadmap;
       delete window.openSalary;
       delete window.openExams;
@@ -342,6 +367,9 @@ function App() {
             setShowGamification={setShowGamification}
             setShowComparison={setShowComparison}
             setShowCollegeFinder={setShowCollegeFinder}
+            lang={lang}
+            toggleLanguage={toggleLanguage}
+            onOpenCloudSync={() => setShowCloudSync(true)}
           />
 
           {/* Main Content */}
@@ -1184,6 +1212,22 @@ function App() {
         />
       )}
 
+      {/* AI Mock Interview Modal */}
+      {showMockInterview && (
+        <AIMockInterviewModal
+          onClose={() => setShowMockInterview(false)}
+          darkMode={darkMode}
+        />
+      )}
+
+      {/* Cloud Sync Modal */}
+      {showCloudSync && (
+        <CloudSyncModal
+          onClose={() => setShowCloudSync(false)}
+          darkMode={darkMode}
+        />
+      )}
+
       {/* Floating Quick Action Speed Dial Dock */}
       <FloatingQuickDock
         onOpenQuiz={() => setShowQuiz(true)}
@@ -1195,6 +1239,8 @@ function App() {
         onOpenExams={() => setShowExamTracker(true)}
         onOpenMentors={() => setShowAlumniConnect(true)}
         onOpenScholarships={() => setShowScholarshipFinder(true)}
+        onOpenMockInterview={() => setShowMockInterview(true)}
+        onOpenCloudSync={() => setShowCloudSync(true)}
       />
     </div>
   );

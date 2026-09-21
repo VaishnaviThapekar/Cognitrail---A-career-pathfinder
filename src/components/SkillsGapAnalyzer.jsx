@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { 
   X, Target, TrendingUp, Book, Award, Clock, CheckCircle, Brain, Zap, 
   BarChart3, AlertCircle, Sparkles, Play, Download, Search, CheckCircle2, 
-  ChevronRight, Calendar, ArrowRight, Layers, FileText, Share2, RotateCcw
+  ChevronRight, Calendar, ArrowRight, Layers, FileText, Share2, RotateCcw, Printer
 } from 'lucide-react';
 import { CAREER_DATABASE } from '../data/careerDatabase';
 
@@ -352,6 +352,10 @@ Empowering Next-Gen Students • Cognitrail Career Intelligence System
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+  };
+
+  const handleExportPDF = () => {
+    window.print();
   };
 
   const handleStartLearning = (skillName) => {
@@ -852,7 +856,15 @@ Empowering Next-Gen Students • Cognitrail Career Intelligence System
                 }`}
               >
                 <Download className="w-4 h-4" />
-                <span>Export Full Plan (.txt)</span>
+                <span>Export Plan (.txt)</span>
+              </button>
+
+              <button
+                onClick={handleExportPDF}
+                className="flex-1 py-4 rounded-2xl font-bold text-sm btn-interactive hover-lift flex items-center justify-center gap-2 border cursor-pointer bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white shadow-md hover:brightness-110"
+              >
+                <Printer className="w-4 h-4" />
+                <span>Print / Download PDF</span>
               </button>
 
               <button
@@ -862,7 +874,7 @@ Empowering Next-Gen Students • Cognitrail Career Intelligence System
                 }`}
               >
                 <CheckCircle2 className="w-4 h-4" />
-                <span>Done & Return to Dashboard</span>
+                <span>Done & Return</span>
               </button>
             </div>
           </div>

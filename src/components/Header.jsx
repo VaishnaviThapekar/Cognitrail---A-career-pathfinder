@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   Search, Moon, Sun, User, Scale, School, LogIn, Menu, X,
-  Compass, HelpCircle, Map, Sparkles, Newspaper, Bot, Target
+  Compass, HelpCircle, Map, Sparkles, Newspaper, Bot, Target, Globe, Cloud
 } from 'lucide-react';
 import { useGamification } from '../contexts/GamificationContext';
 import { useAuth } from '../contexts/AuthContext';
@@ -21,7 +21,10 @@ const Header = ({
   setShowProfile,
   setShowGamification,
   setShowComparison,
-  setShowCollegeFinder
+  setShowCollegeFinder,
+  lang,
+  toggleLanguage,
+  onOpenCloudSync
 }) => {
   const { level, points } = useGamification();
   const { user, isAuthenticated } = useAuth();
@@ -131,6 +134,36 @@ const Header = ({
 
             {/* Right Controls */}
             <div className="flex items-center gap-2 sm:gap-2.5">
+              {/* Language Switcher Toggle */}
+              {toggleLanguage && (
+                <button
+                  onClick={toggleLanguage}
+                  className={`px-3 py-1.5 rounded-xl border text-xs font-black btn-interactive hover-lift flex items-center gap-1 cursor-pointer ${
+                    darkMode
+                      ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white'
+                      : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:bg-[#0265A6] hover:text-white'
+                  }`}
+                  title="Switch Language (English / Hindi)"
+                >
+                  <Globe className="w-3.5 h-3.5" />
+                  <span>{lang === 'hi' ? 'हिन्दी' : 'EN'}</span>
+                </button>
+              )}
+
+              {/* Cloud Sync Button */}
+              {onOpenCloudSync && (
+                <button
+                  onClick={onOpenCloudSync}
+                  className={`p-2.5 rounded-xl border btn-interactive hover-lift ${darkMode
+                    ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:bg-[#0A1E3F]/80 shadow-sm'
+                    : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:bg-[#EBF3FA]/80 shadow-sm'
+                    }`}
+                  title="Cloud Sync & Data Backup"
+                >
+                  <Cloud className="w-4 h-4 text-[#0265A6]" />
+                </button>
+              )}
+
               {/* Dark Mode Toggle */}
               <button
                 onClick={toggleDarkMode}
