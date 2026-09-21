@@ -263,6 +263,47 @@ const SalaryCalculatorModal = ({ darkMode, onClose, initialCareerName }) => {
               </div>
             </div>
           </div>
+
+          {/* 5-Year Growth Progression Curve */}
+          <div className={`p-5 rounded-3xl border ${
+            darkMode ? 'bg-[#071326]/60 border-[#003B73]' : 'bg-[#EBF3FA]/40 border-[#BACDDF]'
+          }`}>
+            <div className="flex items-center justify-between mb-4">
+              <span className={`text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 ${
+                darkMode ? 'text-zinc-300' : 'text-zinc-700'
+              }`}>
+                <TrendingUp className="w-4 h-4 text-[#0265A6]" />
+                5-Year Compensation Progression Curve ({selectedRole})
+              </span>
+              <span className="text-[10px] font-bold uppercase px-2.5 py-0.5 rounded-full bg-[#003B73]/20 text-[#0265A6] border border-[#0265A6]/30">
+                Career Trajectory
+              </span>
+            </div>
+
+            <div className="grid grid-cols-5 gap-2 pt-2">
+              {[
+                { year: 'Yr 1', title: 'Entry', val: Math.round(roleData.entry * locData.factor * 10) / 10 },
+                { year: 'Yr 2', title: 'Associate', val: Math.round((roleData.entry + (roleData.mid - roleData.entry) * 0.4) * locData.factor * 10) / 10 },
+                { year: 'Yr 3', title: 'Specialist', val: Math.round(roleData.mid * locData.factor * 10) / 10 },
+                { year: 'Yr 4', title: 'Senior', val: Math.round((roleData.mid + (roleData.senior - roleData.mid) * 0.5) * locData.factor * 10) / 10 },
+                { year: 'Yr 5', title: 'Lead / Principal', val: Math.round(roleData.senior * locData.factor * 10) / 10 }
+              ].map((step, idx) => (
+                <div
+                  key={step.year}
+                  className={`p-3 rounded-2xl border text-center transition-all ${
+                    idx + 1 === Math.min(5, Math.max(1, expYears))
+                      ? 'bg-gradient-to-tr from-[#003B73] to-[#0265A6] text-white border-white scale-105 shadow-md'
+                      : darkMode
+                        ? 'bg-[#0A1E3F]/80 border-[#003B73] text-zinc-300'
+                        : 'bg-white border-[#BACDDF] text-zinc-800'
+                  }`}
+                >
+                  <div className="text-[10px] font-black uppercase opacity-75">{step.year} • {step.title}</div>
+                  <div className="text-sm font-black mt-1">₹{step.val} LPA</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Footer */}

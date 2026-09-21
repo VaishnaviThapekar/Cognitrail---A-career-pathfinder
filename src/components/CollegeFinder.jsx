@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { 
   X, Search, MapPin, Star, TrendingUp, Award, Phone, Globe, DollarSign, 
   GraduationCap, Filter, ChevronDown, BookOpen, ExternalLink, ShieldCheck, 
-  Info, Sparkles, Building2, CheckCircle2, RotateCcw
+  Info, Sparkles, Building2, CheckCircle2, RotateCcw, Copy, Scale
 } from 'lucide-react';
 import { getAllColleges } from '../data/collegesDatabase';
 import CollegeCutoffPredictor from './CollegeCutoffPredictor';
@@ -17,6 +17,9 @@ const CollegeFinder = ({ onClose, darkMode }) => {
   const [selectedOwnership, setSelectedOwnership] = useState('');
   const [selectedCollege, setSelectedCollege] = useState(null);
   const [showPredictor, setShowPredictor] = useState(false);
+  const [comparisonColleges, setComparisonColleges] = useState([]);
+  const [showCompareModal, setShowCompareModal] = useState(false);
+  const [copiedNotice, setCopiedNotice] = useState('');
 
   // Keyboard Escape key listener
   useEffect(() => {
@@ -256,6 +259,42 @@ const CollegeFinder = ({ onClose, darkMode }) => {
     setSelectedRating('');
     setSelectedTier('');
     setSelectedOwnership('');
+  };
+
+  const toggleCompare = (college, e) => {
+    if (e) e.stopPropagation();
+    const isCompared = comparisonColleges.some(c => (c.id || c.name) === (college.id || college.name));
+    if (isCompared) {
+      setComparisonColleges(comparisonColleges.filter(c => (c.id || c.name) !== (college.id || college.name)));
+    } else {
+      if (comparisonColleges.length >= 3) {
+        alert('You can compare up to 3 colleges side-by-side.');
+        return;
+      }
+      setComparisonColleges([...comparisonColleges, college]);
+    }
+  };
+
+  const copyCollegeSummary = (college) => {
+    if (!college) return;
+    const summaryText = `INSTITUTIONAL SUMMARY: ${college.name}
+Type: ${college.type || 'Higher Education'} | NIRF Rank: ${college.nirf ? `#${college.nirf}` : 'Top Ranked'} | Rating: ⭐ ${college.rating || 4.5}/5.0
+Location: ${college.city || 'India'}, ${college.state || ''}
+Tuition Fees: ${college.fees || 'Contact Portal'}
+Placements: ${college.placements || 'High Placement Rate'}
+Ownership: ${college.ownership || 'Autonomous'} | Established: ${college.established || 'Premier Institute'}
+Courses: ${(college.courses || []).join(', ')}
+Specializations: ${(college.specializations || []).join(', ')}
+Official Website: ${college.website || 'Available on Admission Portal'}
+
+Verified by Cognitrail Career Pathfinder Directory`;
+
+    navigator.clipboard.writeText(summaryText).then(() => {
+      setCopiedNotice(`Copied summary for ${college.name}`);
+      setTimeout(() => setCopiedNotice(''), 3000);
+    }).catch(err => {
+      console.error('Failed to copy', err);
+    });
   };
 
   return (
@@ -532,10 +571,22 @@ const CollegeFinder = ({ onClose, darkMode }) => {
                   </div>
 
                   {/* Actions */}
-                  <div className="pt-3 border-t border-zinc-800/80 flex items-center justify-between">
-                    <span className="text-xs font-bold text-zinc-400">
-                      Source: {college.source || 'NIRF Verified'}
-                    </span>
+                  <div className="pt-3 border-t border-zinc-800/80 flex items-center justify-between gap-2">
+                    <button
+                      type="button"
+                      onClick={(e) => toggleCompare(college, e)}
+                      className={`px-3 py-1 rounded-xl text-xs font-bold border btn-interactive flex items-center gap-1 cursor-pointer transition-all ${
+                        comparisonColleges.some(c => (c.id || c.name) === (college.id || college.name))
+                          ? 'bg-gradient-to-r from-[#003B73] to-[#0265A6] border-[#0265A6] text-white shadow-sm'
+                          : darkMode
+                            ? 'bg-zinc-900 border-zinc-700 text-zinc-300 hover:text-white hover:border-[#0265A6]'
+                            : 'bg-zinc-100 border-zinc-300 text-zinc-700 hover:text-black hover:border-[#0265A6]'
+                      }`}
+                    >
+                      <Scale className="w-3.5 h-3.5" />
+                      <span>{comparisonColleges.some(c => (c.id || c.name) === (college.id || college.name)) ? 'Comparing' : '+ Compare'}</span>
+                    </button>
+
                     <span className={`text-xs font-bold flex items-center gap-1 ${darkMode ? 'text-white' : 'text-black'}`}>
                       <span>Inspect Details</span>
                       <ChevronDown className="w-3.5 h-3.5" />
@@ -689,22 +740,215 @@ const CollegeFinder = ({ onClose, darkMode }) => {
                   </div>
                 </div>
 
-                {/* Official Web Portal */}
-                <div className="pt-2">
+                {/* Actions & Official Web Portal */}
+                <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
+                  <button
+                    onClick={() => copyCollegeSummary(selectedCollege)}
+                    className={`w-full sm:w-auto flex-1 py-3.5 px-5 rounded-2xl font-bold text-sm btn-interactive flex items-center justify-center gap-2 border cursor-pointer ${
+                      darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:bg-[#BACDDF]/40'
+                    }`}
+                  >
+                    <Copy className="w-4 h-4 text-[#0265A6]" />
+                    <span>Copy Summary</span>
+                  </button>
+
                   {selectedCollege.website && (
                     <a
                       href={selectedCollege.website.startsWith('http') ? selectedCollege.website : `https://${selectedCollege.website}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`w-full py-3.5 px-6 rounded-2xl font-bold text-sm btn-interactive flex items-center justify-center gap-2 shadow-xl ${
-                        darkMode ? 'bg-white text-black hover:bg-zinc-200' : 'bg-black text-white hover:bg-zinc-800'
-                      }`}
+                      className="w-full sm:w-auto flex-1 py-3.5 px-6 rounded-2xl font-bold text-sm btn-interactive flex items-center justify-center gap-2 shadow-xl bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white hover:brightness-110"
                     >
-                      <span>Visit Official University Portal</span>
+                      <span>Official Portal</span>
                       <ExternalLink className="w-4 h-4" />
                     </a>
                   )}
                 </div>
+
+                {copiedNotice && (
+                  <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-500 text-xs text-center font-bold animate-fade-in">
+                    ✓ {copiedNotice}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Floating College Comparison Dock */}
+        {comparisonColleges.length > 0 && (
+          <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 max-w-xl w-full px-4 animate-slide-up">
+            <div className={`p-4 rounded-3xl border shadow-2xl flex items-center justify-between gap-4 backdrop-blur-md ${
+              darkMode ? 'bg-[#071326]/95 border-[#003B73] text-white' : 'bg-white/95 border-[#BACDDF] text-[#051C3E]'
+            }`}>
+              <div className="flex items-center gap-2">
+                <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#003B73] to-[#0265A6] flex items-center justify-center text-white font-bold text-xs shadow-md">
+                  <Scale className="w-4 h-4" />
+                </div>
+                <div>
+                  <div className="text-xs font-black">Comparing {comparisonColleges.length} Colleges</div>
+                  <div className="text-[10px] text-zinc-400 truncate max-w-[200px] sm:max-w-xs font-medium">
+                    {comparisonColleges.map(c => c.name.split(' ')[0]).join(', ')}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setComparisonColleges([])}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold border transition-all cursor-pointer ${
+                    darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-zinc-300 hover:text-white' : 'bg-[#EBF3FA] border-[#BACDDF] text-zinc-700 hover:text-black'
+                  }`}
+                >
+                  Clear
+                </button>
+                <button
+                  onClick={() => setShowCompareModal(true)}
+                  className="px-4 py-2 rounded-xl text-xs font-black btn-interactive flex items-center gap-1.5 cursor-pointer bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white shadow-md hover:brightness-110"
+                >
+                  <span>Compare Now</span>
+                  <ChevronDown className="w-3.5 h-3.5 rotate-270" />
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Side-by-Side College Comparison Table Modal */}
+        {showCompareModal && (
+          <div 
+            role="dialog"
+            aria-modal="true"
+            aria-label="Side-by-Side College Comparison"
+            className="fixed inset-0 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 z-50 animate-fade-in"
+          >
+            <div className={`max-w-5xl w-full max-h-[92vh] overflow-y-auto rounded-3xl border shadow-2xl animate-fade-in-scale ${
+              darkMode ? 'bg-[#071326] border-[#003B73] text-white' : 'bg-white border-[#BACDDF] text-[#051C3E]'
+            }`}>
+              {/* Header */}
+              <div className={`sticky top-0 p-6 border-b z-10 flex justify-between items-center backdrop-blur-md ${
+                darkMode ? 'bg-[#071326]/95 border-[#003B73]' : 'bg-white/95 border-[#BACDDF]'
+              }`}>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#003B73] to-[#0265A6] flex items-center justify-center text-white shadow-md">
+                    <Scale className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-black">Side-by-Side Institutional Comparison</h3>
+                    <p className={`text-xs font-semibold ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>
+                      Evaluating NIRF rankings, tuition fees, placements & cutoff metrics
+                    </p>
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setShowCompareModal(false)}
+                  className={`p-2.5 rounded-xl border btn-interactive cursor-pointer ${
+                    darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white' : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6]'
+                  }`}
+                  aria-label="Close modal"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Comparison Matrix Table */}
+              <div className="p-6 sm:p-8 overflow-x-auto">
+                <table className="w-full text-left border-collapse min-w-[600px]">
+                  <thead>
+                    <tr className={`border-b ${darkMode ? 'border-[#003B73]' : 'border-[#BACDDF]'}`}>
+                      <th className="p-4 text-xs font-bold uppercase tracking-wider text-zinc-400 w-1/4">Metric</th>
+                      {comparisonColleges.map((col) => (
+                        <th key={col.id || col.name} className="p-4 w-1/3">
+                          <div className="flex items-start justify-between gap-2">
+                            <div>
+                              <div className={`text-sm font-black ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>
+                                {col.name}
+                              </div>
+                              <div className="text-xs text-[#0265A6] font-semibold">
+                                {col.city}, {col.state}
+                              </div>
+                            </div>
+                            <button
+                              onClick={() => {
+                                setComparisonColleges(comparisonColleges.filter(c => (c.id || c.name) !== (col.id || col.name)));
+                                if (comparisonColleges.length <= 1) setShowCompareModal(false);
+                              }}
+                              className="text-zinc-400 hover:text-red-400 p-1"
+                              title="Remove"
+                            >
+                              <X className="w-4 h-4" />
+                            </button>
+                          </div>
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className={`divide-y text-xs ${darkMode ? 'divide-[#003B73]/60' : 'divide-[#BACDDF]/60'}`}>
+                    <tr>
+                      <td className="p-4 font-bold text-zinc-400">Discipline / Type</td>
+                      {comparisonColleges.map(col => (
+                        <td key={col.id || col.name} className="p-4 font-bold">{col.type || 'Higher Education'}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-4 font-bold text-zinc-400">NIRF National Rank</td>
+                      {comparisonColleges.map(col => (
+                        <td key={col.id || col.name} className="p-4 font-black text-[#0265A6]">
+                          {col.nirf ? `#${col.nirf} in India` : 'Top Ranked'}
+                        </td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-4 font-bold text-zinc-400">Student Rating</td>
+                      {comparisonColleges.map(col => (
+                        <td key={col.id || col.name} className="p-4 font-bold">⭐ {col.rating || 4.5} / 5.0</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-4 font-bold text-zinc-400">Ownership</td>
+                      {comparisonColleges.map(col => (
+                        <td key={col.id || col.name} className="p-4 font-semibold">{col.ownership || 'Autonomous'}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-4 font-bold text-zinc-400">Annual Tuition Fees</td>
+                      {comparisonColleges.map(col => (
+                        <td key={col.id || col.name} className="p-4 font-black">{col.fees || 'Verified Portal'}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-4 font-bold text-zinc-400">Placement Package</td>
+                      {comparisonColleges.map(col => (
+                        <td key={col.id || col.name} className="p-4 font-black text-emerald-500">{col.placements || 'High Scope'}</td>
+                      ))}
+                    </tr>
+                    <tr>
+                      <td className="p-4 font-bold text-zinc-400">Courses Offered</td>
+                      {comparisonColleges.map(col => (
+                        <td key={col.id || col.name} className="p-4">
+                          <div className="flex flex-wrap gap-1">
+                            {(col.courses || []).slice(0, 4).map((c, i) => (
+                              <span key={i} className={`px-2 py-0.5 rounded text-[10px] border ${
+                                darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-zinc-200' : 'bg-[#EBF3FA] border-[#BACDDF] text-zinc-800'
+                              }`}>{c}</span>
+                            ))}
+                          </div>
+                        </td>
+                      ))}
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Footer */}
+              <div className={`p-5 border-t flex justify-end ${darkMode ? 'border-[#003B73]' : 'border-[#BACDDF]'}`}>
+                <button
+                  onClick={() => setShowCompareModal(false)}
+                  className="px-6 py-2.5 rounded-xl font-bold text-xs btn-interactive cursor-pointer bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white shadow-md"
+                >
+                  Close Comparison
+                </button>
               </div>
             </div>
           </div>
