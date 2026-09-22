@@ -31,11 +31,13 @@ import CloudSyncModal from './components/CloudSyncModal';
 import { LevelUpNotification, AchievementNotification, GamificationDashboard } from './components/GamificationComponents';
 import { useGamification } from './contexts/GamificationContext';
 import { useAuth } from './contexts/AuthContext';
+import { useLanguage } from './contexts/LanguageContext';
 import { CAREER_DATABASE } from './data/careerDatabase';
 
 function App() {
   const { isAuthenticated } = useAuth();
   const { trackCareerExplored, trackCareerSaved, trackQuizComplete } = useGamification();
+  const { t } = useLanguage();
 
   const [selectedDomain, setSelectedDomain] = useState(null);
   const [selectedSubField, setSelectedSubField] = useState(null);
@@ -78,26 +80,9 @@ function App() {
   const [showScholarshipFinder, setShowScholarshipFinder] = useState(false);
   const [showMockInterview, setShowMockInterview] = useState(false);
   const [showCloudSync, setShowCloudSync] = useState(false);
-  const [lang, setLang] = useState(() => {
-    try {
-      return localStorage.getItem('cognitrail_lang') || 'en';
-    } catch {
-      return 'en';
-    }
-  });
   const [selectedCareerForReadiness, setSelectedCareerForReadiness] = useState(null);
   const [infoModalContent, setInfoModalContent] = useState(null);
   const [activeDomainFilter, setActiveDomainFilter] = useState('all');
-
-  const toggleLanguage = () => {
-    const nextLang = lang === 'en' ? 'hi' : 'en';
-    setLang(nextLang);
-    try {
-      localStorage.setItem('cognitrail_lang', nextLang);
-    } catch (e) {
-      console.warn('Could not save language choice', e);
-    }
-  };
 
   useEffect(() => {
     const timer = setTimeout(() => setShowWelcome(false), 2000);
@@ -367,8 +352,6 @@ function App() {
             setShowGamification={setShowGamification}
             setShowComparison={setShowComparison}
             setShowCollegeFinder={setShowCollegeFinder}
-            lang={lang}
-            toggleLanguage={toggleLanguage}
             onOpenCloudSync={() => setShowCloudSync(true)}
           />
 
@@ -409,14 +392,14 @@ function App() {
                         🎯
                       </div>
                       <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'}`}>
-                        AI Career Quiz
+                        {t('aiQuizCardTitle', 'AI Career Quiz')}
                       </h3>
                       <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
-                        5-minute intelligent assessment matching your skills, interests & work style
+                        {t('aiQuizCardDesc', '5-minute intelligent assessment matching your skills, interests & work style')}
                       </p>
                     </div>
                     <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
-                      <span>Start Assessment</span>
+                      <span>{t('startQuizCTA', 'Start Assessment')}</span>
                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
@@ -434,14 +417,14 @@ function App() {
                         ✨
                       </div>
                       <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'}`}>
-                        AI Career Advisor Pro
+                        {t('aiAdvisorCardTitle', 'AI Career Advisor Pro')}
                       </h3>
                       <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
-                        Interactive chat for salary negotiation, interview prep, and career transitions
+                        {t('aiAdvisorCardDesc', 'Interactive chat for salary negotiation, interview prep, and career transitions')}
                       </p>
                     </div>
                     <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
-                      <span>Launch Chat</span>
+                      <span>{t('navAdvisor', 'Launch Chat')}</span>
                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
@@ -459,14 +442,14 @@ function App() {
                         🎯
                       </div>
                       <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'}`}>
-                        Skills Gap Analyzer
+                        {t('skillsAnalyzerCardTitle', 'Skills Gap Analyzer')}
                       </h3>
                       <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
-                        AI-powered skill analysis & tailored learning roadmap for your target job
+                        {t('skillsAnalyzerCardDesc', 'AI-powered skill analysis & tailored learning roadmap for your target job')}
                       </p>
                     </div>
                     <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
-                      <span>Analyze Skills</span>
+                      <span>{t('navSkills', 'Analyze Skills')}</span>
                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
@@ -484,14 +467,14 @@ function App() {
                         🗺️
                       </div>
                       <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'}`}>
-                        Roadmap Builder
+                        {t('roadmapCardTitle', 'Roadmap Builder')}
                       </h3>
                       <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
-                        Build customized stage-by-stage milestones from student to senior lead
+                        {t('roadmapCardDesc', 'Build customized stage-by-stage milestones from student to senior lead')}
                       </p>
                     </div>
                     <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
-                      <span>Build Roadmap</span>
+                      <span>{t('navRoadmap', 'Build Roadmap')}</span>
                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
@@ -509,14 +492,14 @@ function App() {
                         🏫
                       </div>
                       <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'}`}>
-                        College Finder
+                        {t('collegeCardTitle', 'College Finder')}
                       </h3>
                       <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
-                        Explore 500+ colleges with ratings, entrance exams, and direct links
+                        {t('collegeCardDesc', 'Explore 500+ colleges with ratings, entrance exams, and direct links')}
                       </p>
                     </div>
                     <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
-                      <span>Find Colleges</span>
+                      <span>{t('navColleges', 'Find Colleges')}</span>
                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
@@ -534,14 +517,14 @@ function App() {
                         ⚖️
                       </div>
                       <h3 className={`text-xl font-black mb-2 transition-colors ${darkMode ? 'text-white group-hover:text-[#6096BA]' : 'text-[#051C3E] group-hover:text-[#0265A6]'}`}>
-                        Compare Careers
+                        {t('compareCardTitle', 'Compare Careers')}
                       </h3>
                       <p className={`text-sm leading-relaxed mb-6 ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
-                        Side-by-side comparison of salaries, required skills, and career outlooks
+                        {t('compareCardDesc', 'Side-by-side comparison of salaries, required skills, and career outlooks')}
                       </p>
                     </div>
                     <div className="flex items-center gap-1.5 font-bold text-xs text-[#0265A6] group-hover:gap-2.5 transition-all">
-                      <span>Compare Now</span>
+                      <span>{t('navCompare', 'Compare Now')}</span>
                       <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                     </div>
                   </button>
@@ -553,10 +536,10 @@ function App() {
                 <div id="domains" className="pt-4 animate-fade-in">
                   <div className="text-center mb-8">
                     <h2 className={`text-3xl sm:text-4xl font-black ${darkMode ? 'text-white' : 'text-[#051C3E]'} mb-3`}>
-                      Explore Career Pathways & Domains
+                      {t('exploreDomainsHeader', 'Explore Career Pathways & Domains')}
                     </h2>
                     <p className={`text-base sm:text-lg ${darkMode ? 'text-zinc-400' : 'text-zinc-600'} max-w-2xl mx-auto`}>
-                      Filter by domain, search by specific job title or skill, and inspect 150+ comprehensive roadmaps.
+                      {t('exploreDomainsSub', 'Filter by domain, search by specific job title or skill, and inspect 150+ comprehensive roadmaps.')}
                     </p>
                   </div>
 
@@ -573,7 +556,7 @@ function App() {
                         <input
                           id="career-search"
                           type="text"
-                          placeholder="Search careers by name, skills, or degree (e.g. AI, Doctor, UI/UX, Finance)..."
+                          placeholder={t('searchPlaceholder', 'Search careers by name, skills, or degree...')}
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
                           className="w-full bg-transparent border-none text-sm focus:outline-none placeholder:text-zinc-400"
@@ -599,7 +582,7 @@ function App() {
                           }`}
                         >
                           <X className="w-3.5 h-3.5" />
-                          <span>Reset All Filters</span>
+                          <span>{t('resetFilters', 'Reset All Filters')}</span>
                         </button>
                       )}
                     </div>

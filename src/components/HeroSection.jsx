@@ -12,13 +12,10 @@ import {
   DollarSign,
   Clock,
   GraduationCap,
-  CheckCircle2,
   TrendingUp,
-  Award,
-  Layers,
-  Brain,
   ShieldCheck
 } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const HERO_FEATURED_PATHWAYS = [
   {
@@ -51,6 +48,7 @@ const HERO_FEATURED_PATHWAYS = [
 ];
 
 const HeroSection = ({ darkMode, onStartQuiz }) => {
+  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
   const [activePathwayIndex, setActivePathwayIndex] = useState(0);
 
@@ -143,11 +141,11 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             {/* Hero Headline */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 leading-[1.1] tracking-tight">
               <span className={darkMode ? 'text-white' : 'text-[#051C3E]'}>
-                Architect Your Future.
+                {t('heroTitle', 'Architect Your Future.')}
               </span>
               <br />
               <span className="inline-block mt-2 px-4 sm:px-5 py-1.5 rounded-2xl bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#6096BA] text-white font-black shadow-lg shadow-[#0265A6]/30">
-                With Precision AI.
+                {t('heroTitleAccent', 'With Precision AI.')}
               </span>
             </h1>
 
@@ -155,7 +153,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
             <p className={`text-base sm:text-lg mb-8 leading-relaxed max-w-xl ${
               darkMode ? 'text-zinc-300' : 'text-zinc-600'
             }`}>
-              Eliminate career uncertainty. Unlock data-driven roadmaps, real-time salary forecasts, ATS skill gap analysis, and tailored college entrance cutoffs across 500+ top Indian institutes.
+              {t('heroSubtitle', 'Eliminate career uncertainty. Unlock data-driven roadmaps, real-time salary forecasts, ATS skill gap analysis, and tailored college entrance cutoffs.')}
             </p>
 
             {/* Instant Search / Query Bar */}
@@ -170,7 +168,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 </div>
                 <input
                   type="text"
-                  placeholder="Search 150+ careers, degrees, or skills (e.g. AI, MBBS, Fintech)..."
+                  placeholder={t('searchPlaceholder', 'Search 150+ careers, degrees, or skills...')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className={`w-full bg-transparent border-none text-xs sm:text-sm focus:outline-none ${
@@ -188,7 +186,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
 
               {/* Quick Keyword Pills */}
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mt-3">
-                <span className={`text-[11px] font-bold ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>Trending Paths:</span>
+                <span className={`text-[11px] font-bold ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>{t('trendingPaths', 'Trending Paths:')}</span>
                 {['AI & Data Science', 'MBBS Doctor', 'Investment Banking', 'UI/UX Design', 'Cybersecurity'].map((tag) => (
                   <button
                     key={tag}
@@ -216,7 +214,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-2xl font-black text-sm btn-interactive hover-lift shadow-xl cursor-pointer bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white hover:brightness-110 shadow-[#0265A6]/35"
               >
                 <Compass className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
-                <span>Explore 150+ Pathways</span>
+                <span>{t('exploreDomainsCTA', 'Explore 150+ Pathways')}</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1.5 transition-transform duration-300" />
               </button>
 
@@ -232,13 +230,13 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 } cursor-pointer`}
               >
                 <HelpCircle className="w-5 h-5 text-[#0265A6] transition-transform group-hover:scale-110" />
-                <span>Take 5-Min AI Quiz</span>
+                <span>{t('startQuizCTA', 'Take 5-Min AI Assessment')}</span>
               </button>
             </div>
 
             {/* Quick Tool Pills */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs">
-              <span className={`font-bold mr-1 ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>Instant Launchers:</span>
+              <span className={`font-bold mr-1 ${darkMode ? 'text-zinc-400' : 'text-zinc-500'}`}>{t('quickLaunchers', 'Instant Launchers:')}</span>
               <button
                 onClick={() => window.openResume && window.openResume()}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl btn-interactive hover-lift border cursor-pointer ${
@@ -248,7 +246,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 }`}
               >
                 <FileText className="w-3.5 h-3.5 text-[#0265A6]" />
-                <span>ATS Resume</span>
+                <span>{t('atsResume', 'ATS Resume')}</span>
               </button>
 
               <button
@@ -260,7 +258,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 }`}
               >
                 <Video className="w-3.5 h-3.5 text-[#0265A6]" />
-                <span>AI Interview</span>
+                <span>{t('aiInterview', 'AI Interview')}</span>
               </button>
 
               <button
@@ -272,7 +270,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 }`}
               >
                 <Target className="w-3.5 h-3.5 text-[#0265A6]" />
-                <span>Skills Gap</span>
+                <span>{t('navSkills', 'Skills Gap')}</span>
               </button>
 
               <button
@@ -284,7 +282,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 }`}
               >
                 <DollarSign className="w-3.5 h-3.5 text-[#0265A6]" />
-                <span>Salary Calc</span>
+                <span>{t('salaryCalc', 'Salary Calc')}</span>
               </button>
 
               <button
@@ -296,7 +294,7 @@ const HeroSection = ({ darkMode, onStartQuiz }) => {
                 }`}
               >
                 <Clock className="w-3.5 h-3.5 text-[#0265A6]" />
-                <span>Exam Timers</span>
+                <span>{t('examTimers', 'Exam Timers')}</span>
               </button>
             </div>
           </div>

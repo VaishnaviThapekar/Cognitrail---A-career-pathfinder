@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Compass, Sparkles, Target, Map, GraduationCap, Bot, DollarSign, Calendar, UserCheck, Award, X, Brain, Cloud } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function FloatingQuickDock({
   onOpenQuiz,
@@ -14,12 +15,13 @@ export default function FloatingQuickDock({
   onOpenMockInterview,
   onOpenCloudSync
 }) {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
   const dockActions = [
     {
       id: 'quiz',
-      label: 'AI Career Quiz',
+      label: t('aiQuizCardTitle', 'AI Career Quiz'),
       icon: Target,
       color: 'from-[#0265A6] to-[#6096BA]',
       onClick: () => {
@@ -29,7 +31,7 @@ export default function FloatingQuickDock({
     },
     {
       id: 'mentors',
-      label: 'Alumni Connect',
+      label: t('alumniConnect', 'Alumni Connect'),
       icon: UserCheck,
       color: 'from-[#003B73] to-[#0265A6]',
       onClick: () => {
@@ -39,7 +41,7 @@ export default function FloatingQuickDock({
     },
     {
       id: 'scholarships',
-      label: 'Scholarship Finder',
+      label: t('scholarshipFinder', 'Scholarship Finder'),
       icon: Award,
       color: 'from-[#0265A6] to-[#6096BA]',
       onClick: () => {
@@ -49,7 +51,7 @@ export default function FloatingQuickDock({
     },
     {
       id: 'skills',
-      label: 'Skills Gap Analyzer',
+      label: t('skillsAnalyzerCardTitle', 'Skills Gap Analyzer'),
       icon: Sparkles,
       color: 'from-[#003B73] to-[#0265A6]',
       onClick: () => {
@@ -59,7 +61,7 @@ export default function FloatingQuickDock({
     },
     {
       id: 'roadmap',
-      label: 'Roadmap Builder',
+      label: t('roadmapCardTitle', 'Roadmap Builder'),
       icon: Map,
       color: 'from-[#0265A6] to-[#003B73]',
       onClick: () => {
@@ -69,7 +71,7 @@ export default function FloatingQuickDock({
     },
     {
       id: 'college',
-      label: 'College Finder',
+      label: t('collegeCardTitle', 'College Finder'),
       icon: GraduationCap,
       color: 'from-[#6096BA] to-[#0265A6]',
       onClick: () => {
@@ -79,7 +81,7 @@ export default function FloatingQuickDock({
     },
     {
       id: 'salary',
-      label: 'Salary Calculator',
+      label: t('salaryCalcTitle', 'Salary Calculator'),
       icon: DollarSign,
       color: 'from-[#0265A6] to-[#6096BA]',
       onClick: () => {
@@ -89,7 +91,7 @@ export default function FloatingQuickDock({
     },
     {
       id: 'exams',
-      label: 'Exam Tracker',
+      label: t('examCountdownTitle', 'Exam Tracker'),
       icon: Calendar,
       color: 'from-[#003B73] to-[#0265A6]',
       onClick: () => {
@@ -99,7 +101,7 @@ export default function FloatingQuickDock({
     },
     {
       id: 'interview',
-      label: 'AI Mock Interview',
+      label: t('mockInterviewTitle', 'AI Mock Interview'),
       icon: Brain,
       color: 'from-[#0265A6] to-[#003B73]',
       onClick: () => {
@@ -109,7 +111,7 @@ export default function FloatingQuickDock({
     },
     {
       id: 'cloud',
-      label: 'Cloud Sync & Backup',
+      label: t('cloudSyncTitle', 'Cloud Sync & Backup'),
       icon: Cloud,
       color: 'from-[#003B73] to-[#6096BA]',
       onClick: () => {
@@ -119,7 +121,7 @@ export default function FloatingQuickDock({
     },
     {
       id: 'advisor',
-      label: 'AI Advisor Pro',
+      label: t('navAdvisor', 'AI Advisor Pro'),
       icon: Bot,
       color: 'from-[#0265A6] to-[#003B73]',
       onClick: () => {

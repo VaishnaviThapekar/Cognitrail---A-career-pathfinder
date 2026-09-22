@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import {
   Search, Moon, Sun, User, Scale, School, LogIn, Menu, X,
-  Compass, HelpCircle, Map, Sparkles, Newspaper, Bot, Target, Globe, Cloud
+  Compass, HelpCircle, Map, Newspaper, Bot, Target, Globe, Cloud
 } from 'lucide-react';
 import { useGamification } from '../contexts/GamificationContext';
 import { useAuth } from '../contexts/AuthContext';
+import { useLanguage } from '../contexts/LanguageContext';
 import AuthModal from './AuthModal';
 
 const Header = ({
@@ -22,12 +23,11 @@ const Header = ({
   setShowGamification,
   setShowComparison,
   setShowCollegeFinder,
-  lang,
-  toggleLanguage,
   onOpenCloudSync
 }) => {
   const { level, points } = useGamification();
   const { user, isAuthenticated } = useAuth();
+  const { lang, toggleLanguage, t } = useLanguage();
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -52,10 +52,10 @@ const Header = ({
               </div>
               <div>
                 <h1 className={`text-xl font-black tracking-tight ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>
-                  COGNITRAIL
+                  {t('brandName', 'COGNITRAIL')}
                 </h1>
                 <p className={`text-[10px] font-bold uppercase tracking-wider ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>
-                  Career Pathfinder
+                  {t('brandTagline', 'Career Pathfinder')}
                 </p>
               </div>
             </div>
@@ -70,7 +70,7 @@ const Header = ({
                 }}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
               >
-                Careers
+                {t('navCareers', 'Careers')}
               </button>
 
               <button
@@ -78,7 +78,7 @@ const Header = ({
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-[#6096BA] hover:text-white hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
               >
                 <HelpCircle className="w-3.5 h-3.5 text-[#0265A6]" />
-                AI Quiz
+                {t('navQuiz', 'AI Quiz')}
               </button>
 
               {setShowCollegeFinder && (
@@ -86,7 +86,7 @@ const Header = ({
                   onClick={() => setShowCollegeFinder(true)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
                 >
-                  Colleges
+                  {t('navColleges', 'Colleges')}
                 </button>
               )}
 
@@ -95,7 +95,7 @@ const Header = ({
                   onClick={() => setShowComparison(true)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
                 >
-                  Compare
+                  {t('navCompare', 'Compare')}
                 </button>
               )}
 
@@ -103,7 +103,7 @@ const Header = ({
                 onClick={() => onOpenSkills && onOpenSkills()}
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
               >
-                Skill Gap
+                {t('navSkills', 'Skill Gap')}
               </button>
 
               <button
@@ -111,7 +111,7 @@ const Header = ({
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
               >
                 <Bot className="w-3.5 h-3.5 text-[#0265A6]" />
-                Advisor Pro
+                {t('navAdvisor', 'Advisor Pro')}
               </button>
             </nav>
 
@@ -121,7 +121,7 @@ const Header = ({
                 <Search className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`} />
                 <input
                   type="text"
-                  placeholder="Search 150+ careers, skills..."
+                  placeholder={t('searchPlaceholder', 'Search 150+ careers, skills...')}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className={`w-full pl-9 pr-4 py-2 rounded-xl text-xs transition-all border focus:outline-none ${darkMode
@@ -135,20 +135,18 @@ const Header = ({
             {/* Right Controls */}
             <div className="flex items-center gap-2 sm:gap-2.5">
               {/* Language Switcher Toggle */}
-              {toggleLanguage && (
-                <button
-                  onClick={toggleLanguage}
-                  className={`px-3 py-1.5 rounded-xl border text-xs font-black btn-interactive hover-lift flex items-center gap-1 cursor-pointer ${
-                    darkMode
-                      ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white'
-                      : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:bg-[#0265A6] hover:text-white'
-                  }`}
-                  title="Switch Language (English / Hindi)"
-                >
-                  <Globe className="w-3.5 h-3.5" />
-                  <span>{lang === 'hi' ? 'हिन्दी' : 'EN'}</span>
-                </button>
-              )}
+              <button
+                onClick={toggleLanguage}
+                className={`px-3 py-1.5 rounded-xl border text-xs font-black btn-interactive hover-lift flex items-center gap-1 cursor-pointer ${
+                  darkMode
+                    ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white'
+                    : 'bg-[#EBF3FA] border-[#BACDDF] text-[#0265A6] hover:bg-[#0265A6] hover:text-white'
+                }`}
+                title="Switch Language (English / Hindi)"
+              >
+                <Globe className="w-3.5 h-3.5" />
+                <span>{lang === 'hi' ? 'हिन्दी' : 'EN'}</span>
+              </button>
 
               {/* Cloud Sync Button */}
               {onOpenCloudSync && (
@@ -191,7 +189,7 @@ const Header = ({
                     {level}
                   </div>
                   <span className={`text-xs font-bold hidden sm:inline ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`}>
-                    {points} pts
+                    {points} {t('pts', 'pts')}
                   </span>
                 </button>
               )}
@@ -205,7 +203,7 @@ const Header = ({
                   <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                     <User className="w-3.5 h-3.5 text-white" />
                   </div>
-                  <span className="hidden sm:inline">{user?.name?.split(' ')[0] || 'Profile'}</span>
+                  <span className="hidden sm:inline">{user?.name?.split(' ')[0] || t('profile', 'Profile')}</span>
                 </button>
               ) : (
                 <button
@@ -213,7 +211,7 @@ const Header = ({
                   className="flex items-center gap-1.5 px-4 py-2 rounded-xl font-bold text-xs shadow-lg btn-interactive hover-lift bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white hover:brightness-110 shadow-[#0265A6]/25"
                 >
                   <LogIn className="w-3.5 h-3.5" />
-                  <span>Sign In</span>
+                  <span>{t('signIn', 'Sign In')}</span>
                 </button>
               )}
 
@@ -241,7 +239,7 @@ const Header = ({
               <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`} />
               <input
                 type="text"
-                placeholder="Search careers, skills, fields..."
+                placeholder={t('searchPlaceholder', 'Search careers, skills, fields...')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className={`w-full pl-9 pr-4 py-2.5 rounded-xl text-xs border focus:outline-none ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-black focus:border-[#0265A6]'}`}
@@ -260,7 +258,7 @@ const Header = ({
                 className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
               >
                 <Compass className="w-4 h-4 text-[#0265A6]" />
-                <span>Explore Careers</span>
+                <span>{t('navCareers', 'Explore Careers')}</span>
               </button>
 
               <button
@@ -271,7 +269,7 @@ const Header = ({
                 className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-gradient-to-r from-[#003B73] to-[#0265A6] border-[#0265A6] text-white' : 'bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white'}`}
               >
                 <HelpCircle className="w-4 h-4 text-[#6096BA]" />
-                <span>AI Career Quiz</span>
+                <span>{t('navQuiz', 'AI Career Quiz')}</span>
               </button>
 
               {setShowCollegeFinder && (
@@ -283,7 +281,7 @@ const Header = ({
                   className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
                 >
                   <School className="w-4 h-4 text-[#0265A6]" />
-                  <span>College Finder</span>
+                  <span>{t('navColleges', 'College Finder')}</span>
                 </button>
               )}
 
@@ -296,7 +294,7 @@ const Header = ({
                   className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
                 >
                   <Scale className="w-4 h-4 text-[#0265A6]" />
-                  <span>Compare Careers</span>
+                  <span>{t('navCompare', 'Compare Careers')}</span>
                 </button>
               )}
 
@@ -308,7 +306,7 @@ const Header = ({
                 className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
               >
                 <Target className="w-4 h-4 text-[#0265A6]" />
-                <span>Skills Gap</span>
+                <span>{t('navSkills', 'Skills Gap')}</span>
               </button>
 
               <button
@@ -319,7 +317,7 @@ const Header = ({
                 className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
               >
                 <Map className="w-4 h-4 text-[#0265A6]" />
-                <span>Roadmaps</span>
+                <span>{t('navRoadmap', 'Roadmaps')}</span>
               </button>
 
               <button
@@ -330,7 +328,7 @@ const Header = ({
                 className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
               >
                 <Newspaper className="w-4 h-4 text-[#0265A6]" />
-                <span>Career News</span>
+                <span>{t('navNews', 'Career News')}</span>
               </button>
 
               <button
@@ -341,7 +339,7 @@ const Header = ({
                 className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-gradient-to-r from-[#003B73] to-[#0265A6] border-[#0265A6] text-white' : 'bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white'}`}
               >
                 <Bot className="w-4 h-4 text-[#6096BA]" />
-                <span>AI Advisor Pro</span>
+                <span>{t('navAdvisor', 'AI Advisor Pro')}</span>
               </button>
             </div>
           </div>
