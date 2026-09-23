@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import {
   Search, Moon, Sun, User, Scale, School, LogIn, Menu, X,
-  Compass, HelpCircle, Map, Newspaper, Bot, Target, Globe, Cloud
+  Compass, HelpCircle, Map, Newspaper, Bot, Target, Globe, Cloud,
+  Calculator, GitCompare, BookOpen
 } from 'lucide-react';
 import { useGamification } from '../contexts/GamificationContext';
 import { useAuth } from '../contexts/AuthContext';
@@ -23,7 +24,10 @@ const Header = ({
   setShowGamification,
   setShowComparison,
   setShowCollegeFinder,
-  onOpenCloudSync
+  onOpenCloudSync,
+  onOpenPredictor,
+  onOpenDecisionMatrix,
+  onOpenFreeCourses
 }) => {
   const { level, points } = useGamification();
   const { user, isAuthenticated } = useAuth();
@@ -87,6 +91,36 @@ const Header = ({
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
                 >
                   {t('navColleges', 'Colleges')}
+                </button>
+              )}
+
+              {onOpenPredictor && (
+                <button
+                  onClick={() => onOpenPredictor()}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
+                >
+                  <Calculator className="w-3.5 h-3.5 text-[#0265A6]" />
+                  {t('navCutoff', 'Cutoffs')}
+                </button>
+              )}
+
+              {onOpenDecisionMatrix && (
+                <button
+                  onClick={() => onOpenDecisionMatrix()}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
+                >
+                  <GitCompare className="w-3.5 h-3.5 text-[#0265A6]" />
+                  {t('navDecisionMatrix', 'Matrix')}
+                </button>
+              )}
+
+              {onOpenFreeCourses && (
+                <button
+                  onClick={() => onOpenFreeCourses()}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1 transition-all ${darkMode ? 'text-zinc-300 hover:text-[#6096BA] hover:bg-gradient-to-r hover:from-[#0A1E3F] hover:to-[#003B73]/60' : 'text-zinc-800 hover:text-[#0265A6] hover:bg-gradient-to-r hover:from-[#EBF3FA] hover:to-[#BACDDF]/40'}`}
+                >
+                  <BookOpen className="w-3.5 h-3.5 text-[#0265A6]" />
+                  {t('navFreeCourses', 'Courses')}
                 </button>
               )}
 
@@ -319,6 +353,45 @@ const Header = ({
                 <Map className="w-4 h-4 text-[#0265A6]" />
                 <span>{t('navRoadmap', 'Roadmaps')}</span>
               </button>
+
+              {onOpenPredictor && (
+                <button
+                  onClick={() => {
+                    onOpenPredictor();
+                    closeMobileMenu();
+                  }}
+                  className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
+                >
+                  <Calculator className="w-4 h-4 text-[#0265A6]" />
+                  <span>{t('navCutoff', 'Cutoff Predictor')}</span>
+                </button>
+              )}
+
+              {onOpenDecisionMatrix && (
+                <button
+                  onClick={() => {
+                    onOpenDecisionMatrix();
+                    closeMobileMenu();
+                  }}
+                  className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
+                >
+                  <GitCompare className="w-4 h-4 text-[#0265A6]" />
+                  <span>{t('navDecisionMatrix', 'Decision Matrix')}</span>
+                </button>
+              )}
+
+              {onOpenFreeCourses && (
+                <button
+                  onClick={() => {
+                    onOpenFreeCourses();
+                    closeMobileMenu();
+                  }}
+                  className={`flex items-center gap-2 p-3 rounded-xl text-xs font-bold text-left border transition-colors ${darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]' : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'}`}
+                >
+                  <BookOpen className="w-4 h-4 text-[#0265A6]" />
+                  <span>{t('navFreeCourses', 'Free Courses')}</span>
+                </button>
+              )}
 
               <button
                 onClick={() => {

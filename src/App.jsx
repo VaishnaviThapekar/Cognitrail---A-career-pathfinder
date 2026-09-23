@@ -28,6 +28,9 @@ import AlumniConnectModal from './components/AlumniConnectModal';
 import ScholarshipFinderModal from './components/ScholarshipFinderModal';
 import AIMockInterviewModal from './components/AIMockInterviewModal';
 import CloudSyncModal from './components/CloudSyncModal';
+import CollegeCutoffPredictorModal from './components/CollegeCutoffPredictorModal';
+import CareerDecisionMatrixModal from './components/CareerDecisionMatrixModal';
+import SkillTrendsCourseFinderModal from './components/SkillTrendsCourseFinderModal';
 import { LevelUpNotification, AchievementNotification, GamificationDashboard } from './components/GamificationComponents';
 import { useGamification } from './contexts/GamificationContext';
 import { useAuth } from './contexts/AuthContext';
@@ -80,6 +83,9 @@ function App() {
   const [showScholarshipFinder, setShowScholarshipFinder] = useState(false);
   const [showMockInterview, setShowMockInterview] = useState(false);
   const [showCloudSync, setShowCloudSync] = useState(false);
+  const [showPredictor, setShowPredictor] = useState(false);
+  const [showDecisionMatrix, setShowDecisionMatrix] = useState(false);
+  const [showFreeCourses, setShowFreeCourses] = useState(false);
   const [selectedCareerForReadiness, setSelectedCareerForReadiness] = useState(null);
   const [infoModalContent, setInfoModalContent] = useState(null);
   const [activeDomainFilter, setActiveDomainFilter] = useState('all');
@@ -107,6 +113,9 @@ function App() {
     window.openInterview = () => setShowInterviewSimulator(true);
     window.openMockInterview = () => setShowMockInterview(true);
     window.openCloudSync = () => setShowCloudSync(true);
+    window.openPredictor = () => setShowPredictor(true);
+    window.openDecisionMatrix = () => setShowDecisionMatrix(true);
+    window.openFreeCourses = () => setShowFreeCourses(true);
     window.openRoadmap = () => setShowRoadmapBuilder(true);
     window.openSalary = () => setShowSalaryCalculator(true);
     window.openExams = () => setShowExamTracker(true);
@@ -123,6 +132,9 @@ function App() {
       delete window.openInterview;
       delete window.openMockInterview;
       delete window.openCloudSync;
+      delete window.openPredictor;
+      delete window.openDecisionMatrix;
+      delete window.openFreeCourses;
       delete window.openRoadmap;
       delete window.openSalary;
       delete window.openExams;
@@ -353,6 +365,9 @@ function App() {
             setShowComparison={setShowComparison}
             setShowCollegeFinder={setShowCollegeFinder}
             onOpenCloudSync={() => setShowCloudSync(true)}
+            onOpenPredictor={() => setShowPredictor(true)}
+            onOpenDecisionMatrix={() => setShowDecisionMatrix(true)}
+            onOpenFreeCourses={() => setShowFreeCourses(true)}
           />
 
           {/* Main Content */}
@@ -1211,6 +1226,30 @@ function App() {
         />
       )}
 
+      {/* College Cutoff Predictor Modal */}
+      {showPredictor && (
+        <CollegeCutoffPredictorModal
+          onClose={() => setShowPredictor(false)}
+          darkMode={darkMode}
+        />
+      )}
+
+      {/* AI Decision Matrix Modal */}
+      {showDecisionMatrix && (
+        <CareerDecisionMatrixModal
+          onClose={() => setShowDecisionMatrix(false)}
+          darkMode={darkMode}
+        />
+      )}
+
+      {/* Skill Trends & Free Course Finder Modal */}
+      {showFreeCourses && (
+        <SkillTrendsCourseFinderModal
+          onClose={() => setShowFreeCourses(false)}
+          darkMode={darkMode}
+        />
+      )}
+
       {/* Floating Quick Action Speed Dial Dock */}
       <FloatingQuickDock
         onOpenQuiz={() => setShowQuiz(true)}
@@ -1224,6 +1263,9 @@ function App() {
         onOpenScholarships={() => setShowScholarshipFinder(true)}
         onOpenMockInterview={() => setShowMockInterview(true)}
         onOpenCloudSync={() => setShowCloudSync(true)}
+        onOpenPredictor={() => setShowPredictor(true)}
+        onOpenDecisionMatrix={() => setShowDecisionMatrix(true)}
+        onOpenFreeCourses={() => setShowFreeCourses(true)}
       />
     </div>
   );

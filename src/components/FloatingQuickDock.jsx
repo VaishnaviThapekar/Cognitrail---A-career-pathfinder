@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Compass, Sparkles, Target, Map, GraduationCap, Bot, DollarSign, Calendar, UserCheck, Award, X, Brain, Cloud } from 'lucide-react';
+import { Compass, Sparkles, Target, Map, GraduationCap, Bot, DollarSign, Calendar, UserCheck, Award, X, Brain, Cloud, Calculator, GitCompare, BookOpen } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export default function FloatingQuickDock({
@@ -13,7 +13,10 @@ export default function FloatingQuickDock({
   onOpenMentors,
   onOpenScholarships,
   onOpenMockInterview,
-  onOpenCloudSync
+  onOpenCloudSync,
+  onOpenPredictor,
+  onOpenDecisionMatrix,
+  onOpenFreeCourses
 }) {
   const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
@@ -26,6 +29,36 @@ export default function FloatingQuickDock({
       color: 'from-[#0265A6] to-[#6096BA]',
       onClick: () => {
         onOpenQuiz?.();
+        setIsOpen(false);
+      }
+    },
+    {
+      id: 'predictor',
+      label: t('navCutoff', 'Cutoff Predictor'),
+      icon: Calculator,
+      color: 'from-[#003B73] to-[#0265A6]',
+      onClick: () => {
+        onOpenPredictor?.();
+        setIsOpen(false);
+      }
+    },
+    {
+      id: 'matrix',
+      label: t('navDecisionMatrix', 'Decision Matrix'),
+      icon: GitCompare,
+      color: 'from-[#0265A6] to-[#6096BA]',
+      onClick: () => {
+        onOpenDecisionMatrix?.();
+        setIsOpen(false);
+      }
+    },
+    {
+      id: 'courses',
+      label: t('navFreeCourses', 'Free Courses'),
+      icon: BookOpen,
+      color: 'from-[#003B73] to-[#6096BA]',
+      onClick: () => {
+        onOpenFreeCourses?.();
         setIsOpen(false);
       }
     },

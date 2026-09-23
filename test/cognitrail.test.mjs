@@ -116,3 +116,74 @@ test('5. ATS Resume Readiness Alignment Matrix', (t) => {
   const scoreLow = calculateATSScore(2, 10, false, 40);
   assert.equal(scoreLow, 30, 'Low keywords and no portfolio should yield low ATS score');
 });
+
+test('6. Entrance Exam Category Multiplier & Probability Predictor', (t) => {
+  const getCategoryMultiplier = (category) => {
+    switch (category) {
+      case 'OBC-NCL': return 1.35;
+      case 'SC': return 2.1;
+      case 'ST': return 3.2;
+      case 'EWS': return 1.15;
+      default: return 1.0; // General
+    }
+  };
+
+  const predictMatch = (userRank, cutoffRank, category) => {
+    const effCutoff = cutoffRank * getCategoryMultiplier(category);
+    if (userRank <= effCutoff * 0.85) return 'High Chance';
+    if (userRank <= effCutoff * 1.1) return 'Target Match';
+    return 'Reach / Low Chance';
+  };
+
+  const generalCutoff = 10000;
+  assert.equal(predictMatch(8000, generalCutoff, 'General'), 'High Chance', 'Rank 8000 against 10000 cutoff (General) should be High Chance');
+  assert.equal(predictMatch(12000, generalCutoff, 'General'), 'Reach / Low Chance', 'Rank 12000 against 10000 cutoff (General) should be Reach');
+
+  // OBC-NCL multiplier (1.35) makes effective cutoff 13500
+  assert.equal(predictMatch(11000, generalCutoff, 'OBC-NCL'), 'High Chance', 'Rank 11000 against 10000 cutoff (OBC-NCL multiplier 1.35) should be High Chance');
+  
+  // SC multiplier (2.1) makes effective cutoff 21000 (0.85 * 21000 = 17850)
+  assert.equal(predictMatch(15000, generalCutoff, 'SC'), 'High Chance', 'Rank 15000 against 10000 cutoff (SC multiplier 2.1) should be High Chance');
+  assert.equal(predictMatch(18000, generalCutoff, 'SC'), 'Target Match', 'Rank 18000 against 10000 cutoff (SC multiplier 2.1) should be Target Match');
+});
+
+test('7. AI Decision Matrix ROI & Break-even Years Calculation', (t) => {
+  const calculateROI = (tuitionLakhs, ctcLakhs) => {
+    const tuitionTotal = tuitionLakhs * 100000;
+    const ctcTotal = ctcLakhs * 100000;
+    const annualNetSavings = ctcTotal * 0.45; // 45% post-tax & expenses saved
+    const breakEvenYears = Number((tuitionTotal / annualNetSavings).toFixed(1));
+    const roiPercentage = Math.round(((ctcTotal * 5 - tuitionTotal) / tuitionTotal) * 100);
+    return { breakEvenYears, roiPercentage };
+  };
+
+  // Case A: 12 Lakh tuition, 18 LPA CTC
+  const resA = calculateROI(12, 18);
+  assert.equal(resA.breakEvenYears, 1.5, '12L tuition with 18 LPA CTC should break even in 1.5 years');
+  assert.equal(resA.roiPercentage, 650, '12L tuition with 18 LPA CTC 5-year ROI percentage should be 650%');
+
+  // Case B: 24 Lakh tuition, 14 LPA CTC
+  const resB = calculateROI(24, 14);
+  assert.ok(resB.breakEvenYears > resA.breakEvenYears, 'Higher tuition with lower CTC should result in longer break-even time');
+});
+
+test('8. Skill Trends & Free Certified Course Directory Filtering', (t) => {
+  const courses = [
+    { title: 'CS50x: Introduction to Computer Science', provider: 'Harvard CS50', level: 'Beginner', category: 'computer_science' },
+    { title: 'Google Data Analytics Professional Certificate', provider: 'Google / Coursera', level: 'Beginner', category: 'data_ai' },
+    { title: 'NPTEL Artificial Intelligence Search Methods', provider: 'IIT Madras (NPTEL)', level: 'Advanced', category: 'computer_science' }
+  ];
+
+  const filterCourses = (category, search, level) => {
+    return courses.filter(c => {
+      const matchCat = category === 'all' || c.category === category;
+      const matchLevel = level === 'all' || c.level === level;
+      const matchSearch = !search || c.title.toLowerCase().includes(search.toLowerCase()) || c.provider.toLowerCase().includes(search.toLowerCase());
+      return matchCat && matchLevel && matchSearch;
+    });
+  };
+
+  assert.equal(filterCourses('computer_science', '', 'all').length, 2, 'Should find 2 CS courses');
+  assert.equal(filterCourses('all', 'Harvard', 'all').length, 1, 'Should find 1 Harvard course');
+  assert.equal(filterCourses('all', '', 'Advanced').length, 1, 'Should find 1 Advanced course');
+});
