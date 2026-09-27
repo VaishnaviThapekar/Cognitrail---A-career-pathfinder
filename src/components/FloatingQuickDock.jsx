@@ -16,12 +16,23 @@ export default function FloatingQuickDock({
   onOpenCloudSync,
   onOpenPredictor,
   onOpenDecisionMatrix,
-  onOpenFreeCourses
+  onOpenFreeCourses,
+  onOpenLearningPanel
 }) {
   const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
   const dockActions = [
+    {
+      id: 'learningPanel',
+      label: t('learningPanelNav', 'Learning Panel Dashboard'),
+      icon: Target,
+      color: 'from-[#003B73] to-[#0265A6]',
+      onClick: () => {
+        onOpenLearningPanel?.();
+        setIsOpen(false);
+      }
+    },
     {
       id: 'quiz',
       label: t('aiQuizCardTitle', 'AI Career Quiz'),

@@ -31,6 +31,7 @@ import CloudSyncModal from './components/CloudSyncModal';
 import CollegeCutoffPredictorModal from './components/CollegeCutoffPredictorModal';
 import CareerDecisionMatrixModal from './components/CareerDecisionMatrixModal';
 import SkillTrendsCourseFinderModal from './components/SkillTrendsCourseFinderModal';
+import LearningPanelDashboard from './components/LearningPanelDashboard';
 import { LevelUpNotification, AchievementNotification, GamificationDashboard } from './components/GamificationComponents';
 import { useGamification } from './contexts/GamificationContext';
 import { useAuth } from './contexts/AuthContext';
@@ -86,6 +87,8 @@ function App() {
   const [showPredictor, setShowPredictor] = useState(false);
   const [showDecisionMatrix, setShowDecisionMatrix] = useState(false);
   const [showFreeCourses, setShowFreeCourses] = useState(false);
+  const [showLearningPanel, setShowLearningPanel] = useState(false);
+  const [chosenTargetCareerGoal, setChosenTargetCareerGoal] = useState(null);
   const [selectedCareerForReadiness, setSelectedCareerForReadiness] = useState(null);
   const [infoModalContent, setInfoModalContent] = useState(null);
   const [activeDomainFilter, setActiveDomainFilter] = useState('all');
@@ -116,6 +119,10 @@ function App() {
     window.openPredictor = () => setShowPredictor(true);
     window.openDecisionMatrix = () => setShowDecisionMatrix(true);
     window.openFreeCourses = () => setShowFreeCourses(true);
+    window.openLearningPanel = (career) => {
+      if (career) setChosenTargetCareerGoal(career);
+      setShowLearningPanel(true);
+    };
     window.openRoadmap = () => setShowRoadmapBuilder(true);
     window.openSalary = () => setShowSalaryCalculator(true);
     window.openExams = () => setShowExamTracker(true);
@@ -135,6 +142,7 @@ function App() {
       delete window.openPredictor;
       delete window.openDecisionMatrix;
       delete window.openFreeCourses;
+      delete window.openLearningPanel;
       delete window.openRoadmap;
       delete window.openSalary;
       delete window.openExams;
@@ -368,6 +376,7 @@ function App() {
             onOpenPredictor={() => setShowPredictor(true)}
             onOpenDecisionMatrix={() => setShowDecisionMatrix(true)}
             onOpenFreeCourses={() => setShowFreeCourses(true)}
+            onOpenLearningPanel={() => setShowLearningPanel(true)}
           />
 
           {/* Main Content */}
@@ -1250,6 +1259,22 @@ function App() {
         />
       )}
 
+      {/* Personalized Learning Panel Dashboard */}
+      {showLearningPanel && (
+        <LearningPanelDashboard
+          onClose={() => setShowLearningPanel(false)}
+          darkMode={darkMode}
+          chosenCareer={chosenTargetCareerGoal}
+          onSelectCareer={(c) => setChosenTargetCareerGoal(c)}
+          onOpenExams={() => setShowExamTracker(true)}
+          onOpenPredictor={() => setShowPredictor(true)}
+          onOpenMockInterview={() => setShowMockInterview(true)}
+          onOpenMentors={() => setShowAlumniConnect(true)}
+          onOpenAdvisor={() => setShowAdvancedChatbot(true)}
+          onOpenSkills={() => setShowSkillsAnalyzer(true)}
+        />
+      )}
+
       {/* Floating Quick Action Speed Dial Dock */}
       <FloatingQuickDock
         onOpenQuiz={() => setShowQuiz(true)}
@@ -1266,6 +1291,7 @@ function App() {
         onOpenPredictor={() => setShowPredictor(true)}
         onOpenDecisionMatrix={() => setShowDecisionMatrix(true)}
         onOpenFreeCourses={() => setShowFreeCourses(true)}
+        onOpenLearningPanel={() => setShowLearningPanel(true)}
       />
     </div>
   );

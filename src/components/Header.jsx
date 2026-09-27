@@ -27,7 +27,8 @@ const Header = ({
   onOpenCloudSync,
   onOpenPredictor,
   onOpenDecisionMatrix,
-  onOpenFreeCourses
+  onOpenFreeCourses,
+  onOpenLearningPanel
 }) => {
   const { level, points } = useGamification();
   const { user, isAuthenticated } = useAuth();
@@ -123,6 +124,20 @@ const Header = ({
               >
                 {t('navSkills', 'Skill Gap')}
               </button>
+
+              {onOpenLearningPanel && (
+                <button
+                  onClick={() => onOpenLearningPanel()}
+                  className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all border ${
+                    darkMode
+                      ? 'bg-gradient-to-r from-[#003B73]/60 to-[#0265A6]/60 border-[#0265A6] text-white shadow-sm'
+                      : 'bg-gradient-to-r from-[#EBF3FA] to-[#BACDDF]/40 border-[#0265A6]/40 text-[#0265A6]'
+                  }`}
+                >
+                  <Target className="w-3.5 h-3.5 text-[#0265A6]" />
+                  <span>{t('learningPanelNav', 'Learning Panel')}</span>
+                </button>
+              )}
 
               {/* More Tools Dropdown Menu */}
               <div className="relative" ref={dropdownRef}>
@@ -453,6 +468,19 @@ const Header = ({
                   <Target className="w-4 h-4 text-[#0265A6]" />
                   <span>{t('navSkills', 'Skills Gap')}</span>
                 </button>
+
+                {onOpenLearningPanel && (
+                  <button
+                    onClick={() => {
+                      onOpenLearningPanel();
+                      closeMobileMenu();
+                    }}
+                    className="flex items-center gap-2 p-2.5 rounded-xl text-xs font-bold text-left border bg-gradient-to-r from-[#003B73] to-[#0265A6] border-[#0265A6] text-white"
+                  >
+                    <Target className="w-4 h-4 text-white" />
+                    <span>{t('learningPanelNav', 'Learning Panel')}</span>
+                  </button>
+                )}
               </div>
             </div>
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   X, DollarSign, Calendar, GraduationCap, Award, MapPin,
   Star, Brain, ExternalLink, Map, TrendingUp, Sparkles,
-  Layers, Code2, ArrowRight, Bookmark, CheckCircle2, Briefcase
+  Layers, Code2, ArrowRight, Bookmark, CheckCircle2, Briefcase, Target
 } from 'lucide-react';
 import CareerRoadmap from './CareerRoadmap';
 import DayInLifeShowcase from './DayInLifeShowcase';
@@ -148,7 +148,20 @@ const CareerDetailModal = ({
                 </p>
               </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+                <button
+                  onClick={() => {
+                    if (window.openLearningPanel) {
+                      window.openLearningPanel(activeCareer);
+                    }
+                  }}
+                  className="px-3.5 py-2 rounded-xl text-xs font-bold btn-interactive flex items-center gap-1.5 bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white shadow-md hover:brightness-110"
+                  title="Select this career as your active learning goal"
+                >
+                  <Target className="w-4 h-4 text-white" />
+                  <span>Set as Active Goal</span>
+                </button>
+
                 {setSavedCareers && (
                   <button
                     onClick={toggleBookmark}

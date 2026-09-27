@@ -187,3 +187,20 @@ test('8. Skill Trends & Free Certified Course Directory Filtering', (t) => {
   assert.equal(filterCourses('all', 'Harvard', 'all').length, 1, 'Should find 1 Harvard course');
   assert.equal(filterCourses('all', '', 'Advanced').length, 1, 'Should find 1 Advanced course');
 });
+
+test('9. Learning Panel Dashboard & Goal Progress Calculation', (t) => {
+  const calculateLearningProgress = (skills, completedSkills, milestoneTasks, completedTasks) => {
+    const totalItems = skills.length + milestoneTasks.length;
+    if (totalItems === 0) return 0;
+    const checkedSkills = skills.filter(s => completedSkills.includes(s)).length;
+    const checkedTasks = milestoneTasks.filter(t => completedTasks.includes(t)).length;
+    return Math.round(((checkedSkills + checkedTasks) / totalItems) * 100);
+  };
+
+  const skills = ['Python', 'PyTorch', 'Data Structures', 'Git'];
+  const tasks = ['Complete Math 12th', 'Build Portfolio App', 'Pass Interview'];
+
+  assert.equal(calculateLearningProgress(skills, [], tasks, []), 0, 'Initial progress with 0 items completed should be 0%');
+  assert.equal(calculateLearningProgress(skills, ['Python', 'Git'], tasks, ['Complete Math 12th']), 43, '3 out of 7 completed items should be 43%');
+  assert.equal(calculateLearningProgress(skills, skills, tasks, tasks), 100, 'All completed items should equal 100%');
+});
