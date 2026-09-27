@@ -32,6 +32,7 @@ import CollegeCutoffPredictorModal from './components/CollegeCutoffPredictorModa
 import CareerDecisionMatrixModal from './components/CareerDecisionMatrixModal';
 import SkillTrendsCourseFinderModal from './components/SkillTrendsCourseFinderModal';
 import LearningPanelDashboard from './components/LearningPanelDashboard';
+import AIResumePortfolioBuilderModal from './components/AIResumePortfolioBuilderModal';
 import { LevelUpNotification, AchievementNotification, GamificationDashboard } from './components/GamificationComponents';
 import { useGamification } from './contexts/GamificationContext';
 import { useAuth } from './contexts/AuthContext';
@@ -88,6 +89,7 @@ function App() {
   const [showDecisionMatrix, setShowDecisionMatrix] = useState(false);
   const [showFreeCourses, setShowFreeCourses] = useState(false);
   const [showLearningPanel, setShowLearningPanel] = useState(false);
+  const [showResumeBuilder, setShowResumeBuilder] = useState(false);
   const [chosenTargetCareerGoal, setChosenTargetCareerGoal] = useState(null);
   const [selectedCareerForReadiness, setSelectedCareerForReadiness] = useState(null);
   const [infoModalContent, setInfoModalContent] = useState(null);
@@ -113,6 +115,10 @@ function App() {
     };
     window.openQuiz = () => setShowQuiz(true);
     window.openResume = () => setShowResumeUploader(true);
+    window.openResumeBuilder = (career) => {
+      if (career) setChosenTargetCareerGoal(career);
+      setShowResumeBuilder(true);
+    };
     window.openInterview = () => setShowInterviewSimulator(true);
     window.openMockInterview = () => setShowMockInterview(true);
     window.openCloudSync = () => setShowCloudSync(true);
@@ -136,6 +142,7 @@ function App() {
       delete window.openSkillGap;
       delete window.openQuiz;
       delete window.openResume;
+      delete window.openResumeBuilder;
       delete window.openInterview;
       delete window.openMockInterview;
       delete window.openCloudSync;
@@ -377,6 +384,7 @@ function App() {
             onOpenDecisionMatrix={() => setShowDecisionMatrix(true)}
             onOpenFreeCourses={() => setShowFreeCourses(true)}
             onOpenLearningPanel={() => setShowLearningPanel(true)}
+            onOpenResumeBuilder={() => setShowResumeBuilder(true)}
           />
 
           {/* Main Content */}
@@ -1275,6 +1283,15 @@ function App() {
         />
       )}
 
+      {/* AI Resume & Portfolio Builder Modal */}
+      {showResumeBuilder && (
+        <AIResumePortfolioBuilderModal
+          onClose={() => setShowResumeBuilder(false)}
+          darkMode={darkMode}
+          initialCareer={chosenTargetCareerGoal}
+        />
+      )}
+
       {/* Floating Quick Action Speed Dial Dock */}
       <FloatingQuickDock
         onOpenQuiz={() => setShowQuiz(true)}
@@ -1292,6 +1309,7 @@ function App() {
         onOpenDecisionMatrix={() => setShowDecisionMatrix(true)}
         onOpenFreeCourses={() => setShowFreeCourses(true)}
         onOpenLearningPanel={() => setShowLearningPanel(true)}
+        onOpenResumeBuilder={() => setShowResumeBuilder(true)}
       />
     </div>
   );

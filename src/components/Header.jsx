@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   Search, Moon, Sun, User, Scale, School, LogIn, Menu, X,
   Compass, HelpCircle, Map, Newspaper, Bot, Target, Globe, Cloud,
-  Calculator, GitCompare, BookOpen, ChevronDown
+  Calculator, GitCompare, BookOpen, ChevronDown, FileText
 } from 'lucide-react';
 import { useGamification } from '../contexts/GamificationContext';
 import { useAuth } from '../contexts/AuthContext';
@@ -28,7 +28,8 @@ const Header = ({
   onOpenPredictor,
   onOpenDecisionMatrix,
   onOpenFreeCourses,
-  onOpenLearningPanel
+  onOpenLearningPanel,
+  onOpenResumeBuilder
 }) => {
   const { level, points } = useGamification();
   const { user, isAuthenticated } = useAuth();
@@ -234,6 +235,26 @@ const Header = ({
                         <div>
                           <div>{t('navCompare', 'Compare Careers')}</div>
                           <div className="text-[10px] font-normal opacity-70">Side-by-side job role analysis</div>
+                        </div>
+                      </button>
+                    )}
+
+                    {onOpenResumeBuilder && (
+                      <button
+                        onClick={() => {
+                          onOpenResumeBuilder();
+                          setToolsDropdownOpen(false);
+                        }}
+                        className={`w-full flex items-center gap-2.5 p-2.5 rounded-xl text-xs font-bold text-left transition-colors ${
+                          darkMode ? 'hover:bg-[#0A1E3F] text-zinc-200 hover:text-white' : 'hover:bg-[#EBF3FA] text-zinc-800 hover:text-[#0265A6]'
+                        }`}
+                      >
+                        <div className="p-1.5 rounded-lg bg-[#003B73]/30 text-[#0265A6]">
+                          <FileText className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <div>{t('resumeBuilderNav', 'AI Resume Builder')}</div>
+                          <div className="text-[10px] font-normal opacity-70">ATS-optimized CV & Portfolio generator</div>
                         </div>
                       </button>
                     )}

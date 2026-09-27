@@ -204,3 +204,61 @@ test('9. Learning Panel Dashboard & Goal Progress Calculation', (t) => {
   assert.equal(calculateLearningProgress(skills, ['Python', 'Git'], tasks, ['Complete Math 12th']), 43, '3 out of 7 completed items should be 43%');
   assert.equal(calculateLearningProgress(skills, skills, tasks, tasks), 100, 'All completed items should equal 100%');
 });
+
+test('10. AI Resume & Portfolio Builder ATS Scorecard & Export Engine', (t) => {
+  const calculateATSMetrics = (formData) => {
+    let score = 30; // base score
+    const suggestions = [];
+
+    if (formData.email && formData.phone) score += 15;
+    else suggestions.push('Add both email and phone number for recruiter contact.');
+
+    if (formData.linkedin || formData.github) score += 10;
+    else suggestions.push('Include LinkedIn or GitHub URL for portfolio validation.');
+
+    if (formData.summary && formData.summary.length > 50) score += 15;
+    else suggestions.push('Expand professional summary to 2-3 impact-driven sentences.');
+
+    if (formData.skills && formData.skills.length >= 6) score += 15;
+    else suggestions.push(`Add at least ${6 - (formData.skills ? formData.skills.length : 0)} more technical skills to pass ATS filters.`);
+
+    if (formData.projects && formData.projects.length >= 2) score += 15;
+    else suggestions.push('List at least 2 relevant portfolio projects with tech stacks.');
+
+    if (formData.summary && formData.targetRole && formData.summary.toLowerCase().includes(formData.targetRole.toLowerCase())) score += 10;
+    else suggestions.push(`Mention your exact target role "${formData.targetRole}" in your summary.`);
+
+    return { score: Math.min(100, score), suggestions };
+  };
+
+  const completeResume = {
+    fullName: 'Vaishnavi Thapekar',
+    email: 'vaishnavi@cognitrail.ai',
+    phone: '+91 98765 43210',
+    linkedin: 'linkedin.com/in/vaishnavi-ai',
+    github: 'github.com/vaishnavi-dev',
+    targetRole: 'AI & Machine Learning Engineer',
+    summary: 'Motivated AI & Machine Learning Engineer aspirant with strong analytical problem-solving capabilities.',
+    skills: ['Python', 'PyTorch', 'TensorFlow', 'Data Structures', 'Machine Learning', 'Git', 'SQL'],
+    projects: [
+      { title: 'Project 1', techStack: 'Python, PyTorch' },
+      { title: 'Project 2', techStack: 'Node.js, SQL' }
+    ]
+  };
+
+  const fullScoreRes = calculateATSMetrics(completeResume);
+  assert.equal(fullScoreRes.score, 100, 'A complete resume with all sections, links, and keywords should score 100%');
+  assert.equal(fullScoreRes.suggestions.length, 0, 'No suggestions should be emitted for a 100% complete resume');
+
+  const incompleteResume = {
+    email: '',
+    phone: '',
+    summary: 'Short bio.',
+    skills: ['Python'],
+    projects: []
+  };
+
+  const partialRes = calculateATSMetrics(incompleteResume);
+  assert.ok(partialRes.score < 60, 'Incomplete resume should yield a lower ATS score (<60%)');
+  assert.ok(partialRes.suggestions.length >= 3, 'Multiple improvement suggestions should be generated for incomplete resume');
+});

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Compass, Sparkles, Target, Map, GraduationCap, Bot, DollarSign, Calendar, UserCheck, Award, X, Brain, Cloud, Calculator, GitCompare, BookOpen } from 'lucide-react';
+import { Compass, Sparkles, Target, Map, GraduationCap, Bot, DollarSign, Calendar, UserCheck, Award, X, Brain, Cloud, Calculator, GitCompare, BookOpen, FileText } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -18,7 +18,8 @@ export default function FloatingQuickDock({
   onOpenPredictor,
   onOpenDecisionMatrix,
   onOpenFreeCourses,
-  onOpenLearningPanel
+  onOpenLearningPanel,
+  onOpenResumeBuilder
 }) {
   const { t } = useLanguage();
   const { isAuthenticated } = useAuth();
@@ -35,6 +36,16 @@ export default function FloatingQuickDock({
         setIsOpen(false);
       }
     }] : []),
+    {
+      id: 'resumeBuilder',
+      label: t('resumeBuilderNav', 'AI Resume Builder'),
+      icon: FileText,
+      color: 'from-[#0265A6] to-[#6096BA]',
+      onClick: () => {
+        onOpenResumeBuilder?.();
+        setIsOpen(false);
+      }
+    },
     {
       id: 'quiz',
       label: t('aiQuizCardTitle', 'AI Career Quiz'),
