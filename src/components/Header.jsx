@@ -125,7 +125,7 @@ const Header = ({
                 {t('navSkills', 'Skill Gap')}
               </button>
 
-              {onOpenLearningPanel && (
+              {isAuthenticated && onOpenLearningPanel && (
                 <button
                   onClick={() => onOpenLearningPanel()}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all border ${
@@ -469,7 +469,7 @@ const Header = ({
                   <span>{t('navSkills', 'Skills Gap')}</span>
                 </button>
 
-                {onOpenLearningPanel && (
+                {isAuthenticated && onOpenLearningPanel && (
                   <button
                     onClick={() => {
                       onOpenLearningPanel();

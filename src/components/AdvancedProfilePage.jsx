@@ -226,6 +226,50 @@ export default function AdvancedProfilePage({ darkMode, onClose }) {
                     {/* Overview Tab */}
                     {activeTab === 'overview' && (
                         <div className="space-y-6 animate-fade-in">
+                            {/* Active Target Career Goal & Learning Panel Card */}
+                            <div className={`p-5 rounded-2xl border ${
+                                darkMode ? 'bg-gradient-to-r from-[#003B73]/40 via-[#0A1E3F] to-[#071326] border-[#003B73]' : 'bg-gradient-to-r from-[#EBF3FA] via-white to-[#EBF3FA] border-[#BACDDF]'
+                            }`}>
+                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                    <div className="flex items-start gap-3.5">
+                                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-2xl font-bold bg-gradient-to-tr from-[#003B73] via-[#0265A6] to-[#6096BA] text-white shadow-md">
+                                            🎯
+                                        </div>
+                                        <div>
+                                            <div className="text-[10px] font-bold uppercase tracking-wider text-[#0265A6] mb-1">
+                                                Active Personalized Career Goal
+                                            </div>
+                                            <h4 className={`text-lg font-black ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>
+                                                {user?.targetCareer?.name || (function() {
+                                                    try {
+                                                        const stored = localStorage.getItem('cognitrail_active_target_career');
+                                                        return stored ? JSON.parse(stored).name : 'AI & Machine Learning Engineer';
+                                                    } catch {
+                                                        return 'AI & Machine Learning Engineer';
+                                                    }
+                                                })()}
+                                            </h4>
+                                            <p className={`text-xs mt-1 ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                                                Track your stage-by-stage mastery roadmap, skills checklist, entrance exam cutoffs, and free certified courses.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <button
+                                        onClick={() => {
+                                            onClose();
+                                            if (window.openLearningPanel) {
+                                                window.openLearningPanel(user?.targetCareer);
+                                            }
+                                        }}
+                                        className="px-4 py-2.5 rounded-xl text-xs font-bold btn-interactive flex items-center justify-center gap-2 whitespace-nowrap bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white shadow-md hover:brightness-110"
+                                    >
+                                        <span>Open My Learning Panel</span>
+                                        <Target className="w-4 h-4" />
+                                    </button>
+                                </div>
+                            </div>
+
                             {/* Bio */}
                             <div>
                                 <h3 className="text-base font-bold mb-2">

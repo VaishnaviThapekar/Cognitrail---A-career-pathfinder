@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Compass, Sparkles, Target, Map, GraduationCap, Bot, DollarSign, Calendar, UserCheck, Award, X, Brain, Cloud, Calculator, GitCompare, BookOpen } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function FloatingQuickDock({
   onOpenQuiz,
@@ -20,10 +21,11 @@ export default function FloatingQuickDock({
   onOpenLearningPanel
 }) {
   const { t } = useLanguage();
+  const { isAuthenticated } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
   const dockActions = [
-    {
+    ...(isAuthenticated ? [{
       id: 'learningPanel',
       label: t('learningPanelNav', 'Learning Panel Dashboard'),
       icon: Target,
@@ -32,7 +34,7 @@ export default function FloatingQuickDock({
         onOpenLearningPanel?.();
         setIsOpen(false);
       }
-    },
+    }] : []),
     {
       id: 'quiz',
       label: t('aiQuizCardTitle', 'AI Career Quiz'),

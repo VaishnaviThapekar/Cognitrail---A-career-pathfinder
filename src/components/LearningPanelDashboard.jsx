@@ -6,6 +6,7 @@ import {
   Search, ArrowRight, BarChart2
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
+import { useAuth } from '../contexts/AuthContext';
 import { CAREER_DATABASE } from '../data/careerDatabase';
 
 // Default Fallback Target Career if user hasn't chosen one yet
@@ -154,12 +155,17 @@ export default function LearningPanelDashboard({
   onOpenSkills
 }) {
   const { t } = useLanguage();
+  const { user } = useAuth();
+
+  const userPrefix = user?.id ? `user_${user.id}_` : '';
+  const goalStorageKey = `cognitrail_${userPrefix}active_target_career`;
 
   // Active target career state
   const [activeGoal, setActiveGoal] = useState(() => {
     if (chosenCareer && chosenCareer.name) return chosenCareer;
+    if (user && user.targetCareer && user.targetCareer.name) return user.targetCareer;
     try {
-      const stored = localStorage.getItem('cognitrail_active_target_career');
+      const stored = localStorage.getItem(goalStorageKey);
       return stored ? JSON.parse(stored) : DEFAULT_CAREER;
     } catch {
       return DEFAULT_CAREER;
@@ -170,19 +176,19 @@ export default function LearningPanelDashboard({
   const [goalSearch, setGoalSearch] = useState('');
   const [activeTab, setActiveTab] = useState('pathway'); // 'pathway', 'skills', 'academic', 'courses', 'interview'
 
-  // Persist activeGoal to localStorage
+  // Persist activeGoal to localStorage for this specific user
   useEffect(() => {
     try {
       if (activeGoal && activeGoal.name) {
-        localStorage.setItem('cognitrail_active_target_career', JSON.stringify(activeGoal));
+        localStorage.setItem(goalStorageKey, JSON.stringify(activeGoal));
       }
     } catch (e) {
       console.warn('Could not store active career goal', e);
     }
-  }, [activeGoal]);
+  }, [activeGoal, goalStorageKey]);
 
-  // Skill checklist state persisted per career
-  const storageKey = `cognitrail_skills_progress_${(activeGoal.name || 'default').replace(/\s+/g, '_')}`;
+  // Skill checklist state persisted per career & user
+  const storageKey = `cognitrail_${userPrefix}skills_progress_${(activeGoal.name || 'default').replace(/\s+/g, '_')}`;
   
   const [completedSkills, setCompletedSkills] = useState(() => {
     try {
@@ -193,8 +199,8 @@ export default function LearningPanelDashboard({
     }
   });
 
-  // Milestone tasks completion state
-  const milestoneStorageKey = `cognitrail_milestones_progress_${(activeGoal.name || 'default').replace(/\s+/g, '_')}`;
+  // Milestone tasks completion state per career & user
+  const milestoneStorageKey = `cognitrail_${userPrefix}milestones_progress_${(activeGoal.name || 'default').replace(/\s+/g, '_')}`;
   const [completedTasks, setCompletedTasks] = useState(() => {
     try {
       const stored = localStorage.getItem(milestoneStorageKey);
@@ -428,6 +434,11 @@ export default function LearningPanelDashboard({
               </div>
               <div>
                 <div className="flex items-center gap-2 flex-wrap mb-1">
+                  {user && (
+                    <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase bg-[#0265A6] text-white">
+                      👤 {user.name}
+                    </span>
+                  )}
                   <span className="px-2.5 py-0.5 rounded-full text-[10px] font-black tracking-wider uppercase bg-[#003B73] text-[#EBF3FA]">
                     {t('activeGoal', 'Active Career Path')}
                   </span>
