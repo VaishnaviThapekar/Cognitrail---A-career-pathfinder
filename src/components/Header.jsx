@@ -569,6 +569,21 @@ const Header = ({
                   </button>
                 )}
 
+                {onOpenResumeBuilder && (
+                  <button
+                    onClick={() => {
+                      onOpenResumeBuilder();
+                      closeMobileMenu();
+                    }}
+                    className={`flex items-center gap-2 p-2.5 rounded-xl text-xs font-bold text-left border transition-colors ${
+                      darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA]' : 'bg-white border-[#BACDDF] text-[#051C3E]'
+                    }`}
+                  >
+                    <FileText className="w-4 h-4 text-[#0265A6]" />
+                    <span>{t('resumeBuilderNav', 'AI Resume')}</span>
+                  </button>
+                )}
+
                 <button
                   onClick={() => {
                     if (onOpenRoadmap) onOpenRoadmap();

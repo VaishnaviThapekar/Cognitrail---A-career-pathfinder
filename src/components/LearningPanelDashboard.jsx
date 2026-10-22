@@ -155,7 +155,7 @@ export default function LearningPanelDashboard({
   onOpenSkills
 }) {
   const { t } = useLanguage();
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
 
   const userPrefix = user?.id ? `user_${user.id}_` : '';
   const goalStorageKey = `cognitrail_${userPrefix}active_target_career`;
@@ -414,6 +414,54 @@ export default function LearningPanelDashboard({
     element.click();
     document.body.removeChild(element);
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in">
+        <div className={`relative w-full max-w-lg rounded-3xl p-6 sm:p-8 border shadow-2xl text-center ${
+          darkMode ? 'bg-[#071326] border-[#003B73] text-white' : 'bg-white border-[#BACDDF] text-[#051C3E]'
+        }`}>
+          <button
+            onClick={onClose}
+            className="absolute top-5 right-5 p-2 rounded-xl text-zinc-400 hover:text-white"
+            aria-label="Close"
+          >
+            <X className="w-5 h-5" />
+          </button>
+          
+          <div className="w-16 h-16 mx-auto rounded-3xl flex items-center justify-center text-3xl font-bold bg-gradient-to-tr from-[#003B73] via-[#0265A6] to-[#6096BA] text-white shadow-lg mb-4">
+            🔒
+          </div>
+          
+          <h3 className="text-2xl font-black mb-2">
+            Personalized Learning Panel
+          </h3>
+          <p className={`text-sm mb-6 leading-relaxed ${darkMode ? 'text-zinc-300' : 'text-zinc-600'}`}>
+            The Learning Panel is reserved for student accounts. Sign in or create a free profile to track milestone progress, save customized cutoffs, and monitor skills for {activeGoal.name}.
+          </p>
+          
+          <button
+            onClick={() => {
+              onClose();
+              if (window.openAuth) window.openAuth();
+            }}
+            className="w-full py-3.5 rounded-2xl font-bold text-sm bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white shadow-lg hover:brightness-110 mb-3 cursor-pointer"
+          >
+            Sign In / Create Free Account
+          </button>
+          
+          <button
+            onClick={onClose}
+            className={`w-full py-2.5 rounded-2xl text-xs font-bold border cursor-pointer ${
+              darkMode ? 'border-[#003B73] text-zinc-400 hover:text-white' : 'border-[#BACDDF] text-zinc-600 hover:text-black'
+            }`}
+          >
+            Close & Continue Browsing
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2.5 sm:p-4 bg-black/80 backdrop-blur-md animate-fade-in overflow-y-auto">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Lightbulb, ChevronRight, Sparkles, X, Mail, Shield, FileText, Info } from 'lucide-react';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
@@ -95,6 +95,11 @@ function App() {
   const [infoModalContent, setInfoModalContent] = useState(null);
   const [activeDomainFilter, setActiveDomainFilter] = useState('all');
 
+  const isAuthRef = useRef(isAuthenticated);
+  useEffect(() => {
+    isAuthRef.current = isAuthenticated;
+  }, [isAuthenticated]);
+
   useEffect(() => {
     const timer = setTimeout(() => setShowWelcome(false), 2000);
     return () => clearTimeout(timer);
@@ -114,6 +119,7 @@ function App() {
       setShowSkillsAnalyzer(true);
     };
     window.openQuiz = () => setShowQuiz(true);
+    window.openAuth = () => setShowAuthModal(true);
     window.openResume = () => setShowResumeUploader(true);
     window.openResumeBuilder = (career) => {
       if (career) setChosenTargetCareerGoal(career);
@@ -127,6 +133,10 @@ function App() {
     window.openFreeCourses = () => setShowFreeCourses(true);
     window.openLearningPanel = (career) => {
       if (career) setChosenTargetCareerGoal(career);
+      if (!isAuthRef.current) {
+        setShowAuthModal(true);
+        return;
+      }
       setShowLearningPanel(true);
     };
     window.openRoadmap = () => setShowRoadmapBuilder(true);
@@ -141,6 +151,7 @@ function App() {
     return () => {
       delete window.openSkillGap;
       delete window.openQuiz;
+      delete window.openAuth;
       delete window.openResume;
       delete window.openResumeBuilder;
       delete window.openInterview;
@@ -1123,7 +1134,7 @@ function App() {
       {!showAdvancedChatbot && !showChatbot && (
         <button
           onClick={() => setShowAdvancedChatbot(true)}
-          className={`fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center animate-float btn-interactive hover:scale-110 cursor-pointer group border ${darkMode
+          className={`fixed bottom-6 left-6 z-40 w-14 h-14 rounded-full shadow-2xl flex items-center justify-center animate-float btn-interactive hover:scale-110 cursor-pointer group border ${darkMode
             ? 'bg-white text-black border-zinc-300 shadow-white/10 hover:shadow-white/20'
             : 'bg-black text-white border-zinc-700 shadow-black/30 hover:shadow-black/40'
             }`}

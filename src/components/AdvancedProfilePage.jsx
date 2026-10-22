@@ -242,7 +242,8 @@ export default function AdvancedProfilePage({ darkMode, onClose }) {
                                             <h4 className={`text-lg font-black ${darkMode ? 'text-white' : 'text-[#051C3E]'}`}>
                                                 {user?.targetCareer?.name || (function() {
                                                     try {
-                                                        const stored = localStorage.getItem('cognitrail_active_target_career');
+                                                        const userPrefix = user?.id ? `user_${user.id}_` : '';
+                                                        const stored = localStorage.getItem(`cognitrail_${userPrefix}active_target_career`) || localStorage.getItem('cognitrail_active_target_career');
                                                         return stored ? JSON.parse(stored).name : 'AI & Machine Learning Engineer';
                                                     } catch {
                                                         return 'AI & Machine Learning Engineer';
@@ -259,7 +260,17 @@ export default function AdvancedProfilePage({ darkMode, onClose }) {
                                         onClick={() => {
                                             onClose();
                                             if (window.openLearningPanel) {
-                                                window.openLearningPanel(user?.targetCareer);
+                                                const userPrefix = user?.id ? `user_${user.id}_` : '';
+                                                let goal = user?.targetCareer;
+                                                if (!goal) {
+                                                    try {
+                                                        const stored = localStorage.getItem(`cognitrail_${userPrefix}active_target_career`) || localStorage.getItem('cognitrail_active_target_career');
+                                                        if (stored) goal = JSON.parse(stored);
+                                                    } catch (e) {
+                                                        console.warn('Could not read stored career goal', e);
+                                                    }
+                                                }
+                                                window.openLearningPanel(goal);
                                             }
                                         }}
                                         className="px-4 py-2.5 rounded-xl text-xs font-bold btn-interactive flex items-center justify-center gap-2 whitespace-nowrap bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white shadow-md hover:brightness-110"
