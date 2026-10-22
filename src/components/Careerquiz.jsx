@@ -651,23 +651,39 @@ const CareerQuiz = ({ onClose, darkMode, onComplete, onSelectCareer }) => {
                                 </div>
 
                                 {/* Footer Action */}
-                                {result.fullCareerData && onSelectCareer && (
-                                    <div className="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800 flex justify-end">
+                                {result.fullCareerData && (
+                                    <div className="mt-6 pt-4 border-t border-zinc-100 dark:border-zinc-800 flex flex-wrap items-center justify-end gap-2.5">
                                         <button
                                             onClick={() => {
-                                                onSelectCareer(result.fullCareerData);
+                                                if (window.openLearningPanel) {
+                                                    window.openLearningPanel(result.fullCareerData);
+                                                }
                                                 onClose();
                                             }}
-                                            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold btn-interactive hover-lift border cursor-pointer ${
-                                                darkMode
-                                                    ? 'bg-zinc-900 hover:bg-white hover:text-black border-zinc-700 text-zinc-200'
-                                                    : 'bg-zinc-100 hover:bg-black hover:text-white border-zinc-300 text-black'
-                                            }`}
+                                            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold btn-interactive hover-lift cursor-pointer bg-gradient-to-r from-[#003B73] via-[#0265A6] to-[#003B73] text-white shadow-md hover:brightness-110"
+                                            title="Set this as your active goal and track your roadmap"
                                         >
-                                            <BookOpen className="w-4 h-4" />
-                                            <span>Explore Complete Roadmaps & Top Colleges</span>
-                                            <ArrowRight className="w-4 h-4" />
+                                            <Target className="w-4 h-4 text-white" />
+                                            <span>Adopt as My Goal</span>
                                         </button>
+
+                                        {onSelectCareer && (
+                                            <button
+                                                onClick={() => {
+                                                    onSelectCareer(result.fullCareerData);
+                                                    onClose();
+                                                }}
+                                                className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold btn-interactive hover-lift border cursor-pointer ${
+                                                    darkMode
+                                                        ? 'bg-zinc-900 hover:bg-white hover:text-black border-zinc-700 text-zinc-200'
+                                                        : 'bg-zinc-100 hover:bg-black hover:text-white border-zinc-300 text-black'
+                                                }`}
+                                            >
+                                                <BookOpen className="w-4 h-4" />
+                                                <span>Explore Details</span>
+                                                <ArrowRight className="w-4 h-4" />
+                                            </button>
+                                        )}
                                     </div>
                                 )}
                             </div>

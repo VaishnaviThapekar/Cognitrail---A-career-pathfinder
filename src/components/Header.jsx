@@ -2,12 +2,21 @@ import React, { useState, useRef, useEffect } from 'react';
 import {
   Search, Moon, Sun, User, Scale, School, LogIn, Menu, X,
   Compass, HelpCircle, Map, Newspaper, Bot, Target, Globe, Cloud,
-  Calculator, GitCompare, BookOpen, ChevronDown, FileText
+  Calculator, GitCompare, BookOpen, ChevronDown, FileText, Mic, MicOff, Flame
 } from 'lucide-react';
 import { useGamification } from '../contexts/GamificationContext';
 import { useAuth } from '../contexts/AuthContext';
 import { useLanguage } from '../contexts/LanguageContext';
 import AuthModal from './AuthModal';
+
+const TRENDING_SEARCHES = [
+  'AI & Machine Learning Engineer',
+  'Software Engineer',
+  'MBBS Doctor',
+  'Data Scientist',
+  'Investment Banker',
+  'Product Designer'
+];
 
 const Header = ({
   darkMode,
@@ -37,15 +46,71 @@ const Header = ({
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [showSearchDropdown, setShowSearchDropdown] = useState(false);
   const dropdownRef = useRef(null);
+  const searchDropdownRef = useRef(null);
+  const recognitionRef = useRef(null);
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  const handleVoiceSearch = () => {
+    const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRec) {
+      alert("Voice search is not supported in this browser. Please use Chrome, Edge, or Safari.");
+      return;
+    }
+
+    if (isListening) {
+      if (recognitionRef.current) {
+        recognitionRef.current.stop();
+      }
+      setIsListening(false);
+      return;
+    }
+
+    try {
+      const recognition = new SpeechRec();
+      recognition.lang = lang === 'hi' ? 'hi-IN' : 'en-US';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      recognition.onstart = () => {
+        setIsListening(true);
+      };
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        if (transcript) {
+          setSearchQuery(transcript);
+          setShowSearchDropdown(false);
+        }
+      };
+
+      recognition.onerror = () => {
+        setIsListening(false);
+      };
+
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+
+      recognitionRef.current = recognition;
+      recognition.start();
+    } catch (e) {
+      console.warn('Speech recognition error:', e);
+      setIsListening(false);
+    }
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setToolsDropdownOpen(false);
+      }
+      if (searchDropdownRef.current && !searchDropdownRef.current.contains(event.target)) {
+        setShowSearchDropdown(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -313,21 +378,65 @@ const Header = ({
             </nav>
 
             {/* Search Bar - Desktop */}
-            <div className="flex-1 max-w-xs hidden md:block">
-              <div className="relative">
-                <Search className={`absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`} />
+            <div className="flex-1 max-w-xs hidden md:block relative" ref={searchDropdownRef}>
+              <div className="relative flex items-center">
+                <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`} />
                 <input
                   type="text"
                   placeholder={t('searchPlaceholder', 'Search 150+ careers, skills...')}
                   value={searchQuery}
+                  onFocus={() => setShowSearchDropdown(true)}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className={`w-full pl-9 pr-3.5 py-1.5 rounded-xl text-xs transition-all border focus:outline-none ${
+                  className={`w-full pl-8 pr-8 py-1.5 rounded-xl text-xs transition-all border focus:outline-none ${
                     darkMode
                       ? 'bg-[#0A1E3F] border-[#003B73] text-white placeholder-zinc-400 focus:border-[#0265A6] focus:ring-1 focus:ring-[#0265A6]'
                       : 'bg-[#EBF3FA] border-[#BACDDF] text-black placeholder-zinc-500 focus:border-[#0265A6] focus:bg-white focus:ring-1 focus:ring-[#0265A6]'
                   }`}
                 />
+                <button
+                  type="button"
+                  onClick={handleVoiceSearch}
+                  title={isListening ? "Listening... click to stop" : "Search by voice"}
+                  className={`absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-lg transition-all cursor-pointer ${
+                    isListening
+                      ? 'bg-red-500 text-white animate-pulse'
+                      : darkMode ? 'text-[#6096BA] hover:text-white' : 'text-[#0265A6] hover:text-black'
+                  }`}
+                >
+                  {isListening ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
+                </button>
               </div>
+
+              {/* Trending Searches Dropdown */}
+              {showSearchDropdown && (
+                <div className={`absolute left-0 right-0 mt-2 rounded-2xl border p-3 shadow-2xl z-50 backdrop-blur-xl animate-in fade-in slide-in-from-top-1 ${
+                  darkMode ? 'bg-[#071326]/95 border-[#003B73] text-white shadow-black/60' : 'bg-white/95 border-[#BACDDF] text-black shadow-zinc-300'
+                }`}>
+                  <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-[#0265A6] mb-2">
+                    <Flame className="w-3 h-3 text-amber-500" />
+                    <span>Trending Career Searches</span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {TRENDING_SEARCHES.map((item, idx) => (
+                      <button
+                        key={idx}
+                        onClick={() => {
+                          setSearchQuery(item);
+                          setShowSearchDropdown(false);
+                          if (onHomeClick) onHomeClick();
+                        }}
+                        className={`text-[11px] font-semibold px-2.5 py-1 rounded-lg border transition-all hover:scale-105 cursor-pointer ${
+                          darkMode
+                            ? 'bg-[#0A1E3F] border-[#003B73] text-zinc-300 hover:text-white hover:border-[#0265A6]'
+                            : 'bg-[#EBF3FA] border-[#BACDDF] text-[#051C3E] hover:bg-[#BACDDF]/40'
+                        }`}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Right Utility Controls */}
@@ -420,16 +529,26 @@ const Header = ({
           }`}>
             {/* Search Input on Mobile */}
             <div className="relative mb-2">
-              <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`} />
+              <Search className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none ${darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'}`} />
               <input
                 type="text"
                 placeholder={t('searchPlaceholder', 'Search careers, skills, fields...')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className={`w-full pl-9 pr-4 py-2 rounded-xl text-xs border focus:outline-none ${
+                className={`w-full pl-9 pr-9 py-2 rounded-xl text-xs border focus:outline-none ${
                   darkMode ? 'bg-[#0A1E3F] border-[#003B73] text-white placeholder-zinc-400' : 'bg-white border-[#BACDDF] text-black'
                 }`}
               />
+              <button
+                type="button"
+                onClick={handleVoiceSearch}
+                title={isListening ? "Listening..." : "Search by voice"}
+                className={`absolute right-2.5 top-1/2 -translate-y-1/2 p-1 rounded-lg ${
+                  isListening ? 'bg-red-500 text-white animate-pulse' : darkMode ? 'text-[#6096BA]' : 'text-[#0265A6]'
+                }`}
+              >
+                {isListening ? <MicOff className="w-3.5 h-3.5" /> : <Mic className="w-3.5 h-3.5" />}
+              </button>
             </div>
 
             {/* Core Exploration Links */}

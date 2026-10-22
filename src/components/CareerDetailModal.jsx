@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import {
   X, DollarSign, Calendar, GraduationCap, Award, MapPin,
   Star, Brain, ExternalLink, Map, TrendingUp, Sparkles,
-  Layers, Code2, ArrowRight, Bookmark, CheckCircle2, Briefcase, Target
+  Layers, Code2, ArrowRight, Bookmark, CheckCircle2, Briefcase, Target,
+  Building2, ShieldCheck, Laptop, FileText, CalendarPlus
 } from 'lucide-react';
 import CareerRoadmap from './CareerRoadmap';
 import DayInLifeShowcase from './DayInLifeShowcase';
+import { getTopRecruiters, getFutureProofScore, getWorkFlexibility, downloadCalendarICS } from '../services/careerEnricher';
 
 const CareerDetailModal = ({ 
   career, 
@@ -16,6 +18,11 @@ const CareerDetailModal = ({
 }) => {
   const [showRoadmap, setShowRoadmap] = useState(false);
   const [activeCareer, setActiveCareer] = useState(career);
+  const [calendarDownloaded, setCalendarDownloaded] = useState(false);
+
+  const topRecruiters = getTopRecruiters(activeCareer);
+  const futureProofScore = getFutureProofScore(activeCareer);
+  const workFlexibility = getWorkFlexibility(activeCareer);
 
   // Keyboard Escape listener
   useEffect(() => {
@@ -215,6 +222,35 @@ const CareerDetailModal = ({
                 </button>
 
                 <button
+                  onClick={() => {
+                    if (window.openResumeBuilder) {
+                      window.openResumeBuilder(activeCareer);
+                    }
+                  }}
+                  className="px-3.5 py-2 rounded-xl text-xs font-bold btn-interactive flex items-center gap-1.5 cursor-pointer bg-gradient-to-r from-[#0265A6] to-[#6096BA] text-white shadow-sm hover:brightness-110"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Build ATS Resume</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    downloadCalendarICS(activeCareer);
+                    setCalendarDownloaded(true);
+                    setTimeout(() => setCalendarDownloaded(false), 2500);
+                  }}
+                  className={`px-3.5 py-2 rounded-xl text-xs font-bold btn-interactive flex items-center gap-1.5 cursor-pointer border ${
+                    darkMode
+                      ? 'bg-[#0A1E3F] border-[#003B73] text-[#6096BA] hover:text-white hover:border-[#0265A6]'
+                      : 'bg-white border-[#BACDDF] text-[#0265A6] hover:bg-[#0265A6] hover:text-white'
+                  }`}
+                  title="Export exam milestones directly to your calendar"
+                >
+                  <CalendarPlus className="w-3.5 h-3.5" />
+                  <span>{calendarDownloaded ? '✓ Calendar Synced!' : 'Sync Exams (.ics)'}</span>
+                </button>
+
+                <button
                   onClick={() => window.openExams && window.openExams()}
                   className={`px-3.5 py-2 rounded-xl text-xs font-bold btn-interactive flex items-center gap-1.5 cursor-pointer border ${
                     darkMode
@@ -253,7 +289,7 @@ const CareerDetailModal = ({
             </div>
             
             {/* Top Stats Grid */}
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className={`${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'} p-4.5 rounded-2xl border`}>
                 <div className="flex items-center gap-2.5 mb-2">
                   <div className={`p-2 rounded-xl border ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
@@ -280,6 +316,66 @@ const CareerDetailModal = ({
                 <p className={`text-sm sm:text-base font-black ${darkMode ? 'text-white' : 'text-black'}`}>
                   {ageToStart}
                 </p>
+              </div>
+
+              <div className={`${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'} p-4.5 rounded-2xl border`}>
+                <div className="flex items-center gap-2.5 mb-2">
+                  <div className={`p-2 rounded-xl border ${darkMode ? 'bg-emerald-950 text-emerald-400 border-emerald-800' : 'bg-emerald-50 text-emerald-600 border-emerald-200'}`}>
+                    <ShieldCheck className="w-4 h-4" />
+                  </div>
+                  <h3 className={`text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                    AI Future-Proof
+                  </h3>
+                </div>
+                <p className="text-sm sm:text-base font-black text-emerald-500">
+                  {futureProofScore}% Resilient
+                </p>
+              </div>
+
+              <div className={`${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'} p-4.5 rounded-2xl border`}>
+                <div className="flex items-center gap-2.5 mb-2">
+                  <div className={`p-2 rounded-xl border ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                    <Laptop className="w-4 h-4" />
+                  </div>
+                  <h3 className={`text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                    Work Flexibility
+                  </h3>
+                </div>
+                <p className={`text-xs sm:text-sm font-black ${darkMode ? 'text-white' : 'text-black'} truncate`}>
+                  {workFlexibility}
+                </p>
+              </div>
+            </div>
+
+            {/* Top Marquee Recruiters Showcase */}
+            <div className={`${darkMode ? 'bg-zinc-900/60 border-zinc-800' : 'bg-zinc-50 border-zinc-200'} p-5 sm:p-6 rounded-2xl border`}>
+              <div className="flex items-center gap-2.5 mb-3">
+                <div className={`p-2 rounded-xl border ${darkMode ? 'bg-white text-black' : 'bg-black text-white'}`}>
+                  <Building2 className="w-4 h-4" />
+                </div>
+                <div>
+                  <h3 className={`text-sm font-black ${darkMode ? 'text-white' : 'text-black'}`}>
+                    Top Hiring Companies & Marquee Recruiters
+                  </h3>
+                  <p className={`text-xs ${darkMode ? 'text-zinc-400' : 'text-zinc-600'}`}>
+                    Leading organizations actively recruiting {careerName} professionals
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2 pt-1">
+                {topRecruiters.map((company, idx) => (
+                  <span
+                    key={idx}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-bold border flex items-center gap-1.5 shadow-sm transition-transform hover:scale-105 ${
+                      darkMode
+                        ? 'bg-[#0A1E3F] border-[#003B73] text-[#EBF3FA] hover:border-[#0265A6]'
+                        : 'bg-white border-[#BACDDF] text-[#051C3E] hover:border-[#0265A6]'
+                    }`}
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[#0265A6]"></span>
+                    <span>{company}</span>
+                  </span>
+                ))}
               </div>
             </div>
 

@@ -11,6 +11,12 @@ import {
 
 import EXTRA_COLLEGES from '../src/data/collegesExtra.js';
 import { CAREER_DATABASE } from '../src/data/careerDatabase.js';
+import { 
+  getTopRecruiters, 
+  getFutureProofScore, 
+  getWorkFlexibility, 
+  generateCalendarICS 
+} from '../src/services/careerEnricher.js';
 
 // Merge EXTRA_COLLEGES prior to tests
 mergeCollegesData(EXTRA_COLLEGES);
@@ -261,4 +267,46 @@ test('10. AI Resume & Portfolio Builder ATS Scorecard & Export Engine', (t) => {
   const partialRes = calculateATSMetrics(incompleteResume);
   assert.ok(partialRes.score < 60, 'Incomplete resume should yield a lower ATS score (<60%)');
   assert.ok(partialRes.suggestions.length >= 3, 'Multiple improvement suggestions should be generated for incomplete resume');
+});
+
+test('11. Career Enrichment, Top Recruiters & Calendar ICS Generation', (t) => {
+  const aiCareer = {
+    name: 'AI & Machine Learning Engineer',
+    domainName: 'Engineering & AI',
+    entranceExams: ['JEE Main', 'JEE Advanced', 'GATE']
+  };
+
+  const doctorCareer = {
+    name: 'MBBS Doctor',
+    domainName: 'Medicine & Healthcare',
+    entranceExams: ['NEET-UG', 'AIIMS']
+  };
+
+  // Recruiters
+  const aiRecruiters = getTopRecruiters(aiCareer);
+  assert.ok(aiRecruiters.includes('Google DeepMind') || aiRecruiters.includes('NVIDIA'), 'AI recruiters should include top tech firms');
+  
+  const doctorRecruiters = getTopRecruiters(doctorCareer);
+  assert.ok(doctorRecruiters.includes('AIIMS') || doctorRecruiters.includes('Apollo Hospitals'), 'Doctor recruiters should include top hospitals');
+
+  // Future proof scores
+  const aiFutureProof = getFutureProofScore(aiCareer);
+  assert.ok(aiFutureProof >= 90, 'AI Engineer future-proof score should be high (>=90%)');
+
+  const doctorFutureProof = getFutureProofScore(doctorCareer);
+  assert.ok(doctorFutureProof >= 90, 'Doctor future-proof score should be high (>=90%)');
+
+  // Work styles
+  const aiFlex = getWorkFlexibility(aiCareer);
+  assert.ok(aiFlex.toLowerCase().includes('remote') || aiFlex.toLowerCase().includes('hybrid'), 'AI should offer remote/hybrid flexibility');
+
+  const doctorFlex = getWorkFlexibility(doctorCareer);
+  assert.ok(doctorFlex.toLowerCase().includes('site') || doctorFlex.toLowerCase().includes('clinical'), 'Doctor should be on-site/clinical');
+
+  // Calendar ICS Generation
+  const ics = generateCalendarICS(aiCareer);
+  assert.ok(ics.includes('BEGIN:VCALENDAR'), 'ICS must start with BEGIN:VCALENDAR');
+  assert.ok(ics.includes('END:VCALENDAR'), 'ICS must end with END:VCALENDAR');
+  assert.ok(ics.includes('BEGIN:VEVENT'), 'ICS must contain VEVENT');
+  assert.ok(ics.includes('SUMMARY:🎯 Cognitrail: JEE Main'), 'ICS must include exam summary');
 });

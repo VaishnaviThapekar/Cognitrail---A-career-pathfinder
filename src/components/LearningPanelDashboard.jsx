@@ -3,11 +3,12 @@ import {
   Target, CheckCircle2, Circle, Trophy, BookOpen, GraduationCap,
   DollarSign, Calendar, TrendingUp, Sparkles, ExternalLink, Download,
   Printer, RefreshCw, X, ChevronRight, Award, Bot, Brain, Map, UserCheck,
-  Search, ArrowRight, BarChart2
+  Search, ArrowRight, BarChart2, CalendarPlus
 } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { useAuth } from '../contexts/AuthContext';
 import { CAREER_DATABASE } from '../data/careerDatabase';
+import { downloadCalendarICS } from '../services/careerEnricher';
 
 // Default Fallback Target Career if user hasn't chosen one yet
 const DEFAULT_CAREER = {
@@ -175,6 +176,7 @@ export default function LearningPanelDashboard({
   const [showGoalPicker, setShowGoalPicker] = useState(false);
   const [goalSearch, setGoalSearch] = useState('');
   const [activeTab, setActiveTab] = useState('pathway'); // 'pathway', 'skills', 'academic', 'courses', 'interview'
+  const [calendarSynced, setCalendarSynced] = useState(false);
 
   // Persist activeGoal to localStorage for this specific user
   useEffect(() => {
@@ -644,6 +646,52 @@ export default function LearningPanelDashboard({
                 </div>
               </div>
 
+              {/* Interactive Visual Stage Timeline Ribbon */}
+              <div className={`p-4 sm:p-5 rounded-2xl border ${darkMode ? 'bg-[#071326] border-[#003B73]' : 'bg-[#EBF3FA] border-[#BACDDF]'}`}>
+                <div className="flex items-center justify-between gap-2 overflow-x-auto no-scrollbar pb-1">
+                  {milestoneList.map((m, idx) => {
+                    const stageTasks = m.tasks || [];
+                    const isStageComplete = stageTasks.length > 0 && stageTasks.every(t => completedTasks.includes(t));
+                    const isNextStep = !isStageComplete && (idx === 0 || milestoneList[idx - 1].tasks?.every(t => completedTasks.includes(t)));
+
+                    return (
+                      <React.Fragment key={idx}>
+                        <div className="flex flex-col items-center min-w-[110px] sm:min-w-[130px] text-center flex-1">
+                          <div className={`w-9 h-9 rounded-full flex items-center justify-center font-black text-xs transition-all shadow-md ${
+                            isStageComplete
+                              ? 'bg-emerald-500 text-white shadow-emerald-500/30'
+                              : isNextStep
+                                ? 'bg-gradient-to-r from-[#003B73] to-[#0265A6] text-white ring-4 ring-[#0265A6]/30 animate-pulse'
+                                : darkMode
+                                  ? 'bg-[#0A1E3F] border border-[#003B73] text-zinc-400'
+                                  : 'bg-white border border-[#BACDDF] text-zinc-500'
+                          }`}>
+                            {isStageComplete ? '✓' : idx + 1}
+                          </div>
+                          <span className={`text-[11px] font-bold mt-2 line-clamp-1 ${
+                            isStageComplete
+                              ? darkMode ? 'text-emerald-400' : 'text-emerald-600'
+                              : isNextStep
+                                ? darkMode ? 'text-white' : 'text-[#003B73]'
+                                : darkMode ? 'text-zinc-400' : 'text-zinc-600'
+                          }`}>
+                            Stage {idx + 1}
+                          </span>
+                          <span className="text-[10px] text-zinc-400 truncate max-w-[110px]">
+                            {m.duration.split('/')[0].trim()}
+                          </span>
+                        </div>
+                        {idx < milestoneList.length - 1 && (
+                          <div className={`h-1 flex-1 min-w-[20px] rounded-full mx-1 ${
+                            isStageComplete ? 'bg-emerald-500' : darkMode ? 'bg-[#003B73]' : 'bg-[#BACDDF]'
+                          }`} />
+                        )}
+                      </React.Fragment>
+                    );
+                  })}
+                </div>
+              </div>
+
               <div className="space-y-4">
                 {milestoneList.map((m, idx) => {
                   const stageTasks = m.tasks || [];
@@ -802,13 +850,24 @@ export default function LearningPanelDashboard({
                     Required Entrance Examinations
                   </h4>
                   <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => {
+                        downloadCalendarICS(activeGoal);
+                        setCalendarSynced(true);
+                        setTimeout(() => setCalendarSynced(false), 2500);
+                      }}
+                      className="text-xs font-bold text-[#0265A6] hover:underline flex items-center gap-1 cursor-pointer"
+                    >
+                      <CalendarPlus className="w-3.5 h-3.5" />
+                      <span>{calendarSynced ? '✓ Synced to Calendar!' : 'Sync to Calendar (.ics)'}</span>
+                    </button>
                     {onOpenExams && (
                       <button
                         onClick={onOpenExams}
                         className="text-xs font-bold text-[#0265A6] hover:underline flex items-center gap-1 cursor-pointer"
                       >
                         <Calendar className="w-3.5 h-3.5" />
-                        <span>Exam Dates & Tracker</span>
+                        <span>Exam Dates</span>
                       </button>
                     )}
                     {onOpenPredictor && (

@@ -1,5 +1,6 @@
 import React from 'react';
-import { ChevronRight, DollarSign, GraduationCap, TrendingUp, Bookmark, Star, Sparkles, Brain } from 'lucide-react';
+import { ChevronRight, DollarSign, GraduationCap, TrendingUp, Bookmark, Sparkles, Building2, ShieldCheck } from 'lucide-react';
+import { getTopRecruiters, getFutureProofScore } from '../services/careerEnricher';
 
 const getCareerCoverImage = (career) => {
   const domain = (career.domainName || career.domainKey || career.name || '').toLowerCase();
@@ -35,6 +36,8 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
     : ['Critical Thinking', 'Problem Solving', 'Communication'];
   const fitScore = career.fitScore || (career.name ? (88 + (career.name.length % 11)) : 94);
   const coverImage = getCareerCoverImage(career);
+  const topRecruitersList = getTopRecruiters(career).slice(0, 2);
+  const futureProofScore = getFutureProofScore(career);
 
   const isBookmarked = savedCareers?.some(c => c && c.name === careerName);
 
@@ -143,6 +146,18 @@ const CareerCard = ({ career, onSelect, darkMode, savedCareers, setSavedCareers 
               {skill}
             </span>
           ))}
+        </div>
+
+        {/* Top Recruiters & Future-Proof Footer */}
+        <div className="flex items-center justify-between gap-2 mt-3 pt-2.5 border-t border-dashed border-[#003B73]/30 text-[10px] font-semibold">
+          <div className="flex items-center gap-1 truncate text-[#0265A6]">
+            <Building2 className="w-3 h-3 flex-shrink-0" />
+            <span className="truncate">{topRecruitersList.join(', ')}</span>
+          </div>
+          <div className={`flex items-center gap-1 flex-shrink-0 ${darkMode ? 'text-emerald-400' : 'text-emerald-600'}`}>
+            <ShieldCheck className="w-3 h-3" />
+            <span>{futureProofScore}% Safe</span>
+          </div>
         </div>
       </div>
 
